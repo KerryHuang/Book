@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "方案項目", "方案項�
 	ProjectSection(SolutionItems) = preProject
 		Markdown Cheatsheet 中文版.md = Markdown Cheatsheet 中文版.md
 		Markdown Cheatsheet 中文版.pdf = Markdown Cheatsheet 中文版.pdf
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET Core 教育訓練文件", "ASP.NET Core 教育訓練文件", "{D65E8F1E-935D-45BE-9246-B54F2CF0A412}"
