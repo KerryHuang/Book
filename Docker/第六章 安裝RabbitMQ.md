@@ -4,6 +4,8 @@
 
 後面會使用到RabbitMQ，讓我們直接開始使用Docker啟動一個RabbitMQ環境吧。 在 docker hub 上 rabbitmq 的 tag 很多，但是我們使用 management ，因為可以看到監控頁面。
 
+[官方教學](https://hub.docker.com/_/rabbitmq)
+
 ## 搜尋 Image
 ---
 ```

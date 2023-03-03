@@ -4,6 +4,8 @@
 
 前面主要是介紹了下 Dockerfile 的一些常用命令的說明。我們知道，利用 Dockerfile 可以建立一個新的Image，比如運行 Java 環境，就需要一個JDK環境的Image，但直接使用公共的Image時，一般上大小都比較大。所以本章節就主要結合 Dockerfile 文件，建立屬於自己的 Image ，同時對 Image 進行壓縮和優化，同時也是對 Dockerfile 知識的一個實踐。
 
+[官方教學](https://hub.docker.com/_/mysql)
+
 ## 搜尋 Image
 
 ---

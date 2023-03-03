@@ -1,55 +1,55 @@
-¦b¾Ç²ß C# »P¸ê®Æ®wªº¤¬°Ê¤è¦¡¡A¦³¤@­Ó±`¨£¥B¹ê¥Îªº±Ğ¾Ç´N¬O·|­ûµn¤J¡Bµù¥U»P­×§ï·|­û¸ê®Æµ¥½d¨Ò¡A¾Ç²ß¹Lµ{¤¤·|¥Î¨ì¸ê®Æ®w·s¼W¡B­×§ï»P¬d¸ß°Ê§@¡A¬O²z¸Ñµ{¦¡»P¸ê®Æ®w¤¬°Êªº±`¨£µ{¦¡½X¡C
-·í¾Ç·|¤F³o­Ó½d¨Ò¡A±N¨Ó¬°«È¤á¶}µo¨t²Îªº®É­Ô¡A°¨¤W¥i¥H¬£¤W¥Î³õ¡C
+ï»¿åœ¨å­¸ç¿’ C# èˆ‡è³‡æ–™åº«çš„äº’å‹•æ–¹å¼ï¼Œæœ‰ä¸€å€‹å¸¸è¦‹ä¸”å¯¦ç”¨çš„æ•™å­¸å°±æ˜¯æœƒå“¡ç™»å…¥ã€è¨»å†Šèˆ‡ä¿®æ”¹æœƒå“¡è³‡æ–™ç­‰ç¯„ä¾‹ï¼Œå­¸ç¿’éç¨‹ä¸­æœƒç”¨åˆ°è³‡æ–™åº«æ–°å¢ã€ä¿®æ”¹èˆ‡æŸ¥è©¢å‹•ä½œï¼Œæ˜¯ç†è§£ç¨‹å¼èˆ‡è³‡æ–™åº«äº’å‹•çš„å¸¸è¦‹ç¨‹å¼ç¢¼ã€‚
+ç•¶å­¸æœƒäº†é€™å€‹ç¯„ä¾‹ï¼Œå°‡ä¾†ç‚ºå®¢æˆ¶é–‹ç™¼ç³»çµ±çš„æ™‚å€™ï¼Œé¦¬ä¸Šå¯ä»¥æ´¾ä¸Šç”¨å ´ã€‚
 
-¦¹½g¤å³¹¬OÄ~¤W¤@½g¤å³¹: [«e¥x·|­û­×§ï­Ó¤H¸ê®Æ½d¨Ò #CH3](https://blog.hungwin.com.tw/aspnet-mvc-member-edit-profile/) ±µÄò±Ğ¾Ç¡C
-¦¹½d¨Ò®i¥Ü·|­û§Ñ°O±K½X®É¡A¿é¤J±b¸¹¦Ü«áºİ¬d¸ß«H½c«á¡A±H°eÅçÃÒ½X¦Ü·|­û«H½c¡A¦b«H¥ó¤¤¦³³sµ²¦^ºô¯¸­«³]±K½X¡C
+æ­¤ç¯‡æ–‡ç« æ˜¯ç¹¼ä¸Šä¸€ç¯‡æ–‡ç« : [å‰å°æœƒå“¡ä¿®æ”¹å€‹äººè³‡æ–™ç¯„ä¾‹ #CH3](https://blog.hungwin.com.tw/aspnet-mvc-member-edit-profile/) æ¥çºŒæ•™å­¸ã€‚
+æ­¤ç¯„ä¾‹å±•ç¤ºæœƒå“¡å¿˜è¨˜å¯†ç¢¼æ™‚ï¼Œè¼¸å…¥å¸³è™Ÿè‡³å¾Œç«¯æŸ¥è©¢ä¿¡ç®±å¾Œï¼Œå¯„é€é©—è­‰ç¢¼è‡³æœƒå“¡ä¿¡ç®±ï¼Œåœ¨ä¿¡ä»¶ä¸­æœ‰é€£çµå›ç¶²ç«™é‡è¨­å¯†ç¢¼ã€‚
 
-½d¨Ò¤º®e¥D­n¥H ASP.NET MVC ¬°®Ö¤ß¡A«eºİ¨Ï¥Î Vue.js ®Ø¬[¡A¦Ó«áºİ¨Ï¥Î SQL Server ·í¸ê®Æ®w¡C
+ç¯„ä¾‹å…§å®¹ä¸»è¦ä»¥ ASP.NET MVC ç‚ºæ ¸å¿ƒï¼Œå‰ç«¯ä½¿ç”¨ Vue.js æ¡†æ¶ï¼Œè€Œå¾Œç«¯ä½¿ç”¨ SQL Server ç•¶è³‡æ–™åº«ã€‚
 
-½s¼g¦¹±Ğ¾Ç¤å³¹¬O¬°¤FÀ°§U§ó¦h·s¥[¤Jªº³nÅé¤uµ{®v­Ì¡A¦³§óÂ²³æ¹ê¥Îªº½d¨Ò¡A¥i¥H§Ö³t¾Ç²ß
-C# »P¸ê®Æ®wµ{¦¡»y¨¥¡C
-¤å¥½¦³´£¨Ñ¦¹¾Ş§@½d¨Òªº§¹¾ãµ{¦¡½X¤U¸ü¡A¦³»İ­n¥i¥H¦Û¦æ¤U¸üÂsÄı¡C
+ç·¨å¯«æ­¤æ•™å­¸æ–‡ç« æ˜¯ç‚ºäº†å¹«åŠ©æ›´å¤šæ–°åŠ å…¥çš„è»Ÿé«”å·¥ç¨‹å¸«å€‘ï¼Œæœ‰æ›´ç°¡å–®å¯¦ç”¨çš„ç¯„ä¾‹ï¼Œå¯ä»¥å¿«é€Ÿå­¸ç¿’
+C# èˆ‡è³‡æ–™åº«ç¨‹å¼èªè¨€ã€‚
+æ–‡æœ«æœ‰æä¾›æ­¤æ“ä½œç¯„ä¾‹çš„å®Œæ•´ç¨‹å¼ç¢¼ä¸‹è¼‰ï¼Œæœ‰éœ€è¦å¯ä»¥è‡ªè¡Œä¸‹è¼‰ç€è¦½ã€‚
 
-##### ¥Ø¿ı
-[1 ¦b MemberController ¼W¥[§Ñ°O±K½X­¶­±](#step1)  
-&emsp;&emsp;[1.1 ¼W¥[§Ñ°O±K½X³sµ²](#step2)  
-&emsp;&emsp;[1.2 ¼W¥[§Ñ°O±K½X­¶­±](#step3)  
-&emsp;&emsp;[1.3 ¼W¥[§Ñ°O±K½X­¶­± View](#step4)  
-[2 ½s¼g¡u§Ñ°O±K½X¡v View »yªk](#step5)  
-[3 ½s¼g¡u±H°eÅçÃÒ½X¡vController »yªk](#step6)  
-&emsp;&emsp;[3.1 ½Õ¾ã Web.config](#step7)  
-&emsp;&emsp;[3.2 ½Õ¾ã Google µo«H³]©w](#step8)  
-&emsp;&emsp;[3.3 ¼W¥[§Ñ°O±K½X Model](#step9)  
-[4 ´ú¸Õ§Ñ°O±K½X](#step10)  
-[5 ¦b MemberController ¼W¥[­«³]±K½X­¶­±](#step11)  
-&emsp;&emsp;[5.1 ¼W¥[­«³]±K½X­¶­± View](#step12)  
-[6 ½s¼g¡u­«³]±K½X¡v View »yªk](#step13)  
-[7 ½s¼g¡u­«³]±K½X¡vController »yªk](#step14)  
-&emsp;&emsp;[7.1 ¼W¥[­«³]±K½X Model](#step15)  
-[8 ´ú¸Õ§Ñ°O±K½X»P­«³]±K½X¥\¯à](#step16)  
-[9 ­«ÂI¾ã²z](#step17)  
-&emsp;&emsp;[9.1 ½d¨Ò¤U¸ü](#step18)
+##### ç›®éŒ„
+[1 åœ¨ MemberController å¢åŠ å¿˜è¨˜å¯†ç¢¼é é¢](#step1)  
+&emsp;&emsp;[1.1 å¢åŠ å¿˜è¨˜å¯†ç¢¼é€£çµ](#step2)  
+&emsp;&emsp;[1.2 å¢åŠ å¿˜è¨˜å¯†ç¢¼é é¢](#step3)  
+&emsp;&emsp;[1.3 å¢åŠ å¿˜è¨˜å¯†ç¢¼é é¢ View](#step4)  
+[2 ç·¨å¯«ã€Œå¿˜è¨˜å¯†ç¢¼ã€ View èªæ³•](#step5)  
+[3 ç·¨å¯«ã€Œå¯„é€é©—è­‰ç¢¼ã€Controller èªæ³•](#step6)  
+&emsp;&emsp;[3.1 èª¿æ•´ Web.config](#step7)  
+&emsp;&emsp;[3.2 èª¿æ•´ Google ç™¼ä¿¡è¨­å®š](#step8)  
+&emsp;&emsp;[3.3 å¢åŠ å¿˜è¨˜å¯†ç¢¼ Model](#step9)  
+[4 æ¸¬è©¦å¿˜è¨˜å¯†ç¢¼](#step10)  
+[5 åœ¨ MemberController å¢åŠ é‡è¨­å¯†ç¢¼é é¢](#step11)  
+&emsp;&emsp;[5.1 å¢åŠ é‡è¨­å¯†ç¢¼é é¢ View](#step12)  
+[6 ç·¨å¯«ã€Œé‡è¨­å¯†ç¢¼ã€ View èªæ³•](#step13)  
+[7 ç·¨å¯«ã€Œé‡è¨­å¯†ç¢¼ã€Controller èªæ³•](#step14)  
+&emsp;&emsp;[7.1 å¢åŠ é‡è¨­å¯†ç¢¼ Model](#step15)  
+[8 æ¸¬è©¦å¿˜è¨˜å¯†ç¢¼èˆ‡é‡è¨­å¯†ç¢¼åŠŸèƒ½](#step16)  
+[9 é‡é»æ•´ç†](#step17)  
+&emsp;&emsp;[9.1 ç¯„ä¾‹ä¸‹è¼‰](#step18)
 
-## ¦b MemberController ¼W¥[§Ñ°O±K½X­¶­±
+## åœ¨ MemberController å¢åŠ å¿˜è¨˜å¯†ç¢¼é é¢
 
-### ¼W¥[§Ñ°O±K½X³sµ²
+### å¢åŠ å¿˜è¨˜å¯†ç¢¼é€£çµ
 
-³o¦¸·|·s¼W¤@­Ó­¶­±¡A©Ò¥H¦b¡uµn¤J¡vªº­¶­±¡A¼W¥[¤@­Ó³sµ²¡A¾É¦V¡u§Ñ°O±K½X¡vµe­±¡C
-¥´¶} \Views\Member\Login.cshtml ¦b¡uµn¤J¡v«ö¶s¤U­±¼W¥[¤@­Ó¡u§Ñ°O±K½X¡v³sµ²¡C
+é€™æ¬¡æœƒæ–°å¢ä¸€å€‹é é¢ï¼Œæ‰€ä»¥åœ¨ã€Œç™»å…¥ã€çš„é é¢ï¼Œå¢åŠ ä¸€å€‹é€£çµï¼Œå°å‘ã€Œå¿˜è¨˜å¯†ç¢¼ã€ç•«é¢ã€‚
+æ‰“é–‹ \Views\Member\Login.cshtml åœ¨ã€Œç™»å…¥ã€æŒ‰éˆ•ä¸‹é¢å¢åŠ ä¸€å€‹ã€Œå¿˜è¨˜å¯†ç¢¼ã€é€£çµã€‚
 
-`@Html.ActionLink("§Ñ°O±K½X", "ForgetPwd", "Member")`
+`@Html.ActionLink("å¿˜è¨˜å¯†ç¢¼", "ForgetPwd", "Member")`
 
 ![img1](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-1.png)
 
-­×§ï«áµe­±
+ä¿®æ”¹å¾Œç•«é¢
 
 ![img2](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-2.png)
 
-### ¼W¥[§Ñ°O±K½X­¶­±
+### å¢åŠ å¿˜è¨˜å¯†ç¢¼é é¢
 
-³o¸Ì­n·s¼W¤@­Ó§Ñ°O±K½Xªºµe­±¡A¦b \Controllers\MemberController.cs Ãş§O¤º¡A¼W¥[ ForgetPwd() ¤èªkµM«á Return View()¡C
+é€™è£¡è¦æ–°å¢ä¸€å€‹å¿˜è¨˜å¯†ç¢¼çš„ç•«é¢ï¼Œåœ¨ \Controllers\MemberController.cs é¡åˆ¥å…§ï¼Œå¢åŠ  ForgetPwd() æ–¹æ³•ç„¶å¾Œ Return View()ã€‚
 ```C#
-// GET: §Ñ°O±K½X­¶­±
+// GET: å¿˜è¨˜å¯†ç¢¼é é¢
 public ActionResult ForgetPwd()
 {
 	return View();
@@ -58,54 +58,54 @@ public ActionResult ForgetPwd()
 
 ![img3](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-3.png)
 
-### ¼W¥[§Ñ°O±K½X­¶­± View
+### å¢åŠ å¿˜è¨˜å¯†ç¢¼é é¢ View
 
-¦b ForgetPwd() »yªk¤W«ö¥kÁä¿ï¡u·s¼WÀËµø¡v¡C
+åœ¨ ForgetPwd() èªæ³•ä¸ŠæŒ‰å³éµé¸ã€Œæ–°å¢æª¢è¦–ã€ã€‚
 
 ![img4](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-4.png)
 
-¿ï¾Ü¡uMVC 5 ÀËµø¡v¥[¤J¡C
+é¸æ“‡ã€ŒMVC 5 æª¢è¦–ã€åŠ å…¥ã€‚
 
 ![img5](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-5.png)
 
-½T»{¦WºÙ¬° ¡§ForgetPwd¡¨¡A¦³¤Ä¿ï¡u¨Ï¥Îª©­±°t¸m­¶¡v¡C
+ç¢ºèªåç¨±ç‚º â€œForgetPwdâ€ï¼Œæœ‰å‹¾é¸ã€Œä½¿ç”¨ç‰ˆé¢é…ç½®é ã€ã€‚
 
 ![img6](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-6.png)
 
-·s¼W¤§«á¦b Views\Member\ForgetPwd.cshtml ·|·s¼W View ÀËµø­¶­±¡C
+æ–°å¢ä¹‹å¾Œåœ¨ Views\Member\ForgetPwd.cshtml æœƒæ–°å¢ View æª¢è¦–é é¢ã€‚
 
 ![img7](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-7.png)
 
-## ½s¼g¡u§Ñ°O±K½X¡v View »yªk
+## ç·¨å¯«ã€Œå¿˜è¨˜å¯†ç¢¼ã€ View èªæ³•
 
-³o­Ó­¶­±§Ú³]­p¥u»İ­n¿é¤J±b¸¹¡A¦AÂIÀ»¡u±H°eÅçÃÒ½X¡v¡C
+é€™å€‹é é¢æˆ‘è¨­è¨ˆåªéœ€è¦è¼¸å…¥å¸³è™Ÿï¼Œå†é»æ“Šã€Œå¯„é€é©—è­‰ç¢¼ã€ã€‚
 
-¦b Bootstrap 3 ªº©x¤è½d¨Ò¡A¦³´£¨Ñ[ªí³æªº½d¨Ò](https://getbootstrap.com/docs/3.3/css/#forms)¡B[­±ª©ªº½d¨Ò](https://getbootstrap.com/docs/3.3/components/#panels)¤Î[«ö¶sªº½d¨Ò](https://getbootstrap.com/docs/3.3/css/#buttons)¡C
+åœ¨ Bootstrap 3 çš„å®˜æ–¹ç¯„ä¾‹ï¼Œæœ‰æä¾›[è¡¨å–®çš„ç¯„ä¾‹](https://getbootstrap.com/docs/3.3/css/#forms)ã€[é¢ç‰ˆçš„ç¯„ä¾‹](https://getbootstrap.com/docs/3.3/components/#panels)åŠ[æŒ‰éˆ•çš„ç¯„ä¾‹](https://getbootstrap.com/docs/3.3/css/#buttons)ã€‚
 
-§Ú±q Bootstrap 3 ½d¨Ò¤¤²Õ¦Xªí³æ HTML ¤Î®M¥Î Vue.js »yªkÅÜ¦¨¥H¤Uªº ForgetPwd.cshtml µ{¦¡½X¡C
+æˆ‘å¾ Bootstrap 3 ç¯„ä¾‹ä¸­çµ„åˆè¡¨å–® HTML åŠå¥—ç”¨ Vue.js èªæ³•è®Šæˆä»¥ä¸‹çš„ ForgetPwd.cshtml ç¨‹å¼ç¢¼ã€‚
 ```C#
 <div id="VuePage">
-    <!--¨Ï¥Î Bootstrap ³]­pªí³æ-->
+    <!--ä½¿ç”¨ Bootstrap è¨­è¨ˆè¡¨å–®-->
     <div class="panel panel-primary">
-        <div class="panel-heading">§Ñ°O±K½X½d¨Ò</div>
+        <div class="panel-heading">å¿˜è¨˜å¯†ç¢¼ç¯„ä¾‹</div>
         <div class="panel-body">
             <div class="form-group">
-                <label>±b¸¹</label>
+                <label>å¸³è™Ÿ</label>
                 <input type="text" class="form-control" v-model="form.UserID">
             </div>
         </div>
         <div class="panel-footer">
-            <button type="button" class="btn btn-primary" v-on:click="SendMailToken()">±H°eÅçÃÒ½X</button>
+            <button type="button" class="btn btn-primary" v-on:click="SendMailToken()">å¯„é€é©—è­‰ç¢¼</button>
         </div>
     </div>
  
-    <!--¨Ï¥Î Bootstrap Modal ¼Ë¦¡¡A·í°õ¦æ¦³¿ù»~®É¡AÅã¥Ü¿ù»~°T®§-->
+    <!--ä½¿ç”¨ Bootstrap Modal æ¨£å¼ï¼Œç•¶åŸ·è¡Œæœ‰éŒ¯èª¤æ™‚ï¼Œé¡¯ç¤ºéŒ¯èª¤è¨Šæ¯-->
     <div class="modal fade" id="ErrorAlert" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">¿ù»~°T®§</h4>
+                    <h4 class="modal-title">éŒ¯èª¤è¨Šæ¯</h4>
                 </div>
                 <div class="modal-body" id="ErrorMsg" style="overflow-x:auto;width:100%;">
  
@@ -125,21 +125,21 @@ public ActionResult ForgetPwd()
                 return data;
             }
             , methods: {
-                // «eºİÅçÃÒÅv§ú
+                // å‰ç«¯é©—è­‰æ¬Šæ–
                 GetToken: function () {
                     var token = '@Html.AntiForgeryToken()';
                     token = $(token).val();
                     return token;
                 }
-                // ±H°eÅçÃÒ½X
+                // å¯„é€é©—è­‰ç¢¼
                 , SendMailToken: function () {
                     var self = this;
  
-                    // ²Õ¦Xªí³æ¸ê®Æ
+                    // çµ„åˆè¡¨å–®è³‡æ–™
                     var postData = {};
                     postData['UserID'] = self.form.UserID;
  
-                    // ¨Ï¥Î jQuery Ajax ¶Ç°e¦Ü«áºİ
+                    // ä½¿ç”¨ jQuery Ajax å‚³é€è‡³å¾Œç«¯
                     $.ajax({
                         url:'@Url.Action("SendMailToken", "Member")',
                         method:'POST',
@@ -164,24 +164,24 @@ public ActionResult ForgetPwd()
 }
 ```
 
-­×§ï«áµe­±
+ä¿®æ”¹å¾Œç•«é¢
 
 ![img8](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-8.png)
 
-¦¹­¶­±­«ÂI¦b«ö¤U¡u±H°eÅçÃÒ½X¡v«á¡A±N«e¥x¸ê®Æ¶Ç°e¨ì«áºİªº ~/Member/SendMailToken ¤èªk¡A¨Ã¨ú±o«áºİªº°T®§¡C
+æ­¤é é¢é‡é»åœ¨æŒ‰ä¸‹ã€Œå¯„é€é©—è­‰ç¢¼ã€å¾Œï¼Œå°‡å‰å°è³‡æ–™å‚³é€åˆ°å¾Œç«¯çš„ ~/Member/SendMailToken æ–¹æ³•ï¼Œä¸¦å–å¾—å¾Œç«¯çš„è¨Šæ¯ã€‚
 
-§ÚÃB¥~¼W¥[¤F Bootstrap ªº modal ¼Ë¦¡¡A¨ÓÅã¥Ü«áºİ°õ¦æ®Éªº¿ù»~¡A³o¼Ë¤è«K Debug¡C
+æˆ‘é¡å¤–å¢åŠ äº† Bootstrap çš„ modal æ¨£å¼ï¼Œä¾†é¡¯ç¤ºå¾Œç«¯åŸ·è¡Œæ™‚çš„éŒ¯èª¤ï¼Œé€™æ¨£æ–¹ä¾¿ Debugã€‚
 
-Ãö©ó Vue.js ªº±Ğ¾Ç»yªk¡A¥i¥H¨ì[©xºô](https://cn.vuejs.org/v2/guide/)¤W­±¬d¸ß¡A©xºô¦³§¹¾ãªº±Ğ¾Ç¡C
+é—œæ–¼ Vue.js çš„æ•™å­¸èªæ³•ï¼Œå¯ä»¥åˆ°[å®˜ç¶²](https://cn.vuejs.org/v2/guide/)ä¸Šé¢æŸ¥è©¢ï¼Œå®˜ç¶²æœ‰å®Œæ•´çš„æ•™å­¸ã€‚
 
-## ½s¼g¡u±H°eÅçÃÒ½X¡vController »yªk
+## ç·¨å¯«ã€Œå¯„é€é©—è­‰ç¢¼ã€Controller èªæ³•
 
-·íµe­±¤W°õ¦æ¡u±H°eÅçÃÒ½X¡v«ö¶s¡AView ·|©I¥s MemberController ¸Ì­±ªºSendMailToken() ¤èªk¡C
-¥H¤U¬O SendMailToken() ¼gªk¡C
+ç•¶ç•«é¢ä¸ŠåŸ·è¡Œã€Œå¯„é€é©—è­‰ç¢¼ã€æŒ‰éˆ•ï¼ŒView æœƒå‘¼å« MemberController è£¡é¢çš„SendMailToken() æ–¹æ³•ã€‚
+ä»¥ä¸‹æ˜¯ SendMailToken() å¯«æ³•ã€‚
 
 ```C#
 /// <summary>
-/// ±H°eÅçÃÒ½X
+/// å¯„é€é©—è­‰ç¢¼
 /// </summary>
 /// <returns></returns>
 [ValidateAntiForgeryToken]
@@ -189,34 +189,34 @@ public ActionResult SendMailToken(SendMailTokenIn inModel)
 {
 	SendMailTokenOut outModel = new SendMailTokenOut();
  
-	// ÀË¬d¿é¤J¨Ó·½
+	// æª¢æŸ¥è¼¸å…¥ä¾†æº
 	if (string.IsNullOrEmpty(inModel.UserID))
 	{
-		outModel.ErrMsg = "½Ğ¿é¤J±b¸¹";
+		outModel.ErrMsg = "è«‹è¼¸å…¥å¸³è™Ÿ";
 		return Json(outModel);
 	}
  
-	// ÀË¬d¸ê®Æ®w¬O§_¦³³o­Ó±b¸¹
+	// æª¢æŸ¥è³‡æ–™åº«æ˜¯å¦æœ‰é€™å€‹å¸³è™Ÿ
  
-	// ¨ú±o¸ê®Æ®w³s½u¦r¦ê
+	// å–å¾—è³‡æ–™åº«é€£ç·šå­—ä¸²
 	string connStr = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnDB"].ConnectionString;
  
-	// ·íµ{¦¡½XÂ÷¶} using °Ï¶ô®É¡A·|¦Û°ÊÃö³¬³s±µ
+	// ç•¶ç¨‹å¼ç¢¼é›¢é–‹ using å€å¡Šæ™‚ï¼Œæœƒè‡ªå‹•é—œé–‰é€£æ¥
 	using (SqlConnection conn = new SqlConnection(connStr))
 	{
-		// ¸ê®Æ®w³s½u
+		// è³‡æ–™åº«é€£ç·š
 		conn.Open();
  
-		// ¨ú±o·|­û¸ê®Æ
+		// å–å¾—æœƒå“¡è³‡æ–™
 		string sql = "select * from Member where UserID = @UserID";
 		SqlCommand cmd = new SqlCommand();
 		cmd.CommandText = sql;
 		cmd.Connection = conn;
  
-		// ¨Ï¥Î°Ñ¼Æ¤Æ¶ñ­È
+		// ä½¿ç”¨åƒæ•¸åŒ–å¡«å€¼
 		cmd.Parameters.AddWithValue("@UserID", inModel.UserID);
  
-		// °õ¦æ¸ê®Æ®w¬d¸ß°Ê§@
+		// åŸ·è¡Œè³‡æ–™åº«æŸ¥è©¢å‹•ä½œ
 		SqlDataAdapter adpt = new SqlDataAdapter();
 		adpt.SelectCommand = cmd;
 		DataSet ds = new DataSet();
@@ -225,16 +225,16 @@ public ActionResult SendMailToken(SendMailTokenIn inModel)
  
 		if (dt.Rows.Count > 0)
 		{
-			// ¨ú¥X·|­û«H½c
+			// å–å‡ºæœƒå“¡ä¿¡ç®±
 			string UserEmail = dt.Rows[0]["UserEmail"].ToString();
  
-			// ¨ú±o¨t²Î¦Û©w±KÆ_¡A¦b Web.config ³]©w
+			// å–å¾—ç³»çµ±è‡ªå®šå¯†é‘°ï¼Œåœ¨ Web.config è¨­å®š
 			string SecretKey = ConfigurationManager.AppSettings["SecretKey"];
  
-			// ²£¥Í±b¸¹+®É¶¡ÅçÃÒ½X
+			// ç”¢ç”Ÿå¸³è™Ÿ+æ™‚é–“é©—è­‰ç¢¼
 			string sVerify = inModel.UserID + "|" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
  
-			// ±NÅçÃÒ½X¨Ï¥Î 3DES ¥[±K
+			// å°‡é©—è­‰ç¢¼ä½¿ç”¨ 3DES åŠ å¯†
 			TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
 			MD5 md5 = new MD5CryptoServiceProvider();
 			byte[] buf = Encoding.UTF8.GetBytes(SecretKey);
@@ -244,29 +244,29 @@ public ActionResult SendMailToken(SendMailTokenIn inModel)
 			DES.Mode = CipherMode.ECB;
 			ICryptoTransform DESEncrypt = DES.CreateEncryptor();
 			byte[] Buffer = UTF8Encoding.UTF8.GetBytes(sVerify);
-			sVerify = Convert.ToBase64String(DESEncrypt.TransformFinalBlock(Buffer, 0, Buffer.Length)); // 3DES ¥[±K«áÅçÃÒ½X
+			sVerify = Convert.ToBase64String(DESEncrypt.TransformFinalBlock(Buffer, 0, Buffer.Length)); // 3DES åŠ å¯†å¾Œé©—è­‰ç¢¼
  
-			// ±N¥[±K«á±K½X¨Ï¥Îºô§}½s½X³B²z
+			// å°‡åŠ å¯†å¾Œå¯†ç¢¼ä½¿ç”¨ç¶²å€ç·¨ç¢¼è™•ç†
 			sVerify = HttpUtility.UrlEncode(sVerify);
  
-			// ºô¯¸ºô§}
+			// ç¶²ç«™ç¶²å€
 			string webPath = Request.Url.Scheme + "://" + Request.Url.Authority + Url.Content("~/");
  
-			// ±q«H¥ó³sµ²¦^¨ì­«³]±K½X­¶­±
+			// å¾ä¿¡ä»¶é€£çµå›åˆ°é‡è¨­å¯†ç¢¼é é¢
 			string receivePage = "Member/ResetPwd";
  
-			// «H¥ó¤º®e½d¥»
-			string mailContent = "½ĞÂIÀ»¥H¤U³sµ²¡Aªğ¦^ºô¯¸­«·s³]©w±K½X¡A¹O´Á 30 ¤ÀÄÁ«á¡A¦¹³sµ²±N·|¥¢®Ä¡C<br><br>";
-			mailContent = mailContent + "<a href='" + webPath + receivePage + "?verify=" + sVerify + "'  target='_blank'>ÂI¦¹³sµ²</a>";
+			// ä¿¡ä»¶å…§å®¹ç¯„æœ¬
+			string mailContent = "è«‹é»æ“Šä»¥ä¸‹é€£çµï¼Œè¿”å›ç¶²ç«™é‡æ–°è¨­å®šå¯†ç¢¼ï¼Œé€¾æœŸ 30 åˆ†é˜å¾Œï¼Œæ­¤é€£çµå°‡æœƒå¤±æ•ˆã€‚<br><br>";
+			mailContent = mailContent + "<a href='" + webPath + receivePage + "?verify=" + sVerify + "'  target='_blank'>é»æ­¤é€£çµ</a>";
  
-			// «H¥ó¥DÃD
-			string mailSubject = "[´ú¸Õ] ­«³]±K½X¥Ó½Ğ«H";
+			// ä¿¡ä»¶ä¸»é¡Œ
+			string mailSubject = "[æ¸¬è©¦] é‡è¨­å¯†ç¢¼ç”³è«‹ä¿¡";
  
-			// Google µo«H±b¸¹±K½X
+			// Google ç™¼ä¿¡å¸³è™Ÿå¯†ç¢¼
 			string GoogleMailUserID = ConfigurationManager.AppSettings["GoogleMailUserID"];
 			string GoogleMailUserPwd = ConfigurationManager.AppSettings["GoogleMailUserPwd"];
  
-			// ¨Ï¥Î Google Mail Server µo«H
+			// ä½¿ç”¨ Google Mail Server ç™¼ä¿¡
 			string SmtpServer = "smtp.gmail.com";
 			int SmtpPort = 587;
 			MailMessage mms = new MailMessage();
@@ -279,71 +279,71 @@ public ActionResult SendMailToken(SendMailTokenIn inModel)
 			using (SmtpClient client = new SmtpClient(SmtpServer, SmtpPort))
 			{
 				client.EnableSsl = true;
-				client.Credentials = new NetworkCredential(GoogleMailUserID, GoogleMailUserPwd);//±H«H±b±K 
-				client.Send(mms); //±H¥X«H¥ó
+				client.Credentials = new NetworkCredential(GoogleMailUserID, GoogleMailUserPwd);//å¯„ä¿¡å¸³å¯† 
+				client.Send(mms); //å¯„å‡ºä¿¡ä»¶
 			}
-			outModel.ResultMsg = "½Ğ©ó 30 ¤ÀÄÁ¤º¦Ü§Aªº«H½cÂIÀ»³sµ²­«·s³]©w±K½X¡A¹O´Á±NµL®Ä";
+			outModel.ResultMsg = "è«‹æ–¼ 30 åˆ†é˜å…§è‡³ä½ çš„ä¿¡ç®±é»æ“Šé€£çµé‡æ–°è¨­å®šå¯†ç¢¼ï¼Œé€¾æœŸå°‡ç„¡æ•ˆ";
 		}
 		else
 		{
-			outModel.ErrMsg = "¬dµL¦¹±b¸¹";
+			outModel.ErrMsg = "æŸ¥ç„¡æ­¤å¸³è™Ÿ";
 		}
 	}
  
-	// ¦^¶Ç Json µ¹«eºİ
+	// å›å‚³ Json çµ¦å‰ç«¯
 	return Json(outModel);
 }
 ```
 
-¿é¤J±b¸¹«á¡A·|±q¸ê®Æ®w¤º¨ú±o·|­ûªº«H½c¡Aµ{¦¡½X·|«H¥ó¨ì·|­û«H½c¡C
-¦b«H¥óªº³sµ²·|¾É¦^ºô¯¸¡A¨Ã§¨±a±b¸¹»P®É¶¡¸ê°T¡A§Ú±N±b¸¹»P®É¶¡¥[±K«á©ñ¦bÅçÃÒ½X¸Ì­±¡C
-µ¥¾É¦^ºô¯¸®É¡A¦A¸Ñ±K¨ú¥X±b¸¹»P®É¶¡¡C
+è¼¸å…¥å¸³è™Ÿå¾Œï¼Œæœƒå¾è³‡æ–™åº«å…§å–å¾—æœƒå“¡çš„ä¿¡ç®±ï¼Œç¨‹å¼ç¢¼æœƒä¿¡ä»¶åˆ°æœƒå“¡ä¿¡ç®±ã€‚
+åœ¨ä¿¡ä»¶çš„é€£çµæœƒå°å›ç¶²ç«™ï¼Œä¸¦å¤¾å¸¶å¸³è™Ÿèˆ‡æ™‚é–“è³‡è¨Šï¼Œæˆ‘å°‡å¸³è™Ÿèˆ‡æ™‚é–“åŠ å¯†å¾Œæ”¾åœ¨é©—è­‰ç¢¼è£¡é¢ã€‚
+ç­‰å°å›ç¶²ç«™æ™‚ï¼Œå†è§£å¯†å–å‡ºå¸³è™Ÿèˆ‡æ™‚é–“ã€‚
 
-¦bµù¥Uªº®É­Ô¡A§Ú¨Ã¨S¦³ÅçÃÒ¨Ï¥ÎªÌ«H½c¡A¬O¦]¬°¥ıÁ¿¸Ñ¼g¤J¸ê®Æ®w´N¦n¡AÅçÃÒ«H½cªº½d¨Ò¡A´N¯d¨ì³o¸Ì¦A±Ğ¾Ç¡A¤@¦¸¾Ç¤@ÂI·sªºªF¦è¡C
-³q±`¦bµù¥Uªº®É­Ô¡A´N·|¤@°_ÅçÃÒ«H½c¬O§_¥¿±`¨Ï¥Î¡A¦b³o¸Ì¾Ç¨ìªºµo«H¤èªk¡A´N¥i¥H¦Û¦æÀ³¥Î¨ìµù¥U¨ºÃä¥h¤F³á¡C
+åœ¨è¨»å†Šçš„æ™‚å€™ï¼Œæˆ‘ä¸¦æ²’æœ‰é©—è­‰ä½¿ç”¨è€…ä¿¡ç®±ï¼Œæ˜¯å› ç‚ºå…ˆè¬›è§£å¯«å…¥è³‡æ–™åº«å°±å¥½ï¼Œé©—è­‰ä¿¡ç®±çš„ç¯„ä¾‹ï¼Œå°±ç•™åˆ°é€™è£¡å†æ•™å­¸ï¼Œä¸€æ¬¡å­¸ä¸€é»æ–°çš„æ±è¥¿ã€‚
+é€šå¸¸åœ¨è¨»å†Šçš„æ™‚å€™ï¼Œå°±æœƒä¸€èµ·é©—è­‰ä¿¡ç®±æ˜¯å¦æ­£å¸¸ä½¿ç”¨ï¼Œåœ¨é€™è£¡å­¸åˆ°çš„ç™¼ä¿¡æ–¹æ³•ï¼Œå°±å¯ä»¥è‡ªè¡Œæ‡‰ç”¨åˆ°è¨»å†Šé‚£é‚Šå»äº†å–”ã€‚
 
-### ½Õ¾ã Web.config
+### èª¿æ•´ Web.config
 
-³o¦¸¤èªk¨Ï¥Î¨ì¤F 3DES ¥[±K¥\¯à¡A©Ò¥H»İ­n³]©w¥[±Kª÷Æ_¡A§Ú±N¥[±Kª÷Æ_©ñ¦b Web.config ¤º¡C
-ÁÙ¦³ Google µo«Hªº±b¸¹±K½X¡A§Ú¤]©ñ¦b Web.config ¤º¡C
+é€™æ¬¡æ–¹æ³•ä½¿ç”¨åˆ°äº† 3DES åŠ å¯†åŠŸèƒ½ï¼Œæ‰€ä»¥éœ€è¦è¨­å®šåŠ å¯†é‡‘é‘°ï¼Œæˆ‘å°‡åŠ å¯†é‡‘é‘°æ”¾åœ¨ Web.config å…§ã€‚
+é‚„æœ‰ Google ç™¼ä¿¡çš„å¸³è™Ÿå¯†ç¢¼ï¼Œæˆ‘ä¹Ÿæ”¾åœ¨ Web.config å…§ã€‚
 
-¦b Web.config ªº <appSettings> ½d³ò¤º¡A·s¼W¥H¤U Key/Value¡C
+åœ¨ Web.config çš„ <appSettings> ç¯„åœå…§ï¼Œæ–°å¢ä»¥ä¸‹ Key/Valueã€‚
 
 ```C#
-<!-- 3DES ±KÆ_½d¨Ò-->
+<!-- 3DES å¯†é‘°ç¯„ä¾‹-->
 <add key="SecretKey" value="MyKey"/>
-<!-- Google µo«H±b¸¹-->
+<!-- Google ç™¼ä¿¡å¸³è™Ÿ-->
 <add key="GoogleMailUserID" value="xxx@gmail.com"/>
-<!-- Google µo«H±K½X-->
+<!-- Google ç™¼ä¿¡å¯†ç¢¼-->
 <add key="GoogleMailUserPwd" value="xxxxxx"/>
 ```
 
 ![img9](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-9.png)
 
-±KÆ_¬°¥[±K¨Ï¥ÎªºÆ_°Í¡A¬Û¦Pªº¸ê®Æ¥Î¤£¦PªºÆ_°Í¡A´N·|¥[±K¥X¤£¦Pªºµ²ªG¡A©Ò¥H±KÆ_«Ü­«­n¡A»İ­n¦n¦n«O¦s¡C
+å¯†é‘°ç‚ºåŠ å¯†ä½¿ç”¨çš„é‘°åŒ™ï¼Œç›¸åŒçš„è³‡æ–™ç”¨ä¸åŒçš„é‘°åŒ™ï¼Œå°±æœƒåŠ å¯†å‡ºä¸åŒçš„çµæœï¼Œæ‰€ä»¥å¯†é‘°å¾ˆé‡è¦ï¼Œéœ€è¦å¥½å¥½ä¿å­˜ã€‚
 
-### ½Õ¾ã Google µo«H³]©w
+### èª¿æ•´ Google ç™¼ä¿¡è¨­å®š
 
-Google ±b¸¹¥i¥H­É¥Î Gmail SMTP µo¥ó¡A¥i¬O»İ­n¶}³q¤@¨ÇÅv­­¡C
+Google å¸³è™Ÿå¯ä»¥å€Ÿç”¨ Gmail SMTP ç™¼ä»¶ï¼Œå¯æ˜¯éœ€è¦é–‹é€šä¸€äº›æ¬Šé™ã€‚
 
-¶}±Ò¦¹ºô­¶<https://myaccount.google.com/u/1/security>¡Aµn¤J¨­¥÷«á¡A±N¡u¤¹³\§C¦w¥ş©ÊÀ³¥Îµ{¦¡¡v³]¬°¡u±Ò¥Î¡v¡C
+é–‹å•Ÿæ­¤ç¶²é <https://myaccount.google.com/u/1/security>ï¼Œç™»å…¥èº«ä»½å¾Œï¼Œå°‡ã€Œå…è¨±ä½å®‰å…¨æ€§æ‡‰ç”¨ç¨‹å¼ã€è¨­ç‚ºã€Œå•Ÿç”¨ã€ã€‚
 
 ![img10](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-10.png)
 
-¦pªG Google ±b¸¹µn¤J¦³³]©w¤G¶¥¬qÅçÃÒ¡A¤]»İ­n°±¥Î¤G¶¥¬qÅçÃÒ¡A¤~¥i¥H¥¿±`µo«H¡C
+å¦‚æœ Google å¸³è™Ÿç™»å…¥æœ‰è¨­å®šäºŒéšæ®µé©—è­‰ï¼Œä¹Ÿéœ€è¦åœç”¨äºŒéšæ®µé©—è­‰ï¼Œæ‰å¯ä»¥æ­£å¸¸ç™¼ä¿¡ã€‚
 
-§Ú³o¸Ì¬°¤F¥Ü½d¡A©Ò¥H¿ï¾Ü¤F Gmail SMTP ¨Ó°µµo«H¦øªA¾¹¡A¶}±Ò¡u¤¹³\§C¦w¥ş©ÊÀ³¥Îµ{¦¡¡v·|­°§C±b¸¹ªº¦w¥ş©Ê¡A½Ğ½T»{¦n·|©Ó¨üªº­·ÀI¦A°õ¦æ¡C
+æˆ‘é€™è£¡ç‚ºäº†ç¤ºç¯„ï¼Œæ‰€ä»¥é¸æ“‡äº† Gmail SMTP ä¾†åšç™¼ä¿¡ä¼ºæœå™¨ï¼Œé–‹å•Ÿã€Œå…è¨±ä½å®‰å…¨æ€§æ‡‰ç”¨ç¨‹å¼ã€æœƒé™ä½å¸³è™Ÿçš„å®‰å…¨æ€§ï¼Œè«‹ç¢ºèªå¥½æœƒæ‰¿å—çš„é¢¨éšªå†åŸ·è¡Œã€‚
 
-­Y¬°¥¿¦¡µo«H¦øªA¾¹¡A¥i¨Ï¥Î[ Google Workspace ](https://workspace.google.com/intl/zh-TW/)(ÂÂºÙG Suite)¡A©Î¨Ï¥Î¥ø·~ SMTP ¨Óµo«H¸û¾A¦X¡C
+è‹¥ç‚ºæ­£å¼ç™¼ä¿¡ä¼ºæœå™¨ï¼Œå¯ä½¿ç”¨[ Google Workspace ](https://workspace.google.com/intl/zh-TW/)(èˆŠç¨±G Suite)ï¼Œæˆ–ä½¿ç”¨ä¼æ¥­ SMTP ä¾†ç™¼ä¿¡è¼ƒé©åˆã€‚
 
-### ¼W¥[§Ñ°O±K½X Model
+### å¢åŠ å¿˜è¨˜å¯†ç¢¼ Model
 
-³o¸Ì­n¼W¥[¦b Controller ·s¼Wªº SendMailTokenIn, SendMailTokenOut Ãş§O¡C
-¥´¶} \Models\MemberModel.cs ÀÉ®×¡A¦b MemberModel ¸Ì­±¼W¥[·sªºÃş§O¡C
+é€™è£¡è¦å¢åŠ åœ¨ Controller æ–°å¢çš„ SendMailTokenIn, SendMailTokenOut é¡åˆ¥ã€‚
+æ‰“é–‹ \Models\MemberModel.cs æª”æ¡ˆï¼Œåœ¨ MemberModel è£¡é¢å¢åŠ æ–°çš„é¡åˆ¥ã€‚
 
 ```C#
 /// <summary>
-/// [±H°eÅçÃÒ½X]°Ñ¼Æ
+/// [å¯„é€é©—è­‰ç¢¼]åƒæ•¸
 /// </summary>
 public class SendMailTokenIn
 {
@@ -351,7 +351,7 @@ public class SendMailTokenIn
 }
  
 /// <summary>
-/// [±H°eÅçÃÒ½X]¦^¶Ç
+/// [å¯„é€é©—è­‰ç¢¼]å›å‚³
 /// </summary>
 public class SendMailTokenOut
 {
@@ -360,45 +360,45 @@ public class SendMailTokenOut
 }
 ```
 
-## ´ú¸Õ§Ñ°O±K½X
+## æ¸¬è©¦å¿˜è¨˜å¯†ç¢¼
 
-¦b VS «ö <F5> °õ¦æ±M®×¡A¥ı¦b¡uµn¤J¡vµe­±¡AÂI¡u§Ñ°O±K½X¡v´«­¶¡A¿é¤J±b¸¹«á¡A°õ¦æ¡u±H°eÅçÃÒ½X¡v¡C
-¦b Controller ¨ú±o±b¸¹«á¡A·|¬d¸ß¸ê®Æ®wªº Email¡AµM«á¹ï Email ±H¥X«H¥ó¡C
+åœ¨ VS æŒ‰ <F5> åŸ·è¡Œå°ˆæ¡ˆï¼Œå…ˆåœ¨ã€Œç™»å…¥ã€ç•«é¢ï¼Œé»ã€Œå¿˜è¨˜å¯†ç¢¼ã€æ›é ï¼Œè¼¸å…¥å¸³è™Ÿå¾Œï¼ŒåŸ·è¡Œã€Œå¯„é€é©—è­‰ç¢¼ã€ã€‚
+åœ¨ Controller å–å¾—å¸³è™Ÿå¾Œï¼ŒæœƒæŸ¥è©¢è³‡æ–™åº«çš„ Emailï¼Œç„¶å¾Œå° Email å¯„å‡ºä¿¡ä»¶ã€‚
 
 ![img11](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-11.png)
 
-³o¬O¦¬¨ì«H¥óªºµe­±¡AÂIÀ»¡uÂI¦¹³sµ²¡v«á¡A´N·|¦A¾É¦^ºô¯¸¡C
+é€™æ˜¯æ”¶åˆ°ä¿¡ä»¶çš„ç•«é¢ï¼Œé»æ“Šã€Œé»æ­¤é€£çµã€å¾Œï¼Œå°±æœƒå†å°å›ç¶²ç«™ã€‚
 
 ![img12](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-12.png)
 
-¦^ºô¯¸«á·|¶}±Ò /Member/ResetPwd ­¶­±¡A³o¤@­¶ÁÙ¨S»s§@¡A±µ¤U¨Ó§Ú­Ì´NÄ~Äò§¹¦¨³o¤@­¶­±¡C
+å›ç¶²ç«™å¾Œæœƒé–‹å•Ÿ /Member/ResetPwd é é¢ï¼Œé€™ä¸€é é‚„æ²’è£½ä½œï¼Œæ¥ä¸‹ä¾†æˆ‘å€‘å°±ç¹¼çºŒå®Œæˆé€™ä¸€é é¢ã€‚
 
-## ¦b MemberController ¼W¥[­«³]±K½X­¶­±
+## åœ¨ MemberController å¢åŠ é‡è¨­å¯†ç¢¼é é¢
 
-³o¸Ì­n·s¼W¤@­Ó­«³]±K½Xªºµe­±¡A¦b \Controllers\MemberController.cs Ãş§O¤º¡A¼W¥[ ResetPwd() ¤èªkµM«á Return View()¡C
+é€™è£¡è¦æ–°å¢ä¸€å€‹é‡è¨­å¯†ç¢¼çš„ç•«é¢ï¼Œåœ¨ \Controllers\MemberController.cs é¡åˆ¥å…§ï¼Œå¢åŠ  ResetPwd() æ–¹æ³•ç„¶å¾Œ Return View()ã€‚
 
-±q«H¥ó³sµ²¦^¨ìºô­¶®É¡A´N­n¥ıÀË¬dÅçÃÒ½X¬O§_¥¿½T¡A±qÅçÃÒ½X¸Ì­±¨ú±o±b¸¹¡A¥H¤Î±H¥ó®É¶¡¡A¦AÀË¬d±H¥ó®É¶¡¸ò²{¦b®É¶¡¬O§_¶W¹L®É®Ä¡C
+å¾ä¿¡ä»¶é€£çµå›åˆ°ç¶²é æ™‚ï¼Œå°±è¦å…ˆæª¢æŸ¥é©—è­‰ç¢¼æ˜¯å¦æ­£ç¢ºï¼Œå¾é©—è­‰ç¢¼è£¡é¢å–å¾—å¸³è™Ÿï¼Œä»¥åŠå¯„ä»¶æ™‚é–“ï¼Œå†æª¢æŸ¥å¯„ä»¶æ™‚é–“è·Ÿç¾åœ¨æ™‚é–“æ˜¯å¦è¶…éæ™‚æ•ˆã€‚
 
-ÀË¬d¦¨¥\¡A±N±b¸¹°O¦b Session ¸Ì­±¡A¥H¤è«K­«³]±K½X®É¨Ï¥Î¡C
+æª¢æŸ¥æˆåŠŸï¼Œå°‡å¸³è™Ÿè¨˜åœ¨ Session è£¡é¢ï¼Œä»¥æ–¹ä¾¿é‡è¨­å¯†ç¢¼æ™‚ä½¿ç”¨ã€‚
 
 ```C#
-// GET: ­«³]±K½X­¶­±
+// GET: é‡è¨­å¯†ç¢¼é é¢
 public ActionResult ResetPwd(string verify)
 {
-	// ¥Ñ«H¥ó³sµ²¦^¨Ó·|±a°Ñ¼Æ verify
+	// ç”±ä¿¡ä»¶é€£çµå›ä¾†æœƒå¸¶åƒæ•¸ verify
  
 	if (verify == "")
 	{
-		ViewData["ErrorMsg"] = "¯Ê¤ÖÅçÃÒ½X";
+		ViewData["ErrorMsg"] = "ç¼ºå°‘é©—è­‰ç¢¼";
 		return View();
 	}
  
-	// ¨ú±o¨t²Î¦Û©w±KÆ_¡A¦b Web.config ³]©w
+	// å–å¾—ç³»çµ±è‡ªå®šå¯†é‘°ï¼Œåœ¨ Web.config è¨­å®š
 	string SecretKey = ConfigurationManager.AppSettings["SecretKey"];
  
 	try
 	{
-		// ¨Ï¥Î 3DES ¸Ñ±KÅçÃÒ½X
+		// ä½¿ç”¨ 3DES è§£å¯†é©—è­‰ç¢¼
 		TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
 		MD5 md5 = new MD5CryptoServiceProvider();
 		byte[] buf = Encoding.UTF8.GetBytes(SecretKey);
@@ -411,93 +411,93 @@ public ActionResult ResetPwd(string verify)
 		byte[] Buffer = Convert.FromBase64String(verify);
 		string deCode = UTF8Encoding.UTF8.GetString(DESDecrypt.TransformFinalBlock(Buffer, 0, Buffer.Length));
  
-		verify = deCode; //¸Ñ±K«áÁÙ­ì¸ê®Æ
+		verify = deCode; //è§£å¯†å¾Œé‚„åŸè³‡æ–™
 	}
 	catch (Exception ex)
 	{
-		ViewData["ErrorMsg"] = "ÅçÃÒ½X¿ù»~";
+		ViewData["ErrorMsg"] = "é©—è­‰ç¢¼éŒ¯èª¤";
 		return View();
 	}
  
-	// ¨ú¥X±b¸¹
+	// å–å‡ºå¸³è™Ÿ
 	string UserID = verify.Split('|')[0];
  
-	// ¨ú±o­«³]®É¶¡
+	// å–å¾—é‡è¨­æ™‚é–“
 	string ResetTime = verify.Split('|')[1];
  
-	// ÀË¬d®É¶¡¬O§_¶W¹L 30 ¤ÀÄÁ
+	// æª¢æŸ¥æ™‚é–“æ˜¯å¦è¶…é 30 åˆ†é˜
 	DateTime dResetTime = Convert.ToDateTime(ResetTime);
 	TimeSpan TS = new System.TimeSpan(DateTime.Now.Ticks - dResetTime.Ticks);
 	double diff = Convert.ToDouble(TS.TotalMinutes);
 	if (diff > 30)
 	{
-		ViewData["ErrorMsg"] = "¶W¹LÅçÃÒ½X¦³®Ä®É¶¡¡A½Ğ­«±HÅçÃÒ½X";
+		ViewData["ErrorMsg"] = "è¶…éé©—è­‰ç¢¼æœ‰æ•ˆæ™‚é–“ï¼Œè«‹é‡å¯„é©—è­‰ç¢¼";
 		return View();
 	}
  
-	// ÅçÃÒ½XÀË¬d¦¨¥\¡A¥[¤J Session
+	// é©—è­‰ç¢¼æª¢æŸ¥æˆåŠŸï¼ŒåŠ å…¥ Session
 	Session["ResetPwdUserId"] = UserID;
  
 	return View();
 }
 ```
 
-### ¼W¥[­«³]±K½X­¶­± View
+### å¢åŠ é‡è¨­å¯†ç¢¼é é¢ View
 
-¦b ResetPwd() »yªk¤W«ö¥kÁä¿ï¡u·s¼WÀËµø¡v¡C
+åœ¨ ResetPwd() èªæ³•ä¸ŠæŒ‰å³éµé¸ã€Œæ–°å¢æª¢è¦–ã€ã€‚
 
 ![img13](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-13.png)
 
-¿ï¾Ü¡uMVC 5 ÀËµø¡v¥[¤J¡C
+é¸æ“‡ã€ŒMVC 5 æª¢è¦–ã€åŠ å…¥ã€‚
 
 ![img14](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-14.png)
 
-½T»{¦WºÙ¬° ¡§ResetPwd¡¨¡A¦³¤Ä¿ï¡u¨Ï¥Îª©­±°t¸m­¶¡v¡C
+ç¢ºèªåç¨±ç‚º â€œResetPwdâ€ï¼Œæœ‰å‹¾é¸ã€Œä½¿ç”¨ç‰ˆé¢é…ç½®é ã€ã€‚
 
 ![img15](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-15.png)
 
-·s¼W¤§«á¦b Views\Member\ResetPwd.cshtml ·|·s¼W View ÀËµø­¶­±¡C
+æ–°å¢ä¹‹å¾Œåœ¨ Views\Member\ResetPwd.cshtml æœƒæ–°å¢ View æª¢è¦–é é¢ã€‚
 
 ![img16](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-16.png)
 
-## ½s¼g¡u­«³]±K½X¡v View »yªk
+## ç·¨å¯«ã€Œé‡è¨­å¯†ç¢¼ã€ View èªæ³•
 
-³o­Ó­¶­±³]­p­«ÂI¸ò­×§ï­Ó¤H¸ê®Æªº¡u­×§ï±K½X¡v¬OÃş¦üªº¡C
-§Ú±q­×§ï­Ó¤H¸ê®Æªº¡u­×§ï±K½X¡v½Æ»s¤@¨Ç View µ{¦¡½X¨Ó¨Ï¥Î¡A¨Ã¥[¤W Vue.js ªº»yªk¡C
+é€™å€‹é é¢è¨­è¨ˆé‡é»è·Ÿä¿®æ”¹å€‹äººè³‡æ–™çš„ã€Œä¿®æ”¹å¯†ç¢¼ã€æ˜¯é¡ä¼¼çš„ã€‚
+æˆ‘å¾ä¿®æ”¹å€‹äººè³‡æ–™çš„ã€Œä¿®æ”¹å¯†ç¢¼ã€è¤‡è£½ä¸€äº› View ç¨‹å¼ç¢¼ä¾†ä½¿ç”¨ï¼Œä¸¦åŠ ä¸Š Vue.js çš„èªæ³•ã€‚
 
 ```C#
 <div id="VuePage">
-    <!--¨Ï¥Î Bootstrap ³]­p­«³]±K½Xªí³æ-->
+    <!--ä½¿ç”¨ Bootstrap è¨­è¨ˆé‡è¨­å¯†ç¢¼è¡¨å–®-->
     <div class="panel panel-primary">
-        <div class="panel-heading">­«·s±K½X½d¨Ò</div>
+        <div class="panel-heading">é‡æ–°å¯†ç¢¼ç¯„ä¾‹</div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>·s±K½X</label>
+                        <label>æ–°å¯†ç¢¼</label>
                         <input type="password" class="form-control" v-model="form.NewUserPwd">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>½T»{·s±K½X</label>
+                        <label>ç¢ºèªæ–°å¯†ç¢¼</label>
                         <input type="password" class="form-control" v-model="form.CheckUserPwd">
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel-footer">
-            <button type="button" class="btn btn-primary" v-on:click="DoResetPwd()">­«³]±K½X</button>
+            <button type="button" class="btn btn-primary" v-on:click="DoResetPwd()">é‡è¨­å¯†ç¢¼</button>
         </div>
     </div>
  
-    <!--¨Ï¥Î Bootstrap Modal ¼Ë¦¡¡A·í°õ¦æ¦³¿ù»~®É¡AÅã¥Ü¿ù»~°T®§-->
+    <!--ä½¿ç”¨ Bootstrap Modal æ¨£å¼ï¼Œç•¶åŸ·è¡Œæœ‰éŒ¯èª¤æ™‚ï¼Œé¡¯ç¤ºéŒ¯èª¤è¨Šæ¯-->
     <div class="modal fade" id="ErrorAlert" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">¿ù»~°T®§</h4>
+                    <h4 class="modal-title">éŒ¯èª¤è¨Šæ¯</h4>
                 </div>
                 <div class="modal-body" id="ErrorMsg" style="overflow-x:auto;width:100%;">
                 </div>
@@ -519,27 +519,27 @@ public ActionResult ResetPwd(string verify)
                 var ErrorMsg = '@ViewData["ErrorMsg"]';
                 if (ErrorMsg != '') {
                     alert(ErrorMsg);
-                    // ¸ÑªRÅçÃÒ½X¥¢±Ñ¡A¾É¦^µn¤J­¶­±
+                    // è§£æé©—è­‰ç¢¼å¤±æ•—ï¼Œå°å›ç™»å…¥é é¢
                     window.location = '@Url.Action("Login", "Member")';
                 }
             }
             , methods: {
-                // «eºİÅçÃÒÅv§ú
+                // å‰ç«¯é©—è­‰æ¬Šæ–
                 GetToken: function () {
                     var token = '@Html.AntiForgeryToken()';
                     token = $(token).val();
                     return token;
                 }
-                 // ­«³]±K½X
+                 // é‡è¨­å¯†ç¢¼
                 , DoResetPwd: function () {
                     var self = this;
  
-                    // ²Õ¦Xªí³æ¸ê®Æ
+                    // çµ„åˆè¡¨å–®è³‡æ–™
                     var postData = {};
                     postData['NewUserPwd'] = self.form.NewUserPwd;
                     postData['CheckUserPwd'] = self.form.CheckUserPwd;
  
-                    // ¨Ï¥Î jQuery Ajax ¶Ç°e¦Ü«áºİ
+                    // ä½¿ç”¨ jQuery Ajax å‚³é€è‡³å¾Œç«¯
                     $.ajax({
                         url:'@Url.Action("DoResetPwd", "Member")',
                         method:'POST',
@@ -564,23 +564,23 @@ public ActionResult ResetPwd(string verify)
 }
 ```
 
-­×§ï«áµe­±
+ä¿®æ”¹å¾Œç•«é¢
 
 ![img17](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-17.png)
 
-¦¹­¶­±­«ÂI¦b«ö¤U¡u­«³]±K½X¡v«á¡A±N«e¥x¸ê®Æ¶Ç°e¨ì«áºİªº ~/Member/DoResetPwd ¤èªk¡A¨Ã¨ú±o«áºİªº°T®§¡C
+æ­¤é é¢é‡é»åœ¨æŒ‰ä¸‹ã€Œé‡è¨­å¯†ç¢¼ã€å¾Œï¼Œå°‡å‰å°è³‡æ–™å‚³é€åˆ°å¾Œç«¯çš„ ~/Member/DoResetPwd æ–¹æ³•ï¼Œä¸¦å–å¾—å¾Œç«¯çš„è¨Šæ¯ã€‚
 
-§ÚÃB¥~¼W¥[¤F Bootstrap ªº modal ¼Ë¦¡¡A¨ÓÅã¥Ü«áºİ°õ¦æ®Éªº¿ù»~¡A³o¼Ë¤è«K Debug¡C
+æˆ‘é¡å¤–å¢åŠ äº† Bootstrap çš„ modal æ¨£å¼ï¼Œä¾†é¡¯ç¤ºå¾Œç«¯åŸ·è¡Œæ™‚çš„éŒ¯èª¤ï¼Œé€™æ¨£æ–¹ä¾¿ Debugã€‚
 
-Ãö©ó Vue.js ªº±Ğ¾Ç»yªk¡A¥i¥H¨ì©xºô¤W­±¬d¸ß¡A©xºô¦³§¹¾ãªº±Ğ¾Ç¡C
+é—œæ–¼ Vue.js çš„æ•™å­¸èªæ³•ï¼Œå¯ä»¥åˆ°å®˜ç¶²ä¸Šé¢æŸ¥è©¢ï¼Œå®˜ç¶²æœ‰å®Œæ•´çš„æ•™å­¸ã€‚
 
-## ½s¼g¡u­«³]±K½X¡vController »yªk
+## ç·¨å¯«ã€Œé‡è¨­å¯†ç¢¼ã€Controller èªæ³•
 
-¥H¤U¬O \Controllers\MemberController.cs ªº DoResetPwd() ¼gªk¡C
+ä»¥ä¸‹æ˜¯ \Controllers\MemberController.cs çš„ DoResetPwd() å¯«æ³•ã€‚
 
 ```C#
 /// <summary>
-/// ­«³]±K½X
+/// é‡è¨­å¯†ç¢¼
 /// </summary>
 /// <param name="inModel"></param>
 /// <returns></returns>
@@ -589,88 +589,88 @@ public ActionResult DoResetPwd(DoResetPwdIn inModel)
 {
 	DoResetPwdOut outModel = new DoResetPwdOut();
  
-	// ÀË¬d¬O§_¦³¿é¤J±K½X
+	// æª¢æŸ¥æ˜¯å¦æœ‰è¼¸å…¥å¯†ç¢¼
 	if (string.IsNullOrEmpty(inModel.NewUserPwd))
 	{
-		outModel.ErrMsg = "½Ğ¿é¤J·s±K½X";
+		outModel.ErrMsg = "è«‹è¼¸å…¥æ–°å¯†ç¢¼";
 		return Json(outModel);
 	}
 	if (string.IsNullOrEmpty(inModel.CheckUserPwd))
 	{
-		outModel.ErrMsg = "½Ğ¿é¤J½T»{·s±K½X";
+		outModel.ErrMsg = "è«‹è¼¸å…¥ç¢ºèªæ–°å¯†ç¢¼";
 		return Json(outModel);
 	}
 	if (inModel.NewUserPwd != inModel.CheckUserPwd)
 	{
-		outModel.ErrMsg = "·s±K½X»P½T»{·s±K½X¤£¬Û¦P";
+		outModel.ErrMsg = "æ–°å¯†ç¢¼èˆ‡ç¢ºèªæ–°å¯†ç¢¼ä¸ç›¸åŒ";
 		return Json(outModel);
 	}
  
-	// ÀË¬d±b¸¹ Session ¬O§_¦s¦b
+	// æª¢æŸ¥å¸³è™Ÿ Session æ˜¯å¦å­˜åœ¨
 	if (Session["ResetPwdUserId"] == null || Session["ResetPwdUserId"].ToString() == "")
 	{
-		outModel.ErrMsg = "µL­×§ï±b¸¹";
+		outModel.ErrMsg = "ç„¡ä¿®æ”¹å¸³è™Ÿ";
 		return Json(outModel);
 	}
  
-	// ±N·s±K½X¨Ï¥Î SHA256 Âø´ê¹Bºâ(¤£¥i°f)
-	string salt = Session["ResetPwdUserId"].ToString().Substring(0, 1).ToLower(); //¨Ï¥Î±b¸¹«e¤@½X·í§@±K½XÆQ
+	// å°‡æ–°å¯†ç¢¼ä½¿ç”¨ SHA256 é›œæ¹Šé‹ç®—(ä¸å¯é€†)
+	string salt = Session["ResetPwdUserId"].ToString().Substring(0, 1).ToLower(); //ä½¿ç”¨å¸³è™Ÿå‰ä¸€ç¢¼ç•¶ä½œå¯†ç¢¼é¹½
 	SHA256 sha256 = SHA256.Create();
-	byte[] bytes = Encoding.UTF8.GetBytes(salt + inModel.NewUserPwd); //±N±K½XÆQ¤Î·s±K½X²Õ¦X
+	byte[] bytes = Encoding.UTF8.GetBytes(salt + inModel.NewUserPwd); //å°‡å¯†ç¢¼é¹½åŠæ–°å¯†ç¢¼çµ„åˆ
 	byte[] hash = sha256.ComputeHash(bytes);
 	StringBuilder result = new StringBuilder();
 	for (int i = 0; i < hash.Length; i++)
 	{
 		result.Append(hash[i].ToString("X2"));
 	}
-	string NewPwd = result.ToString(); // Âø´ê¹Bºâ«á±K½X
+	string NewPwd = result.ToString(); // é›œæ¹Šé‹ç®—å¾Œå¯†ç¢¼
  
-	// ¨ú±o³s½u¦r¦ê
+	// å–å¾—é€£ç·šå­—ä¸²
 	string connStr = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnDB"].ConnectionString;
  
-	// ·íµ{¦¡½XÂ÷¶} using °Ï¶ô®É¡A·|¦Û°ÊÃö³¬³s±µ
+	// ç•¶ç¨‹å¼ç¢¼é›¢é–‹ using å€å¡Šæ™‚ï¼Œæœƒè‡ªå‹•é—œé–‰é€£æ¥
 	using (SqlConnection conn = new SqlConnection(connStr))
 	{
-		// ¸ê®Æ®w³s½u
+		// è³‡æ–™åº«é€£ç·š
 		conn.Open();
  
-		// ­×§ï­Ó¤H¸ê®Æ¦Ü¸ê®Æ®w
+		// ä¿®æ”¹å€‹äººè³‡æ–™è‡³è³‡æ–™åº«
 		string sql = @"UPDATE Member SET UserPwd = @UserPwd WHERE UserID = @UserID";
 		SqlCommand cmd = new SqlCommand();
 		cmd.Connection = conn;
 		cmd.CommandText = sql;
  
-		// ¨Ï¥Î°Ñ¼Æ¤Æ¶ñ­È
+		// ä½¿ç”¨åƒæ•¸åŒ–å¡«å€¼
 		cmd.Parameters.AddWithValue("@UserID", Session["ResetPwdUserId"]);
 		cmd.Parameters.AddWithValue("@UserPwd", NewPwd);
  
-		// °õ¦æ¸ê®Æ®w§ó·s°Ê§@
+		// åŸ·è¡Œè³‡æ–™åº«æ›´æ–°å‹•ä½œ
 		int Ret = cmd.ExecuteNonQuery();
  
 		if (Ret > 0)
 		{
-			outModel.ResultMsg = "­«³]±K½X§¹¦¨";
+			outModel.ResultMsg = "é‡è¨­å¯†ç¢¼å®Œæˆ";
 		}
 		else
 		{
-			outModel.ErrMsg = "µL²§°Ê¸ê®Æ";
+			outModel.ErrMsg = "ç„¡ç•°å‹•è³‡æ–™";
 		}
 	}
  
-	// ¦^¶Ç Json µ¹«eºİ
+	// å›å‚³ Json çµ¦å‰ç«¯
 	return Json(outModel);
 }
 ```
 
-¦b¶Ç¤Jªº°Ñ¼Æ¤¤¨S¦³¥]§t±b¸¹¡A¦Ó¬O±q Session[¡§ResetPwdUserId¡¨] ¨ú¥X±b¸¹¡A¬O¤ñ¸û¦w¥şªº°µªk¡A§â­«­nªº¸ê°T¦s¦b Session ¤¤¨ú¥Î¡A¥i¥HÁ×§K«eºİ¥ÑÀb«È¶Ç¤J°²¸ê®Æ¡A¾É­P­×§ï¨ì§O¤Hªº±K½X¡C
+åœ¨å‚³å…¥çš„åƒæ•¸ä¸­æ²’æœ‰åŒ…å«å¸³è™Ÿï¼Œè€Œæ˜¯å¾ Session[â€œResetPwdUserIdâ€] å–å‡ºå¸³è™Ÿï¼Œæ˜¯æ¯”è¼ƒå®‰å…¨çš„åšæ³•ï¼ŒæŠŠé‡è¦çš„è³‡è¨Šå­˜åœ¨ Session ä¸­å–ç”¨ï¼Œå¯ä»¥é¿å…å‰ç«¯ç”±é§­å®¢å‚³å…¥å‡è³‡æ–™ï¼Œå°è‡´ä¿®æ”¹åˆ°åˆ¥äººçš„å¯†ç¢¼ã€‚
 
-### ¼W¥[­«³]±K½X Model
+### å¢åŠ é‡è¨­å¯†ç¢¼ Model
 
-¥´¶} \Models\MemberModel.cs ÀÉ®×¡A¦b MemberModel ¸Ì­±¼W¥[·sªºÃş§O¡C
+æ‰“é–‹ \Models\MemberModel.cs æª”æ¡ˆï¼Œåœ¨ MemberModel è£¡é¢å¢åŠ æ–°çš„é¡åˆ¥ã€‚
 
 ```C#
 /// <summary>
-/// [­«³]±K½X]°Ñ¼Æ
+/// [é‡è¨­å¯†ç¢¼]åƒæ•¸
 /// </summary>
 public class DoResetPwdIn
 {
@@ -679,7 +679,7 @@ public class DoResetPwdIn
 }
  
 /// <summary>
-/// [­«³]±K½X]¦^¶Ç
+/// [é‡è¨­å¯†ç¢¼]å›å‚³
 /// </summary>
 public class DoResetPwdOut
 {
@@ -688,40 +688,40 @@ public class DoResetPwdOut
 }
 ```
 
-## ´ú¸Õ§Ñ°O±K½X»P­«³]±K½X¥\¯à
+## æ¸¬è©¦å¿˜è¨˜å¯†ç¢¼èˆ‡é‡è¨­å¯†ç¢¼åŠŸèƒ½
 
-¦b VS «ö <F5> °õ¦æ±M®×¡A¥ı¦b¡uµn¤J¡vµe­±¡AÂI³sµ²¨ì¡u§Ñ°O±K½X¡vµe­±¡C
-¿é¤J±b¸¹¡A«ö¡u±H°eÅçÃÒ½X¡v¡C
+åœ¨ VS æŒ‰ <F5> åŸ·è¡Œå°ˆæ¡ˆï¼Œå…ˆåœ¨ã€Œç™»å…¥ã€ç•«é¢ï¼Œé»é€£çµåˆ°ã€Œå¿˜è¨˜å¯†ç¢¼ã€ç•«é¢ã€‚
+è¼¸å…¥å¸³è™Ÿï¼ŒæŒ‰ã€Œå¯„é€é©—è­‰ç¢¼ã€ã€‚
 
 ![img18](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-18.png)
 
-±b¸¹ÅçÃÒ¥B±H«H¦¨¥\¡A´N·|¥X²{°T®§¡C
+å¸³è™Ÿé©—è­‰ä¸”å¯„ä¿¡æˆåŠŸï¼Œå°±æœƒå‡ºç¾è¨Šæ¯ã€‚
 
 ![img19](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-19.png)
 
-¦b·|­ûªº«H½c·|¦¬¨ì¥H¤Uªº«H¥ó¡C
+åœ¨æœƒå“¡çš„ä¿¡ç®±æœƒæ”¶åˆ°ä»¥ä¸‹çš„ä¿¡ä»¶ã€‚
 
 ![img20](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-20.png)
 
-¦b `ResetPwd(string verify)` ªº¤èªk¤º·|¸Ñ±KÅçÃÒ½X¡A´N·|¨ú±o­ì©l¸ê®Æ¡C
+åœ¨ `ResetPwd(string verify)` çš„æ–¹æ³•å…§æœƒè§£å¯†é©—è­‰ç¢¼ï¼Œå°±æœƒå–å¾—åŸå§‹è³‡æ–™ã€‚
 
 ![img21](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-21.png)
 
-¸Ñ±K¥X±b¸¹¤Î®É¶¡¡AÀË¬d±H¥ó®É¶¡¸ò²{¦b®É¶¡¬O§_¶W¹L 30 ¤ÀÄÁ¥H¤W¡A
-¦pªGÀË¬d¦¨¥\¡A´N±N±b¸¹¦s¤J Session ¥H§Q­«³]±K½X®É¨Ï¥Î¡C
+è§£å¯†å‡ºå¸³è™ŸåŠæ™‚é–“ï¼Œæª¢æŸ¥å¯„ä»¶æ™‚é–“è·Ÿç¾åœ¨æ™‚é–“æ˜¯å¦è¶…é 30 åˆ†é˜ä»¥ä¸Šï¼Œ
+å¦‚æœæª¢æŸ¥æˆåŠŸï¼Œå°±å°‡å¸³è™Ÿå­˜å…¥ Session ä»¥åˆ©é‡è¨­å¯†ç¢¼æ™‚ä½¿ç”¨ã€‚
 
 ![img22](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-22.png)
 
-±µµÛ¦bµe­±¤W¿é¤J·s±K½X¤Î½T»{·s±K½X¡A«ö¤U¡u­«³]±K½X¡v¡C
+æ¥è‘—åœ¨ç•«é¢ä¸Šè¼¸å…¥æ–°å¯†ç¢¼åŠç¢ºèªæ–°å¯†ç¢¼ï¼ŒæŒ‰ä¸‹ã€Œé‡è¨­å¯†ç¢¼ã€ã€‚
 
 ![img23](https://blog.hungwin.com.tw/wp-content/uploads/2021/10/aspnet-mvc-member-forget-reset-pwd-23.png)
 
-µe­±¥X²{¡u­«³]±K½X§¹¦¨¡v¡A´N¬O­×§ï¦¨¥\¤F¡C
+ç•«é¢å‡ºç¾ã€Œé‡è¨­å¯†ç¢¼å®Œæˆã€ï¼Œå°±æ˜¯ä¿®æ”¹æˆåŠŸäº†ã€‚
 
-## ­«ÂI¾ã²z
+## é‡é»æ•´ç†
 
-1. ¼W¥[¡u§Ñ°O±K½X¡v©M¡u­«³]±K½X¡v¨â­Ó­¶­±¡C
-2. §Ñ°O±K½X·|µo¥ó¦Ü·|­û«H½c¡A¦A¥Ñ«H½c¾É³sµ²¦^ºô¯¸§ï±K½X¡C
-3. «H¥ó¤ºªº³sµ²·|±a¦³±b¸¹¤Î®É¶¡¸ê°T¡A«ØÄ³Âà¦¨¥[±K¤å¦r¡AÅı¨Ï¥ÎªÌµLªk­×§ï¤º®e¡C
-4. ±q«H¥ó³sµ²¦^ºô­¶»İ­nÀË¬dÅçÃÒ½X¡C
-5. ­«³]±K½X»P¤§«e­×§ï±K½Xªº¤èªk¬O¤@¼Ëªº¡C
+1. å¢åŠ ã€Œå¿˜è¨˜å¯†ç¢¼ã€å’Œã€Œé‡è¨­å¯†ç¢¼ã€å…©å€‹é é¢ã€‚
+2. å¿˜è¨˜å¯†ç¢¼æœƒç™¼ä»¶è‡³æœƒå“¡ä¿¡ç®±ï¼Œå†ç”±ä¿¡ç®±å°é€£çµå›ç¶²ç«™æ”¹å¯†ç¢¼ã€‚
+3. ä¿¡ä»¶å…§çš„é€£çµæœƒå¸¶æœ‰å¸³è™ŸåŠæ™‚é–“è³‡è¨Šï¼Œå»ºè­°è½‰æˆåŠ å¯†æ–‡å­—ï¼Œè®“ä½¿ç”¨è€…ç„¡æ³•ä¿®æ”¹å…§å®¹ã€‚
+4. å¾ä¿¡ä»¶é€£çµå›ç¶²é éœ€è¦æª¢æŸ¥é©—è­‰ç¢¼ã€‚
+5. é‡è¨­å¯†ç¢¼èˆ‡ä¹‹å‰ä¿®æ”¹å¯†ç¢¼çš„æ–¹æ³•æ˜¯ä¸€æ¨£çš„ã€‚
