@@ -49,7 +49,7 @@ steps:
 Name：自行定義
 ```
 
-### 調整 Build Service 權限
+## 調整 Build Service 權限
 
 點選 Azure DevOps 左方主選單的 Artifacts -> 鋸齒圖案 (Feed Settings)
 ```text
@@ -86,8 +86,8 @@ Creates a release every time a new build is available.
 * Add tasks 選擇「.Net Core」 
 ```text
 .Net Core 
-Display name* : dotnet publish (會自動預設 Command 類型)
-Command* : 點選「nuget publish」
+Display name* : dotnet push (會自動預設 Command 類型)
+Command* : 點選「nuget push」
 Path to NuGet package(s) to publish* : 選擇 build 完後路徑下的 nupkg 檔案
 	例如：(_Presco.PAYUNi/artifacts/Presco.PAYUNI.SDK.1.0.1.nupkg)
 	在將xxxxxxx.nupkg 改為 *.nupkg
