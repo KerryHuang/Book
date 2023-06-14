@@ -221,3 +221,184 @@ use dbname; //指定要運行的資料庫
 source /etc/data/test.sql //執行目錄下的test.sql
 ```
 
+---
+
+# 【Docker 攻略】MySQL 安裝篇
+
+說明
+以下為「 Docker 安裝 MySQL 」影片中，使用到的文件內容。
+
+除了安裝步驟還會介紹 Docker 是什麼 ? 以及為什麼要使用 Docker !
+
+學會後，以後資料庫的安裝，都可以向 Python 的 pip 一樣，一行指令，動作直接完成 !
+
+Docker 官網
+https://www.docker.com/
+
+Docker Hub
+https://hub.docker.com/_/mysql
+
+Docker 映像
+拉取 mysql 映像
+```
+docker pull mysql:8
+```
+檢查映像
+```
+docker images
+```
+
+檢查 mysql 映像
+```
+docker images | grep mysql
+```
+
+Output:
+```
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+mysql        8         0716d6ebcc1a   10 days ago   514MB
+```
+
+刪除映像
+```
+docker rmi ${IMAGE ID}
+docker rmi 0716d6ebcc1a
+```
+
+Docker 容器
+運行 mysql 容器
+```
+docker run --name sql2 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Dev127336 -d mysql:8
+```
+
+參數功能：
+
+run : docker 建立 container 並且執行的指令
+--name : 指定容器為 sql2
+-p 3306:3306 : 將容器的 3306 端口映射到主機的 3306 端口。
+-e MYSQL_ROOT_PASSWORD=Dev127336 : 初始化 root 用戶的密碼為 Dev127336。
+-d mysql:8 : 背景執行 MySQL 映像
+檢查容器 (運行中)
+```
+docker ps
+```
+
+Output:
+
+```
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                                  NAMES
+925859fd62b1   mysql:8   "docker-entrypoint.s…"   5 seconds ago   Up 4 seconds   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   sql2
+```
+
+停止容器
+```
+docker stop sql2
+```
+
+檢查容器 (全部)
+```
+docker ps -a
+```
+
+Output:
+```
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                       PORTS     NAMES
+115863d85607   mysql:8   "docker-entrypoint.s…"   24 seconds ago   Exited (137) 2 seconds ago             sql2
+```
+
+啟動容器
+```
+docker start sql2
+```
+
+進入容器
+```
+docker exec -it sql2 bash
+```
+
+退出容器
+```
+exit
+```
+
+刪除容器
+```
+docker rm sql2
+```
+
+進入容器
+進入到 Linux 的操作環境
+```
+docker exec -it sql2 bash
+```
+
+登錄 mysql
+```
+mysql -u root -p
+```
+
+修改 Root 密碼
+```
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Dev127336';
+```
+
+之前如果未設定正確，可以再用 SQL 修改。
+添加遠程登錄用戶
+```
+CREATE USER 'DevAuth'@'%' IDENTIFIED WITH mysql_native_password BY 'Dev127336';
+GRANT ALL PRIVILEGES ON *.* TO 'DevAuth'@'%';
+CREATE USER : 創建使用者
+GRANT : 權限設定
+```
+SQL 測試
+資料庫
+```
+create database DevDb; -- 創建資料庫
+show databases; -- 顯示資料庫
+use DevDb; -- 使用資料庫
+```
+資料表
+
+創建:
+```
+drop table if exists app_info;
+create table app_info (
+    id int auto_increment primary key ,
+    name nvarchar(50),
+    version nvarchar(30),
+    author nvarchar(50),
+    remark nvarchar(100)
+);
+```
+
+資料:
+```
+insert into app_info(name,version,author,remark) values
+('JavaProjSE-v1.0.3','1.0.3','Enoxs','Java Project Simple Example - Version 1.0.3'),
+('JUnitSE','1.0.2','Enoxs', 'Java Unit Test Simple Example'),
+('SpringMVC-SE','1.0.2','Enoxs','Java Web Application Spring MVC - Simple Example （MyBatis）');
+```
+
+查詢:
+```
+select * from app_info;
+```
+
+離開 mysql
+```
+quit
+```
+
+退出容器
+```
+exit
+```
+
+Dbeaver
+Host : localhost
+Port : 3306
+Database : DevDb
+Username : DevAuth
+Password : Dev127336
+MySQL Driver
+https://www.mysql.com/products/connector/
