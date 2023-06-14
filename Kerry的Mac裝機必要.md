@@ -110,6 +110,7 @@
 4. [Will 保哥](https://marketplace.visualstudio.com/publishers/doggy8088)
 5. [Poor Man's T-SQL Formatter](https://marketplace.visualstudio.com/items?itemName=TaoKlerks.poor-mans-t-sql-formatter-vscode)
 6. [DOXYGEN](https://blog.kkbruce.net/2022/08/doxygen.html)
+7. [.NET Core Extension Pack](https://marketplace.visualstudio.com/items?itemName=doggy8088.netcore-extension-pack)
 
 ## SSMS Extension
 

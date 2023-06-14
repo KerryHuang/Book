@@ -72,3 +72,23 @@ layout: 為寫出的格式，這邊格視為時間、大寫 Log level與 log 內
 完成設定後啟動專案，你能在專案目錄下 (\bin\Debug\netcoreapp3.1\logs) 下找到 log
 ![img8](https://1.bp.blogspot.com/-Rpd0MLutypg/XroRLMCUflI/AAAAAAAAmr0/GN5GnxSIJuQKbdoQAnSZ_o0SjoH2EK9ngCK4BGAsYHg/w640-h234/308.png)
 
+幾乎所有 Log 機制都有所謂的 LogLevel，區分為 Trace、Debug、Information、Warn、Error、Critical... 等不同等級。借用微軟的[定義](https://learn.microsoft.com/zh-TW/dotnet/api/microsoft.extensions.logging.loglevel?view=dotnet-plat-ext-6.0&WT.mc_id=DOP-MVP-37580)說明各等級的適用場合：
+
+- None/Off
+  不記錄
+- Trace
+  包含最詳細訊息的記錄，訊息可能包含敏感性應用程式資料。預設停用，且永遠不應在生產環境中啟用。
+- Debug
+  開發期間用於互動式調查用，主要包含用於偵錯的資訊，不具備任何長期價值。
+- Information/Info
+  追蹤應用程式一般流程的記錄，應具備長期價值。
+- Warning
+  醒目提示應用程式異常或未預期事件，但這些異常或未預期事件不會造成應用程式執行停止。
+- Error
+  在目前執行流程因失敗而停止時進行醒目提示的記錄，記錄應著重目前活動的失敗資訊細節，而非整個應用程式的失敗。
+- Critical/Fatal
+  描述無法復原的應用程式或系統損毀，或需要立即注意重大失敗的記錄。
+
+### 參考資料
+1. [Nlog詳解](https://www.cnblogs.com/1175429393wljblog/p/16576726.html)
+1. [C#：NLog接入配置與簡單使用]([https://zhuanlan.zhihu.com/p/610461723)
