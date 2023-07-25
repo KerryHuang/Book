@@ -1,4 +1,4 @@
-# 第十章 安裝Redmine
+# Docker - 第十章 | 安裝 Redmine
 
 Redmine 是一個開源(Open Source)的項目管理系統，相信很多人早已對它不陌生。它的優點非常多，無論是免費、多國語系、角色管理、權限管理、問題追蹤、甘特圖以及日曆功能等等；但說到它的缺點，相信很多人的共識就是它在安裝和管理上並不容易，不過近年已有一鍵安裝(Bitnami Redmine Stack)、虛擬機器(Virtual Machine)或是容器(Dokcer)的安裝方式，也算是越來越便利了。
 
