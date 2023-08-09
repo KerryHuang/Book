@@ -18,7 +18,10 @@ Hangfire 是一款個人認為相當不錯的非同部步服務器，它脫離 W
 ### 安裝套件
 
 ```
-Install-Package HangfireInstall-Package Hangfire.MemoryStorageInstall-Package Hangfire.ConsoleInstall-Package Hangfire.Dashboard.Management
+Install-Package Hangfire
+Install-Package Hangfire.MemoryStorage
+Install-Package Hangfire.Console
+Install-Package Hangfire.Dashboard.Management
 ```
 
  
