@@ -1,6 +1,6 @@
 # C# 中的 HTTPClient — 入門指南
 
-
+## C# 中的 HTTPClient — 入門指南
 
 當您有多個應用程序並且它們需要相互通信以交換數據時，您可能需要使用一種協議來實現類似的操作。在 C# 中，HTTPClient 類提供了一種強大且靈活的方式來發出 HTTP 請求和處理響應。無論您是構建需要與 API 交互的 Web 應用程序還是僅需要從服務器檢索數據，C# 中的 HTTPClient 都可以提供幫助。
 
@@ -8,7 +8,7 @@
 
 在本教程中，我將使用一些您可以在線找到的免費 API。您不需要註冊或生成密鑰。如果將來他們確實發生變化，請告訴我。
 
-# The HTTPClient Explained? HTTPClient 解釋了嗎？
+## The HTTPClient Explained? HTTPClient 解釋了嗎？
 
 Microsoft 對 C# 中的 HTTPClient 有一個很好且簡短的描述：
 
@@ -25,7 +25,7 @@ HTTP 是 Internet 上數據通信的基礎。每次您訪問頁面、將可愛�
 1. HTTPClient 有更好的異步支持。
 2. HTTPClient 更易於使用和閱讀
 3. HTTPClient自動手動解壓響應內容
-4. HTTPClient 自動重用多個請求的連接以獲得更好的性能。HttpWebRequest 具有*KeepAlive*屬性，但默認情況下它是禁用的。
+4. HTTPClient 自動重用多個請求的連接以獲得更好的性能。HttpWebRequest 具有_KeepAlive_屬性，但默認情況下它是禁用的。
 5. HTTPClient 在每個請求中自動包含一組默認標頭，例如 User-Agent、Accept 和 Connection 標頭。HttpWebRequest 不提供默認標頭。
 
 HTTPWebRequest 在最新版本的 .NET 中仍然可用，並且在某些情況下可能是一個不錯的選擇。新的類和函數並不總是意味著舊的類和函數不好。
@@ -34,19 +34,19 @@ HTTPWebRequest 在最新版本的 .NET 中仍然可用，並且在某些情況�
 
 在以下情況下使用 HTTPClient：
 
-- 您需要一個更簡單、更現代的 API 來發送 HTTP 請求和接收 HTTP 響應。
-- 您希望使用 async/await 模式執行異步操作。
-- 您需要自動處理解壓縮、連接重用和默認標頭。
-- 您想要利用 HTTP/2 支持。
+* 您需要一個更簡單、更現代的 API 來發送 HTTP 請求和接收 HTTP 響應。
+* 您希望使用 async/await 模式執行異步操作。
+* 您需要自動處理解壓縮、連接重用和默認標頭。
+* 您想要利用 HTTP/2 支持。
 
 在以下情況下使用 HttpWebRequest：
 
-- 您需要對 HTTP 請求和響應進行更多控制，並願意使用較低級別的 API。
-- 您需要支持較舊的 .NET Framework 版本（4.5 之前），因為 HttpWebRequest 自 .NET Framework 1.1 以來就已存在。
-- 您需要執行更高級的 HTTP 操作，例如發送分塊請求或使用自定義 HTTP 方法。
-- 您正在使用需要使用 HttpWebRequest 的遺留系統。
+* 您需要對 HTTP 請求和響應進行更多控制，並願意使用較低級別的 API。
+* 您需要支持較舊的 .NET Framework 版本（4.5 之前），因為 HttpWebRequest 自 .NET Framework 1.1 以來就已存在。
+* 您需要執行更高級的 HTTP 操作，例如發送分塊請求或使用自定義 HTTP 方法。
+* 您正在使用需要使用 HttpWebRequest 的遺留系統。
 
-## Getting The HTTPClient Ready 準備好 HTTPClient
+### Getting The HTTPClient Ready 準備好 HTTPClient
 
 幾種類型的 HTTP 請求描述了您可能想要執行的操作。在本教程中，我將解釋如何執行 GET、POST 和 DELETE 請求。讓我們從最簡單的開始：GET。
 
@@ -88,17 +88,17 @@ public class Joke
 
 讓我們來看看：
 
-首先，初始化 HTTPClient。我正在使用*using*，因此當我不再需要它時，HTTPClient 初始化將被釋放，同時也會關閉連接。然後我將 GET 請求發送到該 URL。這是一個異步方法，所以我使用了*await*。
+首先，初始化 HTTPClient。我正在使用_using_，因此當我不再需要它時，HTTPClient 初始化將被釋放，同時也會關閉連接。然後我將 GET 請求發送到該 URL。這是一個異步方法，所以我使用了_await_。
 
 接下來，我檢查響應是否成功。這意味著我得到了一個肯定的[HTTP 狀態代碼](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)。如果不成功，我可以拋出異常或其他東西。
 
-但它是成功的，所以我可以從響應中檢索內容。response.Content.ReadAsStringAsync *()*以字符串形式檢索響應，非常適合將其轉換為 JSON。
+但它是成功的，所以我可以從響應中檢索內容。response.Content.ReadAsStringAsync \*()\*以字符串形式檢索響應，非常適合將其轉換為 JSON。
 
 然後我們實際上就完成了 C# 中的 HTTPClient。我瀏覽笑話列表並將其打印在屏幕上。
 
 很簡單，對吧？您所需要做的就是擁有一個 URL、初始化 HTTPClient 類，然後就可以開始了。
 
-## Sending POST Requests 發送 POST 請求
+### Sending POST Requests 發送 POST 請求
 
 雖然 GET 請求非常簡單，但 POST 需要一些額外的東西。POST 請求允許您將數據從客戶端發送到源，就像 API 一樣。因此，POST 請求需要一個包含數據的正文。
 
@@ -131,21 +131,21 @@ public class Joke
 }
 ```
 
-我再次初始化 HTTPClient。然後我創造了一個新的笑話，這裡沒什麼特別的。*但隨後我創建了一個StringContent*類型的新變量，並使用要轉換為 JSON 字符串的*newJoke*對其進行初始化。因為我使用 JSON 作為請求的正文，所以我需要將正文的*ContentType設置為**pplication/json*。
+我再次初始化 HTTPClient。然後我創造了一個新的笑話，這裡沒什麼特別的。_但隨後我創建了一個StringContent_類型的新變量，並使用要轉換為 JSON 字符串的_newJoke_對其進行初始化。因為我使用 JSON 作為請求的正文，所以我需要將正文的_ContentType設置為\*\*pplication/json_。
 
 我需要設置 ContentType 的原因是讓目標知道我將向其發送哪種數據。它也可能是 XML，如果我發送 JSON，目標將無法接收 XML。
 
-PUT 請求的工作原理完全相同，但您不使用*client.PostAsync ，而是使用**client.PutAsync*。
+PUT 請求的工作原理完全相同，但您不使用_client.PostAsync ，而是使用\*\*client.PutAsync_。
 
 您還可以設置很多其他標頭，但稍後我會告訴您更多相關信息。
 
-好吧！接下來，我對 URL 執行實際的 POST。這次我使用*client.PostAsync*。第一個參數是 URL，我們已經通過 GET 做到了這一點，第二個參數是我們之前創建的正文。
+好吧！接下來，我對 URL 執行實際的 POST。這次我使用_client.PostAsync_。第一個參數是 URL，我們已經通過 GET 做到了這一點，第二個參數是我們之前創建的正文。
 
 對於 POST 請求或 PUT 和 DELETE，無需檢查響應是否成功。更相反的是；我們想知道什麼時候出了問題。因此，我檢查響應是否不成功。如果這是真的，我會得到請求的內容。大多數時候，這是目標的錯誤，告訴我我做錯了什麼。
 
 我將此信息置於異常中，以便在向目標發布信息時出現問題時我會收到警報。此信息可能是必需的屬性為空，或者端點不正確，等等。
 
-## Sending DELETE Requests 發送刪除請求
+### Sending DELETE Requests 發送刪除請求
 
 DELETE 請求看起來很像 POST 請求，但略有不同：我們不希望從目標接收數據。如果您已經創建了 POST 代碼，則只需複制粘貼該代碼並將其稍微更改為：
 
@@ -170,11 +170,11 @@ using (HttpClient client = new())
 
 為了弄清楚出了什麼問題，我們可以通過讀取響應中的內容來提取錯誤並將其放入異常中。
 
-# Advanced HTTPClient 進階 HTTPClient
+## Advanced HTTPClient 進階 HTTPClient
 
 我想您已經了解如何在 C# 中使用 HTTPClient 了。但它不僅僅是向目標發送簡單的請求並讀取其響應。在擴展 HTTPClient 類時，您可能需要一些高級設置。
 
-## Authorization 授權
+### Authorization 授權
 
 某些 API 需要您通過向 API 請求添加令牌來進行授權。這通常是[來自 API 的 JWT](https://kenslearningcurve.com/tutorials/securing-net-6-apis/)。您需要將此令牌添加到請求的**Authorization標頭中。**
 
@@ -197,7 +197,7 @@ using (HttpClient client = new())
 
 雖然看起來很簡單，但請記住，您需要在發送請求之前設置 DefaultRequestHeaders。將所有內容髮送到目標後，設置默認請求標頭是沒有意義的。
 
-## Using A Timeout 使用超時
+### Using A Timeout 使用超時
 
 默認情況下，HTTPClient 等待 100000 毫秒（100 秒）才能完成請求。如果在此之前未完成，則會引發異常。這就是我們所說的超時。
 
@@ -221,9 +221,9 @@ using (HttpClient client = new())
 
 在上面的示例中，HTTPClient 的超時設置為 30 秒。這意味著，如果該初始化客戶端的請求花費超過 30 秒，則會引發異常。
 
-## Multiple Requests With One Client 一個客戶的多個請求
+### Multiple Requests With One Client 一個客戶的多個請求
 
-如果您需要在同一方法內或同時發送不同的請求，則不必關閉並打開 HTTPClient。只需重複使用它即可。下面是一個例子。*只有在使用*結束後，客戶端才會被關閉。
+如果您需要在同一方法內或同時發送不同的請求，則不必關閉並打開 HTTPClient。只需重複使用它即可。下面是一個例子。_只有在使用_結束後，客戶端才會被關閉。
 
 ```c#
 string baseUrl = "https://official-joke-api.appspot.com/jokes/{0}";
@@ -266,11 +266,11 @@ public class Joke
 }
 ```
 
-## Proxies 代理
+### Proxies 代理
 
-如果您想使用代理到達目標，C# 中的 HTTPClient 將幫助您。它有一個特殊的*處理程序*，您可以將其配置為使用代理。
+如果您想使用代理到達目標，C# 中的 HTTPClient 將幫助您。它有一個特殊的_處理程序_，您可以將其配置為使用代理。
 
-以下示例有一個代理，該代理是***虛構的\***。
+以下示例有一個代理，該代理是\***虛構的\***。
 
 ```c#
 HttpClientHandler handler = new()
@@ -306,9 +306,9 @@ using (HttpClient client = new(handler))
 public record Joke(string Setup, string Punchline);
 ```
 
-## Download An Image 下載圖片
+### Download An Image 下載圖片
 
-您可以使用 HTTPClient 從 Web 下載圖像，將其存儲在字節數組中，然後將其另存為文件。為此，我們使用**GetByteArrayAsync(** uri **)**方法。
+您可以使用 HTTPClient 從 Web 下載圖像，將其存儲在字節數組中，然後將其另存為文件。為此，我們使用**GetByteArrayAsync(** uri \*\*)\*\*方法。
 
 ```c#
 using (HttpClient httpClient = new())
@@ -322,7 +322,7 @@ using (HttpClient httpClient = new())
 }
 ```
 
-# 結論
+## 結論
 
 C# 中的 HTTPClient 主要在向外部目標（通常是 API）請求或發送數據時使用。它有不同的選項和設置，您可以使用它來提出您的請求。
 
