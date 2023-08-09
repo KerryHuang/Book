@@ -2,7 +2,7 @@
 
 ---
 
-目錄
+## 目錄
 [資料庫問題集](#database)
 [.NET 問題集](#developer)
 [軟體工程](#soft)
@@ -11,7 +11,7 @@
 
 ## 資料庫問題集
 
-資料庫章節
+### 資料庫章節
 [1. 請問你有使用過哪些關聯式資料庫系統？它們的優缺點是什麼？](#database_01)
 [2. 什麼是資料庫索引？有哪些不同類型的索引？如何設計一個良好的索引策略？](#database_02)
 [3. 如何優化 SQL 查詢的效能？請列舉一些常見的 SQL 查詢優化技巧](#database_03)
@@ -26,7 +26,8 @@
 <a name="database_01"/>
 
 1. 請問你有使用過哪些關聯式資料庫系統？它們的優缺點是什麼？
-```no-highlight
+
+```
 常見的關聯式資料庫系統有MySQL、Oracle、Microsoft SQL Server、PostgreSQL等。這些系統的優缺點如下：
 
 MySQL：
@@ -51,7 +52,8 @@ PostgreSQL：
 <a name="database_02"/>
 
 2. 什麼是資料庫索引？有哪些不同類型的索引？如何設計一個良好的索引策略？
-```no-highlight
+
+```
 資料庫索引是一種數據結構，用於提高查詢效率。它是在數據庫表中一個或多個列的值的基礎上建立的快速查找的數據結構。通常情況下，索引被建立在數據表的主鍵、外鍵和經常用於查詢的欄位上，以加速數據的查詢、插入、更新和刪除操作。
 
 常見的索引類型包括：
@@ -74,7 +76,8 @@ B-Tree 索引：這是最常用的索引類型，用於快速查詢某個範圍�
 <a name="database_03"/>
 
 3. 如何優化 SQL 查詢的效能？請列舉一些常見的 SQL 查詢優化技巧。
-```no-highlight
+
+```
 SQL 查詢的效能優化是關係到資料庫系統性能的重要方面，下面列舉一些常見的 SQL 查詢優化技巧：
 
 適當地使用索引：索引可以大大提高查詢效率，但索引過多或者錯誤的使用索引會影響效能，因此需要適當地使用索引，並設計良好的索引策略。
@@ -92,7 +95,8 @@ SQL 查詢的效能優化是關係到資料庫系統性能的重要方面，下�
 <a name="database_04"/>
 
 4. 請問你對資料庫正規化的了解和實際應用情況是什麼？
-```no-highlight
+
+```
 資料庫正規化是指將資料庫中的資料按照某種規則進行分解和整合，以減少資料冗餘和不一致，從而提高資料庫的效率和可靠性。正規化是資料庫設計中一個重要的概念，也是資料庫管理系統 (DBMS) 的基礎之一。
 
 在實際應用中，正規化通常可以分為三個階段：第一階段是將原始資料表進行第一正規化，即消除重複的資料群，產生多個小的、相對獨立的資料表；第二階段是將第一正規化的資料表進行第二正規化，即消除非主鍵屬性對主鍵的部分函數依賴，產生更小、更獨立的資料表；第三階段是進行第三正規化，即消除非主鍵屬性之間的相依關係，產生更小、更獨立的資料表。
@@ -104,7 +108,8 @@ SQL 查詢的效能優化是關係到資料庫系統性能的重要方面，下�
 
 <a name="database_05"/>
 5. 什麼是資料庫死鎖？如何預防和解決死鎖問題？
-```no-highlight
+
+```
 資料庫死鎖指的是當兩個或多個事務(Tx)相互等待彼此持有的鎖(lock)時，會發生永久阻塞的情況。簡單來說，就是兩個或多個Tx互相等待對方釋放鎖定的資源，而造成Tx無法繼續執行下去的情況。
 
 以下是幾種預防和解決死鎖的方法：
@@ -120,7 +125,8 @@ SQL 查詢的效能優化是關係到資料庫系統性能的重要方面，下�
 <a name="database_06"/>
 
 6. SQL Server 如何備份和還原資料庫？列舉一些常見的資料庫備份和還原方案。
-```no-highlight
+
+```
 使用 SQL Server Management Studio (SSMS)：透過 SSMS 的 GUI 介面可以輕鬆地進行備份和還原操作。可以選擇完整備份、差異備份、日誌備份等不同的備份方式，也可以選擇將備份檔案備份到磁碟、磁帶、網路共用資料夾等不同的儲存位置。
 
 使用 T-SQL 命令：透過 T-SQL 語法可以實現更細粒度的備份和還原操作，同時也可以通過程式編寫來自動化備份和還原操作。
@@ -143,7 +149,8 @@ SQL 查詢的效能優化是關係到資料庫系統性能的重要方面，下�
 <a name="database_07"/>
 
 7. 如何追踨查詢過久的SQL 語法？
-```no-highlight
+
+```
 在 SQL Server 中，可以使用 SQL Server Management Studio（SSMS）或 Transact-SQL 語句來追踪查詢過久的 SQL 語法。
 
 在 SSMS 中，可以使用 SQL Server Profiler 工具來追踪 SQL 語法。以下是一些追踪 SQL 語法的步驟：
@@ -171,7 +178,8 @@ sys.dm_exec_sql_text：用於查詢正在執行的查詢的文本。
 <a name="database_08"/>
 
 8. SQL Server 如何清除交易紀錄檔？
-```no-highlight
+
+```
 在 SQL Server 中，交易紀錄檔可以使用備份操作或清理操作來控制其大小。如果交易紀錄檔已經增長到不合理的大小，可以使用以下方法進行清理：
 
 備份交易紀錄檔：使用 BACKUP LOG 語句將交易紀錄檔備份到磁盤上。這會將交易紀錄檔中已提交的交易的信息從檔案中清除。例如，以下語句會將交易紀錄檔備份到 D:\Backup 資料夾下：
@@ -189,7 +197,7 @@ DBCC SHRINKFILE ('資料庫名稱_log', 1)
 
 ## .NET 架構問題集
 
-.NET 章節
+### .NET 章節
 [1. .NET 是什麼？您可以講解一下 .NET 的架構和特點嗎？](#developer_01)
 [2. .NET Framework 和 .NET Core 有什麼不同？請問您對這兩個框架的理解是什麼？](#developer_02)
 [3. 請問您對 C# 語言的理解是什麼？請講解一下 C# 的特點和使用情況。](#developer_03)
@@ -209,19 +217,24 @@ DBCC SHRINKFILE ('資料庫名稱_log', 1)
 [17. .NET 壓力測試的工具與方法？](#developer_17)
 [18. .NET 開發中資料交換方式及類型有哪幾種？](#developer_18)
 
+如何設計訂單編號不可重覆？
+建置.NET CORE專案至IIS時需做哪些事情？如何讓IIS Always On？
+
 ---
 
 <a name="developer_01"/>
 
 1. .NET 是什麼？您可以講解一下 .NET 的架構和特點嗎？
-```no-highlight
+
+```
 .NET 是一個跨平台的軟體框架，它提供了一系列用於開發、部署和執行應用程式的工具和環境。.NET 的架構主要由兩部分組成：共同語言運行時（Common Language Runtime，CLR）和 .NET Framework Class Library。.NET 的特點包括：支持跨平台開發，具有高度的互操作性，能夠快速地開發出安全、高效和穩定的應用程式。
 ```
 
 <a name="developer_02"/>
 
 2. .NET Framework 和 .NET Core 有什麼不同？請問您對這兩個框架的理解是什麼？
-```no-highlight
+
+```
 .NET Framework和.NET Core都是由Microsoft開發的軟體框架，用於開發和執行跨平台應用程式。它們之間的區別在於它們的設計目標、適用範圍和可用的功能。
 
 首先，.NET Framework是在2002年推出的，是Windows平台上的主要開發框架。它包括了許多庫、工具和語言運行時，支援多種程式語言，如C#、VB.NET和F#等。.NET Framework也支援多種應用程式模型，如Windows Forms、WPF和ASP.NET等。.NET Framework的目標是在Windows平台上提供一個全面的開發框架，用於開發桌面應用程式、網站和企業應用程式等。
@@ -234,7 +247,8 @@ DBCC SHRINKFILE ('資料庫名稱_log', 1)
 <a name="developer_03"/>
 
 3. 請問您對 C# 語言的理解是什麼？請講解一下 C# 的特點和使用情況。
-```no-highlight
+
+```
 C#（C Sharp）是一種現代化、通用的、面向對象的程式設計語言，由微軟公司開發，被廣泛地應用於各種應用程式開發領域。以下是 C# 的特點和使用情況：
 
 特點：
@@ -255,7 +269,8 @@ Web 應用程式：C# 能夠使用 ASP.NET 框架開發 Web 應用程式，能�
 <a name="developer_04"/>
 
 4. 請問您對 ASP.NET 的理解是什麼？請講解一下 ASP.NET 的特點和使用情況。
-```no-highlight
+
+```
 ASP.NET 是由 Microsoft 開發的一個基於 .NET 框架的 Web 應用程序開發平台，它提供了一套完整的開發工具和框架，使開發人員能夠快速地構建高效、可靠且具有良好可擴展性的 Web 應用程序。
 
 以下是我對 ASP.NET 的特點和使用情況的理解：
@@ -274,7 +289,8 @@ ASP.NET 是由 Microsoft 開發的一個基於 .NET 框架的 Web 應用程序�
 <a name="developer_05"/>
 
 5. 請問您對 MVC 架構的理解是什麼？在 .NET 開發中，如何使用 MVC 架構？
-```no-highlight
+
+```
 MVC 架構是一種常見的軟件架構模式，用於將應用程式的 UI、業務邏輯和數據模型進行分離，從而實現軟件開發中的模塊化、可測試性和可維護性。MVC 架構包括三個主要組件：
 
 模型（Model）：表示應用程式中的數據和業務邏輯。
@@ -298,7 +314,8 @@ MVC 架構是一種常見的軟件架構模式，用於將應用程式的 UI、�
 <a name="developer_06"/>
 
 6. 在使用 .NET 開發 Web 應用時，您會使用哪些前端框架？為什麼？
-```no-highlight
+
+```
 在使用 .NET 開發 Web 應用時，常見的前端框架包括 Angular、React 和 Vue.js。這些框架都是目前最熱門和最流行的前端框架，各自具有優點和適用場景。
 
 以下是我對這些前端框架的理解和使用情況：
@@ -315,7 +332,8 @@ Vue.js：Vue.js 是一個由 Evan You 開發的前端框架，使用 JavaScript 
 <a name="developer_07"/>
 
 7. 請問您對單元測試的理解是什麼？在 .NET 開發中，如何進行單元測試？
-```no-highlight
+
+```
 單元測試（Unit Testing）是一種軟件測試方法，用於驗證軟件的各個單元（最小測試單位）是否能夠按照預期工作。單元測試通常針對單一函數、方法或類別進行測試，可以很快地發現軟件中的錯誤，並確保各個單元的正確性。
 
 在 .NET 開發中，可以使用 Visual Studio 內置的測試工具進行單元測試。以下是進行單元測試的一些基本步驟：
@@ -334,7 +352,8 @@ Vue.js：Vue.js 是一個由 Evan You 開發的前端框架，使用 JavaScript 
 <a name="developer_08"/>
 
 8. 請問您有沒有使用過 Entity Framework？請講解一下您對 Entity Framework 的理解和使用情況。
-```no-highlight
+
+```
 Entity Framework 是一個用於 .NET 開發的 ORM（Object Relational Mapping）框架，可以將對象映射到關聯數據庫中，從而實現對數據庫的操作和管理。它提供了一個強大的對象關係映射和 LINQ 查詢的能力，可以讓開發人員在應用程式中使用類似於對象操作的方式來處理數據庫。
 
 我的使用情況是在 .NET Web 應用程式中，通常使用 Entity Framework 來實現數據庫的操作和管理，從而達到快速開發和維護的目的。通過 Entity Framework，我們可以使用面向對象的編程方式來設計數據庫的模型，並將對象映射到數據庫中，減少了手動操作數據庫的工作量，提高了開發效率。
@@ -347,7 +366,8 @@ Entity Framework 是一個用於 .NET 開發的 ORM（Object Relational Mapping�
 <a name="developer_09"/>
 
 9. 在 .NET 開發中，您會使用哪些常用的第三方庫？請問您對這些庫的理解和使用情況是什麼？
-```no-highlight
+
+```
 在 .NET 開發中，有許多常用的第三方庫可供使用，以下是幾個常見的庫以及我們使用它們的理解和情況：
 
 Newtonsoft.Json：這是一個用於序列化和反序列化 JSON 的庫，可以方便地將對象轉換為 JSON 字符串，或將 JSON 字符串轉換為對象。我們通常在 .NET Web 應用程式中使用此庫來處理來自前端的 JSON 數據，或者將後端的數據轉換為 JSON 格式。
@@ -366,12 +386,14 @@ NUnit：這是一個用於單元測試的庫，可以實現自動化測試和代
 <a name="developer_10"/>
 
 10. 請問您在 .NET 開發中遇到過哪些困難和挑戰？您是如何解決的？
-```no-highlight
+
+```
 ```
 
 <a name="developer_11"/>
 
 11. .NET 網站實作快取有哪幾種方式?
+
 ```
 在 .NET 開發網站時，可以使用下列幾種方式來實作快取：
 	
@@ -386,7 +408,8 @@ NUnit：這是一個用於單元測試的庫，可以實現自動化測試和代
 <a name="developer_12"/>
 
 12. .NET 開發中使用的報表開發工具有哪些？例如：Reporting Service、Crytal Report
-```no-highlight
+
+```
 在 .NET 開發中，常用的報表開發工具有以下幾種：
 
 Crystal Reports：這是一個商用的報表開發工具，可以與 Visual Studio 配合使用。它可以讓你輕鬆地建立複雜的報表，並支持多種數據源。
@@ -403,7 +426,8 @@ DevExpress Reports：這是一個商用的報表開發工具，可以與 Visual 
 <a name="developer_13"/>
 
 13. C# 產生PDF方式有哪些？(薪資單、發票、物流標籤)
-```no-highlight
+
+```
 在 C# 中，可以使用多種方式來產生 PDF 文件，以下是其中幾種常見的方式：
 
 iTextSharp：iTextSharp 是一個流行的 C# PDF 庫，提供了豐富的功能，包括文字處理、頁面設計、表格、圖像等等。它可以生成 PDF、FDF、XML、HTML 和 RTF 等格式的文件。
@@ -419,7 +443,8 @@ ReportViewer 控件：ReportViewer 控件是 .NET 中一個可視化報表設計
 <a name="developer_14"/>
 
 14. 有用過的ETL工具有哪些？例如：SSIS
-```no-highlight
+
+```
 ETL是「Extract-Transform-Load」的縮寫，指的是將數據從一個數據庫提取出來，經過轉換後加載到另一個數據庫的過程。下面是一些常見的ETL工具：
 
 Microsoft SQL Server Integration Services (SSIS)：是一個強大的ETL工具，它允許您從各種數據來源提取數據，進行轉換和加載到其他數據庫或文件格式中。
@@ -434,7 +459,8 @@ IBM InfoSphere DataStage：是一個強大的ETL工具，提供全面的數據�
 <a name="developer_15"/>
 
 15. FTP傳輸有分哪幾種？
-```no-highlight
+
+```
 FTP（File Transfer Protocol）是一種用於在網路上傳輸檔案的協定，主要用於將檔案從一個電腦傳輸到另一個電腦。常見的 FTP 傳輸方式包括：
 
 主動模式（Active Mode）：在主動模式下，FTP 伺服器會在一個固定的埠（通常是 21 埠）上監聽傳入的連線，當客戶端要下載檔案時，FTP 伺服器會將檔案傳輸到客戶端指定的埠上。主動模式需要在防火牆中開啟埠號，並且需要客戶端開啟一個高隨機埠。
@@ -449,7 +475,8 @@ SFTP（Secure File Transfer Protocol）：SFTP 是一種安全的 FTP 協定，�
 <a name="developer_16"/>
 
 16. .NET 開發工作排程有哪些方式？您會使用哪些常用的第三方庫？Hangfire、Windows Service、Windows 排程器等
-```no-highlight
+
+```
 .NET 開發工作排程有多種方式，以下列舉幾種常見的：
 
 使用內建的 Task Scheduler：Windows 系統提供了內建的 Task Scheduler，可以使用它來設定定期執行的任務，例如每天定時備份資料庫、定期執行檢查等。
@@ -470,7 +497,8 @@ Task Scheduler Managed Wrapper：包裝 Windows 作業系統提供的工作排�
 <a name="developer_17"/>
 
 17. .NET 壓力測試的工具與方法？
-```no-highlight
+
+```
 在 .NET 開發中，進行壓力測試是非常重要的一環，可以通過模擬大量的使用者和請求，檢測應用程式的性能和穩定性。以下是幾種常見的 .NET 壓力測試工具與方法：
 
 Visual Studio Load Test：這是一個非常強大的壓力測試工具，可以通過 Visual Studio IDE 來進行設定和執行。可以進行多種類型的測試，如 Web 測試、單元測試、性能測試等，非常適合 .NET 開發者使用。
@@ -489,7 +517,8 @@ LoadRunner：這是一個商業級的壓力測試工具，功能非常強大，�
 <a name="developer_18"/>
 
 18. .NET 開發中資料交換方式及類型有哪幾種？
-```no-highlight
+
+```
 在 .NET 開發中，常見的資料交換方式及類型有以下幾種：
 
 Web API：使用 Web API 進行資料交換是一種常見的方式。開發人員可以使用 ASP.NET Core Web API 框架建立 RESTful 服務，並透過 HTTP 協定進行資料交換。
@@ -508,7 +537,8 @@ SignalR：SignalR 是一個用於建立即時應用的框架，可以使用 WebS
 
 ## 軟體工程
 
-章節
+### 章節
+
 [1. 軟體開發流程？請說明實作上的情境](#soft_01)
 [2. .NET開發中有用過微服務嗎？微服務的使用情境有哪些？](#soft_02)
 [3. 什麼是CI/CD？CI/CD有哪些工具？](#soft_03)
@@ -517,10 +547,12 @@ SignalR：SignalR 是一個用於建立即時應用的框架，可以使用 WebS
 
 
 ---
+
 <a name="soft_01"/>
 
 1. 軟體開發流程？請說明實作上的情境
-```no-highlight
+
+```
 需求分析 > 設計 > 實作 > 測試 > 交付 > 維運
 
 軟體開發流程一般可以分為以下幾個階段：
@@ -539,7 +571,8 @@ SignalR：SignalR 是一個用於建立即時應用的框架，可以使用 WebS
 <a name="soft_02"/>
 
 2. .NET開發中有用過微服務嗎？微服務的使用情境有哪些？
-```no-highlight
+
+```
 微服務是一種架構風格，它將一個大型複雜的系統分解為多個小型獨立的服務，這些服務可以獨立地開發、部署、維護和擴展。在.NET開發中，微服務可以使用ASP.NET Core來實現。
 
 以下是微服務的使用情境：
@@ -555,7 +588,8 @@ SignalR：SignalR 是一個用於建立即時應用的框架，可以使用 WebS
 <a name="soft_03"/>
 
 3. 什麼是CI/CD？CI/CD有哪些工具？
-```no-highlight
+
+```
 CI/CD 是指持續整合和持續部署，是現代軟體開發的一種流程，目的是自動化和加速軟體開發和部署過程，同時提高軟體品質和減少錯誤。
 
 持續整合（CI）指將開發人員的代碼合併到共享存儲庫中，並自動構建和測試代碼的過程。持續部署（CD）則是在 CI 的基礎上，自動化軟體部署的過程。
@@ -573,7 +607,8 @@ Azure DevOps：微軟的一個統一的 DevOps 平台，提供 CI/CD 工具和�
 <a name="soft_04"/>
 
 4. 程式開發版本控管有哪些工具？什麼是Pull request？
-```no-highlight
+
+```
 程式開發版本控制工具主要有以下幾種：
 
 Git：目前最流行的版本控制工具之一，開源、跨平台、功能豐富。
@@ -587,7 +622,8 @@ Mercurial：與 Git 類似的分散式版本控制工具，相對較少人使用
 <a name="soft_05"/>
 
 5. 什麼是Code Review？Code Review需要注意哪些地方？
-```no-highlight
+
+```
 Code Review是指軟體開發過程中的一個重要步驟，透過對程式碼的檢查，確保程式碼的品質、可讀性和可維護性。Code Review的目的是發現程式碼中的錯誤、不一致性、風格問題和潛在的安全漏洞等問題，從而改進程式碼的質量。
 
 在進行Code Review時，需要注意以下幾點：
