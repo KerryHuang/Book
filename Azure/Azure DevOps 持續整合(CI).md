@@ -30,7 +30,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) $(Build.SourcesDirectory)\$(project)'
+    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) $(Build.SourcesDirectory)\$(project) /maxcpucount:1'
 
 - task: PublishBuildArtifacts@1
   inputs:
@@ -93,4 +93,78 @@ Path to NuGet package(s) to publish* : 選擇 build 完後路徑下的 nupkg 檔
 	在將xxxxxxx.nupkg 改為 *.nupkg
 	例如：(_Presco.PAYUNi/artifacts/*.nupkg)
 Target feed* : 選擇在 Artifacts 建的 Feed
+```
+
+---
+
+## Azure DevOps Pipelines 從建置一路到發行Artifacts
+
+```yml
+trigger:
+- master  # 定義觸發建置的分支
+
+pool:
+  vmImage: 'windows-latest'  # 選擇建置代理機器的映像
+
+variables:
+  solution: 'Presco.Utility'  # 解決方案名稱
+  project: 'Presco.Utility' # 專案名稱
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2  # 使用DotNetCoreCLI建置解決方案中的所有專案
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) $(Build.SourcesDirectory)\$(solution)\$(project).csproj /maxcpucount:1'
+
+- task: PublishBuildArtifacts@1  # 上傳Artifacts至Azure Pipelines
+  displayName: 'publish build artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'artifacts'
+    publishLocation: 'Container'
+
+- task: NuGetCommand@2  # 使用NuGet命令推送NuGet套件到Azure DevOps Artifacts
+  displayName: 'nuget push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'  # 指定要推送的NuGet套件檔案的路徑
+    nuGetFeedType: 'internal'  # 如果是Azure DevOps Artifacts，請設定為 'internal'
+    publishVstsFeed: '641c97c7-78f8-4314-8e9b-3d272cc8325f/533f8755-94c3-4345-b70c-6e6174db92bf'  # 如果是Azure DevOps Artifacts，請提供你的Feed ID
+    allowPackageConflicts: false # 當這個參數為false時，當套件版本已經存在於存儲庫中時不再進行處理    
+```
+
+## 建置所有專案
+
+```yml
+trigger:
+- master  # 定義觸發建置的分支
+
+pool:
+  vmImage: 'windows-latest'  # 選擇建置代理機器的映像
+
+variables:
+  solution: '**/*.sln'  # 解決方案名稱
+  project: 'Presco.Utility.Barcode' # 專案名稱
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2  # 使用DotNetCoreCLI建置解決方案中的所有專案
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
+
+- task: NuGetCommand@2  # 使用NuGet命令推送NuGet套件到Azure DevOps Artifacts
+  displayName: 'nuget push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'  # 指定要推送的NuGet套件檔案的路徑
+    nuGetFeedType: 'internal'  # 如果是Azure DevOps Artifacts，請設定為 'internal'
+    publishVstsFeed: '641c97c7-78f8-4314-8e9b-3d272cc8325f/533f8755-94c3-4345-b70c-6e6174db92bf'  # 如果是Azure DevOps Artifacts，請提供你的Feed ID
+    allowPackageConflicts: false # 當這個參數為false時，當套件版本已經存在於存儲庫中時不再進行處理   
 ```
