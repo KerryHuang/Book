@@ -49,3 +49,22 @@ print(r.get('中文的key'))
 ```
 
 redis儲存方式為key和value，用set的方式來增加或更新value，用get的方式來取得所儲存的value。若上述程式可以正常執行並取得所存入的value，就表示Redis已正常執行。
+
+
+
+## 安裝 RedisInsight on Docker
+```
+docker pull redislabs/redisinsight
+docker run -v redisinsight:/db -p 8001:8001 redislabs/redisinsight:latest
+```
+
+參考
+[Install RedisInsight on Docker](https://docs.redis.com/latest/ri/installing/install-docker/)
+
+
+## Redis監控工具：redmon
+
+```
+docker pull vieux/redmon
+docker run -d --link redis:redis -p 4567:4567 vieux/redmon -r redis://redis:6379
+```

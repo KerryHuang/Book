@@ -67,7 +67,7 @@
       //參數2
       parameters.Add("Age", 20);
       //執行語法，insert一筆資料到Student
-      var Result = await conn.ExecuteAsync(SQL.ToString(), parameters);
+      var Result = await connection.ExecuteAsync(SQL.ToString(), parameters);
       //回傳執行成功的數量
       return Ok(Result);
     }
