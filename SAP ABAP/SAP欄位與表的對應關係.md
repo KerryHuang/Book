@@ -150,21 +150,21 @@ PRT’s
 
 CRFH PRT Master Data
 
-CRVD_A Link of PRT to Document
+CRVD\_A Link of PRT to Document
 
-CRVD_B Link of Document to PRT
+CRVD\_B Link of Document to PRT
 
-CRVE_A Assignment of PRT data to Equipment
+CRVE\_A Assignment of PRT data to Equipment
 
-CRVE_B Assignment of equipment to PRT data
+CRVE\_B Assignment of equipment to PRT data
 
-CRVM_A Link of PRT data to Material
+CRVM\_A Link of PRT data to Material
 
-CRVM_B Link of Material to PRT data
+CRVM\_B Link of Material to PRT data
 
-CRVS_A Link of PRT Internal number to PRT External number
+CRVS\_A Link of PRT Internal number to PRT External number
 
-CRVS_B Link of PRT External number to PRT Internal number
+CRVS\_B Link of PRT External number to PRT Internal number
 
 Class & Characteristic
 
@@ -206,7 +206,7 @@ PLAB Relationships - Standard Network
 
 PLAS Task List - Selection ofOperations（PLPO,PLAS,PLKO三者互相關聯才能獲得工作中心描述資訊）
 
-(plpo~plnnr = plas~plnnr and plpo~zaehl = plas~zaehl andplpo~plnkn = plas~plnkn)
+(plpo~~plnnr = plas~~plnnr and plpo~~zaehl = plas~~zaehl andplpo~~plnkn = plas~~plnkn)
 
 PLMZ Component Allocation（元件分配）（是記錄分配BOM到ROUTING）
 
@@ -251,8 +251,6 @@ PBED Independent Requirements Data
 PBIM Independent Requirements by Material（與PBED通過BDZEI關聯）
 
 PBHI Independent Requirements History（與PBIM，通過BDZEI關聯）
-
-
 
 PBID Plannedindependent requirements index: MRP area
 
@@ -318,8 +316,6 @@ AFKO OrderHeader（包含有BOM和ROUTING的組資訊）(工序確認,上級訂�
 
 AFPO Order Item Detail(訂單類別【DAUTY】－5產品收集器，訂單型別【DAUAT】－RM01，有入庫數【WEMNG】)
 
-
-
 RESB OrderBOM（訂單裡的實際BOM清單，通過AUFPL與AFVC關聯，包含了訂單的元件分配）
 
 AFFL Order Sequence Details
@@ -328,13 +324,13 @@ AFFH Order PRT Assignment
 
 AFBP Order Batch Print Requests
 
-AFVC Order Operations Detail (與通過“組”和“計數器”關聯AFKO，應該是AUFPL [訂單中工序的工藝路線號] 與AFKO關聯)（訂單裡的實際工序）
+AFVC Order Operations Detail (與通過“組”和“計數器”關聯AFKO，應該是AUFPL \[訂單中工序的工藝路線號] 與AFKO關聯)（訂單裡的實際工序）
 
 ARBID—資源的物件ID
 
 AFRU Order Completion Confirmations（實際值）
 
-(生產訂單確認量及所有相關的確認的資料（重複製造），物件號與CRCO查詢作業類新描述，通過訂單號和AFPO關聯)得到計劃工藝路線號，然後和AFVC關聯(訂單號，作業編號)，再通過AFVC的活動型別到表CSLA獲得具體成本要素號;[AFRU的訂單＆作業與AFVC相關聯]
+(生產訂單確認量及所有相關的確認的資料（重複製造），物件號與CRCO查詢作業類新描述，通過訂單號和AFPO關聯)得到計劃工藝路線號，然後和AFVC關聯(訂單號，作業編號)，再通過AFVC的活動型別到表CSLA獲得具體成本要素號;\[AFRU的訂單＆作業與AFVC相關聯]
 
 AFFW Confirmations – Goods Movements withErrors（COGI錯誤庫存列表）
 
@@ -342,11 +338,7 @@ AFRC Confirmations – Incorrect CostCalculations(COGI) 確認不正確的成本
 
 AFRD Confirmations – Defaults for CollectiveConfirmation
 
-
-
 AFRH Confirmations – Header Info for ConfirmationPool
-
-
 
 AUFM 儲存訂單的貨物移動內容（只儲存DAUTY-10，也就是儲存有生產訂單，重複製造的內容不放在該表）
 
@@ -364,7 +356,7 @@ CKMLMV013 儲存了訂單和生產版本的資訊；一般來說，一個訂單A
 
 AUFK->JEST->TJ02T Orderstatus(通過AUFK OBJNR關聯) for example:OR000002014014
 
-->JSTO 查詢到相應的訂單狀態(具體
+\->JSTO 查詢到相應的訂單狀態(具體
 
 TJ02T 具體描述相應的狀態：
 
@@ -434,13 +426,9 @@ Technically completed
 
 I0046
 
-
-
 E
 
 CLSD
-
-
 
 Closed(取消，清空)
 
@@ -480,7 +468,7 @@ KSSK Material Allocation to Class
 
 檢驗結果
 
-QADB_SCOPE Scope from ASAP QADB
+QADB\_SCOPE Scope from ASAP QADB
 
 QAES 取樣單位表
 
@@ -536,8 +524,7 @@ KOMV Header Conditions（通訊表）
 
 KONP Item Conditions（通訊表）， A017是採購價格的資料表，然後通過欄位KNUMH；A017不能用於QUERY；
 
-T024 採購組
-邏輯資料表：IFM-採購資訊記錄；
+T024 採購組 邏輯資料表：IFM-採購資訊記錄；
 
 邏輯資料庫：ILM----可以顯示採購價格等級資料
 
@@ -683,13 +670,13 @@ KONP Condition Detail
 
 KONV Condition Procedures(是代表銷售訂單的價格資料)（通過VBAK的KNUMV和KPOSN兩個欄位）
 
-KOTE* Rebate（回扣） Condition Tables – many
+KOTE\* Rebate（回扣） Condition Tables – many
 
-*966 966是條件表，如果不會則前面加*查詢一下；
+_966 966是條件表，如果不會則前面加_查詢一下；
 
-KOTN* 買贈（VBN1建立的）
+KOTN\* 買贈（VBN1建立的）
 
-A8* 打折表
+A8\* 打折表
 
 (FI) FINANCIAL ACCOUNTING
 
@@ -709,7 +696,7 @@ COSS
 
 COSP 包括所有的數量
 
-COVP 儲存工序確認後的數值與COBK進行關聯(通過物件號，憑證編號)，[業務事務]＝COIN，一般情況下與AFRU相同。(COVP的參考憑證號碼,參照組織單位與AFRU 的確認號和計數器)，AFKO的定單號與COBK關聯，
+COVP 儲存工序確認後的數值與COBK進行關聯(通過物件號，憑證編號)，\[業務事務]＝COIN，一般情況下與AFRU相同。(COVP的參考憑證號碼,參照組織單位與AFRU 的確認號和計數器)，AFKO的定單號與COBK關聯，
 
 COBK 包含相關的憑證號
 
@@ -767,11 +754,11 @@ MLFG 物料分類帳檔案：欄位組
 
 MLGN 每一倉庫號物料資料
 
-MLGN_TMP 直接輸入的糾正資料的檔案
+MLGN\_TMP 直接輸入的糾正資料的檔案
 
 MLGT 每一儲存型別的物料資料
 
-MLGT_TMP 直接輸入的糾正資料的檔案
+MLGT\_TMP 直接輸入的糾正資料的檔案
 
 MLHD 物料總帳憑證：標題
 
@@ -807,14 +794,4 @@ PS（Project System）
 
 Projects
 
-IMAK Appropriationrequests - general data
-IMAV Appropriationrequest variant
-IMPR InvestmentProgram Positions
-IMPU Textsfor cap. inv. programpositions
-IMTP Investmentprograms
-IMZO AssignmentTable- CO Object - Capital InvestmentProg.Pos.
-PMCO Coststructure of maintenanceorder
-PRHI WorkBreakdown Structure, Edges (HierarchyPointer) （WBS的結構）
-PROJ Projectdefinition （專案定義）
-PRPS WBS(Work Breakdown Structure) Element Master Data （WBS的具體內容）
-RPSCO Project info database: Costs, revenues, finances（專案資訊資料庫: 成本, 銷售收入,財務）
+IMAK Appropriationrequests - general data IMAV Appropriationrequest variant IMPR InvestmentProgram Positions IMPU Textsfor cap. inv. programpositions IMTP Investmentprograms IMZO AssignmentTable- CO Object - Capital InvestmentProg.Pos. PMCO Coststructure of maintenanceorder PRHI WorkBreakdown Structure, Edges (HierarchyPointer) （WBS的結構） PROJ Projectdefinition （專案定義） PRPS WBS(Work Breakdown Structure) Element Master Data （WBS的具體內容） RPSCO Project info database: Costs, revenues, finances（專案資訊資料庫: 成本, 銷售收入,財務）
