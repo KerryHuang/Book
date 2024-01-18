@@ -96,7 +96,7 @@ docker exec -it mymysql bash
 ---
 
 ```
-mysql -hlocalhost -p3306 -uroot -proot
+mysql -h localhost -p 3306 -u root -p root
 ```
 
 [![img](https://morosedog.gitlab.io/images/docker/chapter4/08.png)](https://morosedog.gitlab.io/images/docker/chapter4/08.png)
@@ -268,7 +268,7 @@ docker rmi 0716d6ebcc1a
 Docker 容器
 運行 mysql 容器
 ```
-docker run --name sql2 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Dev127336 -d mysql:8
+docker run --name MYSQL8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=!QAZ2wsx -d mysql:8
 ```
 
 參數功能：
@@ -292,7 +292,7 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS        
 
 停止容器
 ```
-docker stop sql2
+docker stop MYSQL8
 ```
 
 檢查容器 (全部)
@@ -308,12 +308,12 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS       
 
 啟動容器
 ```
-docker start sql2
+docker start MYSQL8
 ```
 
 進入容器
 ```
-docker exec -it sql2 bash
+docker exec -it MYSQL8 bash
 ```
 
 退出容器
@@ -329,7 +329,7 @@ docker rm sql2
 進入容器
 進入到 Linux 的操作環境
 ```
-docker exec -it sql2 bash
+docker exec -it MYSQL8 bash
 ```
 
 登錄 mysql

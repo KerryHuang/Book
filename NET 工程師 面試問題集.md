@@ -551,3 +551,68 @@ Code Review是指軟體開發過程中的一個重要步驟，透過對程式碼
 - Code Review需要及時處理問題，開發人員需要在Code Review後及時處理發現的問題，以確保程式碼的品質和一致性。
 
 總之，Code Review是一個非常重要的活動，可以幫助開發人員提高程式碼的質量和一致性，從而減少錯誤和維護成本。
+
+---
+
+
+## C#
+
+### 章節
+
+1. DataReader 與 Dataset 有什麼區別？
+
+
+
+---
+
+#### 1. DataReader 與 Dataset 有什麼區別？
+`DataReader` 和 `DataSet` 是在 C# 中用於處理數據的兩個不同的類型。
+
+1. **DataReader:**
+
+   - `DataReader` 是 `System.Data.SqlClient` 命名空間中的類型，用於從數據庫中讀取數據的只讀流。
+   - 它是一種輕量級的數據讀取器，通常用於只需順序讀取一次結果集的情況，尤其是當處理大量數據時，它的性能較好。
+   - `DataReader` 通常以串流的方式一行一行地讀取數據，不需要將整個結果集一次性加載到內存中。
+
+   以下是一個簡單的例子，展示如何使用 `DataReader` 從數據庫中讀取數據：
+
+   ```
+   csharpCopy codeusing (SqlConnection connection = new SqlConnection(connectionString))
+   {
+       connection.Open();
+       using (SqlCommand command = new SqlCommand("SELECT * FROM YourTable", connection))
+       {
+           using (SqlDataReader reader = command.ExecuteReader())
+           {
+               while (reader.Read())
+               {
+                   // 讀取數據並進行處理
+               }
+           }
+       }
+   }
+   ```
+
+2. **DataSet:**
+
+   - `DataSet` 是 `System.Data` 命名空間中的一個類型，它是一個內存中的數據存儲結構，可以容納一個或多個數據表，關係以及數據約束。
+   - `DataSet` 可以用於緩存和操作數據，並且它提供了更豐富的功能，例如可以進行搜索、排序和過濾等操作。
+   - 與 `DataReader` 不同，`DataSet` 將數據完全加載到內存中，這對於需要離線操作數據的場景非常有用。
+
+   以下是一個使用 `DataSet` 的簡單示例：
+
+   ```
+   csharpCopy codeusing (SqlConnection connection = new SqlConnection(connectionString))
+   {
+       connection.Open();
+       using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM YourTable", connection))
+       {
+           DataSet dataSet = new DataSet();
+           adapter.Fill(dataSet, "YourTable");
+   
+           // 現在可以在內存中操作 DataSet 中的數據
+       }
+   }
+   ```
+
+總的來說，如果你只需要一次性順序讀取並處理數據，而不需要在內存中保留它，則使用 `DataReader` 是一個較好的選擇。如果你需要在內存中緩存和操作數據，進行搜索、過濾等高級操作，則 `DataSet` 是更合適的選擇。
