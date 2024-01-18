@@ -157,13 +157,13 @@
 	- Solution Error Visualizer：在 Solution Explorer 顯示錯誤提示。
 	- Time Stamp Margin：在 Debug 模式下，輸出視窗增加顯示時間訊息。
 
-:::info
+
 - 「Productivity Power Tools」和「Web Essentials」以前都是單一套件，後續不知哪一版本的 Visual Studio 開始將其底下各功能改為獨立套件，變成可選擇獨立安裝各功能套件，或藉由安裝同捆包來一次安裝。
 - 安裝這類同捆包時，是在安裝時會忽略已獨立安裝的套件。
 - 早期我是直接安裝同捆包，後續因為以下原因，改成安裝獨立套件：
   - 由於 Visual Studio 2022 改為 64 位元時，很多套件都無法支援，或是有些功能改為 Viusal Studio 內建，(「[Zen-Coding](https://github.com/madskristensen/ZenCodingVS)」)，導致同捆包裡有在使用套件比重有逐漸降低的跡象。
   - 以前安裝同捆包，卻沒注意同捆包有哪些套件，導致很多功能我以為是內建的，結果是擴充套件的功能，而不同時期安裝的同捆包，實際安裝的套件都不一樣，有可能是新版的 Visual Studio 尚未支援，或是已不列為同捆包的一部分，像是「Web Compiler」和「Bundler & Minifier」後期就變成是要獨立安裝的套件(忘了是 Viusal Studio 2015 還是 2017 開始)，而移除同捆包時，似乎不會移除底下相關套件，最後導致只安裝同捆包也不確定安裝什麼，倒不如把需要安裝的套件列清單來安裝。
-  :::
+  
 
 ---
 
@@ -196,10 +196,10 @@
 7. [CsvHelper](https://joshclose.github.io/CsvHelper/)：CSV 套件。
 8. [NPOI](https://github.com/nissl-lab/npoi)：免費的 Excel 套件。
 
-:::info
+
 * 原本還有另外一個功能更強大 Excel 套件是 [EPPlus](https://www.epplussoftware.com/)，但是它只有在 EPPlus 4 以前可以免費使用，EPPlus 5 以後，授權改為「[Polyform Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/)」，無法用於商業環境，但如果只是個人使用則沒問題。
 * NPOI 有支援「XLS」格式，EPPlus 僅支援「XLSX」，但個人經驗，目前 EPPlus 支援功能較為多一點。
-:::
+
 
 9. [iTextSharp](https://github.com/itext/itextsharp)：PDF 套件。
 10.  [NLog](https://nlog-project.org/)：Log 套件。
@@ -209,18 +209,18 @@
   - [Newtonsoft.Json](https://www.newtonsoft.com/json)：常見的 JSON 套件，較新版的 .NET Framework 版本預設安裝套件。
   - [System.Text.Json](https://www.nuget.org/packages/System.Text.Json)：.NET Core 3.0 以後預設使用的 套件。
 
-:::info
+
 - Newtonsoft.Json 的功能較為強大，但 System.Text.Json 的效能比較好，兩者間的差異請參考 [System.Text.Json 與 Newtonsoft.Json 的比較](https://learn.microsoft.com/zh-tw/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft?pivots=dotnet-7-0)。
-:::
+
 
 14. 壓縮相關套件：
   - [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)：支援多種壓縮格式的壓縮套件。
   - [DotNetZip](https://www.nuget.org/packages/DotNetZip/)：操作較為簡單、直覺的 Zip 壓縮套件。
 
-:::info
+
 - 如果只使用 Zip 的壓縮、解壓縮，且未使用 NPOI 的情況下，建議使用 DotNetZip 就好，由於 NPOI 相依於 SharpZipLib，所以如果有裝 NPOI 的情況下，自行評估是否要在專案裝兩個壓縮套件。
 - 有些壓縮作法是在主機上放置如「7z.exe」等壓縮軟體，在 C# 使用 Command Line 來執行軟體進行壓縮，但如果檔案有加密要求時，就因為必須要在主機產生檔案(違反資料不落地原則)，且壓縮失敗或壓縮完刪檔失敗時，就會在主機殘留有明文內容的檔案，造成資訊外流之風險。
-:::
+
 
 15 單元測試相關套件：
   - [NUnit](https://nunit.org/)：NUnit 框架。
@@ -234,9 +234,9 @@
   - [GitVersion.MsBuild](https://gitversion.net/docs/usage/msbuild)：使用 Git 流程設定專案版本號。
   - [MinVer](https://github.com/adamralph/minver)：根據 Git Tag 來設定專案版本號。
 
-:::info
+
 - GitVersion 設定較為複雜，可以針對分支建立、合併與不同的分支名稱等來建立各版本號規則，MinVer 則是直接靠設定 Git Tag 來決定版本號。
-:::
+
 
 
 ## Visual Studio Code Extension
