@@ -56,6 +56,10 @@ docker run -e "ACCEPT_EULA=Y"
 
 ![img](Images/mssql-04.png)
 
+```
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p 1433:1433 --name MSSQL2022 -d mcr.microsoft.com/mssql/server:2022-latest
+```
+
 ### 容器配置
 ---
 
@@ -107,7 +111,7 @@ docker ps
 ```
 ![img](Images/mssql-05.png)
 
-## 刪除 刪除Container 
+## 刪除Container 
 ---
 (不想重做Container可以跳過) 
 
@@ -133,7 +137,7 @@ docer rm [Container ID]
 
 ---
 ```
-http://localhost:15672/ 預設用戶/密碼：sa/******
+http://localhost:1433/ 預設用戶/密碼：sa/******
 ```
 
 ![img](Images/mssql-06.png)

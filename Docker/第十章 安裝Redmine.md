@@ -5,12 +5,22 @@ Redmine 是一個開源(Open Source)的項目管理系統，相信很多人早�
 以下就用 Docker 的方式來建置 Redmine 的應用服務。
 
 Install Redmine
+
+鏡像內置SQLite3
+
+```
+docker run -d --name redmine -p 3000:3000 redmine:latest
+```
+
 創建 MySQL 的容器，在這裡指定的是 5.6 版本
+
 ```
 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.6
 ```
 建立新資料庫，並直接指定UTF8字符集
 ```sql
+CREATE DATABASE redmine CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 CREATE DATABASE redmine CHARACTER SET utf8;
 RAILS_ENV=production REDMINE_LANG=zh-TW bundle exec rake redmine:load_default_data
 ```
