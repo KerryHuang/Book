@@ -116,6 +116,10 @@
 1. [Grinder](https://sourceforge.net/projects/grinder/)
 2. [Apache JMeter](https://jmeter.apache.org)
 
+## 程式碼檢測
+
+1. [SonarQube](https://www.sonarsource.com/)
+
 ---
 
 # Visual Studio
@@ -137,7 +141,11 @@
 12. T4 Editor：強化 T4 範本語法的支援。
 13. VSColorOutput：輸出視窗增加顏色顯示。
 14. SlowCheetah：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Coinfig Transform。
-15. Dev Essentials：下列套件屬於「Dev Essentials」 同捆包的一部分，此套件在 Visual Studio 2019 以前叫 「Web Essentials」 。
+15. EFCore.Visualizer
+16. Visual-Studio-Translator 翻譯
+17. CodeMaid VS2022
+18. Codeium
+19. Dev Essentials：下列套件屬於「Dev Essentials」 同捆包的一部分，此套件在 Visual Studio 2019 以前叫 「Web Essentials」 。
 	- Code Cleanup On Save：儲存時，自動整理程式碼。
 	- File Icons：美化 Solution Explorer 裡的檔案圖示。
 	- Bundler & Minifier：將 CSS、JavaScript 或 HTML 打包(Bundle)和最小化(Minify)。
@@ -149,7 +157,7 @@
 	- Image Optimizer：壓縮圖片大小。
 	- HTML Snippet Pack：HTML Snippet 擴增。
 	- Web Compiler：編譯 LESS、Sass Stylus、JSX、ES6 和 CoffeeScript 檔案。
-16. Productivity Power Tools：下列套件屬於「Productivity Power Tools」 同捆包的一部分。
+20. Productivity Power Tools：下列套件屬於「Productivity Power Tools」 同捆包的一部分。
 	- Double-Click Maximize 2022：點擊兩下來最大化 Visual Studio 視窗。
 	- Fix Mixed Tabs：偵測程式碼是否同時有 Tabs 和空格，並提供轉換為其中之一。
 	- Match Margin：Highlights 所有游標所指向的文字。
