@@ -6,8 +6,8 @@
 
 1. 資料庫問題集
 2. .NET 問題集
-3. 軟體工程
-
+3. C# 語言特性
+4. 軟體工程
 
 ---
 
@@ -25,8 +25,66 @@
 8. SQL Server 如何清除交易紀錄檔？
 
 
+## .NET 架構問題集
+
+### .NET 章節
+1. .NET 是什麼？您可以講解一下 .NET 的架構和特點嗎？
+2. .NET Framework 和 .NET Core 有什麼不同？請問您對這兩個框架的理解是什麼？
+3. 請問您對 C# 語言的理解是什麼？請講解一下 C# 的特點和使用情況。
+4. 請問您對 ASP.NET 的理解是什麼？請講解一下 ASP.NET 的特點和使用情況。
+5. 請問您對 MVC 架構的理解是什麼？在 .NET 開發中，如何使用 MVC 架構？
+6. 在使用 .NET 開發 Web 應用時，您會使用哪些前端框架？為什麼？
+7. 請問您對單元測試的理解是什麼？在 .NET 開發中，如何進行單元測試？
+8. 請問您有沒有使用過 Entity Framework？請講解一下您對 Entity Framework 的理解和使用情
+9. 在 .NET 開發中，您會使用哪些常用的第三方庫？請問您對這些庫的理解和使用情況是什麼？
+10. 請問您在 .NET 開發中遇到過哪些困難和挑戰？您是如何解決的？
+11. .NET 網站實作快取有哪幾種方式?
+12. .NET 開發中使用的報表開發工具有哪些？例如：Reporting Service、Crytal Report
+13. C# 產生PDF方式有哪些？(薪資單、發票、物流標籤)
+14. 有用過的ETL工具有哪些？例如：SSIS
+15. FTP傳輸有分哪幾種？
+16. .NET 開發工作排程有哪些方式？您會使用哪些常用的第三方庫？
+17. .NET 壓力測試的工具與方法？
+18. .NET 開發中資料交換方式及類型有哪幾種？
+19. 如何設計訂單編號不可重覆？
+20. 建置.NET CORE專案至IIS時需做哪些事情？如何讓IIS Always On？
+21. 什麼是垃圾回收 (Garbage Collection)，如何工作？
+22. 解釋一下 .NET 中的反射 (Reflection) 是什麼？
+23. 什麼是托管程式碼 (Managed Code) 和非托管程式碼 (Unmanaged Code)？
+24. 什麼是微服務架構 (Microservices Architecture)？有哪些優缺點？
+25. 請解釋 SOLID 原則。
+26. 如何實現依賴注入 (Dependency Injection)？
+27. 什麼是 CQRS (Command Query Responsibility Segregation)？
+
+
+## C# 語言特性
+
+### 章節
+
+1. DataReader 與 Dataset 有什麼區別？
+2. 解釋 async 和 await 關鍵字的作用。
+3. 什麼是 LINQ？請舉例說明如何使用 LINQ。
+4. C# 中的事件 (Events) 和委託 (Delegates) 有什麼區別？
+5. 請說明 C# 中的值類型 (Value Types) 和引用類型 (Reference Types) 的區別。
+6. 抽象類 (Abstract Class) 和接口 (Interface) 有什麼區別？
+7. 請解釋封裝 (Encapsulation) 和繼承 (Inheritance)。
+8. 如何實現設計模式中的單例模式 (Singleton)？
+
+
+## 軟體工程
+
+### 章節
+1. 軟體開發流程？請說明實作上的情境
+2. .NET開發中有用過微服務嗎？微服務的使用情境有哪些？
+3. 什麼是CI/CD？CI/CD有哪些工具？
+4. 程式開發版本控管有哪些工具？你如何進行程式碼審查？
+5. 什麼是Code Review？Code Review需要注意哪些地方？
+6. 在進行重構時，你會注意哪些方面？
+
+
 ---
 
+## 資料庫問題集
 
 #### 1. 請問你有使用過哪些關聯式資料庫系統？它們的優缺點是什麼？
 
@@ -175,34 +233,7 @@ DBCC SHRINKFILE ('資料庫名稱_log', 1)
 
 ---
 
-
 ## .NET 架構問題集
-
-### .NET 章節
-1. .NET 是什麼？您可以講解一下 .NET 的架構和特點嗎？
-2. .NET Framework 和 .NET Core 有什麼不同？請問您對這兩個框架的理解是什麼？
-3. 請問您對 C# 語言的理解是什麼？請講解一下 C# 的特點和使用情況。
-4. 請問您對 ASP.NET 的理解是什麼？請講解一下 ASP.NET 的特點和使用情況。
-5. 請問您對 MVC 架構的理解是什麼？在 .NET 開發中，如何使用 MVC 架構？
-6. 在使用 .NET 開發 Web 應用時，您會使用哪些前端框架？為什麼？
-7. 請問您對單元測試的理解是什麼？在 .NET 開發中，如何進行單元測試？
-8. 請問您有沒有使用過 Entity Framework？請講解一下您對 Entity Framework 的理解和使用情
-9. 在 .NET 開發中，您會使用哪些常用的第三方庫？請問您對這些庫的理解和使用情況是什麼？
-10. 請問您在 .NET 開發中遇到過哪些困難和挑戰？您是如何解決的？
-11. .NET 網站實作快取有哪幾種方式?
-12. .NET 開發中使用的報表開發工具有哪些？例如：Reporting Service、Crytal Report
-13. C# 產生PDF方式有哪些？(薪資單、發票、物流標籤)
-14. 有用過的ETL工具有哪些？例如：SSIS
-15. FTP傳輸有分哪幾種？
-16. .NET 開發工作排程有哪些方式？您會使用哪些常用的第三方庫？
-17. .NET 壓力測試的工具與方法？
-18. .NET 開發中資料交換方式及類型有哪幾種？
-19. 如何設計訂單編號不可重覆？
-20. 建置.NET CORE專案至IIS時需做哪些事情？如何讓IIS Always On？
-
-
----
-
 
 #### 1. .NET 是什麼？您可以講解一下 .NET 的架構和特點嗎？
 
@@ -460,23 +491,249 @@ FTP（File Transfer Protocol）是一種用於在網路上傳輸檔案的協定�
 
 以上這些方式都有不同的使用情境和優缺點，開發人員需要根據具體情況選擇最適合的方式進行資料交換。
 
+### 25 請解釋 SOLID 原則
+
+SOLID 原則是一組設計原則，用於編寫易於維護和擴展的面向對象的軟件。這些原則是 Robert C. Martin (Uncle Bob) 提出的，目的是幫助開發者創建更靈活、可擴展和可重用的代碼。SOLID 是五個原則的首字母縮寫：
+
+單一職責原則 (Single Responsibility Principle, SRP)
+開放封閉原則 (Open/Closed Principle, OCP)
+里氏替換原則 (Liskov Substitution Principle, LSP)
+接口隔離原則 (Interface Segregation Principle, ISP)
+依賴倒置原則 (Dependency Inversion Principle, DIP)
+1. 單一職責原則 (Single Responsibility Principle, SRP)
+原則：一個類別應該僅有一個變更的理由，或者說一個類別應該只有一個職責。
+
+解釋：每個類別應該專注於完成一個單一的功能，並且該功能完全被該類別封裝。這樣可以使類別更容易理解和維護，並且當功能需求變更時，只需要修改相應的類別，而不會影響其他功能。
+
+```csharp
+// 遵循 SRP 的設計
+public class User
+{
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+public class UserRepository
+{
+    public void Save(User user)
+    {
+        // 保存用戶到數據庫
+    }
+}
+
+public class UserService
+{
+    private readonly UserRepository _userRepository;
+
+    public UserService(UserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
+
+    public void Register(User user)
+    {
+        // 註冊用戶邏輯
+        _userRepository.Save(user);
+    }
+}
+
+```
+
+2. 開放封閉原則 (Open/Closed Principle, OCP)
+原則：軟件實體（類、模塊、函數等）應該是對擴展開放的，但對修改封閉的。
+
+解釋：當需求變更時，應該可以通過擴展現有行為來實現變更，而不需要修改已有的代碼。這可以通過使用抽象類、接口和繼承來實現。
+
+```csharp
+public abstract class Shape
+{
+    public abstract double CalculateArea();
+}
+
+public class Circle : Shape
+{
+    public double Radius { get; set; }
+    public override double CalculateArea() => Math.PI * Radius * Radius;
+}
+
+public class Rectangle : Shape
+{
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public override double CalculateArea() => Width * Height;
+}
+
+```
+
+3. 里氏替換原則 (Liskov Substitution Principle, LSP)
+原則：子類應該可以替換其基類，並且程序行為保持不變。
+
+解釋：這意味著在使用基類對象的地方可以使用子類對象，而不會影響程序的正確性。這要求子類必須實現基類的所有行為和規約。
+
+```csharp
+public class Bird
+{
+    public virtual void Fly() { }
+}
+
+public class Sparrow : Bird
+{
+    public override void Fly() { /* 實現飛行邏輯 */ }
+}
+
+public class Ostrich : Bird
+{
+    public override void Fly()
+    {
+        throw new NotImplementedException("鴕鳥不會飛");
+    }
+}
+
+```
+上面的示例違反了LSP，因為Ostrich無法完全替代Bird。應避免這樣的設計。
+
+4. 接口隔離原則 (Interface Segregation Principle, ISP)
+原則：不應該強迫客戶依賴於他們不使用的方法。
+
+解釋：這意味著應該將大的接口拆分為更小、更專門的接口，以使接口僅包含客戶所需的方法。這樣可以避免類別實現不必要的方法。
+
+```csharp
+public interface IPrinter
+{
+    void Print();
+    void Scan();
+    void Fax();
+}
+
+public class BasicPrinter : IPrinter
+{
+    public void Print() { /* 實現打印邏輯 */ }
+    public void Scan() { throw new NotImplementedException(); }
+    public void Fax() { throw new NotImplementedException(); }
+}
+
+// 遵循 ISP 的設計
+public interface IPrint
+{
+    void Print();
+}
+
+public interface IScan
+{
+    void Scan();
+}
+
+public interface IFax
+{
+    void Fax();
+}
+
+public class Printer : IPrint, IScan
+{
+    public void Print() { /* 實現打印邏輯 */ }
+    public void Scan() { /* 實現掃描邏輯 */ }
+}
+
+```
+
+5. 依賴倒置原則 (Dependency Inversion Principle, DIP)
+原則：高層模塊不應該依賴於低層模塊，二者都應依賴於抽象。抽象不應依賴於細節，細節應依賴於抽象。
+
+解釋：這意味著要依賴抽象（接口或抽象類），而不是具體實現。這可以通過依賴注入 (Dependency Injection) 來實現。
+
+```csharp
+public interface IMessageSender
+{
+    void SendMessage(string message);
+}
+
+public class EmailSender : IMessageSender
+{
+    public void SendMessage(string message)
+    {
+        // 發送電子郵件邏輯
+    }
+}
+
+public class Notification
+{
+    private readonly IMessageSender _messageSender;
+
+    public Notification(IMessageSender messageSender)
+    {
+        _messageSender = messageSender;
+    }
+
+    public void Notify(string message)
+    {
+        _messageSender.SendMessage(message);
+    }
+}
+
+```
+在這個例子中，Notification 類依賴於 IMessageSender 接口，而不是具體的 EmailSender 類，這使得代碼更加靈活和可擴展。
+
+通過遵循 SOLID 原則，可以使代碼更加易於理解、維護和擴展，減少因修改代碼引入的潛在問題。
 
 ---
 
+## C# 語言特性
+
+#### 1. DataReader 與 Dataset 有什麼區別？
+`DataReader` 和 `DataSet` 是在 C# 中用於處理數據的兩個不同的類型。
+
+1. **DataReader:**
+
+   - `DataReader` 是 `System.Data.SqlClient` 命名空間中的類型，用於從數據庫中讀取數據的只讀流。
+   - 它是一種輕量級的數據讀取器，通常用於只需順序讀取一次結果集的情況，尤其是當處理大量數據時，它的性能較好。
+   - `DataReader` 通常以串流的方式一行一行地讀取數據，不需要將整個結果集一次性加載到內存中。
+
+   以下是一個簡單的例子，展示如何使用 `DataReader` 從數據庫中讀取數據：
+
+   ```csharp
+   csharpCopy codeusing (SqlConnection connection = new SqlConnection(connectionString))
+   {
+       connection.Open();
+       using (SqlCommand command = new SqlCommand("SELECT * FROM YourTable", connection))
+       {
+           using (SqlDataReader reader = command.ExecuteReader())
+           {
+               while (reader.Read())
+               {
+                   // 讀取數據並進行處理
+               }
+           }
+       }
+   }
+   ```
+
+2. **DataSet:**
+
+   - `DataSet` 是 `System.Data` 命名空間中的一個類型，它是一個內存中的數據存儲結構，可以容納一個或多個數據表，關係以及數據約束。
+   - `DataSet` 可以用於緩存和操作數據，並且它提供了更豐富的功能，例如可以進行搜索、排序和過濾等操作。
+   - 與 `DataReader` 不同，`DataSet` 將數據完全加載到內存中，這對於需要離線操作數據的場景非常有用。
+
+   以下是一個使用 `DataSet` 的簡單示例：
+
+   ```
+   csharpCopy codeusing (SqlConnection connection = new SqlConnection(connectionString))
+   {
+       connection.Open();
+       using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM YourTable", connection))
+       {
+           DataSet dataSet = new DataSet();
+           adapter.Fill(dataSet, "YourTable");
+   
+           // 現在可以在內存中操作 DataSet 中的數據
+       }
+   }
+   ```
+
+總的來說，如果你只需要一次性順序讀取並處理數據，而不需要在內存中保留它，則使用 `DataReader` 是一個較好的選擇。如果你需要在內存中緩存和操作數據，進行搜索、過濾等高級操作，則 `DataSet` 是更合適的選擇。
+
+---
 
 ## 軟體工程
-
-### 章節
-
-1. 軟體開發流程？請說明實作上的情境
-2. .NET開發中有用過微服務嗎？微服務的使用情境有哪些？
-3. 什麼是CI/CD？CI/CD有哪些工具？
-4. 程式開發版本控管有哪些工具？什麼是Pull request？
-5. 什麼是Code Review？Code Review需要注意哪些地方？
-
-
----
-
 
 #### 1. 軟體開發流程？請說明實作上的情境
 
@@ -551,68 +808,3 @@ Code Review是指軟體開發過程中的一個重要步驟，透過對程式碼
 - Code Review需要及時處理問題，開發人員需要在Code Review後及時處理發現的問題，以確保程式碼的品質和一致性。
 
 總之，Code Review是一個非常重要的活動，可以幫助開發人員提高程式碼的質量和一致性，從而減少錯誤和維護成本。
-
----
-
-
-## C#
-
-### 章節
-
-1. DataReader 與 Dataset 有什麼區別？
-
-
-
----
-
-#### 1. DataReader 與 Dataset 有什麼區別？
-`DataReader` 和 `DataSet` 是在 C# 中用於處理數據的兩個不同的類型。
-
-1. **DataReader:**
-
-   - `DataReader` 是 `System.Data.SqlClient` 命名空間中的類型，用於從數據庫中讀取數據的只讀流。
-   - 它是一種輕量級的數據讀取器，通常用於只需順序讀取一次結果集的情況，尤其是當處理大量數據時，它的性能較好。
-   - `DataReader` 通常以串流的方式一行一行地讀取數據，不需要將整個結果集一次性加載到內存中。
-
-   以下是一個簡單的例子，展示如何使用 `DataReader` 從數據庫中讀取數據：
-
-   ```
-   csharpCopy codeusing (SqlConnection connection = new SqlConnection(connectionString))
-   {
-       connection.Open();
-       using (SqlCommand command = new SqlCommand("SELECT * FROM YourTable", connection))
-       {
-           using (SqlDataReader reader = command.ExecuteReader())
-           {
-               while (reader.Read())
-               {
-                   // 讀取數據並進行處理
-               }
-           }
-       }
-   }
-   ```
-
-2. **DataSet:**
-
-   - `DataSet` 是 `System.Data` 命名空間中的一個類型，它是一個內存中的數據存儲結構，可以容納一個或多個數據表，關係以及數據約束。
-   - `DataSet` 可以用於緩存和操作數據，並且它提供了更豐富的功能，例如可以進行搜索、排序和過濾等操作。
-   - 與 `DataReader` 不同，`DataSet` 將數據完全加載到內存中，這對於需要離線操作數據的場景非常有用。
-
-   以下是一個使用 `DataSet` 的簡單示例：
-
-   ```
-   csharpCopy codeusing (SqlConnection connection = new SqlConnection(connectionString))
-   {
-       connection.Open();
-       using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM YourTable", connection))
-       {
-           DataSet dataSet = new DataSet();
-           adapter.Fill(dataSet, "YourTable");
-   
-           // 現在可以在內存中操作 DataSet 中的數據
-       }
-   }
-   ```
-
-總的來說，如果你只需要一次性順序讀取並處理數據，而不需要在內存中保留它，則使用 `DataReader` 是一個較好的選擇。如果你需要在內存中緩存和操作數據，進行搜索、過濾等高級操作，則 `DataSet` 是更合適的選擇。

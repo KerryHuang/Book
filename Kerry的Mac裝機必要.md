@@ -116,6 +116,10 @@
 1. [Grinder](https://sourceforge.net/projects/grinder/)
 2. [Apache JMeter](https://jmeter.apache.org)
 
+## 程式碼檢測
+
+1. [SonarQube](https://www.sonarsource.com/)
+
 ---
 
 # Visual Studio
@@ -137,26 +141,31 @@
 12. T4 Editor：強化 T4 範本語法的支援。
 13. VSColorOutput：輸出視窗增加顏色顯示。
 14. SlowCheetah：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Coinfig Transform。
-15. Dev Essentials：下列套件屬於「Dev Essentials」 同捆包的一部分，此套件在 Visual Studio 2019 以前叫 「Web Essentials」 。
-	- Code Cleanup On Save：儲存時，自動整理程式碼。
-	- File Icons：美化 Solution Explorer 裡的檔案圖示。
-	- Bundler & Minifier：將 CSS、JavaScript 或 HTML 打包(Bundle)和最小化(Minify)。
-	- SVG Viewer：增加 SVG 的預覽，及優化編輯器的相關功能。
-	- Editor Enhancements：強化編輯器功能，如程式碼排序、文字編碼等。
-	- Dummy Text Generator：在產建畫面 Sample 時，快速產出一些無意義的文字。
-	- Markdown Editor v2：在編輯器增加 Markdown 相關功能。
-	- JavaScript Snippet Pack：JavaScript Snippet 擴增。
-	- Image Optimizer：壓縮圖片大小。
-	- HTML Snippet Pack：HTML Snippet 擴增。
-	- Web Compiler：編譯 LESS、Sass Stylus、JSX、ES6 和 CoffeeScript 檔案。
-16. Productivity Power Tools：下列套件屬於「Productivity Power Tools」 同捆包的一部分。
-	- Double-Click Maximize 2022：點擊兩下來最大化 Visual Studio 視窗。
-	- Fix Mixed Tabs：偵測程式碼是否同時有 Tabs 和空格，並提供轉換為其中之一。
-	- Match Margin：Highlights 所有游標所指向的文字。
-	- Middle Click Scroll：使用滑鼠滾輪來移動文檔。
-	- Shrink Empty Lines：縮小空白行高度。
-	- Solution Error Visualizer：在 Solution Explorer 顯示錯誤提示。
-	- Time Stamp Margin：在 Debug 模式下，輸出視窗增加顯示時間訊息。
+15. EFCore.Visualizer
+16. Visual-Studio-Translator 翻譯
+17. CodeMaid VS2022
+18. Codeium
+19. Better Comments
+20. Dev Essentials：下列套件屬於「Dev Essentials」 同捆包的一部分，此套件在 Visual Studio 2019 以前叫 「Web Essentials」 。
+    - Code Cleanup On Save：儲存時，自動整理程式碼。
+    - File Icons：美化 Solution Explorer 裡的檔案圖示。
+    - Bundler & Minifier：將 CSS、JavaScript 或 HTML 打包(Bundle)和最小化(Minify)。
+    - SVG Viewer：增加 SVG 的預覽，及優化編輯器的相關功能。
+    - Editor Enhancements：強化編輯器功能，如程式碼排序、文字編碼等。
+    - Dummy Text Generator：在產建畫面 Sample 時，快速產出一些無意義的文字。
+    - Markdown Editor v2：在編輯器增加 Markdown 相關功能。
+    - JavaScript Snippet Pack：JavaScript Snippet 擴增。
+    - Image Optimizer：壓縮圖片大小。
+    - HTML Snippet Pack：HTML Snippet 擴增。
+    - Web Compiler：編譯 LESS、Sass Stylus、JSX、ES6 和 CoffeeScript 檔案。
+21. Productivity Power Tools：下列套件屬於「Productivity Power Tools」 同捆包的一部分。
+    - Double-Click Maximize 2022：點擊兩下來最大化 Visual Studio 視窗。
+    - Fix Mixed Tabs：偵測程式碼是否同時有 Tabs 和空格，並提供轉換為其中之一。
+    - Match Margin：Highlights 所有游標所指向的文字。
+    - Middle Click Scroll：使用滑鼠滾輪來移動文檔。
+    - Shrink Empty Lines：縮小空白行高度。
+    - Solution Error Visualizer：在 Solution Explorer 顯示錯誤提示。
+    - Time Stamp Margin：在 Debug 模式下，輸出視窗增加顯示時間訊息。
 
 
 - 「Productivity Power Tools」和「Web Essentials」以前都是單一套件，後續不知哪一版本的 Visual Studio 開始將其底下各功能改為獨立套件，變成可選擇獨立安裝各功能套件，或藉由安裝同捆包來一次安裝。
