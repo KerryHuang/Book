@@ -127,24 +127,24 @@
 
 ## 延伸模組
 
-1. GhostDoc：快速產生 XML 註解。
-2. EF Core Power Tools
-3. ResXManager：提供便於維護資源檔(resx)的 UI。
-4. Roslynator 2022
+1. **GhostDoc：快速產生 XML 註解。**
+2. **EF Core Power Tools**
+3. **ResXManager：提供便於維護資源檔(resx)的 UI。**
+4. **Roslynator 2022**
 5. Web Compiler 2022+：編譯 LESS、Sass Stylus、JSX、ES6 和 CoffeeScript 檔案。
 6. Automatic Versions Settings
 7. NPM Task Runner
 8. WebPack Task Runner
 9. SQLite and SQL Server Compact Toolbox
 10. Entity Framework Visual Editor
-11. ILSpy
+11. **ILSpy**
 12. T4 Editor：強化 T4 範本語法的支援。
 13. VSColorOutput：輸出視窗增加顏色顯示。
 14. SlowCheetah：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Coinfig Transform。
 15. EFCore.Visualizer
 16. Visual-Studio-Translator 翻譯
 17. CodeMaid VS2022
-18. Codeium
+18. **Codeium**
 19. Better Comments
 20. Dev Essentials：下列套件屬於「Dev Essentials」 同捆包的一部分，此套件在 Visual Studio 2019 以前叫 「Web Essentials」 。
     - **Code Cleanup On Save：儲存時，自動整理程式碼。**
