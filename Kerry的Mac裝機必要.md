@@ -22,6 +22,7 @@
 4. [Eclipse](https://www.eclipse.org/downloads/)
 5. [XCode](https://apps.apple.com/tw/app/xcode/id497799835?mt=12)
 6. [Docker](https://docs.docker.com/desktop/install/mac-install/)
+7. [Rider](https://www.jetbrains.com/zh-cn/)
 
 ---
 
