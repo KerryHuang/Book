@@ -39,6 +39,7 @@
 
 1. [Postman](https://www.postman.com/downloads/)
 2. [SoapUI](https://www.soapui.org/downloads/soapui/)
+3. [Insomnia](https://insomnia.rest)
 
 ---
 
