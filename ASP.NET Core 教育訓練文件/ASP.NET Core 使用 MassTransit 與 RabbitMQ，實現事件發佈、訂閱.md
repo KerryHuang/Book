@@ -5,7 +5,7 @@ MassTransit 的架構是一個基於事件驅動和 Message 傳遞的分佈式�
 ![img](https://dotblogsfile.blob.core.windows.net/user/%E4%BD%99%E5%B0%8F%E7%AB%A0/62d0d5d0-d5fb-4798-9707-d06ff60e336a/1728792113.png.png)
 
 
- 
+
 
 ## MassTransit 與 RabbitMQ 架構圖
 
@@ -457,3 +457,80 @@ public class OrderSubmittedConsumer : IConsumer<OrderSubmitted>
 ## 案例位置
 
 [sample.dotblog/Event Bus/MassTransit/Lab.MassTransit at 4549713ed44b723b6d68111a947b0a83d4bae9e0 · yaochangyu/sample.dotblog](https://github.com/yaochangyu/sample.dotblog/tree/4549713ed44b723b6d68111a947b0a83d4bae9e0/Event Bus/MassTransit/Lab.MassTransit)
+
+---
+
+---
+
+## 健康檢查
+
+配置 RabbitMQ 健康檢查的參數，以確保你的應用程序能夠正確地連接到 RabbitMQ
+
+安裝套件
+
+```plaintext
+dotnet add package AspNetCore.HealthChecks.Rabbitmq
+dotnet add package AspNetCore.HealthChecks.UI.Client
+```
+
+在 `Program.cs` 中添加 Health Check
+
+```cs
+// Health Check
+builder.Services.AddHealthChecks()
+    .AddRabbitMQ(rabbitConnectionString: "amqp://guest:guest@localhost:5672",
+                 name: "rabbitmq",
+                 failureStatus: Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded,
+                 tags: new string[] { "ready", "live" });
+```
+
+
+```cs
+// Health Check
+app.MapHealthChecks("/health", new HealthCheckOptions()
+{
+    // 設定格式
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+```
+
+啟動應用程序，然後在瀏覽器中訪問 `https://localhost:7016/health`，應該可以看到類似下面的畫面
+
+```json
+{
+    "status": "Healthy",
+    "totalDuration": "00:00:00.0490208",
+    "entries": {
+        "masstransit-bus": {
+            "data": {
+                "Endpoints": {
+                    "rabbitmq://localhost/order-created-event": {
+                        "status": "Healthy",
+                        "description": "ready"
+                    },
+                    "rabbitmq://localhost/DESKTOPD81FR0E_KHLabMassTransitLab_bus_ztkoyynje91qxehkbdqxtp9jri?temporary=true": {
+                        "status": "Healthy",
+                        "description": "ready (not started)"
+                    }
+                }
+            },
+            "description": "Ready",
+            "duration": "00:00:00.0428675",
+            "status": "Healthy",
+            "tags": [
+                "ready",
+                "masstransit"
+            ]
+        },
+        "rabbitmq": {
+            "data": {},
+            "duration": "00:00:00.0420492",
+            "status": "Healthy",
+            "tags": [
+                "ready",
+                "live"
+            ]
+        }
+    }
+}
+```
