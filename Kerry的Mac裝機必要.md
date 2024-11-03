@@ -23,6 +23,7 @@
 5. [XCode](https://apps.apple.com/tw/app/xcode/id497799835?mt=12)
 6. [Docker](https://docs.docker.com/desktop/install/mac-install/)
 7. [Rider](https://www.jetbrains.com/zh-cn/)
+8. [iTerm](https://iterm2.com/downloads.html) + [Oh My ZSH](https://ohmyz.sh/#install)
 
 ---
 
@@ -93,6 +94,7 @@
 3. MotionPro (Taifer)
 4. [AnyDesk](https://anydesk.com/zht/downloads/mac-os?gclid=CjwKCAjw_ISWBhBkEiwAdqxb9t3mxAM5-hBiFstz9tAXWTCesvAU_4yqeLaOmQNhMWurG5CYl-AhWhoC-LgQAvD_BwE)
 5. [Teamviewer](https://www.teamviewer.com/tw/?force-country=tw&utm_source=google&utm_medium=cpc&utm_campaign=tw%7Cb%7Cpr%7C20%7Cjun%7Cexact-brand-only-sn%7Cfree%7Ct0%7C0&utm_content=exact_Brand-only&utm_term=teamviewer&gclid=CjwKCAjw_ISWBhBkEiwAdqxb9rFvahORlz13vWJ6SiaI08NQQ9gqbJ9IFYsHjFmeavrJU0TZYlP7DRoCJPsQAvD_BwE)
+6. [Tailscale](https://tailscale.com)
 
 ---
 
@@ -107,6 +109,17 @@
 
 1. [OpenVanilla](https://github.com/openvanilla/openvanilla/releases)
 2. [無蝦咪字體檔](https://raw.githubusercontent.com/rwu823/liu/master/bundle/liu7.cin)
+
+---
+
+## Homebrew
+
+```text
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+1. Tree  `brew install tree`
+2. Watch `brew install watch`
 
 ---
 
