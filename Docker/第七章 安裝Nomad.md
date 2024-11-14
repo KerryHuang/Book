@@ -1,5 +1,15 @@
 # 第七章 安裝Nomad
 
+Nomad 是 HashiCorp 開發的一款分散式的工作負載編排系統，用於管理和部署容器化和非容器化的應用程序。它類似於 Kubernetes，但比 Kubernetes 更簡單，並且支持更多類型的工作負載，不僅僅是容器。Nomad 可以與其他 HashiCorp 工具（如 Consul 和 Vault）無縫整合，提供服務發現和安全管理等功能。以下是 Nomad 的一些核心特點：
+
+1. **多種工作負載支持**：Nomad 支持多種工作負載類型，包括 Docker 容器、可執行文件、Java 應用程序和虛擬機等，這使得它比專注於容器的 Kubernetes 更靈活。
+2. **簡單性和高效性**：Nomad 的架構和操作比起 Kubernetes 更加簡單，適合需要輕量級解決方案的情境。它的核心設計遵循簡單性和高效性原則，可以輕鬆地擴展到數千個節點。
+3. **多區域支持**：Nomad 支持多區域部署，使其在多地理位置上運行應用變得更簡單，適合高可用性需求。
+4. **與 Consul 和 Vault 整合**：Nomad 可以整合 HashiCorp Consul 來進行服務發現和健康檢查，並整合 HashiCorp Vault 來管理安全憑證和機密信息。
+5. **彈性擴展**：Nomad 可以水平擴展和動態分配資源，根據需求分配和調整工作負載。
+
+Nomad 適合那些需要輕量級、高性能的工作負載編排解決方案的企業和團隊，並且如果你已經使用其他 HashiCorp 工具，整合 Nomad 會讓整體基礎設施更加一致和便於管理。
+
 在 Docker 上安裝 Nomad 的過程相對簡單。可以利用官方的 Docker 映像來啟動 Nomad。以下是安裝和配置 Nomad 的步驟：
 
 ### 步驟 1：下載 Nomad Docker 映像
@@ -147,3 +157,136 @@ http://localhost:4646
 要提交作業，可以在本地安裝 Nomad CLI 工具，並在 `docker-compose` 的 Nomad 配置上提交。也可以通過 Nomad Web UI 添加新的作業。
 
 這樣的 Docker Compose 設定適合本地開發和測試 Nomad 的功能。在生產環境中，可以將 Nomad Server 配置成多節點集群並進行更進一步的網路和安全性配置。
+
+---
+
+在 .NET 8 的 Web API 中，您可以透過 Nomad 的 HTTP API 來設定和取得變數（Variables）。Nomad 提供了 `/var` 和 `/vars` 端點，允許您與變數進行互動。 
+
+[HashiCorp Developer](https://developer.hashicorp.com/nomad/api-docs/variables)
+
+以下是如何在 .NET 8 Web API 中實現與 Nomad 變數的互動：
+
+### 1. 安裝必要的 NuGet 套件
+
+首先，確保您的專案已安裝 `System.Net.Http.Json` 套件，以便輕鬆地處理 JSON 內容。
+
+```bash
+dotnet add package System.Net.Http.Json
+```
+
+### 2. 創建 Nomad 客戶端服務
+
+接著，創建一個服務類別來封裝與 Nomad API 的互動邏輯。
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+
+public class NomadClient
+{
+    private readonly HttpClient _httpClient;
+
+    public NomadClient(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
+    // 取得變數
+    public async Task<NomadVariable?> GetVariableAsync(string path, string namespaceName = "default")
+    {
+        var response = await _httpClient.GetAsync($"/v1/var/{path}?namespace={namespaceName}");
+        if (response.IsSuccessStatusCode)
+        {
+            return await response.Content.ReadFromJsonAsync<NomadVariable>();
+        }
+        return null;
+    }
+
+    // 設定變數
+    public async Task<bool> SetVariableAsync(string path, object data, string namespaceName = "default")
+    {
+        var response = await _httpClient.PutAsJsonAsync($"/v1/var/{path}?namespace={namespaceName}", data);
+        return response.IsSuccessStatusCode;
+    }
+}
+
+// Nomad 變數模型
+public class NomadVariable
+{
+    public string Namespace { get; set; }
+    public string Path { get; set; }
+    public Dictionary<string, string> Items { get; set; }
+}
+```
+
+### 3. 在 DI 容器中註冊 NomadClient
+
+在 `Program.cs` 中，將 `NomadClient` 註冊到依賴注入容器，並設定基底地址。
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// 註冊 NomadClient
+builder.Services.AddHttpClient<NomadClient>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:4646"); // Nomad API 的地址
+});
+
+var app = builder.Build();
+
+// 其他中介軟體和路由設定
+
+app.Run();
+```
+
+### 4. 在控制器中使用 NomadClient
+
+最後，在您的控制器中注入 `NomadClient`，並使用它來與 Nomad 的變數進行互動。
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+[ApiController]
+[Route("api/[controller]")]
+public class NomadVariablesController : ControllerBase
+{
+    private readonly NomadClient _nomadClient;
+
+    public NomadVariablesController(NomadClient nomadClient)
+    {
+        _nomadClient = nomadClient;
+    }
+
+    [HttpGet("{path}")]
+    public async Task<IActionResult> GetVariable(string path)
+    {
+        var variable = await _nomadClient.GetVariableAsync(path);
+        if (variable == null)
+        {
+            return NotFound();
+        }
+        return Ok(variable);
+    }
+
+    [HttpPost("{path}")]
+    public async Task<IActionResult> SetVariable(string path, [FromBody] Dictionary<string, string> data)
+    {
+        var success = await _nomadClient.SetVariableAsync(path, new { Items = data });
+        if (!success)
+        {
+            return StatusCode(500, "Failed to set variable.");
+        }
+        return NoContent();
+    }
+}
+```
+
+### 注意事項
+
+- **安全性**：在生產環境中，確保 Nomad API 的訪問是安全的，並且您的應用程式具有適當的權限來讀取和寫入變數。
+- **錯誤處理**：在實際應用中，應加強錯誤處理，以應對可能的網路問題或 Nomad API 的錯誤回應。
+- **配置**：將 Nomad 的 API 地址和命名空間等配置項目放入應用程式的配置文件中，以便於管理和修改。
+
+透過上述步驟，您可以在 .NET 8 Web API 中實現與 Nomad 變數的設定和取得功能，從而更靈活地管理您的應用程式配置。

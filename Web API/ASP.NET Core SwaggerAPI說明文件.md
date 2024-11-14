@@ -1,6 +1,5 @@
 # [ASP.NET Core]如何使用SwaggerAPI說明文件
 
- 發表於 2019-12-29 | [1 Comment ](https://bryanyu.github.io/2019/12/29/AspNetCoreSwagger/#comments)| 閱讀次數:
 
 在開發API站台時，時常要與前端開發者做對接，Swagger提供了很完善的說明文件，也可以立即做測試
 接下來介紹如何ASP.NET Core中使用Swagger產生說明文件
@@ -22,7 +21,7 @@ Swagger主要有三個套件
 
 在`ConfigureServices` 加入 Swagger產生器
 
-```
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddControllers();
@@ -39,7 +38,7 @@ public void ConfigureServices(IServiceCollection services)
 
 在`Startup.Configure`方法中，啟用Swagger Middleware 用來產生json文件與Swagger UI
 
-```
+```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     if (env.IsDevelopment())
@@ -70,7 +69,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 你也可以自行設定額外的Swagger API的說明資訊 在 `ConfigureServices` 設定
 
-```
+```csharp
 services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -91,7 +90,7 @@ services.AddSwaggerGen(c =>
 
 我自訂了一個簡單的Controller
 
-```
+```csharp
 /// <summary>
 /// 使用者服務
 /// </summary>
@@ -159,7 +158,7 @@ public class UserController : ControllerBase
 
 自訂了一個簡單的類別 `UserInfo`
 
-```
+```csharp
 /// <summary>
 /// 使用者資訊
 /// </summary>
@@ -190,7 +189,7 @@ public class UserInfo
 
 打開專案檔 加入
 
-```
+```xml
 <PropertyGroup>
   <GenerateDocumentationFile>true</GenerateDocumentationFile>
 </PropertyGroup>
@@ -207,7 +206,7 @@ public class UserInfo
 
 接下來要將這個註解XML檔案加入到Swagger中 在`ConfigureServices`加入設定
 
-```
+```csharp
 services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
