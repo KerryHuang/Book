@@ -74,7 +74,7 @@ IdentityFile C:\Users\用戶名\.ssh\id_rsa
 # IdentityFile : 指明上面User對應的identityFile路徑
 ```
 
-本地設定多個SSH Key
+## **本地設定多個SSH Key**
 
 建立 GitLab 的 SSH Key
 ```
@@ -134,3 +134,41 @@ remote: Enumerating objects: ..., done.
 ...
 Resolving deltas: 100% (...), done.
 ```
+
+---
+
+在 Mac 上使用可以按照以下步驟操作：
+
+### **1. 生成 SSH Key**
+
+如果你尚未生成 SSH Key，請按以下步驟操作：
+
+#### **步驟**
+
+1. **打開終端機**，執行以下命令生成新的 SSH Key：
+
+   ```bash
+   ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+   ```
+
+   - `-t rsa`: 使用 RSA 演算法。
+   - `-b 4096`: 生成 4096 位元的密鑰。
+   - `-C "your_email@example.com"`: 填入你在 GitLab 使用的 Email。
+
+2. **儲存路徑**：
+
+   - 系統會提示你輸入儲存路徑，預設是 `~/.ssh/id_rsa`，直接按 Enter 即可。
+
+3. **設定密碼短語（可選）**：
+
+   - 如果不需要設定密碼短語，直接按 Enter 跳過。
+
+4. **確認生成成功**：
+
+   - 在終端機執行以下命令，確認密鑰已生成：
+
+     ```bash
+     ls ~/.ssh
+     ```
+
+     確認是否有`id_rsa`和`id_rsa.pub'這兩個檔案。
