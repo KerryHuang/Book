@@ -142,10 +142,10 @@
 
 ## 延伸模組
 
-1. **GhostDoc：快速產生 XML 註解。**
+1. GhostDoc：快速產生 XML 註解。
 2. **EF Core Power Tools**
 3. **ResXManager：提供便於維護資源檔(resx)的 UI。**
-4. **Roslynator 2022**
+4. Roslynator 2022
 5. Web Compiler 2022+：編譯 LESS、Sass Stylus、JSX、ES6 和 CoffeeScript 檔案。
 6. Automatic Versions Settings
 7. NPM Task Runner
@@ -158,7 +158,7 @@
 14. SlowCheetah：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Coinfig Transform。
 15. **EFCore.Visualizer**
 16. Visual-Studio-Translator 翻譯
-17. **CodeMaid VS2022**
+17. CodeMaid VS2022
 18. **Codeium**
 19. VisualGhatGPTStudio
 20. Better Comments
@@ -191,7 +191,8 @@
   - 以前安裝同捆包，卻沒注意同捆包有哪些套件，導致很多功能我以為是內建的，結果是擴充套件的功能，而不同時期安裝的同捆包，實際安裝的套件都不一樣，有可能是新版的 Visual Studio 尚未支援，或是已不列為同捆包的一部分，像是「Web Compiler」和「Bundler & Minifier」後期就變成是要獨立安裝的套件(忘了是 Viusal Studio 2015 還是 2017 開始)，而移除同捆包時，似乎不會移除底下相關套件，最後導致只安裝同捆包也不確定安裝什麼，倒不如把需要安裝的套件列清單來安裝。
   
 
-22. Tabnine：**Tabnine** 是一個 AI 驅動的代碼補全工具，支持多種編程語言和 IDE，包括 Visual Studio 2022。
+22. Tabnine：Tabnine 是一個 AI 驅動的代碼補全工具，支持多種編程語言和 IDE，包括 Visual Studio 2022。
+22. SonarQube for Visual Studio 2022
 
 ---
 
