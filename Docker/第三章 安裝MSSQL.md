@@ -56,8 +56,14 @@ docker run -e "ACCEPT_EULA=Y"
 
 ![img](Images/mssql-04.png)
 
+[Windows]
 ```
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p 1433:1433 --name MSSQL2022 -d mcr.microsoft.com/mssql/server:2022-latest
+```
+
+[Mac]
+```
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=\!QAZ2wsx" -p 1433:1433 --name MSSQL2022 -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 
 ### 容器配置
