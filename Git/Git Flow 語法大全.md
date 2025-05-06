@@ -171,12 +171,21 @@ git flow release finish <version>
  ✅ **合併 `release/v1.0` 到 `develop`** (確保最新的 `develop` 包含這些變更)
  ✅ **刪除 `release/v1.0` 分支**
 
-🔹 **推送更新到遠端**
+🔹**推送更新到遠端**
 
 ```sh
 git push origin main develop --tags
 ```
 
+🔹**確認分支是否刪除**
+```sh
+git branch
+```
+
+🔹**若本地沒刪除，手動刪除本地分支**
+```sh
+git branch -D release/v1.0
+```
 ------
 
 ## **📌 5. 修復緊急 Bug (Hotfix Branch)**
@@ -340,3 +349,135 @@ git config --remove-section gitflow
 
 這份 **Git Flow 指令大全** 可以幫助你更有效率地管理專案！🚀
  如果有任何問題，歡迎隨時問我 😊
+
+---
+
+## 10. 📌 Git Flow Feature Rebase
+
+`git flow feature rebase` 是 Git Flow 中一個非常實用的指令，主要用途是將 **feature 分支的基礎更新到 develop 的最新狀態**，讓你的開發分支保持在最新狀態，減少日後合併衝突的機率。
+
+------
+
+## 🧩 用途說明
+
+在多人協作開發中，`develop` 分支經常會被其他人更新。如果你從 `develop` 開了一個 feature 分支，在你開發期間，`develop` 可能已經有了很多新的提交。
+
+這時候你可以使用：
+
+```bash
+git flow feature rebase
+```
+
+或是針對某一個 feature 名稱：
+
+```bash
+git flow feature rebase <feature-name>
+```
+
+它會幫你做的事是：
+
+1. 切換到該 feature 分支。
+2. 將該分支 **rebase 到 develop 的最新版本**。
+3. 如果發生衝突，需要你手動解決，然後繼續 rebase。
+
+------
+
+## 📘 使用範例
+
+### 假設你正在開發 `feature/login`：
+
+```bash
+git flow feature rebase login
+```
+
+這會：
+
+1. 切到 `feature/login` 分支。
+
+2. 執行：
+
+   ```bash
+   git fetch origin
+   git rebase origin/develop
+   ```
+
+3. 幫你整理 commit 順序，讓 `feature/login` 像是「基於最新的 develop 新開的分支」。
+
+------
+
+## ✅ 什麼時候使用？
+
+- 在你開發 feature 的過程中，`develop` 有更新，想要與之同步。
+- 在 `git flow feature finish` 前先 rebase，確保整合乾淨。
+- 想保持歷史紀錄整潔（比起 `merge`，`rebase` 能避免產生太多無意義的 merge commit）。
+
+------
+
+## ⚠️ 注意事項
+
+- **Rebase 會重寫歷史紀錄**，請避免對 **已 Push 到遠端、多人共用的分支執行 rebase**，否則會造成別人 pull 時出現問題。
+- 若你的 feature 分支已經 push 到遠端，請和團隊確認再 rebase。
+- 如果不熟悉 conflict 處理，建議改用 `merge`。
+
+---
+
+#### 建立空的Commit
+
+建立一個「內容為空」的 commit（常用於觸發 CI/CD、記錄里程碑或初始化分支等情境），可以使用以下指令：
+
+```bash
+git commit --allow-empty -m "你的 commit 訊息"
+```
+
+- `--allow-empty`：允許你在沒有任何檔案變更的情況下，強制建立 commit。
+- `-m`：指定 commit 訊息。
+
+------
+
+### 範例
+
+1. **在當前分支建立空的 commit**
+
+   ```bash
+   git checkout feature/x
+   git commit --allow-empty -m "初始化 feature/x 分支"
+   ```
+
+2. **搭配標籤（Tag）**
+    如果想要在空 commit 上打標籤，例如做為版本起點：
+
+   ```bash
+   git commit --allow-empty -m "start v2.0.0"
+   git tag -a v2.0.0 -m "版本 2.0.0 起點"
+   git push origin feature/x --follow-tags
+   ```
+
+3. **修改已有 commit 為空**
+    有時候你想在上一個 commit 後再加一個空 commit，可以用：
+
+   ```bash
+   git commit --allow-empty -m "再加一個空 commit"
+   ```
+
+------
+
+### 進階：使用 `git commit-tree`
+
+如果你需要更底層的方式，也可以透過樹狀物件（tree object）直接建立空 commit：
+
+```bash
+# 1. 取得目前 HEAD 指向物件的 tree
+TREE=$(git rev-parse HEAD^{tree})
+
+# 2. 建立一個空 commit
+git commit-tree $TREE -p HEAD -m "底層建立空 commit"
+# 這會輸出新 commit 的 SHA
+
+# 3. 切換分支到這個新 commit（假設 SHA 為 abc1234）
+git reset --hard abc1234
+```
+
+不過一般日常使用建議還是以 `git commit --allow-empty` 最為簡潔。
+
+------
+

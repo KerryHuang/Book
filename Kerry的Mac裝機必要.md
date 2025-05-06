@@ -48,6 +48,7 @@
 
 1. [Atom](https://atom.io)
 2. [Typora](https://typora.io)
+3. [Maple Mono 是一款開源等寬的字型](https://github.com/subframe7536/maple-font/blob/variable/README_CN.md)
 
 ---
 
