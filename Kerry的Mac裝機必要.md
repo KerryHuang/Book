@@ -160,7 +160,7 @@
 15. **EFCore.Visualizer**
 16. Visual-Studio-Translator 翻譯
 17. CodeMaid VS2022
-18. **Codeium**
+18. **Windsurf**
 19. VisualGhatGPTStudio
 20. Better Comments
 21. Dev Essentials：下列套件屬於「Dev Essentials」 同捆包的一部分，此套件在 Visual Studio 2019 以前叫 「Web Essentials」 。

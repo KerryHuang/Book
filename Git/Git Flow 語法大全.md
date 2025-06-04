@@ -403,6 +403,14 @@ git flow feature rebase login
 
 3. 幫你整理 commit 順序，讓 `feature/login` 像是「基於最新的 develop 新開的分支」。
 
+####  繼續 rebase
+
+所有衝突都解完並加進暫存區後，執行：
+
+```bash
+git rebase --continue
+```
+
 ------
 
 ## ✅ 什麼時候使用？
