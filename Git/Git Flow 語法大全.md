@@ -2,6 +2,8 @@
 
 Git Flow 是 Git 的一種分支管理策略，它透過 `git-flow` 命令來簡化 **開發 (Feature)**、**發佈 (Release)**、**熱修復 (Hotfix)** 等流程。
 
+![gitflow_semantic](Images\gitflow_semantic.png)
+
 ------
 
 ## **📌 1. 安裝 Git Flow**
@@ -79,6 +81,8 @@ Hotfix branches? (hotfix/)
 ```
 
 ✅ **初始化完成後，會建立 `develop` 分支**，用於日常開發。
+
+
 
 ------
 
@@ -186,6 +190,26 @@ git branch
 ```sh
 git branch -D release/v1.0
 ```
+
+
+## 🔄 若要保留 test/staging 流程，你有兩個選項
+
+### 選項 1：**修改 git flow 流程順序**
+
+> ❗不要馬上 `git flow release finish`
+
+1. **從 `develop` 開 release 分支**
+2. 在 release 分支上做整合測試
+   - ✅ 測試通過 → 合併到 `test`
+   - ✅ 測試通過 → 合併到 `staging`
+   - ✅ 最終通過 → `git flow release finish` → 發佈正式版
+
+這樣 semantic-release 將只會在 `main` 合併後才產生正式版。
+
+👉 這樣你就需要手動管理 release 分支，避免一開始就執行 `git flow release finish`。
+
+
+
 ------
 
 ## **📌 5. 修復緊急 Bug (Hotfix Branch)**
