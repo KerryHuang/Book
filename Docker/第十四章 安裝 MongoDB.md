@@ -59,6 +59,7 @@ docker run -d \
 ```powershell
 docker run -d `
   --name mongodb `
+  --restart=always `
   -p 27017:27017 `
   -e MONGO_INITDB_ROOT_USERNAME=mongoadmin `
   -e MONGO_INITDB_ROOT_PASSWORD=secret123 `
@@ -231,3 +232,184 @@ mongodb://mongoadmin:secret123@localhost:27017/
 - MongoDB Compass 提供直觀操作介面，完全不用寫指令
 - 資料欄位可動態增減，結構彈性
 - 適合新手入門、原型開發、管理 MongoDB
+
+---
+
+
+
+# MongoDB 常用語法教學
+
+------
+
+## 1. 切換（建立）資料庫
+
+```javascript
+use mydb
+```
+
+- 切換到 mydb 資料庫，如果沒有則自動建立。
+
+------
+
+## 2. 建立集合（Collection）
+
+```javascript
+db.createCollection("users")
+```
+
+- 建立 users 集合，相當於關聯式資料庫的「資料表」。
+
+------
+
+## 3. 新增資料（Insert）
+
+**單筆新增：**
+
+```javascript
+db.users.insertOne({
+  name: "Alice",
+  age: 28,
+  email: "alice@example.com"
+})
+```
+
+**多筆新增：**
+
+```javascript
+db.users.insertMany([
+  { name: "Bob", age: 35 },
+  { name: "Carol", age: 42 }
+])
+```
+
+------
+
+## 4. 查詢資料（Find）
+
+**查詢全部：**
+
+```javascript
+db.users.find()
+```
+
+**條件查詢：**
+
+```javascript
+db.users.find({ age: 35 })
+```
+
+**進階查詢：**
+
+```javascript
+db.users.find({ age: { $gt: 30 } })         // 年齡大於 30
+db.users.find({ name: { $regex: /^A/ } })   // 名字以 A 開頭
+```
+
+------
+
+## 5. 更新資料（Update）
+
+**更新第一筆符合條件的資料：**
+
+```javascript
+db.users.updateOne(
+  { name: "Alice" },          // 條件
+  { $set: { age: 29 } }       // 要更新的欄位
+)
+```
+
+**更新多筆資料：**
+
+```javascript
+db.users.updateMany(
+  { age: { $lt: 30 } },
+  { $set: { group: "young" } }
+)
+```
+
+------
+
+## 6. 刪除資料（Delete）
+
+**刪除第一筆符合條件的資料：**
+
+```javascript
+db.users.deleteOne({ name: "Bob" })
+```
+
+**刪除多筆資料：**
+
+```javascript
+db.users.deleteMany({ age: { $gt: 40 } })
+```
+
+------
+
+## 7. 欄位操作
+
+**只查詢部分欄位（投影）：**
+
+```javascript
+db.users.find({}, { name: 1, age: 1, _id: 0 })
+```
+
+- 只顯示 name 和 age 欄位，不顯示 _id。
+
+**排序與限制：**
+
+```javascript
+db.users.find().sort({ age: -1 }).limit(2)
+```
+
+- 依 age 由大到小排序，僅取前 2 筆。
+
+------
+
+## 8. 聚合查詢（Aggregation）
+
+**群組統計：**
+
+```javascript
+db.users.aggregate([
+  { $group: { _id: \"$group\", count: { $sum: 1 } } }
+])
+```
+
+- 統計 group 欄位有幾筆資料。
+
+------
+
+## 9. 索引（Index）
+
+**建立索引：**
+
+```javascript
+db.users.createIndex({ email: 1 })
+```
+
+- 為 email 欄位建立升冪索引，加速查詢。
+
+------
+
+## 10. 常見運算子速查表
+
+| 運算子 | 說明             | 範例                     |
+| ------ | ---------------- | ------------------------ |
+| $gt    | 大於             | { age: { $gt: 30 } }     |
+| $lt    | 小於             | { age: { $lt: 40 } }     |
+| $gte   | 大於等於         | { age: { $gte: 25 } }    |
+| $lte   | 小於等於         | { age: { $lte: 60 } }    |
+| $in    | 包含於陣列中     | { age: { $in: [25,30] }} |
+| $set   | 更新或新增欄位   | { $set: { score: 90 } }  |
+| $push  | 陣列加入一筆資料 | { $push: { tags: "A" }}  |
+| $regex | 正則查詢         | { name: { $regex: /A/ }} |
+
+
+
+------
+
+## 11. 其他補充
+
+- **MongoDB 文件（document）本質是 JSON/BSON 格式，欄位可動態增加或刪除。**
+- **所有指令都在 db.[collection] 進行操作。**
+- **MongoDB 無 schema，可儲存不同結構的資料，但建議同一集合盡量維持一致性。**

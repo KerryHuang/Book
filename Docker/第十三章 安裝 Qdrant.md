@@ -17,7 +17,7 @@ Qdrant 是一款開源的向量資料庫，支援高維向量的儲存、查詢�
 
 Qdrant 官方提供 Docker 映像，可以直接從 Docker Hub 取得。
 
-```
+```bash
 docker pull qdrant/qdrant
 ```
 
@@ -27,7 +27,7 @@ docker pull qdrant/qdrant
 
 可直接於專案目錄下輸入：
 
-```
+```bash
 docker run -d \
   -p 6333:6333 \
   -v $(pwd)/qdrant_data:/qdrant/storage \
@@ -41,14 +41,14 @@ docker run -d \
 
 需改用絕對路徑，例如：
 
-```
-docker run -d -p 6333:6333 -v C:/qdrant_data:/qdrant/storage --name qdrant qdrant/qdrant
+```bash
+docker run -d -p 6333:6333 -v E:/docker/qdrant_data:/qdrant/storage --name qdrant qdrant/qdrant
 ```
 
 - `C:/qdrant_data` 請自行建立對應資料夾，或改成你想存放的資料路徑。
 - 若使用 PowerShell，可用 `${PWD}` 取得目前目錄：
 
-```
+```bash
 docker run -d -p 6333:6333 -v ${PWD}/qdrant_data:/qdrant/storage --name qdrant qdrant/qdrant
 ```
 
@@ -58,22 +58,39 @@ docker run -d -p 6333:6333 -v ${PWD}/qdrant_data:/qdrant/storage --name qdrant q
 
 #### Linux / macOS
 
-```
+```bash
 docker run -d -p 6333:6333 --name qdrant-dev qdrant/qdrant
 ```
 
 #### Windows CMD / PowerShell
 
-```
+```bash
 docker run -d -p 6333:6333 --name qdrant-dev qdrant/qdrant
 ```
 
+### 資料持久化
+
+#### Linux / macOS
+
+```bash
+docker run -d \
+  -p 6333:6333 \
+  -v ~/qdrant_data:/qdrant/storage \
+  --restart=always \
+  --name qdrant \
+  qdrant/qdrant
+
 ```
-bash docker run -d 
--p 6333:6333 
--v $(pwd)/qdrant_data:/qdrant/storage 
---name qdrant 
-qdrant/qdrant
+
+#### Windows CMD / PowerShell
+
+```bash
+docker run -d `
+  -p 6333:6333 `
+  -v E:\docker\qdrant_data:/qdrant/storage `
+  --restart=always `
+  --name qdrant `
+  qdrant/qdrant
 ```
 
 
@@ -97,7 +114,7 @@ docker run -d -p 6333:6333 --name qdrant-dev qdrant/qdrant
 
 如需重新啟動開發容器：
 
-```
+```bash
 docker stop qdrant-dev
 # 再啟動
 docker start qdrant-dev
@@ -105,7 +122,7 @@ docker start qdrant-dev
 
 如需清除：
 
-```
+```bash
 docker rm -f qdrant-dev
 ```
 
@@ -113,7 +130,7 @@ docker rm -f qdrant-dev
 
 啟動後，可用瀏覽器或 `curl` 測試 Qdrant API 是否正常運作：
 
-```
+```bash
 curl http://localhost:6333/collections
 ```
 
@@ -123,25 +140,25 @@ curl http://localhost:6333/collections
 
 - **查看容器狀態**
 
-  ```
+  ```bash
   docker ps
   ```
 
 - **停止容器**
 
-  ```
+  ```bash
   docker stop qdrant
   ```
 
 - **重啟容器**
 
-  ```
+  ```bash
   docker start qdrant
   ```
 
 - **移除容器**
 
-  ```
+  ```bash
   docker rm -f qdrant
   ```
 
