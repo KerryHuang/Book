@@ -58,12 +58,25 @@ docker run -e "ACCEPT_EULA=Y"
 
 [Windows]
 ```
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p 1433:1433 --name MSSQL2022 -d mcr.microsoft.com/mssql/server:2022-latest
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2022-latest
+```
+
+```
+docker run -d --name mssql `
+  -e "ACCEPT_EULA=Y" `
+  -e "MSSQL_SA_PASSWORD=!QAZ2wsx" `
+  -e "MSSQL_COLLATION=Chinese_Taiwan_Stroke_CI_AS" `
+  -e "MSSQL_AGENT_ENABLED=true" `
+  -p 1433:1433 `
+  --restart always `
+  -v E:\Database\mssql\backup:/var/opt/mssql/backup `
+  -v E:\docker\mssql\data:/var/opt/mssql/data `
+  mcr.microsoft.com/mssql/server:2022-latest
 ```
 
 [Mac]
 ```
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=\!QAZ2wsx" -p 1433:1433 --name MSSQL2022 -d mcr.microsoft.com/mssql/server:2022-latest
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=\!QAZ2wsx" -p 1433:1433 --name mssql -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 
 ### 容器配置
