@@ -62,4 +62,4 @@ author: CI-YU
 
 ### 結論
 
-最後就可以進行MailKit的使用了，下一篇就可以使用ＭailKit
+最後就可以進行MailKit的使用了，下一篇就可以使用MailKit

@@ -28,7 +28,7 @@ Redmine 不僅跨平台更是跨資料庫，因此我們可以很容易的安裝
 
 安裝 Redmine 有非常多種方式可以選擇，可以選擇一步一步安裝，也可以下載預先打包好的 LXC 範本檔、Docker 容器檔加速上線試用。
 
-過去說到Redmine的缺點，相信很多人的共識就是它在安裝和管理上並不容易，不過近年已有一鍵安裝(Bitnami Redmine Stack)、虛擬機器(Virtual Machine)或是容器(Dokcer)的安裝方式，也算是越來越便利了。
+過去說到Redmine的缺點，相信很多人的共識就是它在安裝和管理上並不容易，不過近年已有一鍵安裝(Bitnami Redmine Stack)、虛擬機器(Virtual Machine)或是容器(Docker)的安裝方式，也算是越來越便利了。
 
 以下就用Bitnami Redmine Stack的方式，在Windows 10或Windows Server來建置 Redmine 的應用服務。
 
@@ -75,7 +75,7 @@ Redmine 不僅跨平台更是跨資料庫，因此我們可以很容易的安裝
 
 ### 第一次登入
 
-- 在瀏覽器輸入[http://127.0.0.1](http://127.0.0.1/) ，在頁按面[Access Redmine ]，即進入Redmine的首頁。
+- 在瀏覽器輸入[http://127.0.0.1](http://127.0.0.1/) ，在頁面按[Access Redmine ]，即進入Redmine的首頁。
   (預設網址為 http://127.0.0.1/redmine/ ) (圖19、20、21、22)
   ![https://ithelp.ithome.com.tw/upload/images/20220911/20151950lILBFYljCI.png](https://ithelp.ithome.com.tw/upload/images/20220911/20151950lILBFYljCI.png)
   ![https://ithelp.ithome.com.tw/upload/images/20220911/20151950WKAYgPH5ug.png](https://ithelp.ithome.com.tw/upload/images/20220911/20151950WKAYgPH5ug.png)
@@ -86,7 +86,7 @@ Redmine 不僅跨平台更是跨資料庫，因此我們可以很容易的安裝
 - 第一次登入可能是英文版，可進行相關設定。(圖22)
   ![https://ithelp.ithome.com.tw/upload/images/20220911/201519505GHoY1i4YA.png](https://ithelp.ithome.com.tw/upload/images/20220911/201519505GHoY1i4YA.png)
 - 設定登入後的預設語言
-- 請按[Administrator]/[Settings]/[Display]/[Default Language] (圖23、24、25、26)
+- 請按[Administration]/[Settings]/[Display]/[Default Language] (圖23、24、25、26)
   ![https://ithelp.ithome.com.tw/upload/images/20220911/20151950WlKh1hkrj8.png](https://ithelp.ithome.com.tw/upload/images/20220911/20151950WlKh1hkrj8.png)
   ![https://ithelp.ithome.com.tw/upload/images/20220911/20151950NFTTlNhVqk.png](https://ithelp.ithome.com.tw/upload/images/20220911/20151950NFTTlNhVqk.png)
   ![https://ithelp.ithome.com.tw/upload/images/20220911/20151950Rr8MkkdKkC.png](https://ithelp.ithome.com.tw/upload/images/20220911/20151950Rr8MkkdKkC.png)

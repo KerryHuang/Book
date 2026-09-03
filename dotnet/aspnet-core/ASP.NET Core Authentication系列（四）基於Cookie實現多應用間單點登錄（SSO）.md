@@ -48,7 +48,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 ```csharp
 services.AddDataProtection()
     //.PersistKeysToDbContext<SSOContext>()  //把加密数据保存在数据库
-    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\server\share\directory\"))  //把加密信息保存大文件夹
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\server\share\directory\"))  //把加密信息保存到文件夹
     //.PersistKeysToStackExchangeRedis(redis, "DataProtection-Keys")
     .SetApplicationName("SSO"); //把所有子系统都设置为统一的应用名称
 ```

@@ -38,7 +38,7 @@ author: chris
 
 - 標記 [DisallowConcurrentExecution] 標籤來禁止同一個 Job 被同時併發執行。
 - 透過 IJobExecutionContext 的 context.JobDetail.JobDataMap 取得在建立 JobDetail 時加入的自定義資訊，因此 Job 就可以依據傳入的參數不同而執行不同的任務。
-- 由於 Job 在 DI 容器中註冊為 singleton 實體，因此於 Job 內無法注入比 singleton 生命週期範圍還小物件實體 (e.g. scope)，此時可注入 IServiceProvider 透過 CreateScope 來產生 scope ，並藉此手動建立出生命週期為 scpoe 的實體 (e.g. dbContext)。
+- 由於 Job 在 DI 容器中註冊為 singleton 實體，因此於 Job 內無法注入比 singleton 生命週期範圍還小物件實體 (e.g. scope)，此時可注入 IServiceProvider 透過 CreateScope 來產生 scope ，並藉此手動建立出生命週期為 scope 的實體 (e.g. dbContext)。
 - 由於 Job 是可以被中斷，因此可以使用 IJobExecutionContext的 CancellationToken.IsCancellationRequested 作為作業被中斷的判斷條件，自行定義安全中斷工作的時機。
 
 ```cs
@@ -198,7 +198,7 @@ public enum JobStatus : byte
 
 我們的 Quartz.NET 排程器最終要 Host 在 .NET Core 應用程式上，因此要依據 IHostedService 介面來實作 QuartzHostedService 服務，而主要就是定義服務啟動時 StartAsync 及停止時 StopAsync 需要做什麼；本例都是針對排程器 Scheduler 的建置，另外也定義了許多作業層面的操作，例如取得各項作業的執行狀態 GetJobSchedules 、手動觸發作業 TriggerJobAsync 或手動終止作業 InterruptJobAsync 等相關的操作。
 
-在 StartAsync 啟動服務中，加入了 2 筆工作來模擬來自 DB 控制的動態報表工作項目，應用情境會是針對 ReportJob 這個通用的報表作業，但透過 DB 來設置數個不同報表的查詢條件及觸發時機，將這些所有資訊都存放在 JobSchedule 物件中；一來排程器可以依照 JobSchedule 中的 JobType 與 cornExpression 建立作業，另外透過 jobDetail.JobDataMap.Put("Payload", jobSchedule) 將 JobSchedule 額外資訊放入 ReportJob 中後，又可以幫助 ReportJob 執行時判斷需要進行的工作細節，為作業執行保留了許多彈性。
+在 StartAsync 啟動服務中，加入了 2 筆工作來模擬來自 DB 控制的動態報表工作項目，應用情境會是針對 ReportJob 這個通用的報表作業，但透過 DB 來設置數個不同報表的查詢條件及觸發時機，將這些所有資訊都存放在 JobSchedule 物件中；一來排程器可以依照 JobSchedule 中的 JobType 與 cronExpression 建立作業，另外透過 jobDetail.JobDataMap.Put("Payload", jobSchedule) 將 JobSchedule 額外資訊放入 ReportJob 中後，又可以幫助 ReportJob 執行時判斷需要進行的工作細節，為作業執行保留了許多彈性。
 
 new JobSchedule(jobName: "333", jobType: typeof(ReportJob), cronExpression: $"0/13 * * * * ?");
 new JobSchedule(jobName: "444", jobType: typeof(ReportJob), cronExpression: $"0/20 * * * * ?");
@@ -402,7 +402,7 @@ public class QuartzHostedService : IHostedService
 
 ------
 
-先在 Sartup 的 ConfigureServices 方法中向 DI 容器註冊先前建立的所有類別，最後透過 AddHostedService 加入需要 Host 的 QuartzHostedService 服務後，只要 .NET Core 應用網站一執行後就會自動地啟動該服務了，所以無需再去執行 StartAsync 方法啟動服務。
+先在 Startup 的 ConfigureServices 方法中向 DI 容器註冊先前建立的所有類別，最後透過 AddHostedService 加入需要 Host 的 QuartzHostedService 服務後，只要 .NET Core 應用網站一執行後就會自動地啟動該服務了，所以無需再去執行 StartAsync 方法啟動服務。
 
 筆者在向 DI 容器註冊類別時，又加入了 2 筆測試工作項目，這種操作情境為「固定不變」的作業，只要是固定「作業內容」及「觸發時機」就可以透過這種方式注入 QuartzHostedService 中。
 
@@ -457,7 +457,7 @@ new JobSchedule(jobName: "444", jobType: typeof(ReportJob), cronExpression: "0/2
 
  
 
-以 Job333 為例，當 corn expression 設定為 0/13 * * * * ? 表示從 0 秒開始，每 13 秒會執行一次，搭配分鐘設定為 * 表示執行的時機會是每分鐘的 0, 13, 26, 39, 52 秒時觸發，而我們從輸出可以驗證 Job333 確實如我們預期的時間點執行。
+以 Job333 為例，當 cron expression 設定為 0/13 * * * * ? 表示從 0 秒開始，每 13 秒會執行一次，搭配分鐘設定為 * 表示執行的時機會是每分鐘的 0, 13, 26, 39, 52 秒時觸發，而我們從輸出可以驗證 Job333 確實如我們預期的時間點執行。
 
 ![img](https://dotblogsfile.blob.core.windows.net/user/chris/899f2ad6-7bb1-4ba2-a4f8-e78609455bbf/1608012575.png)
 
@@ -469,7 +469,7 @@ new JobSchedule(jobName: "444", jobType: typeof(ReportJob), cronExpression: "0/2
 
 ------
 
-由於我們的排程器是附屬於在主要的 ASP.NET Core 應用網站上，所以如果要讓這個排程器永續經營就必須確保該應用網站永遠處於執行的狀態，若該應用網站是布署在 IIS 上就必須特別注意它的回收機制，有可能會造成應用程式中斷的情況產生，這部分許多前輩已經用血淚整理出應對之道，細節請參考黑暗執行續 [執行定期排程](https://blog.darkthread.net/blog/hangfire-recurringjob-notes/) 文章說明，本文僅簡單列出可設定補強之處。
+由於我們的排程器是附屬於在主要的 ASP.NET Core 應用網站上，所以如果要讓這個排程器永續經營就必須確保該應用網站永遠處於執行的狀態，若該應用網站是部署在 IIS 上就必須特別注意它的回收機制，有可能會造成應用程式中斷的情況產生，這部分許多前輩已經用血淚整理出應對之道，細節請參考黑暗執行緒 [執行定期排程](https://blog.darkthread.net/blog/hangfire-recurringjob-notes/) 文章說明，本文僅簡單列出可設定補強之處。
 
 - 應用程式集區 - 進階設定 - 啟動模式 (Start Mode) = AlwaysRunning
 - 站台設定 - 進階設定 - 啟用預載 (Preload Enabled) = True
@@ -793,7 +793,7 @@ public class Startup
         /* ... 略 ... */
 
        
-        // 註冊DB容器schedulerHub實體
+        // 註冊DI容器schedulerHub實體
         services.AddSingleton<SchedulerHub>();
 
         // 設定 SignalR 服務

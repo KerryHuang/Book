@@ -94,7 +94,7 @@ kind: original
 
 ## VPN
 
-1. [ForiClient (Soetek)](https://www.fortinet.com/support/product-downloads)
+1. [FortiClient (Soetek)](https://www.fortinet.com/support/product-downloads)
 2. [GlobalProtect (SKM)](https://docs.paloaltonetworks.com/globalprotect/4-1/globalprotect-app-user-guide/globalprotect-app-for-mac/download-and-install-the-globalprotect-app-for-mac)
 3. MotionPro (Taifer)
 4. [AnyDesk](https://anydesk.com/zht/downloads/mac-os?gclid=CjwKCAjw_ISWBhBkEiwAdqxb9t3mxAM5-hBiFstz9tAXWTCesvAU_4yqeLaOmQNhMWurG5CYl-AhWhoC-LgQAvD_BwE)
@@ -113,7 +113,7 @@ kind: original
 ## 無蝦米
 
 1. [OpenVanilla](https://github.com/openvanilla/openvanilla/releases)
-2. [無蝦咪字體檔](https://raw.githubusercontent.com/rwu823/liu/master/bundle/liu7.cin)
+2. [無蝦米字根表](https://raw.githubusercontent.com/rwu823/liu/master/bundle/liu7.cin)
 
 ---
 
@@ -160,7 +160,7 @@ kind: original
 11. **ILSpy**
 12. T4 Editor：強化 T4 範本語法的支援。
 13. VSColorOutput：輸出視窗增加顏色顯示。
-14. SlowCheetah：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Coinfig Transform。
+14. SlowCheetah：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Config Transform。
 15. **EFCore.Visualizer**
 16. Visual-Studio-Translator 翻譯
 17. CodeMaid VS2022
@@ -173,7 +173,7 @@ kind: original
     - Bundler & Minifier：將 CSS、JavaScript 或 HTML 打包(Bundle)和最小化(Minify)。
     - SVG Viewer：增加 SVG 的預覽，及優化編輯器的相關功能。
     - Editor Enhancements：強化編輯器功能，如程式碼排序、文字編碼等。
-    - Dummy Text Generator：在產建畫面 Sample 時，快速產出一些無意義的文字。
+    - Dummy Text Generator：在建立畫面 Sample 時，快速產出一些無意義的文字。
     - Markdown Editor v2：在編輯器增加 Markdown 相關功能。
     - JavaScript Snippet Pack：JavaScript Snippet 擴增。
     - Image Optimizer：壓縮圖片大小。
@@ -183,7 +183,7 @@ kind: original
     - Double-Click Maximize 2022：點擊兩下來最大化 Visual Studio 視窗。
     - Fix Mixed Tabs：偵測程式碼是否同時有 Tabs 和空格，並提供轉換為其中之一。
     - Match Margin：Highlights 所有游標所指向的文字。
-    - Middle Click Scroll：使用滑鼠滾輪來移動文檔。
+    - Middle Click Scroll：使用滑鼠滾輪來移動文件。
     - Shrink Empty Lines：縮小空白行高度。
     - Solution Error Visualizer：在 Solution Explorer 顯示錯誤提示。
     - Time Stamp Margin：在 Debug 模式下，輸出視窗增加顯示時間訊息。
@@ -192,11 +192,11 @@ kind: original
 - 「Productivity Power Tools」和「Web Essentials」以前都是單一套件，後續不知哪一版本的 Visual Studio 開始將其底下各功能改為獨立套件，變成可選擇獨立安裝各功能套件，或藉由安裝同捆包來一次安裝。
 - 安裝這類同捆包時，是在安裝時會忽略已獨立安裝的套件。
 - 早期我是直接安裝同捆包，後續因為以下原因，改成安裝獨立套件：
-  - 由於 Visual Studio 2022 改為 64 位元時，很多套件都無法支援，或是有些功能改為 Viusal Studio 內建，(「[Zen-Coding](https://github.com/madskristensen/ZenCodingVS)」)，導致同捆包裡有在使用套件比重有逐漸降低的跡象。
-  - 以前安裝同捆包，卻沒注意同捆包有哪些套件，導致很多功能我以為是內建的，結果是擴充套件的功能，而不同時期安裝的同捆包，實際安裝的套件都不一樣，有可能是新版的 Visual Studio 尚未支援，或是已不列為同捆包的一部分，像是「Web Compiler」和「Bundler & Minifier」後期就變成是要獨立安裝的套件(忘了是 Viusal Studio 2015 還是 2017 開始)，而移除同捆包時，似乎不會移除底下相關套件，最後導致只安裝同捆包也不確定安裝什麼，倒不如把需要安裝的套件列清單來安裝。
+  - 由於 Visual Studio 2022 改為 64 位元時，很多套件都無法支援，或是有些功能改為 Visual Studio 內建，(「[Zen-Coding](https://github.com/madskristensen/ZenCodingVS)」)，導致同捆包裡有在使用套件比重有逐漸降低的跡象。
+  - 以前安裝同捆包，卻沒注意同捆包有哪些套件，導致很多功能我以為是內建的，結果是擴充套件的功能，而不同時期安裝的同捆包，實際安裝的套件都不一樣，有可能是新版的 Visual Studio 尚未支援，或是已不列為同捆包的一部分，像是「Web Compiler」和「Bundler & Minifier」後期就變成是要獨立安裝的套件(忘了是 Visual Studio 2015 還是 2017 開始)，而移除同捆包時，似乎不會移除底下相關套件，最後導致只安裝同捆包也不確定安裝什麼，倒不如把需要安裝的套件列清單來安裝。
   
 
-22. Tabnine：Tabnine 是一個 AI 驅動的代碼補全工具，支持多種編程語言和 IDE，包括 Visual Studio 2022。
+22. Tabnine：Tabnine 是一個 AI 驅動的程式碼補全工具，支援多種程式語言和 IDE，包括 Visual Studio 2022。
 22. SonarQube for Visual Studio 2022
 
 ---
@@ -259,9 +259,9 @@ kind: original
 15 單元測試相關套件：
   - [NUnit](https://nunit.org/)：NUnit 框架。
   - [NUnit3TestAdapter](https://www.nuget.org/packages/nunit3testadapter/)：NUnit 與 Visual Studio 的 Adapter。
-  - [NSubstitute](https://nsubstitute.github.io/)：單元測試個離框架。
+  - [NSubstitute](https://nsubstitute.github.io/)：單元測試隔離框架。
   - [Fluent Assertions](https://fluentassertions.com/)：將單元測試的 Assert 寫的較為口語化。
-- [Microsoft.VisualStudio.SlowCheetah](https://www.nuget.org/packages/Microsoft.VisualStudio.SlowCheetah)：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Coinfig Transform，需搭配 Visual Studio 延伸模組的「SlowCheetah」使用，詳情參考 [ASP.NET Framework 裡，有關 Web.config (App.config) 的應用](https://hackmd.io/K0ALoDQWSSKmWy5jMWEjPA#非-Web-專案發佈)。
+- [Microsoft.VisualStudio.SlowCheetah](https://www.nuget.org/packages/Microsoft.VisualStudio.SlowCheetah)：讓 XML 和 JSON 檔案可以像 Web Application Project(WAP) 的 Web.config 一樣支援 Config Transform，需搭配 Visual Studio 延伸模組的「SlowCheetah」使用，詳情參考 [ASP.NET Framework 裡，有關 Web.config (App.config) 的應用](https://hackmd.io/K0ALoDQWSSKmWy5jMWEjPA#非-Web-專案發佈)。
 - 
 16. [DefaultDocumentation](https://github.com/Doraku/DefaultDocumentation)：將 Visual Studio XML 註解轉為使用 Markdown 語法的 API 文件。
 - 專案版本號相關套件：

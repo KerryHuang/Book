@@ -40,7 +40,7 @@ var requestBody = new
     },
     options = new
     {
-        payment = "capture=false" // 開啟內嵌結帳模式
+        payment = new { capture = false } // 開啟內嵌結帳模式
     }
 };
 
@@ -95,7 +95,7 @@ var requestBody = new
 [Route("linepay")]
 public class LinePayController : ControllerBase
 {
-    [HttpPost("confirm")]
+    [HttpGet("confirm")]
     public async Task<IActionResult> ConfirmPayment([FromQuery] string transactionId)
     {
         // 確認支付狀態的邏輯

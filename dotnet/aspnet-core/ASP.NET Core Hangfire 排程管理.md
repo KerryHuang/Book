@@ -4,7 +4,7 @@ source: site:dotblogs.com.tw
 author: 余小章 (yc421206)
 ---
 
-Hangfire 是一款個人認為相當不錯的非同部步服務器，它脫離 Windows 工作排程，在 Web 檢視、重送任務，在 Hangfire 操作 UI 介面可以知道你指派給它的任務狀態，何時成功？為什麼失敗？(例外捕捉)下一次任務觸發時間？訊息可說是相當的完整。不過有點可惜的是，預設 Hangfire 操作介面沒有手動觸發任務的介面，幸好 Hangfire.Dashboard.Management 彌補了這個不足...
+Hangfire 是一款個人認為相當不錯的非同步服務器，它脫離 Windows 工作排程，在 Web 檢視、重送任務，在 Hangfire 操作 UI 介面可以知道你指派給它的任務狀態，何時成功？為什麼失敗？(例外捕捉)下一次任務觸發時間？訊息可說是相當的完整。不過有點可惜的是，預設 Hangfire 操作介面沒有手動觸發任務的介面，幸好 Hangfire.Dashboard.Management 彌補了這個不足...
 
 延伸閱讀
 
@@ -78,9 +78,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 接著在這裡設定 Hangfire 要有那些功能，
 
-`config.UseDashboardMetric()`：小報表，可根據需求決定，Hangfire angfire 內建許多的報表
+`config.UseDashboardMetric()`：小報表，可根據需求決定，Hangfire 內建許多的報表
 
-`config.UseConsole()` ：來自 Hangfire.Console，輸出 Console.Log 到onsole.Log 到 Hangfire 頁面。
+`config.UseConsole()` ：來自 Hangfire.Console，輸出 Console.Log 到 Hangfire 頁面。
 
 `config.UseSqlServerStorage()` ：來自 Hangfire.SqlServer，排程資料放在 SQL Server。
 
@@ -120,7 +120,7 @@ public void ConfigureServices(IServiceCollection services)
 
  
 
-GetModuleType 取出 Assembly 裡面所有的 ManagementPage 的物件
+GetModuleTypes 取出 Assembly 裡面所有的 ManagementPage 的物件
 
 ```c#
 public static Type[] GetModuleTypes()
@@ -158,8 +158,8 @@ config.UseManagementPages 裡面放 ManagementPage 物件，設計要點如下�
 
 1. 在類別加上 Hangfire.Dashboard.Management.Metadata.ManagementPageAttribute。
 2. 方法加上 Hangfire.Dashboard.Management.Support.JobAttribute、System.ComponentModel.DisplayNameAttribute，這樣可以輕易地完成一個管理介面。
-3. PerformContext 來自 Hangfire.Console，會在 Hangfire Hangfire 介面的 Log 主控台呈現。
-4. IJobCancellationToken，當任務在執行過程當成被刪除，IsCancellationRequested = true
+3. PerformContext 來自 Hangfire.Console，會在 Hangfire 介面的 Log 主控台呈現。
+4. IJobCancellationToken，當任務在執行過程當中被刪除，IsCancellationRequested = true
 
 ```c#
 [ManagementPage("演示")]

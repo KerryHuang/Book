@@ -8,7 +8,7 @@ author: isdaviddong (董大偉)
 ===
 
 ## Overview
-這個lab介紹如何透過CLI來Issue Channel Access Tokem
+這個lab介紹如何透過CLI來Issue Channel Access Token
 ## Prerequisites
 0. 建立好LINE Bot帳號，並取得Channel ID與Channel Secret [參考這裡](https://github.com/isdaviddong/HOL-LineBotSDK/blob/master/00.%20%E5%A6%82%E4%BD%95%E7%94%B3%E8%AB%8BLINE%20Bot.md)
 1. 下載安裝 .net core sdk 3.1 以上版本 [here](https://dotnet.microsoft.com/download)

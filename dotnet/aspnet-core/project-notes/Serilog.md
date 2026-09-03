@@ -8,7 +8,7 @@ kind: original
 
 ### Serilog 的特色
 
-1. **結構化日誌**：使用結構化數據記錄（例如 JSON 格式），便於分析和篩選。
+1. **結構化日誌**：使用結構化資料記錄（例如 JSON 格式），便於分析和篩選。
 2. **靈活的接收器**：支援多種接收器，例如控制台、檔案、資料庫、Elasticsearch 等。
 3. **支援多種日誌等級**：Trace、Debug、Information、Warning、Error、Fatal 等等。
 4. **可擴充性**：可以通過自訂接收器和格式來滿足不同的日誌需求。
@@ -58,7 +58,7 @@ class Program
 
 #### 2. 使用結構化日誌
 
-Serilog 支援在日誌中插入結構化數據，便於日後分析。例如，可以傳入具名參數來添加資料。
+Serilog 支援在日誌中插入結構化資料，便於日後分析。例如，可以傳入具名參數來添加資料。
 
 ```csharp
 Log.Information("使用者 {User} 在 {Time} 登入系統", "Alice", DateTime.Now);
@@ -96,12 +96,17 @@ Log.CloseAndFlush();
 #### 1. `Program.cs` 中的設定範例
 
 ```csharp
+using Microsoft.Extensions.Configuration;
 using Serilog;
 
 public class Program
 {
     public static void Main(string[] args)
     {
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration) // 讀取 appsettings.json 設定
             .Enrich.FromLogContext()
@@ -165,4 +170,4 @@ public class Program
 
 ### 結論
 
-Serilog 是 .NET 開發中非常靈活且強大的日誌紀錄框架。透過結構化日誌和多樣化的接收器支援，開發者能更有效地管理和分析日誌，使得應用程式的維護和調試更加容易。
+Serilog 是 .NET 開發中非常靈活且強大的日誌紀錄框架。透過結構化日誌和多樣化的接收器支援，開發者能更有效地管理和分析日誌，使得應用程式的維護和除錯更加容易。

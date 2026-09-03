@@ -49,7 +49,7 @@ author: Andrew Wu
 
 **架構上難以解決的問題**:
 
-這個架構，麻煩的地方在於，developer 對整個 service 的運作控制能力非常有限；影響最大的部分在於 developer 無法很精準的掌控 container 啟動與結束執行的時間點。要能掌握這兩個時間點，才能正卻的跟 service discovery 註冊與反註冊服務資訊啊!
+這個架構，麻煩的地方在於，developer 對整個 service 的運作控制能力非常有限；影響最大的部分在於 developer 無法很精準的掌控 container 啟動與結束執行的時間點。要能掌握這兩個時間點，才能正確的跟 service discovery 註冊與反註冊服務資訊啊!
 
 第一個問題，在於圖中的 application start / end events, 在同一個 container 內可能被觸發多次，甚至可能有多個 app pool 平行運行。這會影響註冊資訊的正確性。
 
@@ -69,7 +69,7 @@ author: Andrew Wu
 
 這些問題的起點，都在於 console application 與 windows service 運作模式的差異。console application 是最單純的，Microsoft 額外設計 windows service, 就是為了適合處理後端服務，讓 server 開機就自動執行，同時也適合統一管理 service 的啟動與關閉等動作。這些機制完全被 docker 完美的替代了啊，這時在 container 裡面再用 windows service, 還要靠 ServiceMonitor.exe 來轉接就變得多此一舉了。
 
-只要用 docker run -d –restart always …. 來啟動你的 container, 它就完全是個 windows service 了 (還不需要註冊)。只要你的 console application 有好好的處理 OS shutdown event (或是 unix 系列的 signal), 就能透過 docker start / stop / pause / unpause 指令來操作 (對應到 windows service 的 start / stop / pause / continue)。
+只要用 docker run -d --restart always …. 來啟動你的 container, 它就完全是個 windows service 了 (還不需要註冊)。只要你的 console application 有好好的處理 OS shutdown event (或是 unix 系列的 signal), 就能透過 docker start / stop / pause / unpause 指令來操作 (對應到 windows service 的 start / stop / pause / continue)。
 
 來看一下 Microsoft 提供的 [IIS](https://hub.docker.com/r/microsoft/iis/) container image, [dockerfile](https://github.com/Microsoft/iis-docker/blob/master/windowsservercore-1709/Dockerfile) 是怎麼寫的:
 
@@ -86,7 +86,7 @@ EXPOSE 80
 ENTRYPOINT ["C:\\ServiceMonitor.exe", "w3svc"]
 ```
 
-就如同前面說明，主要就是靠 c:\ServiceMonitor.exe 來串聯 windows service 跟 container 的生命週期而已。Microsoft 前陣子也將這個公具直接 open source 了:
+就如同前面說明，主要就是靠 c:\ServiceMonitor.exe 來串聯 windows service 跟 container 的生命週期而已。Microsoft 前陣子也將這個工具直接 open source 了:
 
 https://github.com/Microsoft/IIS.ServiceMonitor
 
@@ -120,7 +120,7 @@ What I’ve found (basically just pros for IIS hosted):
 4. IIS has some nice specific features in 8 about handling requests and warming up the service (self-hosted does not)
 5. IIS has the ability to run multiple concurrent sites with applications and virtual directories to advanced topics like load balancing and remote deployments.
 
-其中 (2), (3) 我先略過，這個在開發階段就可以避免了，或是改用 Owin / .NET Core 就不存在的問題 (`HttpContext`)。其它都屬於部署管理方面的問題；如果你還在用傳統的方式部屬或是管理 web application (例如手動安裝 server, 內部系統, 沒有太多自動化, 同一套 server 可能執行多個 application 等等)，我會強烈建議你繼續使用 IIS。因為上述的功能對你都很重要。但是如果是 microservices, 以上的假設不大可能繼續成立了，你一定會被迫採用 container 這類能高度自動化的方式來進行。這時我們竹條來看看採用 IIS 的優點，是否還真的是 *必要* 的功能? 是否在你的 microservices infrastructure 底下，都有替代的功能了?
+其中 (2), (3) 我先略過，這個在開發階段就可以避免了，或是改用 Owin / .NET Core 就不存在的問題 (`HttpContext`)。其它都屬於部署管理方面的問題；如果你還在用傳統的方式部屬或是管理 web application (例如手動安裝 server, 內部系統, 沒有太多自動化, 同一套 server 可能執行多個 application 等等)，我會強烈建議你繼續使用 IIS。因為上述的功能對你都很重要。但是如果是 microservices, 以上的假設不大可能繼續成立了，你一定會被迫採用 container 這類能高度自動化的方式來進行。這時我們逐條來看看採用 IIS 的優點，是否還真的是 *必要* 的功能? 是否在你的 microservices infrastructure 底下，都有替代的功能了?
 
 > You lose all of the features of IIS (logging, application pool scaling, throttling/config of your site, etc.)…
 
@@ -181,7 +181,7 @@ IIS 7 的數據我就不貼了，效能差異更大。在 IIS 8 的測試基準�
 
 
 
-終於來到要寫 code 的階段了。為了這部分，我上周特地多寫了一篇 [Tips: 在 .NET Console Application 中處理 Shutdown 事件](https://columns.chicken-house.net/2018/05/12/msa-labs2-selfhost/), 就是為了這個範例。所有跟 consul 搭配的 code, 我都留到下一篇, 這篇我只先處理掉 Self-Host 的部分就好。為了搭配 service discovery 機制，有三件事是你必須對你自己的服務能精準的掌控的:
+終於來到要寫 code 的階段了。為了這部分，我上周特地多寫了一篇 [Tips: 在 .NET Console Application 中處理 Shutdown 事件](https://columns.chicken-house.net/2018/05/10/tips-handle-shutdown-event/), 就是為了這個範例。所有跟 consul 搭配的 code, 我都留到下一篇, 這篇我只先處理掉 Self-Host 的部分就好。為了搭配 service discovery 機制，有三件事是你必須對你自己的服務能精準的掌控的:
 
 1. 服務何時啟動? (需要進行註冊的動作)
 2. 服務何時終止? (需要進行註冊資訊移除的動作)
@@ -307,7 +307,7 @@ class Program {
 
 ## STEP #3, 處理系統關機的事件
 
-目前服務是等 user 在 console 按下 ENTER 就結束了，實際部署的情況不會是這樣，大都是 orchestration 或是 op team 直接把這個 container 或是 process 砍掉。所以我們要花點功夫，去攔截 OS shutdown 的動作，取代掉原本的 Console.ReadLine() 。相關作法的討論，都在 [Tips: 在 .NET Console Application 中處理 Shutdown 事件](https://columns.chicken-house.net/2018/05/12/msa-labs2-selfhost/) 這篇有詳細的說明了，這邊就直接看 sample code:
+目前服務是等 user 在 console 按下 ENTER 就結束了，實際部署的情況不會是這樣，大都是 orchestration 或是 op team 直接把這個 container 或是 process 砍掉。所以我們要花點功夫，去攔截 OS shutdown 的動作，取代掉原本的 Console.ReadLine() 。相關作法的討論，都在 [Tips: 在 .NET Console Application 中處理 Shutdown 事件](https://columns.chicken-house.net/2018/05/10/tips-handle-shutdown-event/) 這篇有詳細的說明了，這邊就直接看 sample code:
 
 ```
     class Program
@@ -736,7 +736,7 @@ C:\ip2c>docker logs -t demo
 2018-05-19T20:14:05.488915200Z DEMO:  Wait 5 sec and stop web self-host.
 ```
 
-離奇的是，1709 都是得靠 HiddenForm 才能攔截的到 shutdown message, 可是到 1803 反而就能透過 SetConsoleCtrlHandler 攔到 CTRL_SHUTDOWN_EVENT … 攔到之後容許的處理時間也不大一樣，我的例子停了 5 sec 就沒辦法正長的收尾了，上面的 message 只看到 Wait 5 sec … 卻沒看到 5 sec 後的 stopped 訊息。Microsoft 你的文件搞得我好亂啊… 不過 1803 還太新，寫這篇文章的當下 (2018/05/20) 還查不到任何官方文件的說明，這部分有進展我再更新文章。
+離奇的是，1709 都是得靠 HiddenForm 才能攔截的到 shutdown message, 可是到 1803 反而就能透過 SetConsoleCtrlHandler 攔到 CTRL_SHUTDOWN_EVENT … 攔到之後容許的處理時間也不大一樣，我的例子停了 5 sec 就沒辦法正常的收尾了，上面的 message 只看到 Wait 5 sec … 卻沒看到 5 sec 後的 stopped 訊息。Microsoft 你的文件搞得我好亂啊… 不過 1803 還太新，寫這篇文章的當下 (2018/05/20) 還查不到任何官方文件的說明，這部分有進展我再更新文章。
 
 # 結論
 

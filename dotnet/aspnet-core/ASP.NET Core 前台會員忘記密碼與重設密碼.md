@@ -301,7 +301,7 @@ public ActionResult SendMailToken(SendMailTokenIn inModel)
 }
 ```
 
-輸入帳號後，會從資料庫內取得會員的信箱，程式碼會信件到會員信箱。
+輸入帳號後，會從資料庫內取得會員的信箱，程式碼會寄信件到會員信箱。
 在信件的連結會導回網站，並夾帶帳號與時間資訊，我將帳號與時間加密後放在驗證碼裡面。
 等導回網站時，再解密取出帳號與時間。
 
@@ -475,7 +475,7 @@ public ActionResult ResetPwd(string verify)
 <div id="VuePage">
     <!--使用 Bootstrap 設計重設密碼表單-->
     <div class="panel panel-primary">
-        <div class="panel-heading">重新密碼範例</div>
+        <div class="panel-heading">重設密碼範例</div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">

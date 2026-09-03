@@ -28,7 +28,7 @@ kind: unknown
 1. 每筆訂單基本折扣為5%
 2. 一般消費客群的特定客戶且訂單金額大於100元且小於1000元折扣為1%
 3. 中消費客群的特定客戶且訂單金額大於1000元且小於2000元折扣為2%
-4. 高消費客群的特定客戶且訂單金額大於300元折扣為3%
+4. 高消費客群的特定客戶且訂單金額大於3000元折扣為3%
 
 以上計算出折扣金額，此訂單金額減折扣金額等於訂單總金額。
 
@@ -128,7 +128,7 @@ C# 程式碼
 ```c#
 // See https://aka.ms/new-console-template for more information
 
-using KH.Lab.RulesEnglineService;
+using KH.Lab.RulesEngineService;
 using RulesEngine.Models;
 
 var order = new Order()

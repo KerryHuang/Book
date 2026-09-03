@@ -30,7 +30,7 @@ System.Web.Security.FormsAuthentication.SignOut();
 4. 服務器應用解析並綁定到`Controller.User`屬性上，通過`User.Identity.IsAuthenticated`判斷用戶是否已認證；
 5. 最後通過`System.Web.Security.FormsAuthentication.SignOut()`來刪除Auth Cookie；
 
-想要設置生成的Auth Cookie屬性，可以通過修改`web.cofig`的`<authentication>`配置項：
+想要設置生成的Auth Cookie屬性，可以通過修改`web.config`的`<authentication>`配置項：
 
 ```xml
 <configuration>

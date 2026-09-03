@@ -11,7 +11,7 @@ author: hungwin
 
 範例內容主要以 ASP.NET MVC 為核心，前端使用 Vue.js 框架，而後端使用 SQL Server 當資料庫。
 
-[Vue.js](https://cn.vuejs.org/index.html) 是前端3 大主流框架的其中之一，目標是透過簡單的 API 提供開發者實作資料綁定與操作網頁上的元件，Vue.js 的核心把焦點關注在狀態與畫面的同步層級上，適合與其他 JavsScript 函式庫整合，同時也適合當作 ASP.NET MVC 的前端框架。
+[Vue.js](https://cn.vuejs.org/index.html) 是前端3 大主流框架的其中之一，目標是透過簡單的 API 提供開發者實作資料綁定與操作網頁上的元件，Vue.js 的核心把焦點關注在狀態與畫面的同步層級上，適合與其他 JavaScript 函式庫整合，同時也適合當作 ASP.NET MVC 的前端框架。
 
 [SQL Server](https://www.microsoft.com/zh-tw/sql-server) 是微軟推出的關聯式資料庫，使用 SQL 語言就可以輕鬆操作資料庫。
 

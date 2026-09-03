@@ -161,7 +161,7 @@ SonarQube 會將程式碼中可能潛藏的問題分為以下 3 種
 - **Vulnerability：**代碼中容易受到攻擊的點
 - **Code Smell：**可維護性問題，使您的代碼混亂且難以維護。
 
-Security Hotspotsy 代表需要手動檢查以評估是否存在漏洞的安全敏感代碼。
+Security Hotspots 代表需要手動檢查以評估是否存在漏洞的安全敏感代碼。
 
 ![img](https://miro.medium.com/v2/resize:fit:875/1*EWX6mqHRTh-nV4hKBeJTyw.png)
 
@@ -283,7 +283,7 @@ dotnet sonarscanner end /d:sonar.token="sqp_ff2d695d1ef2bd42f97270f0b9fafaf3c266
 
 ![img](https://miro.medium.com/v2/resize:fit:875/1*_sSWr6-KTWfhuujULQx6Lg.png)
 
-會在再下一次分析才生效
+會在下一次分析才生效
 
 ![img](https://miro.medium.com/v2/resize:fit:875/1*kqOF64xNRyn5NQNhNujSUA.png)
 

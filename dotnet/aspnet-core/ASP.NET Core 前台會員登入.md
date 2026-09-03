@@ -11,7 +11,7 @@ author: hungwin
 
 範例內容以 ASP.NET MVC 為核心，前端使用 Vue.js 框架，而後端使用 SQL Server 當資料庫。
 
-Vue.js 是前端3 大主流框架的其中之一，目標是透過簡單的 API 提供開發者實作資料綁定與操作網頁上的元件，Vue.js 的核心把焦點關注在狀態與畫面的同步層級上，適合與其他 JavsScript 函式庫整合，同時也適合當作 ASP.NET MVC 的前端框架。
+Vue.js 是前端3 大主流框架的其中之一，目標是透過簡單的 API 提供開發者實作資料綁定與操作網頁上的元件，Vue.js 的核心把焦點關注在狀態與畫面的同步層級上，適合與其他 JavaScript 函式庫整合，同時也適合當作 ASP.NET MVC 的前端框架。
 
 SQL Server 是微軟推出的關聯式資料庫，使用 SQL 語言就可以輕鬆操作資料庫。
 
@@ -22,7 +22,7 @@ SQL Server 是微軟推出的關聯式資料庫，使用 SQL 語言就可以輕�
 ##### 目錄 
 
 [1 在 Controller 增加登入頁面 Action](#Step1)  
-&emsp;&emsp;[1.1 增加登入頁面 View](#Step1)
+&emsp;&emsp;[1.1 增加登入頁面 View](#Step1)  
 [2 編寫登入 View 語法](#Step1)  
 &emsp;&emsp;[2.1 加入 Vue.js 控制元件](#Step1)  
 [3 編寫登入 Controller 語法](#Step1)  
@@ -172,7 +172,7 @@ Vue.js 可取得網頁上的欄位資料，將資料利用 Ajax 傳送到後端�
 
 ## 編寫登入 Controller 語法
 
-剛剛在 View 會傳送一個動作呼叫 Member/DoLogin所以在 MemberController 需要建立回應的方法 `DoLogin()`。
+剛剛在 View 會傳送一個動作呼叫 Member/DoLogin 所以在 MemberController 需要建立回應的方法 `DoLogin()`。
 
 ```c#
 /// <summary>

@@ -162,7 +162,7 @@ CREATE TABLE ToolMaintenance (
 
 - 一把刀具 `Tool` 會有多筆使用紀錄與保養紀錄 → 一對多關係
 - 使用外鍵約束確保資料完整性
-- 可為 ToolUsage.Date、Tool.Name 建立索引加速查詢
+- 可為 ToolUsage.UsageDate、Tool.ToolName 建立索引加速查詢
 
 ### 2.3 資料表命名原則（Table Naming）
 
@@ -222,7 +222,7 @@ CREATE TABLE ToolMaintenance (
 
 ------
 
-### 2.6 命名一致性對 EF Core 的重要性
+### 2.5 命名一致性對 EF Core 的重要性
 
 | 類型     | 建議命名格式            | EF Core 行為      |
 | -------- | ----------------------- | ----------------- |
@@ -449,7 +449,7 @@ dotnet add package OpenTelemetry.Exporter.Zipkin
 設定追蹤：
 
 ```csharp
-builder.Services.AddOpenTelemetryTracing(builder => builder
+builder.Services.AddOpenTelemetryTracing(tracing => tracing
     .AddAspNetCoreInstrumentation()
     .AddEntityFrameworkCoreInstrumentation()
     .AddZipkinExporter(opt => opt.Endpoint = new Uri("http://localhost:9411/api/v2/spans")));

@@ -97,7 +97,7 @@ FileZilla 有分為 Server 及 Client 兩個版本，這篇文章主要分享 Se
 ### 設定目錄權限
 
 目錄的權限設定跟之前版本不太一樣，簡化了一些設定。
-接著我增加一個登入主目錄，在「Mount points」執行「Add」，在「Vitual path」輸入「/」，在「Native path」輸入本機要顯示的目錄，我以「C:\Temp」示範。
+接著我增加一個登入主目錄，在「Mount points」執行「Add」，在「Virtual path」輸入「/」，在「Native path」輸入本機要顯示的目錄，我以「C:\Temp」示範。
 
 [![設定目錄權限](https://blog.hungwin.com.tw/wp-content/uploads/2022/10/ftp-filezilla-13.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/10/ftp-filezilla-13.png)
 

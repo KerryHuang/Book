@@ -13,7 +13,7 @@ kind: original
 
 ### 設置項目
 
-首先，在終端中創建新的 .NET 8 WebAPI 項目：
+首先，在終端中創建新的 .NET 8 WebAPI 專案：
 
 ```bash
 dotnet new webapi -n KeycloakUserAPI

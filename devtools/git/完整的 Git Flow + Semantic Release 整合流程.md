@@ -117,9 +117,9 @@ git push origin main develop
 
 
 
-- ✅ [`.doc/CI-CD/GitFlow_SemanticRelease_工作流程.md`](vscode-webview://14rv7nefq8c5i58a0qj2bvo85gq74ruaqu5n0b8rukdjvkquuhot/index.html?id=3dc6504c-a30f-4a93-97e0-c69002ee2678&parentId=2&origin=d983d1a5-f5d2-4e69-9c0a-7d1568b6ebed&swVersion=4&extensionId=Anthropic.claude-code&platform=electron&vscode-resource-base-authority=vscode-resource.vscode-cdn.net&parentOrigin=vscode-file%3A%2F%2Fvscode-app&session=610f8b3a-7a09-408e-a1ad-a51c03a2df42) - 完整工作流程文件
-- ✅ [`CLAUDE.md`](vscode-webview://14rv7nefq8c5i58a0qj2bvo85gq74ruaqu5n0b8rukdjvkquuhot/index.html?id=3dc6504c-a30f-4a93-97e0-c69002ee2678&parentId=2&origin=d983d1a5-f5d2-4e69-9c0a-7d1568b6ebed&swVersion=4&extensionId=Anthropic.claude-code&platform=electron&vscode-resource-base-authority=vscode-resource.vscode-cdn.net&parentOrigin=vscode-file%3A%2F%2Fvscode-app&session=610f8b3a-7a09-408e-a1ad-a51c03a2df42) - AI 提示詞文件（Git Flow 章節）
-- ✅ [`README.md`](vscode-webview://14rv7nefq8c5i58a0qj2bvo85gq74ruaqu5n0b8rukdjvkquuhot/index.html?id=3dc6504c-a30f-4a93-97e0-c69002ee2678&parentId=2&origin=d983d1a5-f5d2-4e69-9c0a-7d1568b6ebed&swVersion=4&extensionId=Anthropic.claude-code&platform=electron&vscode-resource-base-authority=vscode-resource.vscode-cdn.net&parentOrigin=vscode-file%3A%2F%2Fvscode-app&session=610f8b3a-7a09-408e-a1ad-a51c03a2df42) - 版本管理說明
+- ✅ `.doc/CI-CD/GitFlow_SemanticRelease_工作流程.md` - 完整工作流程文件
+- ✅ `CLAUDE.md` - AI 提示詞文件（Git Flow 章節）
+- ✅ `README.md` - 版本管理說明
 
 ### 🎓 重要經驗
 

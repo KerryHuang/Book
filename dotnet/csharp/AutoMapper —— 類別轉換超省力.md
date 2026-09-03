@@ -1,5 +1,7 @@
 ---
-kind: original
+kind: reprint
+source: site:igouist.github.io
+author: igouist
 ---
 
 # AutoMapper —— 類別轉換超省力
@@ -87,7 +89,6 @@ var config = new MapperConfiguration(cfg =>
     cfg.CreateMap<Card, CardViewModel>()
        .ForMember(x => x.ImgUri, y => y.Ignore())
     );
-}
 ```
 
 如上述程式碼，可能卡片的圖像位置必須由別的方式取得，這種情況我們在 `ForMember` 的時候就可以將其指定為 `Ignore` 讓 AutoMapper 不要去嘗試轉換它。除了 `Ignore` 以外，AutoMapper 還有配備像是 `IgnoreAllPropertiesWithAnInaccessibleSetter` 這種光方法名稱長度就有點強的大殺器，也還有像是 `AllowNull` 等更多對欄位操作的方法，這部份請各位在使用時按照需求自行摸索。

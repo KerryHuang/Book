@@ -18,7 +18,7 @@ author: Kodofish
 
 ## 安裝 APPLICATION INITIALIZATION MODULE
 
-這是最重要的一步，有時候就是忘了安裝它造成網站應用程式無法持續執行。首先執行 Server Manager，再點選 Manager > Add Roles and Features ![Server Manager](https://kodofish.dev/post/2021-04-08_how_to_keep_and_running_web_application_on_iis/images/image01.png)
+這是最重要的一步，有時候就是忘了安裝它造成網站應用程式無法持續執行。首先執行 Server Manager，再點選 Manage > Add Roles and Features ![Server Manager](https://kodofish.dev/post/2021-04-08_how_to_keep_and_running_web_application_on_iis/images/image01.png)
 
 順著 Add Roles and Features Wizard 一直到 Server Roles 時, 在清單中找到 Web Server (IIS) > Web Server > Application Development > Application Initialization，把它選起來並安裝它。
 

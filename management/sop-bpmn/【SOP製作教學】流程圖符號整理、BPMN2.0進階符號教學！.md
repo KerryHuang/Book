@@ -115,7 +115,7 @@ A Parallel Gateway creates parallel paths without checking any conditions; each 
 
 如上圖就是並行關口（Parallel Gateway）、複雜關口 （Complex Gateway）的綜合運用，它表達的是當客訴來的時候，就需要和客戶詢問4項資訊。
 
-但電戶、帳戶名稱、收件地址只要有其中2項符合，再加上訂單與產品資訊，就可以執行下一步的維修申請。
+但電話、帳戶名稱、收件地址只要有其中2項符合，再加上訂單與產品資訊，就可以執行下一步的維修申請。
 
 也有一些其他的運用例子：
 
@@ -152,7 +152,7 @@ The Event-Based Gateway represents a branching point in the Process where the al
 
 在第一篇介紹符號時，只說明了開始事件（Start event）、結束事件（End event），但事件關口（Event-Based Gateway）的事件卻不屬於這兩類，它屬於「流程中的事件」，也就是**中間事件（Intermediate Event）**。
 
-所有夾在開始、結束之間的事件，都屬於中間事件（Intermediate Event）。隨著內建福號的不同，它還可以具備觸發、啟動的概念。
+所有夾在開始、結束之間的事件，都屬於中間事件（Intermediate Event）。隨著內建符號的不同，它還可以具備觸發、啟動的概念。
 
 因此，就算沒有事件關口（Event-Based Gateway），中間事件（Intermediate Event）一樣可以獨立和其他活動一起運作，例如：
 

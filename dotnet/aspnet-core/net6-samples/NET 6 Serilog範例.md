@@ -42,7 +42,7 @@ using Serilog.Events;
 Log.Logger = new LoggerConfiguration()
     //Serilog要寫入的最低等級為Information
     .MinimumLevel.Information()
-    //Microsoft.AspNetCore開頭的類別等極為warning
+    //Microsoft.AspNetCore開頭的類別等級為warning
     .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
     //寫log到Logs資料夾的log.txt檔案中，並且以天為單位做檔案分割
     .WriteTo.File("./Logs/log.txt", rollingInterval: RollingInterval.Day)

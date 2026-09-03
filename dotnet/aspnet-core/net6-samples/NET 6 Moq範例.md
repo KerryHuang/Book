@@ -36,7 +36,7 @@ author: CI-YU
 
 ### NuGet加入套件
 
-針對xUnitExample.Tests加入相關套件
+針對MoqExample.Tests加入相關套件
 
 - xunit
 - xunit.runner.visualstudio
@@ -64,7 +64,7 @@ author: CI-YU
 
 - Arrange：準備階段，包含初始化相關資料
 - Act：執行測試方法後所取得的結果
-- Assert：驗證Act取得的結果是否符合預期結果 這次要測試的是controller，有注入Ilogger，如何將Ilogger隔開的關鍵就是使用Moq這個套件
+- Assert：驗證Act取得的結果是否符合預期結果 這次要測試的是controller，有注入ILogger，如何將ILogger隔開的關鍵就是使用Moq這個套件
 ![範例8-1](https://user-images.githubusercontent.com/19286751/194589131-8673c49f-ee3b-4452-bf14-c8e5c25707b9.png)
 
 ```C#

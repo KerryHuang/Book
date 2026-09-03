@@ -33,18 +33,23 @@ SQL Server會針對每個Select 和 DML 回傳訊息給用戶端，
 而省下搜尋其他schema底下可能的object所浪費的資源和時間。
 
 ```
- — 兩節式命名 
-select * from dbo.test exec dbo.myproc 
- — 避免 
-select * from test exec myproc
+-- 兩節式命名
+select * from dbo.test
+exec dbo.myproc
+-- 避免
+select * from test
+exec myproc
 ```
 
 4.stored procedure命名勿使用 sp_ 開頭: 如果stored procedure使用sp_開頭，那SQL Server 會先搜尋master database完後， 在搜尋現階段連線的database，
 
-這不僅讓費時間和資源，也增加出錯的機率(如果master database有相同的stroed procedure名稱)
+這不僅浪費時間和資源，也增加出錯的機率(如果master database有相同的stored procedure名稱)
 
 ```
---usp開頭create proc dbo.usp_xxx--避免create proc dbo.sp_xxx
+--usp開頭
+create proc dbo.usp_xxx
+--避免
+create proc dbo.sp_xxx
 ```
 
 **5.如果你要執行字串，請使用sp_executesql取代Execute(Exec) 陳述式**
@@ -54,7 +59,18 @@ select * from test exec myproc
 **(擷取線上叢書..我太懶了XD)，下面附上測試過程。**
 
 ```
-declare @myquery nvarchar(4000);set @myquery = 'SELECT * from dbo.test2 where c1 = @id';--第一次execute sp_executesql @myquery,N'@id int', @id = 1;--第二次execute sp_executesql @myquery,N'@id int', @id = 2;--查看執行計畫SELECT cap.usecounts as '使用次數',objtype as '快取類型',st.textFROM sys.dm_exec_cached_plans capCROSS APPLY sys.dm_exec_sql_text(plan_handle) AS stWHERE st.text not like '%sys%'and st.text like '%dbo.test2%'
+declare @myquery nvarchar(4000);
+set @myquery = 'SELECT * from dbo.test2 where c1 = @id';
+--第一次
+execute sp_executesql @myquery,N'@id int', @id = 1;
+--第二次
+execute sp_executesql @myquery,N'@id int', @id = 2;
+--查看執行計畫
+SELECT cap.usecounts as '使用次數',objtype as '快取類型',st.text
+FROM sys.dm_exec_cached_plans cap
+CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS st
+WHERE st.text not like '%sys%'
+and st.text like '%dbo.test2%'
 ```
 
 **使用sp_executesql**

@@ -57,7 +57,7 @@ Restore succeeded.
 PS D:\lifftest> dotnet new --install isRock.Template.LIFF 
 PS D:\lifftest> dotnet new liff
 ```
-上面第一行指令是在本基上安裝liff範本特見，第二行指令則是為專案安裝範本。
+上面第一行指令是在本機上安裝liff範本特見，第二行指令則是為專案安裝範本。
 
 安裝完成後我們建置(Build)一下，看結果如何:
 ```bash
@@ -93,7 +93,7 @@ PS D:\lifftest>
 ```
 ###  修改程式碼
 
-接著在  Liff.cshtml 這支程式碼中，找到 "____請換成你的LiffAppID_____"，並置換成你先前建立LIFF時保留的LiffAddID。
+接著在  Liff.cshtml 這支程式碼中，找到 "____請換成你的LiffAppID_____"，並置換成你先前建立LIFF時保留的LiffAppID。
 
 完成後類似底下這樣：
 ![enter image description here](https://i.imgur.com/05Z3b8E.png)

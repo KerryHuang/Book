@@ -65,7 +65,7 @@ cd /Users/morose/Documents/Temp/Docker/MySQL
 docker run --name mymysql -p 3306:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7 mysqld
 ```
 
-- -p 3306:3306：將 Container 的 3306 Port 映射到主機的 3306 Port。 (前面代表主機，後面代表容器
+- -p 3306:3306：將 Container 的 3306 Port 映射到主機的 3306 Port。 (前面代表主機，後面代表容器)
 
 - -v $PWD/conf:/etc/mysql/conf.d：將主機當前目錄下的 conf/my.cnf 掛載到 Container 的 /etc/mysql/my.cnf。
 
@@ -102,7 +102,7 @@ docker exec -it mymysql bash
 ---
 
 ```
-mysql -h localhost -p 3306 -u root -p root
+mysql -h localhost -P 3306 -u root -p
 ```
 
 [![img](https://morosedog.gitlab.io/images/docker/chapter4/08.png)](https://morosedog.gitlab.io/images/docker/chapter4/08.png)

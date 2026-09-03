@@ -54,7 +54,7 @@ Issue Tracking 是專案管理中的溝通機制。Issue Tracking system則是�
 - CIM組
 - BPM組
 
-當然還有其他各式各樣的分法，但這不是本系統文章要探討的重點。
+當然還有其他各式各樣的分法，但這不是本系列文章要探討的重點。
 
 本系列文章是從作業管理面試著將MIS的業務做一個分類：
 ![https://ithelp.ithome.com.tw/upload/images/20220911/201519500h61cohzKM.png](https://ithelp.ithome.com.tw/upload/images/20220911/201519500h61cohzKM.png)

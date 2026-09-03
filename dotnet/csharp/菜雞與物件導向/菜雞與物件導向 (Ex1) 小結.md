@@ -53,7 +53,7 @@ author: igouist
 ### [介面](https://igouist.github.io/post/2020/07/oo-7-interface)
 
 - 介面就像是針對類別的實作、物件的行為去做規定的一個契約書，只需要先定義好該做的事，裡面怎麼做不需要管；所以只需要宣告要求的方法，不需要撰寫方法本體
-- 介面將物件之間的互動的著眼點放在該物件的行為上，降低了物件之間的耦合，更提高的物件彼此替換的彈性
+- 介面將物件之間的互動的著眼點放在該物件的行為上，降低了物件之間的耦合，更提高了物件彼此替換的彈性
 
 ### [內聚、耦合](https://igouist.github.io/post/2020/09/oo-8-cohesion-and-coupling)
 
@@ -78,7 +78,7 @@ author: igouist
 - 把工作交給負責該職責的類別去做，自己只需要關注在自己正在處理的職責即可，也就是封裝的體現
 - 單一職責的關鍵在於展現程式碼的意圖，並時常自問：是否只有一個原因造成改變？職責是否清晰？
 - 當我們並未遵守單一職責原則時，會容易產生意外的重複、修改時也無法界定影響範圍、並且每次修改都要閱讀大量無關程式碼，使得修改成本大幅上升
-- 而遵守單一職責時，我們提高的程式碼的重複使用率，降低修改成本，並且也提高了內聚、降低了耦合，讓程式更容易管理
+- 而遵守單一職責時，我們提高了程式碼的重複使用率，降低修改成本，並且也提高了內聚、降低了耦合，讓程式更容易管理
 
 ### [開放封閉原則](https://igouist.github.io/post/2020/10/oo-11-open-closed-principle)
 
@@ -154,7 +154,7 @@ author: igouist
 - [菜雞與物件導向 (13): 介面隔離原則](https://igouist.github.io/post/2020/11/oo-13-interface-segregation-principle)
 - [菜雞與物件導向 (14): 依賴反轉原則](https://igouist.github.io/post/2020/12/oo-14-dependency-inversion-principle)
 - [菜雞與物件導向 (15): 最少知識原則](https://igouist.github.io/post/2020/12/oo-15-least-knowledge-principle)
-- [菜雞與物件導向 (Ex1): 小結](https://igouist.github.io/post/2021/oo-ex1-end2020)
+- [菜雞與物件導向 (Ex1): 小結](https://igouist.github.io/post/2021/01/oo-ex1-end2020)
 
 ## 其他文章
 

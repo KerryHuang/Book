@@ -29,7 +29,7 @@ HttpReports 基於.NET Core 開發的APM監控系統，使用MIT開源協議，�
 
 ## 安裝 NuGet 套件
 ---
-使用`Nuget`安裝`MHttpReports.Dashboard`包和`HttpReports.SqlServer`
+使用`Nuget`安裝`HttpReports.Dashboard`包和`HttpReports.SqlServer`
 
 ![img](images/httpreports-02.png)
 

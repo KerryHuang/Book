@@ -6,14 +6,14 @@ kind: original
 
 ### 什麼是 CORS？
 
-**CORS（Cross-Origin Resource Sharing，跨來源資源共享）** 是一種瀏覽器的安全機制，用於控制網頁如何從不同的域名請求資源。當網頁發送 AJAX 請求（例如使用 `fetch()` 或 `XMLHttpRequest`）到與原始網頁不同的域（domain）、協議（protocol）或端口（port）時，會發生所謂的「跨來源請求」。CORS 機制允許服務器明確聲明哪些域名可以訪問它的資源，以及允許哪些 HTTP 方法和標頭。
+**CORS（Cross-Origin Resource Sharing，跨來源資源共享）** 是一種瀏覽器的安全機制，用於控制網頁如何從不同的域名請求資源。當網頁發送 AJAX 請求（例如使用 `fetch()` 或 `XMLHttpRequest`）到與原始網頁不同的域（domain）、協議（protocol）或連接埠（port）時，會發生所謂的「跨來源請求」。CORS 機制允許伺服器明確聲明哪些域名可以存取它的資源，以及允許哪些 HTTP 方法和標頭。
 
 預設情況下，瀏覽器會阻止這些跨來源請求，因為它們可能引起安全問題。為了解決這個問題，CORS 為合法的跨域請求提供了途徑。
 
 ### CORS 的作用
 
-1. **允許的域**：通過 `Access-Control-Allow-Origin` 標頭，服務器可以指定允許的來源域。
-2. **預檢請求（Preflight Request）**：對於一些非簡單請求（如使用 `PUT`, `DELETE`，或自訂標頭），瀏覽器會發送「預檢請求」，先詢問服務器是否允許該操作。
+1. **允許的域**：通過 `Access-Control-Allow-Origin` 標頭，伺服器可以指定允許的來源域。
+2. **預檢請求（Preflight Request）**：對於一些非簡單請求（如使用 `PUT`, `DELETE`，或自訂標頭），瀏覽器會發送「預檢請求」，先詢問伺服器是否允許該操作。
 3. **允許的 HTTP 方法和標頭**：可以控制哪些 HTTP 方法（`GET`, `POST`, `PUT`, `DELETE`）和哪些自訂的標頭允許跨域使用。
 
 ### 在 .NET 中如何設定 CORS
@@ -70,9 +70,9 @@ builder.Services.AddCors(options =>
 app.UseCors("AllowAllOrigins");
 ```
 
-#### 步驟 4：設定預檢緩存時間（可選）
+#### 步驟 4：設定預檢快取時間（可選）
 
-若您想要減少瀏覽器對服務器的預檢請求次數，可以設定預檢緩存時間：
+若您想要減少瀏覽器對伺服器的預檢請求次數，可以設定預檢快取時間：
 
 ```csharp
 builder.Services.AddCors(options =>
@@ -83,7 +83,7 @@ builder.Services.AddCors(options =>
             builder.WithOrigins("https://example.com")
                    .AllowAnyHeader()
                    .AllowAnyMethod()
-                   .SetPreflightMaxAge(TimeSpan.FromMinutes(10)); // 設定預檢緩存時間
+                   .SetPreflightMaxAge(TimeSpan.FromMinutes(10)); // 設定預檢快取時間
         });
 });
 ```
@@ -138,4 +138,4 @@ public IActionResult NoCorsEndpoint()
 
 ### 總結
 
-CORS 是一種安全機制，能有效防止瀏覽器發起不受控制的跨域請求。在 .NET 中，可以通過 `AddCors()` 和 `UseCors()` 配置並啟用 CORS，並根據需要設定允許的來源、方法、標頭等。配置正確的 CORS 能保護應用程式的安全，同時允許合法的跨域訪問。
+CORS 是一種安全機制，能有效防止瀏覽器發起不受控制的跨域請求。在 .NET 中，可以通過 `AddCors()` 和 `UseCors()` 配置並啟用 CORS，並根據需要設定允許的來源、方法、標頭等。配置正確的 CORS 能保護應用程式的安全，同時允許合法的跨域存取。

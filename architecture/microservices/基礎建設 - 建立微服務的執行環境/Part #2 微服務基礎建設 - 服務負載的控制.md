@@ -372,7 +372,7 @@ statistic (chart):
 
 ## 小結
 
-我下個簡單的結論: 這個演算法只能做到基本的限流。如果你的目的只是要限制 user 的用量，或是按照速度計費，這個方式就夠了。如果你的目的是預測或是限制服務量，要保護後端的服務平穩可靠的運行，這方是明顯的不足。
+我下個簡單的結論: 這個演算法只能做到基本的限流。如果你的目的只是要限制 user 的用量，或是按照速度計費，這個方式就夠了。如果你的目的是預測或是限制服務量，要保護後端的服務平穩可靠的運行，這方式明顯的不足。
 
 # 解法 1.5, StatisticEngineThrottle
 
@@ -382,7 +382,7 @@ statistic (chart):
 
 上個做法主要的缺點，在於每個 time window 之間有明顯的分界。例如 0 ~ 5 sec 之間是一個段落，6 ~ 10 sec 又是一個段落。每個段落是獨立統計的，因此很容易在兩個段落的交界處發生爆量的情況。很極端的狀況下，交界處可能在一瞬間 (ex: 0.1 sec) 把兩個段落的所有額度 ( 5 sec x 500 rps x 2 = 5000 requests ) 用光，造成瞬間巨量。這就違背了我們限制服務量的用意了。
 
-還記得之前那篇 [架構面試題 #2, 連續資料的統計方式](https://columns.chicken-house.net/2018/04/01/interview02-stream-statistic/) 嗎? 這篇探討的就是如何讓這種時間區段能夠 “平滑” 的統計? 不是 0 ~ 5 sec, 6 ~ 10 sec 這樣，而是 5 sec 那瞬間可以統計 0 ~ 5 sec 之間的資料，而 5.1 sec 則可以統計 0.1 sec ~ 5.1 sec 之間的資料。這個版本就是拿那篇文章講到的 sample code (我就不再拿分散是版本了，我直接拿單機版本 `InMemoryEngine` 來使用)。這種方法改善了 CounterThrottle 不夠 “平滑” 的問題，我們可以更精準的統計長時間的累計資料。
+還記得之前那篇 [架構面試題 #2, 連續資料的統計方式](https://columns.chicken-house.net/2018/04/01/interview02-stream-statistic/) 嗎? 這篇探討的就是如何讓這種時間區段能夠 “平滑” 的統計? 不是 0 ~ 5 sec, 6 ~ 10 sec 這樣，而是 5 sec 那瞬間可以統計 0 ~ 5 sec 之間的資料，而 5.1 sec 則可以統計 0.1 sec ~ 5.1 sec 之間的資料。這個版本就是拿那篇文章講到的 sample code (我就不再拿分散式版本了，我直接拿單機版本 `InMemoryEngine` 來使用)。這種方法改善了 CounterThrottle 不夠 “平滑” 的問題，我們可以更精準的統計長時間的累計資料。
 
 直接看程式碼:
 
@@ -540,7 +540,7 @@ rate: 500 rps, time window: 1 sec
 
 這是這個演算法的優點，也是缺點。你可以按照你的情況做調整。用 time window 可以更具體化的告訴你的客戶 (產生 request 的那端) 你的服務水準 (最大等待時間) 有多長。過去如果你只是用 queue, 你只能告訴客戶 “此 request 已收到，等待處理中”，而你沒有辦法預估一個精準的處理時間。搭配 Leaky Bucket 你就能做到這點。
 
-另一個好處是，這也是一個你 scale out 的評估標準。假設 queue 後面的 worker 每個能提供 100 RPS 的處理能力，後面有五個 worker 就能提供 100 x 5 = 500 RPS, 也就是這個範例設定的條件。當你觀察到 fail requests 的數量增加時，就可以擴充 worker 數量。當 worker 個數從 5 -> 6, time window 不變，改變的是你的處理速度，從 500 -> 600。這一切都能夠更直覺得量化，也更容易被度量，負責為運系統的 operation team 也能更直覺得按照需求條配系統組態。
+另一個好處是，這也是一個你 scale out 的評估標準。假設 queue 後面的 worker 每個能提供 100 RPS 的處理能力，後面有五個 worker 就能提供 100 x 5 = 500 RPS, 也就是這個範例設定的條件。當你觀察到 fail requests 的數量增加時，就可以擴充 worker 數量。當 worker 個數從 5 -> 6, time window 不變，改變的是你的處理速度，從 500 -> 600。這一切都能夠更直覺得量化，也更容易被度量，負責維運系統的 operation team 也能更直覺得按照需求調配系統組態。
 
 唯一要留意的是，這些需求如果不是非同步的處理 (async), 這些 idle 的 request 可能都會佔住 http connection. time window 設的過大，有可能導致前端的 connection 被用光了，造成前端的服務垮掉的現象。
 
@@ -648,6 +648,6 @@ Leaky Bucket 跟 Token Bucket 只是分別管控 buffer 的前端 (來源) 跟�
 
 我期望帶給讀者們的是個高度整合的 solution, 我不想綁定在特定的 infra / service 上，而是想帶給大家一個處理這類問題的 concept… 不說別的，光是能夠在 client side 透過你的 code 靈活操作 service discovery, throttle, circuit breaker, key-value store (configuration management), health check … 等機制，你就能用很少量的 code 做到很高的靈活程度。
 
-舉個例子 QoS (quality of servics), 若你想讓特定客戶可以享用較高等級的服務, 但是這些背後的服務都是同樣一份 code.. 該怎麼做? 很簡單，你只要把這些 service instance 在註冊時先貼上標籤，標記那些是 VIP only, service discovery 時就能夠依照客戶身分別找到特定的 service group 了。不同 service group 你可以用不同的限流 (throttle) 標準來控制服務水準，讓你的 SLA 也是可控的。
+舉個例子 QoS (quality of services), 若你想讓特定客戶可以享用較高等級的服務, 但是這些背後的服務都是同樣一份 code.. 該怎麼做? 很簡單，你只要把這些 service instance 在註冊時先貼上標籤，標記那些是 VIP only, service discovery 時就能夠依照客戶身分別找到特定的 service group 了。不同 service group 你可以用不同的限流 (throttle) 標準來控制服務水準，讓你的 SLA 也是可控的。
 
 開始能體會這些技巧帶來的效益了嗎? 掌握這些知識，才是微服務架構成功的途徑啊! 後續的文章我都會繼續用這角度介紹，實作的 labs 也會把這些應用的情境用實際的 code 表現出來。敬請期待, 也感謝各位長期支持 :)

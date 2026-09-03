@@ -70,7 +70,7 @@ Git 是一套分散式的版本控制，就像是打電動時的存檔。讓我�
 
 前面兩項比較好理解，我們這邊說明一下什麼是「分散式」的版本控制：
 
-以前的版本控制，例如 SVM，是採用「集中式」的版本控制：每次變更完要存個檔等等，都要連線到伺服器上進行處理，就像是好幾個人一起連線存取同一張資料表一樣。但是這樣遇到沒有網路的狀況就沒辦法讀檔存檔，或是變更的檔案很大就會等到天荒地老，這種對伺服器強依賴的狀況實在是有點兒不方便。
+以前的版本控制，例如 SVN，是採用「集中式」的版本控制：每次變更完要存個檔等等，都要連線到伺服器上進行處理，就像是好幾個人一起連線存取同一張資料表一樣。但是這樣遇到沒有網路的狀況就沒辦法讀檔存檔，或是變更的檔案很大就會等到天荒地老，這種對伺服器強依賴的狀況實在是有點兒不方便。
 
 分散式版本控制呢，則是每個人都有各自的完整一份資料，你要存檔讀檔啥的都你自己電腦上弄就好了，只有必須和其他人交流的情況（例如想丟上去雲端存檔了，寫完了要合併了）才需要透過網路來處理，這樣子日常做事起來就快上不少。
 
@@ -322,7 +322,7 @@ git commit -a -m "Update A.txt"
 
 ### 加入 .gitignore 忽略檔案
 
-如果你跟我一樣，總是 `add -a` 無差別加入，或是 GUI 的一鍵 Commit 用太爽，很容易就會翻車。怎麼個翻車法呢？我在新訓的時候就有被問過：
+如果你跟我一樣，總是 `add -A` 無差別加入，或是 GUI 的一鍵 Commit 用太爽，很容易就會翻車。怎麼個翻車法呢？我在新訓的時候就有被問過：
 
 「你把這推上來幹嘛？？？」
 
@@ -330,7 +330,7 @@ git commit -a -m "Update A.txt"
 
 有些東西加入版本控制後，輕則讓你的 Git status 變得很雜亂、Commit 變得亂七八糟，重則影響到其他人的環境。因此我們要想辦法，讓這些東西不要加入版本控制裡。
 
-這時候我們就可以加入 Git Igonre 來讓 Git 忽略這些東西。
+這時候我們就可以加入 Git Ignore 來讓 Git 忽略這些東西。
 
 現在讓我們來試試看，先新增一個 `Ignoreme.txt` 檔案，接著再新增一個 `.gitignore`：
 
@@ -352,7 +352,7 @@ ignoreme.txt
 
 至於哪些東西不該推呢，東西這麼多怎麼列得完呢？感謝社群，[github/gitignore](https://github.com/github/gitignore) 這兒都已經整理好了。就算裡面找不到的，只要 Google “你的語言或框架 + gitignore” 通常都會有結果，例如 [dotnet-ignore](https://github.com/Arasz/dotnet-ignore)，我們菜雞只要爽爽用，
 
-最後別忘了讓我們也把 `.gitigonre` 也 Add 到我們的 Git 之中，並且 Commit 起來：
+最後別忘了讓我們也把 `.gitignore` 也 Add 到我們的 Git 之中，並且 Commit 起來：
 
 ![img](https://i.imgur.com/WTr6t7f.png)
 
@@ -378,7 +378,7 @@ ignoreme.txt
 
 - 作者
 - 日期
-- Commit Messaage
+- Commit Message
 - Commit 用 SHA-1 計算出來的識別碼，可以當成是這個 Commit 的唯一 ID、身分證編號就行了
 - 分支所在的 Commit
   - HEAD 是指向我們當前所在的分支，而我們 HEAD 所在的 master 分支則是在 743d… 這個 Commit 上
@@ -471,7 +471,7 @@ ignoreme.txt
 
 能看到 Hello World! 和 Hello World. 的差異有確實出現。平時就可以用 `git diff` 來看這次到底都改了些什麼。
 
-現在我們試試看先用 `git -add A.txt`，把 A.txt 加入到 暫存中，再呼叫 `git diff` 試試：![img](https://i.imgur.com/g97cuY9.png)
+現在我們試試看先用 `git add A.txt`，把 A.txt 加入到 暫存中，再呼叫 `git diff` 試試：![img](https://i.imgur.com/g97cuY9.png)
 
 卻發現沒有找到任何差異了！這是因為 A.txt 已經被收入到暫存區中，不在工作區了。如果我們要確認暫存區和儲存庫之間的差異，要加上 `--cached` 參數，現在再用 `git diff --cached` 試試：
 
@@ -489,7 +489,7 @@ ignoreme.txt
 
 如果手癢要自製 diff 介面的朋友也可以參考黑大的這篇 [Git 筆記 - 產生程式異動對照表(Compare List)](https://blog.darkthread.net/blog/diff2html-webpage/)。
 
-另外，如果一次 Commit 包含的檔案太多，也可以像 `got log` 一樣加上檔名來比較單一檔案的差異，或是使用 `--stat` 來檢視簡單的變動檔案列表等等。
+另外，如果一次 Commit 包含的檔案太多，也可以像 `git log` 一樣加上檔名來比較單一檔案的差異，或是使用 `--stat` 來檢視簡單的變動檔案列表等等。
 
 diff 相關的文章也可以參照這幾篇，也是本節的主要參考資料：
 
@@ -739,18 +739,18 @@ git checkout master
 
 ------
 
-### 暫存（Stach）
+### 暫存（Stash）
 
-要注意，checkout 只能在已經 Commit 的情況下進行。如果萬不得已必須中斷手上工作切換到其他分支的時候（例如突然被叫去修正式環境的東西），可以使用 `stach` 來做暫存的動作。
+要注意，checkout 只能在已經 Commit 的情況下進行。如果萬不得已必須中斷手上工作切換到其他分支的時候（例如突然被叫去修正式環境的東西），可以使用 `stash` 來做暫存的動作。
 
-關於 `stach` 的使用方式，由於我個人比較少用，故不再贅述，可以參照以下兩篇：
+關於 `stash` 的使用方式，由於我個人比較少用，故不再贅述，可以參照以下兩篇：
 
 - [Stash暫存 · GIT教學](https://kingofamani.gitbooks.io/git-teach/content/chapter_3_branch/stash.html)
 - [菜鳥工程師 肉豬: Git stash 暫存正在修改的內容](https://matthung0807.blogspot.com/2019/11/git-stash.html)
 
 (2021/4/30) 補充:
 
-才剛說比較少用而已，結果沒多久就遇到需要使用 `stach` 來暫存的時候囧。所以這邊還是簡單記一下語法，感謝 [連猴子都能懂的 Git 入門指南](https://backlog.com/git-tutorial/tw/reference/stash.html)：
+才剛說比較少用而已，結果沒多久就遇到需要使用 `stash` 來暫存的時候囧。所以這邊還是簡單記一下語法，感謝 [連猴子都能懂的 Git 入門指南](https://backlog.com/git-tutorial/tw/reference/stash.html)：
 
 - `git stash` 直接進行暫存
 - `git stash save` 可以在 save 後面替這次暫存取名字
@@ -887,7 +887,7 @@ git merge Branch-X
 
 我們在前面分支的章節有稍微提起過，分支的 base 是建立出分支的 Commit，也是分支和其他分支比較的基準點。而 rebase 就是「重新設定基準點」的意思。
 
-剛剛在 merge 的時候，我們已經將 Branch-X 併入了 Branch-Y ，現在就試試用 rebase 的方式，將 Branch-X 併入 master 吧。
+剛剛在 merge 的時候，我們已經將 Branch-X 併入了 Branch-Y ，現在就試試用 rebase 的方式，將 Branch-Y 併入 master 吧。
 
 ```
 git checkout master
@@ -1049,11 +1049,11 @@ git push origin main
 
 > 補充：如果儲存庫曾經有用 `reset` 之類的往後跳，並且遠端儲存庫的版本又相對較新，例如遠端是第五版，抓下來之後 `reset` 回到第三版，這時候的 `push` 就會被擋下來，要求取得遠端最新的版本。
 >
-> 諸如此類的狀況，造成無法推送的時候，如果 十、分、確、定 手上的這份才是對的，必須推送上去，可以使用 `-f` 參數來進行強制推送。可以參見：[狀況題】聽說 git push -f 這個指令很可怕，什麼情況可以使用它呢？](https://gitbook.tw/chapters/github/using-force-push.html)
+> 諸如此類的狀況，造成無法推送的時候，如果 十、分、確、定 手上的這份才是對的，必須推送上去，可以使用 `-f` 參數來進行強制推送。可以參見：[【狀況題】聽說 git push -f 這個指令很可怕，什麼情況可以使用它呢？](https://gitbook.tw/chapters/github/using-force-push.html)
 >
 > 不過說實在的，還是祈禱不會遇到需要 `-f` 的那一天吧…
 
-## 擷取（Fatch）、提取（Pull）
+## 擷取（Fetch）、提取（Pull）
 
 上傳到雲端已經沒問題了，那從雲端下載到本機呢？這時候我們就需要用到 `fetch` 和 `pull` 這兩個指令。
 

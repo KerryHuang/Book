@@ -6,9 +6,9 @@ author: godleon
 
 # ASP.NET Core Consul 教學
 
-Cunsul 架構圖
+Consul 架構圖
 
-![Cunsul 架構圖](https://godleon.github.io/blog/images/service-mesh/consul-arch.png)
+![Consul 架構圖](https://godleon.github.io/blog/images/service-mesh/consul-arch.png)
 
 [官方網站](https://www.consul.io)
 
@@ -216,4 +216,4 @@ namespace ConsulDemoAPI.Controllers
 
 ### 8. 執行和測試健康檢查
 
-啟動 WebAPI，然後訪問 Consul 的 UI（`http://localhost:8500`）。在 Consul 管理介面中可以看到 `ConsulDemoAPI` 服務已註冊，並且會定期檢查 `http://localhost:5000/api/health` 的狀態。如果此端點返回成功狀態（如 200 OK），則 Consul 將該服務標記為健康狀態。
+啟動 WebAPI，然後訪問 Consul 的 UI（`http://localhost:8500`）。在 Consul 管理介面中可以看到 `ConsulDemoAPI` 服務已註冊，並且會定期檢查 `http://localhost:7240/api/health` 的狀態。如果此端點返回成功狀態（如 200 OK），則 Consul 將該服務標記為健康狀態。

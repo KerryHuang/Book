@@ -6,7 +6,7 @@ author: oomusou
 
 # 第八章 安裝SonarQube
 
-SonarQube 是一套 `程式碼品質檢查工具`，可以幫我們檢查 code 的 bugs、 vulenrability、code smell 與 duplication，也屬於 `持續整合` 重要的一環，亦可使用 Docker 安裝，將來管理會更加容易。
+SonarQube 是一套 `程式碼品質檢查工具`，可以幫我們檢查 code 的 bugs、 vulnerability、code smell 與 duplication，也屬於 `持續整合` 重要的一環，亦可使用 Docker 安裝，將來管理會更加容易。
 
 
 
@@ -30,7 +30,7 @@ $ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:lts
 
 - **-d**：`d` etach，建立 container 後，就脫離目前 process
 
-- **–name**：替 container 取一個人能夠識別的名字
+- **--name**：替 container 取一個人能夠識別的名字
 
 - **-p**：Docker 外部與 SonarQube內部所對應的 port，其中左邊為外部 Docker 的 port，右邊為 SonarQube 內部的 port
 

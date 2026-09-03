@@ -117,8 +117,8 @@ isRock.LineBot.ButtonsTemplate btnMsg =
 new isRock.LineBot.ButtonsTemplate()
 {
     thumbnailImageUrl = new Uri("https://i.imgur.com/5JKErL4.png"),
-    text = "ButtonsTempalte的文字",
-    title = "ButtonsTempalte的標題",
+    text = "ButtonsTemplate的文字",
+    title = "ButtonsTemplate的標題",
     actions = Actions,
 };
 //發送訊息
@@ -136,8 +136,8 @@ PS D:\linetest> dotnet run
 第2個UriAction當用戶按下，會開啟指定的網頁
 第3個PostbackAction當用戶按下，會觸發後端WebHook可接收的PostBack事件
 
-### 發送ConfirmTempalte
-請繼續加入底下程式碼，可發送ConfirmTempalte訊息：
+### 發送ConfirmTemplate
+請繼續加入底下程式碼，可發送ConfirmTemplate訊息：
 ```csharp
 //建立Actions
 var Actions = new List<isRock.LineBot.TemplateActionBase>();

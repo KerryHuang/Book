@@ -220,11 +220,14 @@ Azure SQL Database 不支援
 
 ### Q2：跨資料庫查詢？
 
-Azure SQL Database 不支援 `USE DB`，可用：
+Azure SQL Database 不支援 `USE DB`，也不支援三段式的 `[database].[schema].[table]` 跨資料庫查詢，需改用 Elastic Query（建立 External Data Source 與 External Table）：
 
 ```
-SELECT * FROM [database].[schema].[table]
+CREATE EXTERNAL TABLE [schema].[table] (...)
+WITH (DATA_SOURCE = RemoteDbSrc, SCHEMA_NAME = N'schema', OBJECT_NAME = N'table');
 ```
+
+Azure SQL Managed Instance 則原生支援同一執行個體內的跨資料庫查詢。
 
 ### Q3：Login / User 會一起搬過去嗎？
 

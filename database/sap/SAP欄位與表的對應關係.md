@@ -100,7 +100,7 @@ LFBK Vendor Master – Bank Details((銀行資訊)-àBNKA銀行表
 
 LFBW Vendor Master – Withholding Tax Types
 
-LBC1 Vendor Master – Transaction Figures
+LFC1 Vendor Master – Transaction Figures
 
 LFM2 Vendor Master – Purchasing Data
 

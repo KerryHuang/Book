@@ -44,7 +44,7 @@ docker images
 docker run --name myrabbitmq -p 15672:15672 -p 5672:5672 -d rabbitmq:management
 ```
 
-* –name myrabbitmq ：將 Container 取名為 myrabbitmq 
+* --name myrabbitmq ：將 Container 取名為 myrabbitmq 
 * -p 15672:15672 ：將 Container 的 15672 Port 映射到主機的 15672 Port (前面代表主機，後面代表容器) 
 * -p 5672:5672 ：將 Container 的 5672 Port 映射到主機的 5672 Port (前面代表主機，後面代表容器) -d :後台執行 Container ，並返回ID 
 * rabbitmq:management ：指定安裝的鏡像rabbitmq:management
@@ -63,7 +63,7 @@ http://localhost:15672/ 預設用戶/密碼：guest/guest
 docker run --name myrabbitmq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=123 -d rabbitmq:management
 ```
 
-* –name myrabbitmq ：將 Container 取名為 myrabbitmq 
+* --name myrabbitmq ：將 Container 取名為 myrabbitmq 
 * -p 15672:15672 ：將 Container 的 15672 Port 映射到主機的 15672 Port (前面代表主機，後面代表容器) 
 * -p 5672:5672 ：將 Container 的 5672 Port 映射到主機的 5672 Port (前面代表主機，後面代表容器) 
 * -e RABBITMQ_DEFAULT_USER=user ：設定登入用戶user 

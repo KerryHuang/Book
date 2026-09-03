@@ -20,7 +20,7 @@ author: Ray Chiu
 ### 命名方式
 * 展示層 : Controller
 * 業務層 : Service
-* 資料層 : Repoitory
+* 資料層 : Repository
 * 共用層 : Common
 
 ![SLA](images/SLA.png)
@@ -37,7 +37,7 @@ author: Ray Chiu
   * Implement
   * Dto
 * Soetek.Sample.WebAPI
-  * Parmeter
+  * Parameter
   * ViewModel
 
 #### Soetek.Sample.Common
@@ -50,7 +50,7 @@ author: Ray Chiu
 商業邏輯層 / Service，商業邏輯放置於此，會定義服務介面並實作介面，讓展示層依賴介面而不是依賴實作。接收展示層的 參數 Dto 並回傳 實體 Dto
 
 #### Soetek.Sample.WebAPI
-展示層 / Coontroller，以 .Net 來說，這裡通常是 MVC 專案 或 WebApi 專案，有接收的 Parameter 與 回傳 的 ViewModel 兩種類別。
+展示層 / Controller，以 .Net 來說，這裡通常是 MVC 專案 或 WebApi 專案，有接收的 Parameter 與 回傳 的 ViewModel 兩種類別。
 
 
 

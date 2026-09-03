@@ -104,9 +104,9 @@ builder.Services.AddDbContext<EFCoreContext>();
 ![範例10-1](https://user-images.githubusercontent.com/19286751/193631711-6f9c077f-9af1-42d4-8db5-35122e4914fa.jpg)
 
 下方會出現命令列
-![範例10-2](https://user-images.githubusercontent.com/19286751/192146003-e32e32c5-7f9d-405d-9374-13a6aeea86d3.png
+![範例10-2](https://user-images.githubusercontent.com/19286751/192146003-e32e32c5-7f9d-405d-9374-13a6aeea86d3.png)
 
-)輸入`dir`會顯示目錄檔案及子目錄清單
+輸入`dir`會顯示目錄檔案及子目錄清單
 ![範例10-3](https://user-images.githubusercontent.com/19286751/193631871-37a966a9-0713-4d21-a3f5-04d93c08559b.png)
 
 輸入`cd EFCoreExample_Advanced`移動到專案檔底下後再輸入`dir`確認是否到正確路徑

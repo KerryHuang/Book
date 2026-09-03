@@ -74,7 +74,7 @@ When the AJAX post completes (successfully or otherwise), the `completed` functi
 The next example shows how to catch errors using the `data-ajax-failure` attribute:
 
 ```
-@page@model IndexModel<form method="post" data-ajax="true" data-ajax-url="/notfound" data-ajax-method="post" data-ajax-failure="failed">    Name: <input type="text" name="name" /><br>    <input type="submit"/></form>@section scripts{     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>    <script>        failed = function (xhr) {            alert(`Status: {xhr.status}, Status Text: {xhr.statusText}`);        };    </script>}
+@page@model IndexModel<form method="post" data-ajax="true" data-ajax-url="/notfound" data-ajax-method="post" data-ajax-failure="failed">    Name: <input type="text" name="name" /><br>    <input type="submit"/></form>@section scripts{     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>    <script>        failed = function (xhr) {            alert(`Status: ${xhr.status}, Status Text: ${xhr.statusText}`);        };    </script>}
 ```
 
 In this case, the post results in a 404 not found error, details of which are displayed in a browser alert:

@@ -77,7 +77,7 @@ CAS 全名是 Central Authentication Service
 
 ### Workflow 快速介紹
 
-這裡在快速把流程帶過一次
+這裡再快速把流程帶過一次
 
 在第一次使用 AP1 的時候, 點了 login url 之後會被導轉 CAS Server
 此時會進行登入, 需要進行帳號密碼驗證, 登入成功後會進入到 AP1 manager 頁面
@@ -110,7 +110,7 @@ app.get('/', (req, res) => {
 ```
 
 接著成功登入 CAS 之後, AP 會需要重新拿著 CAS 給的 ticket 去驗證此人是否真的存在
-這邊 status = 200 代表成功, 如果檢測成功, 就會跳轉到 managr 頁面就完成登入了
+這邊 status = 200 代表成功, 如果檢測成功, 就會跳轉到 manager 頁面就完成登入了
 
 > 這裏的 ticket 可以想像是登入成功後的一組識別碼
 > 就像去飲料店買飲料拿到的號碼牌一樣, 用此號碼牌就可辨別是誰買的飲料

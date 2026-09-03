@@ -72,27 +72,27 @@ author: hungwin
 
 ```
 <!-- Custom fonts for this template-->
-<link href="\~/Scripts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="~/Scripts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"	  rel="stylesheet">
 <!-- Custom styles for this template-->
-<link href="\~/Content/sb-admin-2.min.css" rel="stylesheet">
+<link href="~/Content/sb-admin-2.min.css" rel="stylesheet">
 ```
 
 所引用的檔案在上一步都要先放至專案目錄下才行喔。修改 JavaScript 引用來源修改在 最下面的引用部份，主目錄用 \~/ 代替。
 
 ```
 <!-- Bootstrap core JavaScript-->
-<script src="\~/Scripts/vendor/jquery/jquery.min.js"></script>
-<script src="\~/Scripts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/vendor/jquery/jquery.min.js"></script>
+<script src="~/Scripts/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
-<script src="\~/Scripts/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="~/Scripts/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
-<script src="\~/Scripts/js/sb-admin-2.min.js"></script>
+<script src="~/Scripts/js/sb-admin-2.min.js"></script>
 <!-- Page level plugins -->
-<script src="\~/Scripts/vendor/chart.js/Chart.min.js"></script>
+<script src="~/Scripts/vendor/chart.js/Chart.min.js"></script>
 <!-- Page level custom scripts -->
-<script src="\~/Scripts/js/demo/chart-area-demo.js"></script>
-<script src="\~/Scripts/js/demo/chart-pie-demo.js"></script>
+<script src="~/Scripts/js/demo/chart-area-demo.js"></script>
+<script src="~/Scripts/js/demo/chart-pie-demo.js"></script>
 ```
 
 所引用的檔案在上一步都要先放至專案目錄下才行喔。修改圖檔路徑樣版上有使用到的圖檔路徑也需要修改，不然就會找不到圖片。搜尋 「src="img/」 會找到所有使用圖檔， 將「src="img/」取代為「src="\~/img/」

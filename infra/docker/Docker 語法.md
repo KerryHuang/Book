@@ -50,13 +50,13 @@ $ docker inspect cassandra
 $ docker search cassandra
 ```
 
-利用Dockerfile建立映像檔 (responsitory:tag為tiangolo/nginx_flask)
+利用Dockerfile建立映像檔 (repository:tag為tiangolo/nginx_flask)
 
 ```
 $ docker build -t "tiangolo/nginx_flask" .
 ```
 
-利用Dockerfile建立映像檔，且不用暫存的cache (responsitory:tag為tiangolo/nginx_flask)
+利用Dockerfile建立映像檔，且不用暫存的cache (repository:tag為tiangolo/nginx_flask)
 
 ```
 $ docker build --no-cache -t "tiangolo/nginx_flask" .
@@ -231,7 +231,7 @@ $ cd /sbin
 $ ip route|awk '/default/ {print $3}'
 ```
 
-刪除所有conainter的log
+刪除所有container的log
 
 ```
 $ truncate -s 0 /var/lib/docker/containers/*/*-json.log

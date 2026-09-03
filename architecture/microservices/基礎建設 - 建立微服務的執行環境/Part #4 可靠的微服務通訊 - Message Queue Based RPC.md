@@ -10,7 +10,7 @@ author: Andrew Wu
 
 
 
-跨服務間的通訊永遠都是分散式系統的關鍵問題。跨服務間的通訊，絕對不會只有我 call 你的 API (HTTP REST) 這麼單純而已。不同的服務之間有很多通訊方式，從最無腦的共用資料庫: share database / stroage, 到非同步通訊: event driven (publish / subscribtion), event sourcing (stream data + cqrs), 到同步通訊: HTTP RESTFul / gRPC … 等都算。
+跨服務間的通訊永遠都是分散式系統的關鍵問題。跨服務間的通訊，絕對不會只有我 call 你的 API (HTTP REST) 這麼單純而已。不同的服務之間有很多通訊方式，從最無腦的共用資料庫: share database / storage, 到非同步通訊: event driven (publish / subscription), event sourcing (stream data + cqrs), 到同步通訊: HTTP RESTFul / gRPC … 等都算。
 
 如果你需要兼顧非同步，單向或雙向，甚至更複雜的情境，透過可靠的 Message Queue 已經是很基本的選項了。我們團隊挑選了 [RabbitMQ](http://www.rabbitmq.com/) + [CloudAMQP](https://www.cloudamqp.com/) 當作底層的通訊管道，而非直接選用特定 cloud provider 專屬的方案。由於有大量的商業邏輯需要仰賴 Message Queue 來簡化，因此靈活的 exchange / queue 的組合變成挑選的重點。
 
@@ -200,7 +200,7 @@ null)
 
 由於 Worker 的執行不是那麼直線思考，這段 code 我稍微說明一下。 `MessageWorker` 啟動後就會對 rabbit mq 初始化必要的 connection, channel，同時就開始註冊 event handler, 只要 channel 收到 message, 就會觸發 event, 交給 `MessageWorkerProcess` 這型別的 delegate 接手處理。
 
-這些動作，都會在 `MessageWorker.StartAsync()` 之後開始生效，直到 `MessageWorker.StopAsync()` 被呼叫之後為止。由於這些行為都在不同的 threads 之間直行，因此你會看到主執行緒只有幾行，啟動後就等著 user 按下 enter 然後就結束。
+這些動作，都會在 `MessageWorker.StartAsync()` 之後開始生效，直到 `MessageWorker.StopAsync()` 被呼叫之後為止。由於這些行為都在不同的 threads 之間執行，因此你會看到主執行緒只有幾行，啟動後就等著 user 按下 enter 然後就結束。
 
 ```
 var start = server.StartAsync(CancellationToken.None);
@@ -213,7 +213,7 @@ await server.StopAsync(CancellationToken.None);
 
 ## MessageWorker: 多執行緒平行處理
 
-`MessageWorker` 背後藏著不少難搞的細節，包含 `MessageWorker` 啟動之後，背後其實準備了多個 thread(s), 以便來應付同時有多個 message 湧入的狀況。也因為這樣，當你呼叫 `Stop()` 時，若還有 message 還在處理中，你也不能立刻就結束，需要經過正常的關閉程序 (你可以想像銀行同時有 5 個櫃台，每個瞬間最多都有五個客戶被服務，就算要關門也要等這五個櫃台都處理完畢才行)。在呼叫 `StopAsync()` 的那瞬間，`MessageWorker` 就不會再接收新的 message, 同時會等待所有的 worker thread(s) 把處理到一半的 message 都正常處理完畢後，回報給 `MessageWorker`, 全部完成之後 `StopAsync()` 才能取得 result (也就是 await 會 return)，讓主程式知到 `MessageWorker` 已經完全關閉，能夠正常離開。
+`MessageWorker` 背後藏著不少難搞的細節，包含 `MessageWorker` 啟動之後，背後其實準備了多個 thread(s), 以便來應付同時有多個 message 湧入的狀況。也因為這樣，當你呼叫 `Stop()` 時，若還有 message 還在處理中，你也不能立刻就結束，需要經過正常的關閉程序 (你可以想像銀行同時有 5 個櫃台，每個瞬間最多都有五個客戶被服務，就算要關門也要等這五個櫃台都處理完畢才行)。在呼叫 `StopAsync()` 的那瞬間，`MessageWorker` 就不會再接收新的 message, 同時會等待所有的 worker thread(s) 把處理到一半的 message 都正常處理完畢後，回報給 `MessageWorker`, 全部完成之後 `StopAsync()` 才能取得 result (也就是 await 會 return)，讓主程式知道 `MessageWorker` 已經完全關閉，能夠正常離開。
 
 為何要做這段? 有很大的原因，是為了將來上線時的維運考量。細節我在後面的 Auto Scaling 段落再說明。這邊我先交代如何正常的結束 `MessageWorker` 的運作。
 
@@ -324,7 +324,7 @@ stoppingToken.WaitHandle.WaitOne();
 await Task.Run(() => { stoppingToken.WaitHandle.WaitOne(); });
 ```
 
-這又是另一段故事了。這是為了配合 [C# async](https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/async) `的規格。BackgroundService` 的 `Start()` 內部會 `await ExecuteAsync(...)` 的方式呼叫它，因此在這 method 內必須用 await 告訴 caller (其實我去 trace .NET core [source code](https://github.com/aspnet/Hosting/blob/master/src/Microsoft.Extensions.Hosting.Abstractions/BackgroundService.cs#L33) 才搞懂這段的), async call 可以在這個地方 return Task 了。這可以讓外面的 code 在 init MessageWorker 之後就能 async return 先去忙別的事情 (例如上例的等待 user 按下 ENTER …)。
+這又是另一段故事了。這是為了配合 [C# async](https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/async) 的規格。`BackgroundService` 的 `Start()` 內部會 `await ExecuteAsync(...)` 的方式呼叫它，因此在這 method 內必須用 await 告訴 caller (其實我去 trace .NET core [source code](https://github.com/aspnet/Hosting/blob/master/src/Microsoft.Extensions.Hosting.Abstractions/BackgroundService.cs#L33) 才搞懂這段的), async call 可以在這個地方 return Task 了。這可以讓外面的 code 在 init MessageWorker 之後就能 async return 先去忙別的事情 (例如上例的等待 user 按下 ENTER …)。
 
 後半段就是反過來的動作了。RabbitMQ 的文件找不到正常的終止程序該怎麼搞，這段是我自己 try & error 試出來的方案。MessageWorker 決定終止之後，我第一件事情先把 consumer 的 event handler 拔掉，這並不會阻止 consumer 接收新的 message (應該啦), 但是可以阻止接收到的 message 交給 process 去處理。不處理的話就不會 ack, 所有尚未 ack 的 message 都會在 connection close 後直接回歸回 queue 等待下個有緣的 worker ..
 
@@ -332,7 +332,7 @@ await Task.Run(() => { stoppingToken.WaitHandle.WaitOne(); });
 
 由於這是 wait / notify 的設計，而非 pooling 的機制，因此反應時間幾乎是瞬間完成的。精確度取決於 OS 多快把 thread 喚醒，而不是取決於你 retry / pooling 的時間間隔設的多短。都處理完成之後才會繼續 close channel / connection。之前我踩過大地雷，太早 close connection, 導致 shutdown 之後的 message 都無法 ack …
 
-這整段的程序，雖然不大好懂，但是他能讓你確保 message 都能精準地完成之後在關閉程式。除了你可以降低事情做一半要去收尾的麻煩事之外，後面可以進一步看到如何跟 container / cloud provider 的 auto scaling 機制完美搭配的用法。這是所有的 worker 類型應用程式很關鍵的一環，但是這麼複雜的事情也不是和每個團隊都要自己處理，因此抽象封裝起來讓大家大量使用才是正途。
+這整段的程序，雖然不大好懂，但是他能讓你確保 message 都能精準地完成之後再關閉程式。除了你可以降低事情做一半要去收尾的麻煩事之外，後面可以進一步看到如何跟 container / cloud provider 的 auto scaling 機制完美搭配的用法。這是所有的 worker 類型應用程式很關鍵的一環，但是這麼複雜的事情也不是和每個團隊都要自己處理，因此抽象封裝起來讓大家大量使用才是正途。
 
 ## 雙向通訊: RPC
 
@@ -496,7 +496,7 @@ null, null))
 
 這些個別都很容易精通，但是你必須同時精通這幾件事，才有能力做好整合。 `MessageWorker` 在這邊的處理很單純，就是按照 `Message` 上面標記的 ReplyTo / CorrelationId, 把要回傳的 `Message` 傳回去而已。留意一下 Ack 等等的細節別弄錯就沒事了。這邊我就不特地貼 source code, 一樣有興趣可以直接翻 source code。
 
-要處理 RPC 的封裝，比較難搞的部分都在 `MessageClient` ，我多花點心思交代。原本想說既然是雙向，那我再 `MessageClient` 裡面包一個 `MessageWorker` 專心處理 return message 的部分就可以了。我也真的這樣實作出第一版，還真的能順利的 work。不過就如同上面說的一樣，使用情境落差太大，最主要是 `MessageClient` 沒有像 `MessageWorker` 那樣高可靠度的要求，跑起來太肥大了一點。於是我決定重新打造 `MessageClient` 接收訊息的部分，直接用 RabbitMQ 的 .NET client, 針對這種情境另外寫一套適合的機制 (其實也還好，幾十行 code 而已)。如果沒有看清楚需求跟目的，而過度強調要 reuse code 反而會畫地自限。
+要處理 RPC 的封裝，比較難搞的部分都在 `MessageClient` ，我多花點心思交代。原本想說既然是雙向，那我在 `MessageClient` 裡面包一個 `MessageWorker` 專心處理 return message 的部分就可以了。我也真的這樣實作出第一版，還真的能順利的 work。不過就如同上面說的一樣，使用情境落差太大，最主要是 `MessageClient` 沒有像 `MessageWorker` 那樣高可靠度的要求，跑起來太肥大了一點。於是我決定重新打造 `MessageClient` 接收訊息的部分，直接用 RabbitMQ 的 .NET client, 針對這種情境另外寫一套適合的機制 (其實也還好，幾十行 code 而已)。如果沒有看清楚需求跟目的，而過度強調要 reuse code 反而會畫地自限。
 
 我決定的架構是: 替每個 `MessageClient` Reply 用途準備一個專屬的 Queue，至於 Connection / Channel 則跟 Send 共用。因為在單一個 Client 的情況下，我不大需要處理瞬間有大量 RPC call 同時運作的需求，適度的控制資源比較明智。
 
@@ -568,7 +568,7 @@ public class MessageClient<TInputMessage, TOutputMessage> : MessageClientBase
 
 不熟悉 `AutoResetEvent` 該怎麼用的朋友們，可以參考我以前的文章: [ThreadPool 實作 #3. AutoResetEvent / ManualResetEvent](https://columns.chicken-house.net/2007/12/17/threadpool-實作-3-autoresetevent-manualresetevent/)。這邊簡單的說， `AutoResetEvent` 物件就像捷運的進出閘門一樣，平常是關閉的，如果有人想要通過就必須排隊。閘門何時會打開? 直到有人刷卡為止。不同的是通常我們會自己刷卡，在這邊刷卡跟通關的人是分開的。既然有 `AutoResetEvent`, 那就會有對應的 `ManualResetEvent` 。兩者最大的差異，在於 `AutoResetEvent` 會 “Auto” Reset … 意思是刷卡 (Set) 之後，閘門會打開放一個人過去，不管後面還有多少人在排隊，第一個人通過之後就會自動關起來 (Auto Reset)，除非有人再刷一次卡 (Set)。而 `ManualResetEvent` 就反過來，刷卡 (Set) 之後閘門會維持開啟的狀態，除非有人把他關起來 (Reset)。
 
-這邊我埋了個暗樁，在 `ReplyQueue_Received` 被觸發時，會用 correlationId 當作 key, 找到對應的 AutoResetEvent: `this.waitlist[props.CorrelationId]`, 呼叫 .`Set()` 通知當初送出對應的 `DemoInputMessage` 的 `SendMessageAsync()`，對應的 `DemoOutputMessage` 已經收到了。`SendMessageAsync()` 可以藉由 Wait AutoResetEvent, 直到被通知醒來之後，就可以到 `this.buffer[props.CorrelationId]` 取得 `DemoOutputMessage` 物件。
+這邊我埋了個暗樁，在 `ReplyQueue_Received` 被觸發時，會用 correlationId 當作 key, 找到對應的 AutoResetEvent: `this.waitlist[props.CorrelationId]`, 呼叫 `.Set()` 通知當初送出對應的 `DemoInputMessage` 的 `SendMessageAsync()`，對應的 `DemoOutputMessage` 已經收到了。`SendMessageAsync()` 可以藉由 Wait AutoResetEvent, 直到被通知醒來之後，就可以到 `this.buffer[props.CorrelationId]` 取得 `DemoOutputMessage` 物件。
 
 這樣看有點抽象，對照著看一下 `SendMessageAsync()` 的部分 code (上面的程式碼我略過這段，分兩段看會比較清楚):
 
@@ -620,7 +620,7 @@ public class MessageClient<TInputMessage, TOutputMessage> : MessageClientBase
 }
 ```
 
-整個 `SendMessageAsync` 就靠 `wait.WaitOne()` 這行，切割為上上兩個部分。前段就是準備送出 message, 而這行就是關鍵的等待 (會被 `ReplyQueue_Received` 喚醒)。喚醒之後就可以去 buffer 取回對應的 `DemoOutputMessage` 傳回。
+整個 `SendMessageAsync` 就靠 `wait.WaitOne()` 這行，切割為上下兩個部分。前段就是準備送出 message, 而這行就是關鍵的等待 (會被 `ReplyQueue_Received` 喚醒)。喚醒之後就可以去 buffer 取回對應的 `DemoOutputMessage` 傳回。
 
 至於 C# 的 async / await 如何封裝? 我只要把 `AutoResetEvent.WaitOne()` 包裝成 Task, 讓我可以用 await 去等待他的傳回結果；C# 編譯器就會幫我搞定這整段機制了:
 
@@ -628,7 +628,7 @@ public class MessageClient<TInputMessage, TOutputMessage> : MessageClientBase
 await Task.Run(() => wait.WaitOne());
 ```
 
-這整段非同步的處理需要花點腦筋，我在 [.NET Conf 2018](https://www.facebook.com/andrew.blog.0928/videos/478284192685645/) 那場演講中，就都是在交代中間的細節。需要更詳細的說明，可以看當天的錄影。我擷取當天的 [PPT](https://www.slideshare.net/chickenwu/net-conf-2018-message-queue-based-rpc) ，其中有畫了 UML sequency diagram, 搭配著看會更容易了解其中的奧秘:
+這整段非同步的處理需要花點腦筋，我在 [.NET Conf 2018](https://www.facebook.com/andrew.blog.0928/videos/478284192685645/) 那場演講中，就都是在交代中間的細節。需要更詳細的說明，可以看當天的錄影。我擷取當天的 [PPT](https://www.slideshare.net/chickenwu/net-conf-2018-message-queue-based-rpc) ，其中有畫了 UML sequence diagram, 搭配著看會更容易了解其中的奧秘:
 
 ![img](https://columns.chicken-house.net/wp-content/images/2019-01-01-microservice12-mqrpc/2019-01-01-21-16-54.png)
 
@@ -644,7 +644,7 @@ await Task.Run(() => wait.WaitOne());
 
 這狀況不只出現在 message queue (async) 會碰到，就算你用 HTTP RESTful API 一樣也會碰到。最常見的方式就是在系統邊界 (通常是外面打進來的 endpoints, 如 reverse proxy or API gateway) 先在 http header 藏一筆 request-id, 之後靠這個 request-id 來追蹤。
 
-用這個方法的前提是，你必須把這個 request-id 傳到下一關，如果你必須仰賴其他服務的功能的話…。不論你用 HTTP 或是 Message Queue 都一樣。這個 ID 順利傳遞下去的話，你就能追蹤這個 Request 跨服務的處理細節了。既然傳輸的管道已經被抽象化了，那麼最好這樣的追蹤資訊也能一起被抽象化處理，才不會有人在哪一官漏掉這個動作，導致這些訊息之後就斷了。
+用這個方法的前提是，你必須把這個 request-id 傳到下一關，如果你必須仰賴其他服務的功能的話…。不論你用 HTTP 或是 Message Queue 都一樣。這個 ID 順利傳遞下去的話，你就能追蹤這個 Request 跨服務的處理細節了。既然傳輸的管道已經被抽象化了，那麼最好這樣的追蹤資訊也能一起被抽象化處理，才不會有人在哪一關漏掉這個動作，導致這些訊息之後就斷了。
 
 我的作法是: 把這些資訊，封裝成 `TrackContext`, 如這個例子你可以只放 RequestId, 或是有其他更多的資訊 (如果你需要) 也可以。只是這會增加每次呼叫的通訊成本，請斟酌使用，切勿想到什麼通通都一股腦塞進去。這類機制的處理，通常都是配對的；例如以這個例子來說， `MessageClient` 會打包放進去， `MessageWorker` 就會拆包裹拿出來；如果 Http 通訊，我們可能就會在 `HttpClientHandler` 裡打包，在 ASP.NET WebAPI 的 `ActionFilter`, 或是 ASP.NET Core 的 Middleware 裡面拆開。
 
@@ -664,9 +664,9 @@ public MessageClient(
 }
 ```
 
-如果你是透過 DI 取得 `MessageClient`, 那麼在解析的過程中，DI 自然會幫你取得正確的 `TrackContext` … (這物件通常都會被注入 Scoped 的領域內)。拿到 `TrackContext` 之後，剩下的就是在每次 `SendMessage()` 時把資訊放在 Message Headers 就好了。也因為這個原因，請避免把 MessageClient 用 Signletion 的領域注入，這樣會讓這個機制錯亂。如果你不打算搭配任何的 DI framework 也無訪，建立 `MessageClient` 時請自己準備好這些物件即可。
+如果你是透過 DI 取得 `MessageClient`, 那麼在解析的過程中，DI 自然會幫你取得正確的 `TrackContext` … (這物件通常都會被注入 Scoped 的領域內)。拿到 `TrackContext` 之後，剩下的就是在每次 `SendMessage()` 時把資訊放在 Message Headers 就好了。也因為這個原因，請避免把 MessageClient 用 Singleton 的領域注入，這樣會讓這個機制錯亂。如果你不打算搭配任何的 DI framework 也無妨，建立 `MessageClient` 時請自己準備好這些物件即可。
 
-接著，這個問題複雜的部份又回到 `MessageWorker` `了。MessageWorker` 會不斷接到不同的 message, 他們可能來自完全不同的 service or instance, 因此你必須替每個 `MessageWorkerProcess` 執行前後，準備一個獨立的 Scope, 並且在 Process 執行之前，先在這個 Scope 內注入正確的 `TrackContext` 資訊。聽起來有點抽象，沒辦法，Dependency Injection 本來就有點抽象… 簡單的說，這配對的機制，能創造一個環境，把 `MessageClient` 內的 `TrackContext` 複製到 `MessageWorker` 這端，讓同一個 Message, 在 `MessageClient` / `MessageWorker` 兩端都能拿到同樣的 `TrackContext` 。這個轉移機制如果能夠透明化，就能大大降低處理錯誤的狀況。
+接著，這個問題複雜的部份又回到 `MessageWorker` 了。`MessageWorker` 會不斷接到不同的 message, 他們可能來自完全不同的 service or instance, 因此你必須替每個 `MessageWorkerProcess` 執行前後，準備一個獨立的 Scope, 並且在 Process 執行之前，先在這個 Scope 內注入正確的 `TrackContext` 資訊。聽起來有點抽象，沒辦法，Dependency Injection 本來就有點抽象… 簡單的說，這配對的機制，能創造一個環境，把 `MessageClient` 內的 `TrackContext` 複製到 `MessageWorker` 這端，讓同一個 Message, 在 `MessageClient` / `MessageWorker` 兩端都能拿到同樣的 `TrackContext` 。這個轉移機制如果能夠透明化，就能大大降低處理錯誤的狀況。
 
 這邊我搭配 .NET Core 內建的 DI (namespace: Microsoft.Extensions.DependencyInjection), 來處理這問題。來看 `MessageWorker` 的片段 code:
 
@@ -711,7 +711,7 @@ protected override void Subscriber_Received(object sender, BasicDeliverEventArgs
 
 DevOps 強調的是 Dev / Ops 的流程是緊緊扣在一起的，DevOps 團隊應該從 Ops 的過程中取得 feedback, 直接在 Dev 改善，然後再從 Ops 取得 feedback, 不斷循環持續改善，這才是 DevOps 的核心概念。
 
-我為何要講這段? 因為我看過太多 Dev 只顧著功能需求，而忘掉 Ops 需求的開發團隊了。這樣的團隊其實還不夠格自稱 DevOps … 理想的 DevOps 團隊，開發出來的系統不只要滿足 user 的需求，也該要滿足 Ops 的需求啊，所謂要開發出能被維運的系統，就是這個意思。另一種說法 “Design for Operaion” 講的也是同一件事，你在開發階段，設計階段就已經考慮好這系統將來該如何被維運，將來上線才有可能讓 Developer 來參與 Operation。
+我為何要講這段? 因為我看過太多 Dev 只顧著功能需求，而忘掉 Ops 需求的開發團隊了。這樣的團隊其實還不夠格自稱 DevOps … 理想的 DevOps 團隊，開發出來的系統不只要滿足 user 的需求，也該要滿足 Ops 的需求啊，所謂要開發出能被維運的系統，就是這個意思。另一種說法 “Design for Operation” 講的也是同一件事，你在開發階段，設計階段就已經考慮好這系統將來該如何被維運，將來上線才有可能讓 Developer 來參與 Operation。
 
 `MessageWorker` 必須確實做好 Graceful Shutdown, 背後最主要的原因就是要密切配合 DevOps… 從維運的觀點來看， “auto scaling” 是一個很重要的功能, 他能讓 operation 人員只要設定明確的規則，就能自動 (或是手動敲一個數字) 把服務 scaling 到理想的規模。Scaling 的過程中，可能會 “啟動” 新的 Worker, 或是 “關掉” 多餘的 Worker 來達成目的。在 Message Queue 的架構下，新增 Worker 非常容易，連線到同一個 Message Queue 就結束了，而能否自動 “關掉” 多餘的 Worker, 這時 Graceful Shutdown 就是個關鍵。
 
@@ -760,11 +760,11 @@ Windows Container 踩雷紀錄:
 
 1. configuration 是否已經集中管理? config 異動是否需要重新 deploy application? (不需要是最理想的)
 2. multiple deployment 時是否需要準備多份 artifacts ? (不需要是最理想的) 能否只透過同一個 artifact repository 取得?
-3. code build process (CI/CD pipeline) 是否正確的整合到 artifacts managment?
+3. code build process (CI/CD pipeline) 是否正確的整合到 artifacts management?
 
 上面這些，我認為是 developer 面對自動化部署的正確觀念。developer 該做的不是自己硬幹 automation script, 而是盡可能的配合 infra team 運用成熟的管理工具才是正途。檢視自身的 application 還不夠標準化導致無法接上 infra 的流程，改善這個環節才是一勞永逸的捷徑。
 
-回頭來看看我們的 code, 封裝後的 MessageWorker 到底算不算是 “design for operation” ? 我驗證的方式，就是真的把他丟到 VM / container, 然後看看從 infra 的角度來做 scaling, 我們的機制是否能正常運作? 不論你用 VM 或是 container, 由於 OS 這層都已經被虛擬化了，因此 infra 跟 application 通知關閉的管道，都一律從 OS shutdown signal 來進行。你的程式只要偵測 OS 是不是要關機了? 如果是，在關機前做好事當的處理，在回報 OS 處理完畢即可。
+回頭來看看我們的 code, 封裝後的 MessageWorker 到底算不算是 “design for operation” ? 我驗證的方式，就是真的把他丟到 VM / container, 然後看看從 infra 的角度來做 scaling, 我們的機制是否能正常運作? 不論你用 VM 或是 container, 由於 OS 這層都已經被虛擬化了，因此 infra 跟 application 通知關閉的管道，都一律從 OS shutdown signal 來進行。你的程式只要偵測 OS 是不是要關機了? 如果是，在關機前做好適當的處理，再回報 OS 處理完畢即可。
 
 ## Labs: Handling OS Shutdown
 
@@ -970,7 +970,7 @@ networks:
 docker-compose up -d rabbitmq
 ```
 
-*01:00 ~ 01:20* 啟動 consumer (1 instance) / producere (5 instances)
+*01:00 ~ 01:20* 啟動 consumer (1 instance) / producer (5 instances)
 
 ```
 docker-compose up -d --scale consumer=1 --scale producer=5
@@ -991,13 +991,13 @@ docker-compose up -d --scale consumer=2 --scale producer=5
 *02:00 ~ 02:10* 將 consumer 的執行數量從 2 -> 1, 可以從 message 看到其中一個 worker 接到關機指令，正常終止 (持續數秒)
 
 ```
-docker-compose up -d --scale consumer=2 --scale producer=5
+docker-compose up -d --scale consumer=1 --scale producer=5
 ```
 
 *02:10 ~ 02:31* 將 consumer 的執行數量從 1 -> 0, 再關閉一個 worker, 訊息中依樣看到正常終止的程序
 
 ```
-docker-compose up -d --scale consumer=2 --scale producer=5
+docker-compose up -d --scale consumer=0 --scale producer=5
 ```
 
 過程中可以看到，我只單純的對 docker-compose 下 `--scale consumer=xxx` 的指令，調整 service instance 的數量。從 console output 可以觀察到 MessageWorker 接到通知之後，不再有新的 message start, 只看到 end 的訊息；同時當處理中的訊息都完成後就跳出終止的訊息，MessageWorker 就離線了。這證明了我們可以透過 docker-compose, k8s 或是 docker swarm 這類管理工具直接來管理 MessageWorker, 而不需要再自己開發一堆 tools or script 做一樣的事情 (除非你有信心你自己開發的工具會比 K8S 好，而且你們的 operation 團隊不用學就會操作)。
@@ -1041,7 +1041,7 @@ docker-compose up -d --scale consumer=2 --scale producer=5
 
 反思自己開發的系統，如果無法這麼簡單地透過 infra 的手段完成 scale 調整，那代表背後還有些環節可以優化；這篇文章強調的 Graceful Shutdown 就是一例，這件事做好之後，scale 就能搭上 infra 手段的順風車, 這就是個對維運友善的設計。我看過太多開發者，因為不懂這些過程，往往自己寫了些很特殊或是專屬的工具來解決，不過換位思考，如果 Google 的每個服務都這樣搞，Google SRE 哪有辦法維運全球那麼多套服務啊!! 這些問題如果在開發階段就去考慮妥當，剩下的就交給專業的 SRE 就好。
 
-該如何做到這點? 讓每個團隊試著去維運自己開發的服務，你就會知道 design for operation 的重要性了。好的團隊，採到這地雷之後，自然會去找方法來對應；團隊裡要是有優秀的 tech leader, 或是有 architect 的角色, 就能夠避免團隊走冤枉路。
+該如何做到這點? 讓每個團隊試著去維運自己開發的服務，你就會知道 design for operation 的重要性了。好的團隊，踩到這地雷之後，自然會去找方法來對應；團隊裡要是有優秀的 tech leader, 或是有 architect 的角色, 就能夠避免團隊走冤枉路。
 
 觀念一轉之後，你會發現要做的事情完全不同了；你也會發現你的服務也能更容易地搭上主流技術了 (如 K8S, Azure, AWS 等等 cloud paas)。走向這條路，才有機會踩在巨人的肩膀上。
 

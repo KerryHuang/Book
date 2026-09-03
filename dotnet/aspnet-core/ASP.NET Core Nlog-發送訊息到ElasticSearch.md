@@ -52,7 +52,7 @@ dotnet add package NLog.Targets.ElasticSearch
 </target>
 ```
 
-記得加上 roles
+記得加上 rules
 
 ```
 <rules>
@@ -103,7 +103,7 @@ public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
 }
 ```
 
-個人測試只有3跟3可以正常運作，考慮不同環境會有需要不同的ElasticSearch Url，故最後採用第4種做法
+個人測試只有3跟4可以正常運作，考慮不同環境會有需要不同的ElasticSearch Url，故最後採用第4種做法
 
 ## 參考
 

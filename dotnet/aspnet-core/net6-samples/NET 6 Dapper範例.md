@@ -50,7 +50,7 @@ author: CI-YU
       using var connection = new SqliteConnection("Data Source=Student.sqlite");
       var SQL = new StringBuilder();
       //當找不到sqlite檔案時，建立新表，新表創建後就會產生sqlite檔案了
-      if (System.IO.File.Exists(@".\Student.sqlite")) {
+      if (!System.IO.File.Exists(@".\Student.sqlite")) {
         //組語法，新建名為Student的表
         SQL.Append("CREATE TABLE Student( \n");
         //Id欄位設定數字型別為PKey，並且自動遞增

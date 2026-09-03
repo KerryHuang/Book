@@ -115,9 +115,9 @@ source: site:ithelp.ithome.com.tw
 
 - 概觀 – 快速總覽 (Bug、進度… 等)
 - 活動 – 最近相關異動
-- 議題清單 – Tick List, Issue tracking.
+- 議題清單 – Ticket List, Issue tracking.
 - 甘特圖 – 議題的狀態以甘特圖方式顯示
-- 日曆 – 以日曆的方式顯示議題的狀題
+- 日曆 – 以日曆的方式顯示議題的狀態
 - 新聞 – 發布/顯示專案的消息
 - 文件 – 提供文件存放區域.
 - Wiki – 多人協同寫作的系統
@@ -192,4 +192,4 @@ source: site:ithelp.ithome.com.tw
 
 #### --[Redmine系統]_議題狀態清單：[網站管理]/[議題狀態清單]
 
-- 議題的追狀態清單設定，如 New、In Progress、Resolved、Feedback、Closed、Rejected。會在後續的建立範例中詳細說明，先不多述。
+- 議題的狀態清單設定，如 New、In Progress、Resolved、Feedback、Closed、Rejected。會在後續的建立範例中詳細說明，先不多述。

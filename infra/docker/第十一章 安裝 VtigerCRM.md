@@ -265,7 +265,7 @@ docker compose down      # ⚠ 整個刪除：資料與繁中設定全清空；�
 
 | 症狀 | 原因 | 解法 |
 |------|------|------|
-| 重啟後一直停在 loading 畫面 | 啟動腳本在 DB 已匯入時無限等待空資料庫 | 套用第五章補丁；或 `docker compose down` 後重新 `up` |
+| 重啟後一直停在 loading 畫面 | 啟動腳本在 DB 已匯入時無限等待空資料庫 | 套用第五節補丁；或 `docker compose down` 後重新 `up` |
 | 改了語言但介面還是英文 | `user_privileges/user_privileges_<id>.php` 快取未更新 | 執行 6-4 的步驟 (2) 改快取檔 |
 | 改 `config.inc.php` 沒生效 | PHP opcache 快取了舊設定 | `docker compose restart vtiger` |
 | 登入頁(Username/Password/Sign in)仍是英文 | 登入前的頁面走自己的語言選單 | 屬正常；**登入後**的 app 才是繁中 |

@@ -235,11 +235,11 @@ kind: original
 
 * 匿名函式應宣告為 `static`。
 
-  如果匿名函式不需要訪問外部變數，則應宣告為 `static`，以提高程式碼的性能。
+  如果匿名函式不需要存取外部變數，則應宣告為 `static`，以提高程式碼的性能。
 
 * 局部函式應宣告為 `static`。
 
-  如果局部函式不需要訪問外部變數，則應宣告為 `static`，以提高程式碼的性能。
+  如果局部函式不需要存取外部變數，則應宣告為 `static`，以提高程式碼的性能。
 
 * 結構體應宣告為 `readonly`。
 
@@ -287,7 +287,7 @@ kind: original
 
 * 應優先使用局部函式而非匿名函式。
 
-  如果需要使用函式，且函式不需要訪問外部變數，則應優先使用局部函式，以提高程式碼的性能。
+  如果需要使用函式，且函式不需要存取外部變數，則應優先使用局部函式，以提高程式碼的性能。
 
 * 應優先使用空值檢查而非型別檢查。
 
@@ -509,7 +509,7 @@ kind: original
 * **私有靜態欄位** (Private Static Field)：適用於 `private`、`protected`、`protected_internal` 和 `private_protected` 的靜態欄位成員，需要 `static` 修飾詞。
 * **型別和命名空間** (Type and Namespace)：適用於命名空間、類別、結構、介面和列舉，包含 `public`、`internal`、`private`、`protected`、`protected_internal` 和 `private_protected` 的可存取性，不需要修飾詞。
 * **非欄位成員** (Non-Field Member)：適用於屬性、事件和方法成員，包含 `public`、`internal`、`private`、`protected`、`protected_internal` 和 `private_protected` 的可存取性，不需要修飾詞。
-* **型別參數** (Type Parameter)：適用於命名空間，適用於任何可存取性，不需要修飾詞。
+* **型別參數** (Type Parameter)：適用於型別參數，適用於任何可存取性，不需要修飾詞。
 * **私有常數欄位** (Private Constant Field)：適用於 `private`、`protected`、`protected_internal` 和 `private_protected` 的常數欄位成員，需要 `const` 修飾詞。
 * **本地變數** (Local Variable)：適用於本地變數，適用於任何可存取性，不需要修飾詞。
 * **本地常數** (Local Constant)：適用於本地常數，適用於任何可存取性，需要 `const` 修飾詞。

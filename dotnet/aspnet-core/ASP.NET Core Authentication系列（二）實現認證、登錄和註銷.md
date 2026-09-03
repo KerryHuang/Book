@@ -113,7 +113,7 @@ public class AccountController : Controller
 這段代碼的關鍵在於下面三行代碼：
 
 1. 創建ClaimType為Name，值為用戶名的Claim。
-2. 創建ClaimsIdentity，注意AuthorizeType="Basic"。
+2. 創建ClaimsIdentity，注意AuthenticationType="Basic"。
 3. 創建ClaimsPrincipal。
 4. 調用HttpContext.SignInAsync登錄，其中認證方案為CookieAuthenticationDefaults.AuthenticationScheme，與配置時一致。
 
@@ -140,7 +140,7 @@ public IActionResult Index()
 
 ## 註銷
 
-用戶註釋，即將具有認證票據的Cookie設置為過期，直接調用`HttpContext.SignOutAsync`，注意認證方案要與配置和登錄的一致：`CookieAuthenticationDefaults.AuthenticationScheme`
+用戶註銷，即將具有認證票據的Cookie設置為過期，直接調用`HttpContext.SignOutAsync`，注意認證方案要與配置和登錄的一致：`CookieAuthenticationDefaults.AuthenticationScheme`
 
 ```csharp
 public class AccountController : Controller

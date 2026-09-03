@@ -353,7 +353,7 @@ git config --global core.editor "code --wait"  # 使用 VS Code
 
 ## **📌 9. 停止使用 Git Flow**
 
-如果你不想再使用 Git Flow：
+如果你想以預設值重新初始化 Git Flow：
 
 ```sh
 git flow init -d
@@ -488,7 +488,7 @@ git commit --allow-empty -m "你的 commit 訊息"
    git push origin feature/x --follow-tags
    ```
 
-3. **修改已有 commit 為空**
+3. **再追加一個空 commit**
     有時候你想在上一個 commit 後再加一個空 commit，可以用：
 
    ```bash

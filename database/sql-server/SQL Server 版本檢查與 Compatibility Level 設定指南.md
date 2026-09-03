@@ -95,7 +95,7 @@ kind: original
   | EF Core 版本         | 支援之 SQL Server | 說明                         |
   | -------------------- | ----------------- | ---------------------------- |
   | EF Core 2.x          | SQL 2008+         | 建議至少 SQL 2012            |
-  | EF Core 3.x          | SQL 2012+         | 需使用 System.Data.SqlClient |
+  | EF Core 3.x          | SQL 2012+         | 需使用 Microsoft.Data.SqlClient |
   | EF Core 5.x          | SQL 2012+         | .NET 5                       |
   | EF Core 6.x (LTS)    | SQL 2012+         | .NET 6                       |
   | EF Core 7.x          | SQL 2012+         | 最佳效能                     |

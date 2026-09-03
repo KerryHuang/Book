@@ -21,7 +21,7 @@ namespace Xtramile.application.services;
 - **DO use “noun” for namespace**
 
 ```csharp
-// CORRECT: “Entites” is a noun 
+// CORRECT: “Entities” is a noun 
 namespace Xtramile.Application.Entities;// WRONG: “CreateEntity” is a verb
 namespace Xtramile.Application.CreateEntity;
 ```
@@ -64,7 +64,7 @@ public class UserService
 - **DO use “noun” for class name**
 
 ```csharp
-/ CORRECT: DataInitializer is a noun
+// CORRECT: DataInitializer is a noun
 public class DataInitializer
 {
     // ...
@@ -236,7 +236,7 @@ public const string Base_Url = "https://api.example.com";
 public const int MaximumFileSize = 1024;
 
 // WRONG: imagine what will happen if you send ALL CAPS message to your partner
-public const string MAXIMUM_FILE_SIZE = 1024;
+public const int MAXIMUM_FILE_SIZE = 1024;
 ```
 
 - **DON’T use uncommon abbreviations for constant name**
@@ -280,10 +280,10 @@ private int Age = 30;
 
 ```csharp
 // CORRECT
-private int _isRunning = false;
+private bool _isRunning = false;
 
 // WRONG: "Run" is a verb
-private int _run = false;
+private bool _run = false;
 ```
 
 - **DO prefix fields with the underscore symbol**
@@ -521,7 +521,7 @@ public void DelUsr(int delId)
 - **DON’T use Hungarian notation for method arguments**
 
 ```csharp
-/ CORRECT
+// CORRECT
 public User GetUser(int id)
 {
     // ...
@@ -595,7 +595,7 @@ Int32 salary;
 - **DON’T use uncommon abbreviations for variable name**
 
 ```csharp
-// CORRECT: "csv" is a common abbrevation
+// CORRECT: "csv" is a common abbreviation
 var csvPath = "C:\\csv";
 
 // WRONG: "Lmt" is uncommon abbreviation

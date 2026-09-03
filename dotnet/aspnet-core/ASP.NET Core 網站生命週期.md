@@ -32,7 +32,7 @@ ASP.NET MVC 是運行在 .NET Framework 架構之上，在 .NET Framework 有一
 在 MVC 專案內有一檔案 Global.asax 裡面有最初始的應用程式生命週期事件: `Application_Start()`
 ![Img2](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-life-cycle-2.png)
 
-在 `Application_Start()` 事件內載入了 Area, Filter, Route 與 Boundle 這 4 種註冊表在 ASP.NET MVC 服務內。
+在 `Application_Start()` 事件內載入了 Area, Filter, Route 與 Bundle 這 4 種註冊表在 ASP.NET MVC 服務內。
 除了 `Application_Start()` 之外，還有另外 19 個請求事件可以使用。
 以下的事件名稱會依照請求發生時依此順序執行。
 

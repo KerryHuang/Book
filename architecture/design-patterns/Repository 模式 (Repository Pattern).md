@@ -8,7 +8,7 @@ author: Ray Chiu
 
 ## Repository 模式的好處
 
-在軟體分層那篇文章中，資料存取層的實作便是 Repository 模式的體現，有效的將資料存取隔離於商業邏輯之外，當要抽換資料來源時，無須改動展示層與商業邏輯層(前提是 Repoistory 約定的介面沒有變動)。
+在軟體分層那篇文章中，資料存取層的實作便是 Repository 模式的體現，有效的將資料存取隔離於商業邏輯之外，當要抽換資料來源時，無須改動展示層與商業邏輯層(前提是 Repository 約定的介面沒有變動)。
 
 ## 專用型 IRepository 與 泛型 IRepository
 
@@ -46,7 +46,7 @@ public interface IGenericRepository<TEntity>
     // ....
 }
 
-public class GenericRepository : GenericRepository<TEntity>
+public class GenericRepository<TEntity> : IGenericRepository<TEntity>
 {
     // ....
 }
@@ -54,7 +54,7 @@ public class GenericRepository : GenericRepository<TEntity>
 
 當 Repository 有不同的介面方法的時候，專用型 Repository 能提供最大的彈性。
 
-當 Repoitory 有固定的 CRUD 的介面方法，泛型 Repository 可以有效的減少重複的程式碼。
+當 Repository 有固定的 CRUD 的介面方法，泛型 Repository 可以有效的減少重複的程式碼。
 
 
 ## 專用型 Repository
@@ -468,7 +468,6 @@ public void ConfigureServices(IServiceCollection services)
         /// <returns></returns>
         Task<int> SaveChangeAsync();
     }
-}
 
     /// <summary>
     /// UnitOfWork

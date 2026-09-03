@@ -4,7 +4,7 @@ kind: original
 
 # [SQL SERVER] Like in
 
-之前如有查詢需球為co開頭 或 erry 結尾 或包含 vi...等，
+之前如有查詢需求為co開頭 或 erry 結尾 或包含 vi...等，
 
 我會先在AP端組好 like name co% or like name %erry or like name %vi%字串後送到後端SP中，
 

@@ -21,9 +21,9 @@ builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
     
     // 註冊 Pipeline Behaviors（順序很重要）
-    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+    cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    cfg.AddOpenBehavior(typeof(PerformanceBehavior<,>));
 });
 ```
 
@@ -161,7 +161,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int
         await _repository.AddAsync(order, cancellationToken);
         await _repository.SaveChangesAsync(cancellationToken);
 
-        // 2. 發布事件，通知所有訂閱者（非同步並行執行）
+        // 2. 發布事件，通知所有訂閱者（預設循序執行）
         await _mediator.Publish(new OrderCreatedNotification(
             order.Id,
             order.CustomerName,
@@ -328,7 +328,7 @@ public class PerformanceBehavior<TRequest, TResponse>
 
 csharp
 
-~~~csharp
+```csharp
 public class TransactionBehavior<TRequest, TResponse> 
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : ITransactionalRequest  // 自訂 marker interface
@@ -400,7 +400,7 @@ Controller.CreateOrder()
     │       │       └──► PerformanceBehavior.Stop   ← 計算耗時
     │       └──► (驗證失敗則 throw)
     └──► LoggingBehavior.After         ← 記錄完成
-~~~
+```
 
 ------
 

@@ -79,7 +79,7 @@ source: site:ithelp.ithome.com.tw
 
 - 陸續完成其他已經決定要開課的課程，如下圖 (圖06)
   ![https://ithelp.ithome.com.tw/upload/images/20220924/201519504uLLffloME.png](https://ithelp.ithome.com.tw/upload/images/20220924/201519504uLLffloME.png)
-- 設定完成後可以在甘特圖和日曆都看到 (圖˙07、08)
+- 設定完成後可以在甘特圖和日曆都看到 (圖07、08)
   ![https://ithelp.ithome.com.tw/upload/images/20220924/20151950TTzDJ6DQNo.png](https://ithelp.ithome.com.tw/upload/images/20220924/20151950TTzDJ6DQNo.png)
 
 ![https://ithelp.ithome.com.tw/upload/images/20220924/201519508sjRL3cnPB.png](https://ithelp.ithome.com.tw/upload/images/20220924/201519508sjRL3cnPB.png)

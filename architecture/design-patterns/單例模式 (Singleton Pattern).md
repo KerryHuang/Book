@@ -22,7 +22,7 @@ author: Ray Chiu
 而有此共同特徵：
 
 - 單個構造函數，它是私有且無參數的。這可以防止其他類實例化它（這將違反模式）。(C#來說類別必須 `sealed` ，且 建構式為 `private`)
-- 一個靜態變量，用於保存對單個已創建實例的引用。(C# 來說需要一個 `public` 與 `statc` 的 )
+- 一個靜態變量，用於保存對單個已創建實例的引用。(C# 來說需要一個 `public` 與 `static` 的 )
 - 公共靜態意味著獲取對單個創建實例的引用，必要時創建一個實例。(C# 來說類別需 `public` 與 `static`)
 
 #### 非執行緒安全 Singleton
@@ -60,6 +60,8 @@ public sealed class NotThreadSafeSingleton
 
 
 ```c#
+public sealed class SimpleThreadSafetySingleton
+{
     private static readonly object padlock = new object();
 
     private static SimpleThreadSafetySingleton _instance = null;
@@ -132,7 +134,6 @@ public sealed class DoubleCheckedLockingSingleton
 
         public static EagerSingleton Instance { get; } = new EagerSingleton();
     }
-}
 ```
 
 #### 完整 Lazy 實例
