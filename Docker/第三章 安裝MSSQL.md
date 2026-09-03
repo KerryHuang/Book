@@ -69,8 +69,8 @@ docker run -d --name mssql `
   -e "MSSQL_AGENT_ENABLED=true" `
   -p 1433:1433 `
   --restart always `
-  -v E:\Database\mssql\backup:/var/opt/mssql/backup `
-  -v E:\docker\mssql\data:/var/opt/mssql/data `
+  -v D:\Database\mssql\backup:/var/opt/mssql/backup `
+  -v D:\docker\mssql\data:/var/opt/mssql/data `
   mcr.microsoft.com/mssql/server:2022-latest
 ```
 
