@@ -88,7 +88,7 @@ kind: original
      作為預設的上傳位置：
 
      ```bash
-     git push -u origin master
+     git push -u origin main
      ```
      
    - 如果 GitLab 的預設分支是`main`

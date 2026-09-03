@@ -8,36 +8,18 @@ kind: original
 
 不多說，直接看作法吧
 
-```
+```sql
 -- 記得先切換到想要移除的資料庫名稱下
 USE [yourDataBaseName]
 GO
 
-/*Create Script to drop constraint and remove columns*/
+-- 產生移除所有 FOREIGN KEY 的語法（先檢視，確認無誤再執行輸出的結果）
 SELECT
-    'IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N''' + DC.Name + ''') and Type = ''D'')
-            ALTER TABLE [' + OBJECT_SCHEMA_NAME(SO.ID) + '].[' + SO.Name + '] DROP CONSTRAINT [' + DC.Name + ']'
-FROM SysObjects SO
-INNER JOIN SysColumns SC
-    ON SO.ID = SC.ID
-INNER JOIN sys.default_constraints DC
-    ON SO.ID = DC.Parent_object_id
-        AND SC.colid = DC.Parent_column_id
-WHERE SO.XTYPE = 'U'
-AND SC.Name = 'msrepl_tran_version'
-UNION
-SELECT
-    'IF EXISTS (SELECT * FROM dbo.syscolumns where id = OBJECT_ID(N''' + SO.Name + ''') and Name = ''msrepl_tran_version'')
-           ALTER TABLE [' + OBJECT_SCHEMA_NAME(SO.ID) + '].[' + SO.Name + '] DROP COLUMN [msrepl_tran_version]  '
-FROM SysObjects SO
-INNER JOIN SysColumns SC
-    ON SO.ID = SC.ID
-INNER JOIN sys.default_constraints DC
-    ON SO.ID = DC.Parent_object_id
-        AND SC.colid = DC.Parent_column_id
-WHERE SO.XTYPE = 'U'
-AND SC.Name = 'msrepl_tran_version'
-ORDER BY 1
+    'ALTER TABLE [' + OBJECT_SCHEMA_NAME(fk.parent_object_id) + '].[' + OBJECT_NAME(fk.parent_object_id) + '] DROP CONSTRAINT [' + fk.name + '];'
+FROM sys.foreign_keys AS fk
+ORDER BY 1;
 ```
+
+> 注意：移除關聯限制後資料完整性不再受保護，且無法直接復原，執行前請確認資料庫名稱並備份。
 
 可以搭配[移除所有資料表](https://shunnien.github.io/2017/05/06/delete-all-database-table/)的語法一起使用。

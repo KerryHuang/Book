@@ -22,7 +22,7 @@ SAP IDES環境含有業務功能並能進行開發，而且含有一套完整演
 
 MINISAP沒有業務功能，只有開發和維護功能。對於例子程序，沒有演示數據。 
 
-SAP正式環境和SAP IDES環境的後臺數據庫可以有很多種，如SQL SERVER，ORACLE等，需要很高的配置。而MINISAP需要的配置很低，需要使用Microsoft的MSDE數據庫（Microsoft Data Engine）。 
+SAP正式環境和SAP IDES環境的後臺數據庫可以有很多種，如SQL SERVER，ORACLE等，需要很高的配置。而MINISAP需要的配置很低，需要使用Microsoft的MSDE數據庫（Microsoft SQL Server Desktop Engine）。 
 
 關於IDES系統的安裝，本書在附錄中有較詳盡的指導。 
 
@@ -74,7 +74,7 @@ SAP正式環境和SAP IDES環境的後臺數據庫可以有很多種，如SQL SE
 | ---------- | ------------------------------------ | -------- |
 | ABAPDOCU   | ABAP文檔和範例                       |          |
 | BAPI       | BAPI瀏覽器                           |          |
-| CMOD/SMOD  | 系統增加                             |          |
+| CMOD/SMOD  | 系統增強                             |          |
 | LSMW       | 數據導入工具                         | 數據導入 |
 | PFCG       | 權限管理                             |          |
 | SA38       | 程序執行                             |          |
@@ -100,8 +100,8 @@ SAP正式環境和SAP IDES環境的後臺數據庫可以有很多種，如SQL SE
 | SHDB       | 批輸入代碼                           | 數據導入 |
 | SM04       | 顯示在線用戶                         |          |
 | SM30       | 維護表視圖                           |          |
-| SM35       | 進程監控                             |          |
-| SM50       | 超時用戶                             |          |
+| SM35       | 批次輸入監控                             |          |
+| SM50       | 進程監控                             |          |
 | SMARTFORMS | SmartForms設計                       | 單據打印 |
 | SNUM       | 編號對象維護                         |          |
 | SO10       | 標準文本，設定Form使用的TIFF圖片等   |          |

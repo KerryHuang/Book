@@ -75,10 +75,10 @@ namespace DoubleCheckedLocking.WebApplication.Controllers
         public ActionResult<string> Get()
         {
             // 取得快取值
-            var cacheEntry = this._cache.Get<DateTime>("key");
+            var cacheEntry = this._cache.Get<DateTime?>("key");
 
             // 快取檢查
-            if (this._cache.Get<DateTime>("key") == null)
+            if (this._cache.Get<DateTime?>("key") == null)
             {
                 // 無快取, 所以重新取值
                 cacheEntry = DateTime.Now;
@@ -107,7 +107,7 @@ namespace DoubleCheckedLocking.WebApplication.Controllers
     public ActionResult<string> Get()
     {
         // 取得快取值
-        var cacheEntry = this._cache.Get<DateTime>("key");
+        var cacheEntry = this._cache.Get<DateTime?>("key");
 
         // 第一次檢查
         if (cacheEntry == null)
@@ -116,7 +116,7 @@ namespace DoubleCheckedLocking.WebApplication.Controllers
             lock (padlock)
             {
                 // 第二次檢查
-                if (this._cache.Get<DateTime>("key") == null)
+                if (this._cache.Get<DateTime?>("key") == null)
                 {
                     // 無快取, 所以重新取值
                     cacheEntry = DateTime.Now;

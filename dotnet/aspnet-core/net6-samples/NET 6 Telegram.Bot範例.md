@@ -40,7 +40,7 @@ author: CI-YU
 ```c#
     [HttpGet("Test")]
     public async Task<string> Test() {
-      var botClient = new TelegramBotClient("前置作業給的機器人ID");
+      var botClient = new TelegramBotClient("前置作業給的 Bot Token");
       //取得機器人基本資訊
       var me = await botClient.GetMeAsync();
       //發送訊息到指定頻道

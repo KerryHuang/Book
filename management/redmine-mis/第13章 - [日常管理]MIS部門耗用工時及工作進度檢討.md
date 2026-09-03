@@ -33,7 +33,7 @@ source: site:ithelp.ithome.com.tw
 - 舊的Redmine知識回顧
   - 模組的設定：請參考系列文Day 7-[[Redmine\]專案版面的規劃](https://ithelp.ithome.com.tw/articles/10290131)
   - 自訂欄位清單：請參考系列文Day 6-[[Redmine\]自行建立及維護表單](https://ithelp.ithome.com.tw/articles/10289889)
-  - 專案建立基本邏輯：請參考系列文Day 5-[[Redmine\]Redime系統邏輯說明](https://ithelp.ithome.com.tw/articles/10289859)
+  - 專案建立基本邏輯：請參考系列文Day 5-[[Redmine\]Redmine系統邏輯說明](https://ithelp.ithome.com.tw/articles/10289859)
   - 其餘本文有完成功能但沒做進行詳細畫面說明的：請參考系列Day 8開始的每篇文章的「本篇將學習到Redmine的功能重點」。每篇分享文都有當篇文章要新學習的Redmine某項功能的應用及設定方法的示範重點。
 
 ------

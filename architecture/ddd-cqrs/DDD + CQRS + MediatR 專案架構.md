@@ -2,6 +2,11 @@
 kind: original
 ---
 
+# DDD + CQRS + MediatR 專案架構
+
+以 HumanResources 員工清單查詢為例的分層範例：Query／Handler／Controller。
+
+```csharp
 // ─────────────────────────────────────────────
 // Application/HumanResources/Queries/GetEmployeeList/
 // ─────────────────────────────────────────────
@@ -249,3 +254,4 @@ public class HumanResourcesController : ControllerBase
         return Ok(ApiResponse.Success(result));
     }
 }
+```

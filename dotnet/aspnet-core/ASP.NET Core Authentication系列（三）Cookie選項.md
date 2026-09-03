@@ -21,7 +21,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.Cookie.Name = "Name"; // 设置Cookie名称
-        options.Cookie.Expiration = new TimeSpan(1, 0, 0); // 有效期1小时
+        options.ExpireTimeSpan = new TimeSpan(1, 0, 0); // 有效期1小时
         options.Cookie.Domain = ".91suke.com"; // 设置Cookie域名
     });
 ```

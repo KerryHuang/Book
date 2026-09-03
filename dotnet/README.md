@@ -24,16 +24,16 @@
   - [ASP.NET Core 中使用 HttpReports 進行接口統計，分析, 可視化， 監控，追踪等](<aspnet-core/ASP.NET Core 中使用 HttpReports 進行接口統計，分析, 可視化， 監控，追踪等.md>)
   - [ASP.NET Core 使用 MassTransit 與 RabbitMQ，實現事件發佈、訂閱](<aspnet-core/ASP.NET Core 使用 MassTransit 與 RabbitMQ，實現事件發佈、訂閱.md>) — 轉貼：余小章
   - [ASP.NET Core 分散式Session – 使用 Redis](<aspnet-core/ASP.NET Core 分散式Session – 使用 Redis.md>) — 轉貼：nethawk
-  - [ASP.NET Core 前台會員修改個人資料](<aspnet-core/ASP.NET Core 前台會員修改個人資料.md>) — 轉貼：hungwin
-  - [ASP.NET Core 前台會員忘記密碼與重設密碼](<aspnet-core/ASP.NET Core 前台會員忘記密碼與重設密碼.md>) — 轉貼：hungwin
-  - [ASP.NET Core 前台會員登入](<aspnet-core/ASP.NET Core 前台會員登入.md>) — 轉貼：hungwin
-  - [ASP.NET Core 前台會員註冊](<aspnet-core/ASP.NET Core 前台會員註冊.md>) — 轉貼：hungwin
   - [ASP.NET Core 呼叫 API 發生 CORS 錯誤](<aspnet-core/ASP.NET Core 呼叫 API 發生 CORS 錯誤.md>) — 轉貼：John Wu
   - [ASP.NET Core 如何套網頁設計樣版](<aspnet-core/ASP.NET Core 如何套網頁設計樣版.md>) — 轉貼：hungwin
   - [ASP.NET Core 客製化Model Validation 預設錯誤訊息](<aspnet-core/ASP.NET Core 客製化Model Validation 預設錯誤訊息.md>)
   - [ASP.NET Core 後台查詢頁面教學](<aspnet-core/ASP.NET Core 後台查詢頁面教學.md>) — 轉貼：hungwin
   - [ASP.NET Core 網站生命週期](<aspnet-core/ASP.NET Core 網站生命週期.md>) — 轉貼：hungwin
   - [ASP.NET Feature Management 使用說明與教學](<aspnet-core/ASP.NET Feature Management 使用說明與教學.md>)
+  - [ASP.NET MVC 5 前台會員修改個人資料](<aspnet-core/ASP.NET MVC 5 前台會員修改個人資料.md>) — 轉貼：hungwin
+  - [ASP.NET MVC 5 前台會員忘記密碼與重設密碼](<aspnet-core/ASP.NET MVC 5 前台會員忘記密碼與重設密碼.md>) — 轉貼：hungwin
+  - [ASP.NET MVC 5 前台會員登入](<aspnet-core/ASP.NET MVC 5 前台會員登入.md>) — 轉貼：hungwin
+  - [ASP.NET MVC 5 前台會員註冊](<aspnet-core/ASP.NET MVC 5 前台會員註冊.md>) — 轉貼：hungwin
   - [ASP.NET RulesEngine 介紹](<aspnet-core/ASP.NET RulesEngine 介紹.md>)
   - [LinePay](<aspnet-core/LinePay.md>)
   - **net6-samples/**

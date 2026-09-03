@@ -750,7 +750,6 @@ select * from demo2.DIRINFO where ID03 = 218818
 不囉唆直接看 SQL 指令 (我一樣保留 `c:\windows\backup` 目錄本身，方便稍後驗證結果) :
 
 ```
-del /s c:\windows\backup
 -- step 1, delete files
 delete demo2.FILEINFO where DIR_ID in (select ID from demo2.DIRINFO where ID03 = 218818)
 
@@ -1049,7 +1048,7 @@ where LEFT_INDEX < 0
 -- check result
 select * 
 from demo3.DIRINFO P inner join demo3.DIRINFO C on C.LEFT_INDEX between P.LEFT_INDEX and P.RIGHT_INDEX
-where P.ID = @root_node
+where P.ID = @dest_node
 ```
 
 Step 1: 執行時間: 00:00:00.527 (sec) 執行計畫 (Estimated Subtree Cost): 2.69808

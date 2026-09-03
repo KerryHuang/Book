@@ -153,7 +153,7 @@ app.get('/manager', (req, res) => {
 ```
 // CAS Server nodejs code
 // 登入成功執行此段程式碼的最後一段, 就會被跳轉回去當時 AP 提供的 serviceUrl
-if (username !== "123" && password !== "123") {
+if (username !== "123" || password !== "123") {
     return res.redirect("/bad")
 }
 req.session.login = true;

@@ -3,7 +3,7 @@ kind: reprint
 source: site:ithelp.ithome.com.tw
 ---
 
-# 第5章 - [Redmine]Redime系統邏輯說明
+# 第5章 - [Redmine]Redmine系統邏輯說明
 
 ------
 
@@ -51,7 +51,7 @@ source: site:ithelp.ithome.com.tw
 **[專案清單]**
 
 - 點選[專案清單]，才會看到有授權的專案清單。
-- 若要跳過網站首頁直接取得這一頁的連結，系統預設是：[http://網站IP/redmine/projects](http://xn--ip-xy0fp4h/redmine/projects) (圖2)
+- 若要跳過網站首頁直接取得這一頁的連結，系統預設是：`http://網站IP/redmine/projects` (圖2)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950HqAqTQ6rwd.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950HqAqTQ6rwd.png)
 - 要特別注意的是，若未登入，一般User看到的只有"公開"的專案。
 - 若專案的設定[公開]未打勾，只有該專案的成員在登入後才能看到未公開的專案(圖3)

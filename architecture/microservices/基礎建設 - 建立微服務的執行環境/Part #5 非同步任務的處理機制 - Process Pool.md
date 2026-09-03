@@ -457,7 +457,7 @@ public static void ProcessMain(string[] args)
     string line = null;
     string mode = "VALUE";
 
-    if (args != null & args.Length > 0) mode = args[0];      // transfer mode: VALUE | BASE64
+    if (args != null && args.Length > 0) mode = args[0];      // transfer mode: VALUE | BASE64
 
     switch (mode)
     {
