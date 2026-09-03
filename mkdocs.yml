@@ -36,7 +36,6 @@ plugins:
   - exclude:
       glob:
         - "scripts/*"
-        - "面試/*"
         - ".claude/*"
         - ".github/*"
         - "mkdocs.yml"

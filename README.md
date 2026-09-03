@@ -1,7 +1,7 @@
 # Kerry Huang 的開發筆記
 
 個人技術文件庫，收錄自己撰寫的教學、安裝手冊與專案筆記，以及值得反覆查閱的他人文章存檔。
-依知識領域分八個目錄，每個目錄的 README 是該領域的完整文章清單。
+依知識領域分七個目錄，每個目錄的 README 是該領域的完整文章清單。
 
 ## 目錄
 
@@ -14,7 +14,6 @@
 | [devtools/](<devtools/README.md>) | 開發工具：Git、Visual Studio、GitHub Copilot、Markdown/HackMD、Mac 裝機 | 50 |
 | [ai/](<ai/README.md>) | AI 工具：Claude Code、Graphify、.NET AI Agent 與 MCP | 3 |
 | [management/](<management/README.md>) | 專案與流程管理：Redmine、MES 導入、SSDLC、外包規範、SOP/BPMN、系統評估 | 53 |
-| [面試/](https://github.com/KerryHuang/Book/blob/main/面試/README.md) | 面試準備：履歷、問題集、自我介紹 | 10 |
 
 ## 各領域內容
 
@@ -59,17 +58,6 @@
   - [軟體專案任務挑戰賽/](<management/軟體專案任務挑戰賽>)：真人與 AI 從需求到交付協作體驗（11 篇）
   - [SSDLC](<management/SSDLC.md>)
   - [軟體外包規範](<management/軟體外包規範.md>)
-- **[面試/](https://github.com/KerryHuang/Book/blob/main/面試/README.md)** 面試準備：履歷、問題集、自我介紹
-  - [CV_黃子豪](https://github.com/KerryHuang/Book/blob/main/面試/CV_黃子豪.md)
-  - [CV_黃子豪_2024](https://github.com/KerryHuang/Book/blob/main/面試/CV_黃子豪_2024.md)
-  - [HR_問題集](https://github.com/KerryHuang/Book/blob/main/面試/HR_問題集.md)
-  - [NET 工程師 面試問題集](https://github.com/KerryHuang/Book/blob/main/面試/NET%20工程師%20面試問題集.md)
-  - [申請信_金陵女中_資訊科技代理教師](https://github.com/KerryHuang/Book/blob/main/面試/申請信_金陵女中_資訊科技代理教師.md)
-  - [自我介紹_3分鐘](https://github.com/KerryHuang/Book/blob/main/面試/自我介紹_3分鐘.md)
-  - [自我介紹_高中資訊教師](https://github.com/KerryHuang/Book/blob/main/面試/自我介紹_高中資訊教師.md)
-  - [資深工程師_問題集](https://github.com/KerryHuang/Book/blob/main/面試/資深工程師_問題集.md)
-  - [資深開發人員與技術主管](https://github.com/KerryHuang/Book/blob/main/面試/資深開發人員與技術主管.md)
-  - [題目](https://github.com/KerryHuang/Book/blob/main/面試/題目.md)
 
 ## 慣例
 
