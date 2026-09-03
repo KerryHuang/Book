@@ -10,7 +10,7 @@ kind: original
 2. 從時間軸的母單中建立
 3. 直接建立後再選擇母單
 
-<source src="../Images/從看板的母單中建立任務單.mp4" type="video/mp4">
+<source src="../images/從看板的母單中建立任務單.mp4" type="video/mp4">
 
 您的瀏覽器不支援影片播放。
 
@@ -18,7 +18,7 @@ kind: original
 
 
 
-<source src="../Images/從時間軸的母單下建立任務單.mp4" type="video/mp4">
+<source src="../images/從時間軸的母單下建立任務單.mp4" type="video/mp4">
 
 您的瀏覽器不支援影片播放。
 
@@ -26,7 +26,7 @@ kind: original
 
 
 
-<source src="../Images/直接建立任務再選擇母單.mp4" type="video/mp4">
+<source src="../images/直接建立任務再選擇母單.mp4" type="video/mp4">
 
 您的瀏覽器不支援影片播放。
 

@@ -71,6 +71,9 @@ SUB = {
 }
 
 SKIP_DIRS = {"images", "figures", "Images"}
+# 不放進 MkDocs 網站的目錄：README 內改連 GitHub，避免網站 build 時出現斷連結
+GITHUB_ONLY = {"面試"}
+GITHUB = "https://github.com/KerryHuang/Book/blob/main/"
 
 
 def front_matter(txt):
@@ -137,6 +140,12 @@ def count_md(abs_dir):
     return n
 
 
+def href(top, name):
+    if top in GITHUB_ONLY:
+        return GITHUB + top + "/" + name.replace("#", "%23").replace(" ", "%20")
+    return link(f"{top}/{name}")
+
+
 def sub_outline(abs_top, top):
     """頂層目錄底下第一層子目錄與散檔的一覽（名稱、說明、篇數）。"""
     lines = []
@@ -146,10 +155,10 @@ def sub_outline(abs_top, top):
         if not os.path.isdir(ad) or d in SKIP_DIRS or d.startswith("."):
             continue
         desc = SUB.get(f"{top}/{d}", "")
-        lines.append(f"  - [{d}/]({link(f'{top}/{d}')}){'：' + desc if desc else ''}（{count_md(ad)} 篇）")
+        lines.append(f"  - [{d}/]({href(top, d)}){'：' + desc if desc else ''}（{count_md(ad)} 篇）")
     for f in entries:
         if f.endswith(".md") and f != "README.md":
-            lines.append(f"  - [{os.path.splitext(f)[0]}]({link(f'{top}/{f}')})")
+            lines.append(f"  - [{os.path.splitext(f)[0]}]({href(top, f)})")
     return lines
 
 
@@ -166,8 +175,9 @@ def main():
         if not os.path.isdir(abs_top):
             continue
         n = count_md(abs_top)
-        table.append(f"| [{top}/](<{top}/README.md>) | {desc} | {n} |")
-        outline.append(f"- **[{top}/](<{top}/README.md>)** {desc}")
+        top_href = f"{GITHUB}{top}/README.md" if top in GITHUB_ONLY else f"<{top}/README.md>"
+        table.append(f"| [{top}/]({top_href}) | {desc} | {n} |")
+        outline.append(f"- **[{top}/]({top_href})** {desc}")
         outline += sub_outline(abs_top, top)
         body = [f"# {top}", "", desc, "", "[← 回總目錄](../README.md)", ""]
         render_dir(abs_top, "", 0, body)
@@ -194,6 +204,8 @@ def main():
         "`source` 與 `author` 記錄出處。目錄清單中標「轉貼」者連結指向原文。",
         "- **圖片**：放在文章所在目錄的 `images/`，以相對路徑引用。影片（mp4）走 Git LFS。",
         "- **新增文章**：放進對應領域目錄、加上 front matter，然後執行 `python scripts/gen-readme.py` 重新產生所有 README。",
+        "- **文件網站**：push 到 main 後由 GitHub Actions 以 MkDocs Material 建置並發布到 https://kerryhuang.github.io/Book/ 。"
+        "本機預覽：建虛擬環境後 `pip install -r requirements.txt`，再執行 `bash scripts/build-site.sh serve`。",
         "- **來源標記的限制**：轉貼文章的出處以檔內證據判定，少數只標到網域或 `kind: unknown`，歡迎修正。",
     ]
     write(os.path.join(ROOT, "README.md"), root)

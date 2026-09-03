@@ -351,3 +351,7 @@ MigrationBackup/
 
 # Claude Code
 .claude/settings.local.json
+
+# mkdocs
+.venv/
+site/

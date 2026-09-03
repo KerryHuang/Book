@@ -1,0 +1,56 @@
+site_name: Kerry Huang 的開發筆記
+site_url: https://kerryhuang.github.io/Book/
+repo_url: https://github.com/KerryHuang/Book
+edit_uri: edit/main/
+docs_dir: .
+site_dir: ../Book-site
+theme:
+  name: material
+  language: zh-TW
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切換深色
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切換淺色
+
+plugins:
+  - search:
+      lang: ja
+  - awesome-pages
+  - exclude:
+      glob:
+        - "scripts/*"
+        - "面試/*"
+        - ".claude/*"
+        - ".github/*"
+        - "mkdocs.yml"
+        - "requirements.txt"
+        - "*.py"
+        - "*.sh"
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
