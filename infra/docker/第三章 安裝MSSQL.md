@@ -140,7 +140,7 @@ docker ps
 ---
 (不想重做Container可以跳過) 
 
-建立Container先停止運行中的Container
+刪除Container先停止運行中的Container
 
 ```
 docker stop [Container ID]

@@ -89,7 +89,7 @@ public class MessageClient<TInputMessage> : MessageClientBase
 
     public string SendMessage(
         string routing, 
-        TInputMessage intput, 
+        TInputMessage input, 
         Dictionary<string, string> headers)
     {
         string correlationId = ...;
@@ -355,7 +355,7 @@ Server 接到訊息，處理完畢後，只要按照 Message 上的標示 (就�
 ```
 public string SendMessage(
     string routing, 
-    TInputMessage intput, 
+    TInputMessage input, 
     Dictionary<string, string> headers)
 {
     // 略
@@ -367,7 +367,7 @@ public string SendMessage(
 ```
 public TOutputMessage SendMessage(
     string routing, 
-    TInputMessage intput, 
+    TInputMessage input, 
     Dictionary<string, string> headers)
 {
     // 略
@@ -383,7 +383,7 @@ public class MessageClient<TInputMessage, TOutputMessage> : MessageClientBase
 }
 ```
 
-只是，RPC 透過網路，通常回應時間都遠低於正常的本地呼叫，再加上這訊息是透過 message queue 傳遞，延遲的時間可能會更久，如果這邊的封裝機制能搭配 C# [async](https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/async) / await 的方式來使用就更好了。再貪心一點，如果設計能追加成這樣就完美了:
+只是，RPC 透過網路，通常回應時間都遠高於正常的本地呼叫，再加上這訊息是透過 message queue 傳遞，延遲的時間可能會更久，如果這邊的封裝機制能搭配 C# [async](https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/async) / await 的方式來使用就更好了。再貪心一點，如果設計能追加成這樣就完美了:
 
 ```
 public async Task<TOutputMessage> SendMessageAsync(

@@ -4,12 +4,12 @@ kind: original
 
 ##### 目錄 
 
-[ASP.NET Core 網站生命週期](#Chapter1)
-[ASP.NET Core 如何套網頁設計樣版](#Chapter2)
-[ASP.NET Core 前台會員註冊](#Chapter3)
-[ASP.NET Core 前台會員登入](#Chapter4)
-[ASP.NET Core 前台會員修改個人資料](#Chapter5)
-[ASP.NET Core 如何使用 NLog 將 log 寫到檔案](#Chapter6)
+[ASP.NET Core 網站生命週期](<ASP.NET Core 網站生命週期.md>)
+[ASP.NET Core 如何套網頁設計樣版](<ASP.NET Core 如何套網頁設計樣版.md>)
+[ASP.NET Core 前台會員註冊](<ASP.NET MVC 5 前台會員註冊.md>)
+[ASP.NET Core 前台會員登入](<ASP.NET MVC 5 前台會員登入.md>)
+[ASP.NET Core 前台會員修改個人資料](<ASP.NET MVC 5 前台會員修改個人資料.md>)
+[ASP.NET Core 如何使用 NLog 將 log 寫到檔案](<ASP.NET Core NLog-如何使用 NLog 將 log 寫到檔案.md>)
 
 
 

@@ -28,7 +28,7 @@ HTTP 是 Internet 上數據通信的基礎。每次您訪問頁面、將可愛�
 
 1. HTTPClient 有更好的異步支持。
 2. HTTPClient 更易於使用和閱讀
-3. HTTPClient自動手動解壓響應內容
+3. HTTPClient自動解壓響應內容
 4. HTTPClient 自動重用多個請求的連接以獲得更好的性能。HttpWebRequest 具有_KeepAlive_屬性，但默認情況下它是禁用的。
 5. HTTPClient 在每個請求中自動包含一組默認標頭，例如 User-Agent、Accept 和 Connection 標頭。HttpWebRequest 不提供默認標頭。
 
@@ -106,7 +106,7 @@ public class Joke
 
 雖然 GET 請求非常簡單，但 POST 需要一些額外的東西。POST 請求允許您將數據從客戶端發送到源，就像 API 一樣。因此，POST 請求需要一個包含數據的正文。
 
-這個實體通常是一個鍵值對的情況。鍵是屬性名稱，值是……。嗯，該財產的價值。除了身體之外，並沒有什麼特別的地方。它甚至開始相同，但我們不期望返回任何數據，因此我們不必抓取和反序列化數據。
+這個實體通常是一個鍵值對的情況。鍵是屬性名稱，值是……。嗯，該屬性的值。除了身體之外，並沒有什麼特別的地方。它甚至開始相同，但我們不期望返回任何數據，因此我們不必抓取和反序列化數據。
 
 ```c#
 using (HttpClient client = new())

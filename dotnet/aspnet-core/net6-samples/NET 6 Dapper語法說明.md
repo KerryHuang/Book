@@ -174,7 +174,7 @@ author: CI-YU
       await conn.ExecuteAsync(SQL.ToString(), parameters, trans);
       SQL.Clear();
       SQL.Append("select * from Student");
-      var Result = await conn.QueryFirstOrDefaultAsync<Student>(SQL.ToString(), trans);
+      var Result = await conn.QueryFirstOrDefaultAsync<Student>(SQL.ToString(), null, trans);
       //當程式執行到Commit才是真的執行成功。
       trans.Commit();
       return Ok();

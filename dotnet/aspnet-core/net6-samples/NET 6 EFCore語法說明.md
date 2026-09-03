@@ -124,7 +124,7 @@ builder.Services.AddDbContext<EFCoreContext>();
 成功就會自動產生Migrations資料夾
 ![範例10-8](https://user-images.githubusercontent.com/19286751/193632147-f524d84b-fe04-44f3-8e6d-da6af6d9214a.png)
 
-### 編輯WeatherForecastController檔案編輯
+### 編輯WeatherForecastController檔案
 
 - 寫新的對外API：QueryAsync
 

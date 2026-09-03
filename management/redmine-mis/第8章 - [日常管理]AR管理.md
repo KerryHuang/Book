@@ -44,7 +44,7 @@ source: site:ithelp.ithome.com.tw
 - 舊的Redmine知識回顧
   - 模組的設定：請參考系列文Day 7-[[Redmine\]專案版面的規劃](https://ithelp.ithome.com.tw/articles/10290131)
   - 自訂欄位清單：請參考系列文Day 6-[[Redmine\]自行建立及維護表單](https://ithelp.ithome.com.tw/articles/10289889)
-  - 專案建立基本邏輯：請參考系列文Day 5-[[Redmine\]Redime系統邏輯說明](https://ithelp.ithome.com.tw/articles/10289859)
+  - 專案建立基本邏輯：請參考系列文Day 5-[[Redmine\]Redmine系統邏輯說明](https://ithelp.ithome.com.tw/articles/10289859)
 
 ------
 

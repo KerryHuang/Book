@@ -30,7 +30,7 @@ kind: original
 | 手動呼叫 | `/deploy production`、`/commit`                              |
 | 自動呼叫 | Claude 根據 description 判斷（除非 `disable-model-invocation: true`） |
 | 引數支援 | `$ARGUMENTS` 替換使用者傳入的參數                            |
-| 動態內容 | `!`command`` 語法執行命令並注入結果                          |
+| 動態內容 | `` !`command` `` 語法執行命令並注入結果                          |
 | 隔離執行 | `context: fork` 在子代理中運行                               |
 
 **Frontmatter 重要欄位**：`name`、`description`、`user-invocable`、`disable-model-invocation`、`allowed-tools`、`argument-hint`

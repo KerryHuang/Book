@@ -80,6 +80,7 @@ dotnet add package Consul
 using Consul;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
 
 // 註冊 Consul 客戶端
 builder.Services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>

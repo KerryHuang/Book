@@ -429,8 +429,6 @@ public static async Task Main(string[] args)
                     });
                 });
             });
-
-            services.AddMassTransitHostedService();
         })
         .Build();
     try

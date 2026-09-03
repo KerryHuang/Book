@@ -244,14 +244,14 @@ kind: original
      docker-compose rm -f
      ```
 
-2. **`docker-compose prune`**
+2. **`docker system prune`**
 
    - 刪除未使用的卷和網路（需要確認）。
 
    - 範例：
 
      ```bash
-     docker-compose prune
+     docker system prune
      ```
 
 ------

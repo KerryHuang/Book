@@ -33,9 +33,9 @@ HttpReports 基於.NET Core 開發的APM監控系統，使用MIT開源協議，�
 
 ![img](images/httpreports-02.png)
 
-## 配置 appsetting.json
+## 配置 appsettings.json
 ---
-配置 appsetting.json
+配置 appsettings.json
 
 ```json
 {
@@ -127,7 +127,7 @@ app.Run();
 
 ![img](images/httpreports-08.png)
 
-## 配置 appsetting.json
+## 配置 appsettings.json
 
 修改Services的`appsettings.json` 簡單配置一下
 

@@ -17,7 +17,7 @@ kind: unknown
 - Dynamic object input support (支援動態物件輸入)
 - C# Expression support (支援C# 表達式)
 - Extending expression via custom class/type injection (支援自訂義類別擴充表達式並注入)
-- Scoped parameters (範圍参数)
+- Scoped parameters (範圍參數)
 
 情境
 

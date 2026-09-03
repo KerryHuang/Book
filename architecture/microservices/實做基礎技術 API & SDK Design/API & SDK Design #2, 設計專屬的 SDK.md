@@ -251,7 +251,7 @@ public class BirdInfo
 ```
 public class BirdInfo
 {
-    public string BirdlNo { get; set; }
+    public string BirdNo { get; set; }
     public string SurveyDate { get; set; }
     public string Location { get; set; }
     // 以下略過

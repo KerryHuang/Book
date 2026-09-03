@@ -32,7 +32,7 @@ dotnet add package NLog.Web.AspNetCore
 製作不同環境使用的NLog.Config檔案
 就直接用手動方式建立不同環境使用的NLog.Config檔案
 ```
-touch nlog.development.config
+touch nlog.Development.config
 touch nlog.production.config
 ```
 直接從NLog.Config預設的設定，調整成不同環境所要的rules及target，筆者這邊為演示，直接使用文字檔案紀錄，並且於不同環境下設定不一樣的minlevel，以示有效套用。

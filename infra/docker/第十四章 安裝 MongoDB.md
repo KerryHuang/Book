@@ -71,8 +71,6 @@ docker run -d `
   mongo
 ```
 
-- 請將 `你的帳號` 換成自己的 Windows 使用者名稱
-- 路徑格式為 `C:\Users\...`
 - 反引號 (`) PowerShell 用於換行，也可寫成單行
 
 ------

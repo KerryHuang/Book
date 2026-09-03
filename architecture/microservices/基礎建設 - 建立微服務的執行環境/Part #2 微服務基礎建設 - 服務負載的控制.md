@@ -387,14 +387,14 @@ statistic (chart):
 直接看程式碼:
 
 ```
-public class StaticEngineThrottle : ThrottleBase
+public class StatisticEngineThrottle : ThrottleBase
 {
     //private EngineBase _peek_engine = null;// new InMemoryEngine(timeWindow: TimeSpan.FromSeconds(1));
     private EngineBase _average_engine = null;// new InMemoryEngine(timeWindow: TimeSpan.FromSeconds(3));
     //private double _peek_limit = 0;
 
 
-    public StaticEngineThrottle(double averageRate, TimeSpan averageTimeWindow) : base(averageRate)
+    public StatisticEngineThrottle(double averageRate, TimeSpan averageTimeWindow) : base(averageRate)
     {
         //this._peek_limit = peekRate;
 
@@ -421,7 +421,7 @@ public class StaticEngineThrottle : ThrottleBase
 
 ## 執行結果
 
-我在 `StaticEngineThrottle` 裡面，藏了一個 `InMemoryEngine: _average_engine`, 用來取代上個例子單獨的 counter… 運作的原理是透過這個 `InMemoryEngine`, 統計過去 {time window} sec 內累計的處理量。修正過的做法，我一樣採用指定速率: rate = 500 rps, time window = 5 sec, 以下是跑出來的結果, 服務量控制的波動幅度穩定一些:
+我在 `StatisticEngineThrottle` 裡面，藏了一個 `InMemoryEngine: _average_engine`, 用來取代上個例子單獨的 counter… 運作的原理是透過這個 `InMemoryEngine`, 統計過去 {time window} sec 內累計的處理量。修正過的做法，我一樣採用指定速率: rate = 500 rps, time window = 5 sec, 以下是跑出來的結果, 服務量控制的波動幅度穩定一些:
 
 ![img](https://columns.chicken-house.net/wp-content/images/2018-06-10-microservice10-throttle/2018-06-18-23-25-26.png)
 

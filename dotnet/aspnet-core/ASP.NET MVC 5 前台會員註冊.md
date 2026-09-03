@@ -335,7 +335,7 @@ public ActionResult DoRegister(DoRegisterIn inModel)
 
 ### 密碼儲存觀念
 
-有關使用者重要的密碼儲存在資料庫的時候，建議使用不可逆的雜湊運算，例如 [SHA256](https://zh.wikipedia.org/wiki/SHA-2)，在產生儲存密碼時，建議加入[密碼鹽](https://zh.wikipedia.org/wiki/盐_(密码学))來混淆原密碼泄漏風險。
+有關使用者重要的密碼儲存在資料庫的時候，建議使用不可逆的雜湊運算，例如 [SHA256](https://zh.wikipedia.org/wiki/SHA-2)，在產生儲存密碼時，建議加入[密碼鹽](https://zh.wikipedia.org/wiki/盐_(密码学))來混淆原密碼洩漏風險。
 
 若使用者忘記密碼時，可以採用身份驗證後，直接更換使用者密碼。
 

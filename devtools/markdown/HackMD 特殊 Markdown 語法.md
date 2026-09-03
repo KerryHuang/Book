@@ -100,7 +100,7 @@ HackMD特殊MarkDown語法
 
 ```
 {%gist MingRay98/0b4d70945b5259a209b72e486bc2a1e3%}
-{%gist github後的連結/"%}
+{%gist github後的連結/%}
 ```
 
 ### PDF

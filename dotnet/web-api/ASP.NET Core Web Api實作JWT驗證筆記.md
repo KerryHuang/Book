@@ -6,7 +6,7 @@ kind: original
 
 此為紀錄筆者實作JWT驗證過程筆記。
 專案使用`.Net 5`，並使用`.Net Core CLI`進行建置
-使用`Visual Code`作為開發工具
+使用`Visual Studio Code`作為開發工具
 
 有關`.Net Core CLI` 可參考
 https://docs.microsoft.com/zh-tw/dotnet/core/tools/
@@ -98,7 +98,7 @@ https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-5
 
 在配置之前要先完成安裝必要的Nuget套件，在上方步驟有安裝指令。
 
-在專案目錄內建立一個`nlog.config`檔案，並在方案檔加入必要設置，請透過`Visual Code`進行操作。
+在專案目錄內建立一個`nlog.config`檔案，並在方案檔加入必要設置，請透過`Visual Studio Code`進行操作。
 
 開啟`Lab_JWT.csproj`在裡面加入下方配置
 

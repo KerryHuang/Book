@@ -16,7 +16,7 @@
   - [第2章 - [MIS及專案管理]專案管理的概念及MIS應用](<redmine-mis/第2章 - [MIS及專案管理]專案管理的概念及MIS應用.md>) — 轉貼
   - [第3章 - [MIS及專案管理]管理工具的選擇](<redmine-mis/第3章 - [MIS及專案管理]管理工具的選擇.md>) — 轉貼
   - [第4章 - [Redmine]Redmine的安裝及設定](<redmine-mis/第4章 - [Redmine]Redmine的安裝及設定.md>) — 轉貼
-  - [第5章 - [Redmine]Redime系統邏輯說明](<redmine-mis/第5章 - [Redmine]Redime系統邏輯說明.md>) — 轉貼
+  - [第5章 - [Redmine]Redmine系統邏輯說明](<redmine-mis/第5章 - [Redmine]Redmine系統邏輯說明.md>) — 轉貼
   - [第6章 - [Redmine]自行建立及維護表單](<redmine-mis/第6章 - [Redmine]自行建立及維護表單.md>) — 轉貼
   - [第7章 - [Redmine]專案版面的規劃](<redmine-mis/第7章 - [Redmine]專案版面的規劃.md>) — 轉貼
   - [第8章 - [日常管理]AR管理](<redmine-mis/第8章 - [日常管理]AR管理.md>) — 轉貼
