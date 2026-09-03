@@ -19,7 +19,6 @@ TOP = {
     "devtools": "開發工具：Git、Visual Studio、GitHub Copilot、Markdown/HackMD、Mac 裝機",
     "ai": "AI 工具：Claude Code、Graphify、.NET AI Agent 與 MCP",
     "management": "專案與流程管理：Redmine、MES 導入、SSDLC、外包規範、SOP/BPMN、系統評估",
-    "面試": "面試準備：履歷、問題集、自我介紹",
 }
 
 # 子目錄 → 說明
@@ -72,7 +71,7 @@ SUB = {
 
 SKIP_DIRS = {"images", "figures", "Images"}
 # 不放進 MkDocs 網站的目錄：README 內改連 GitHub，避免網站 build 時出現斷連結
-GITHUB_ONLY = {"面試"}
+GITHUB_ONLY = set()
 GITHUB = "https://github.com/KerryHuang/Book/blob/main/"
 
 
@@ -188,7 +187,7 @@ def main():
         "# Kerry Huang 的開發筆記",
         "",
         "個人技術文件庫，收錄自己撰寫的教學、安裝手冊與專案筆記，以及值得反覆查閱的他人文章存檔。",
-        "依知識領域分八個目錄，每個目錄的 README 是該領域的完整文章清單。",
+        "依知識領域分七個目錄，每個目錄的 README 是該領域的完整文章清單。",
         "",
         "## 目錄",
         "",
