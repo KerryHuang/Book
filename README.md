@@ -14,7 +14,7 @@
 | [devtools/](<devtools/README.md>) | 開發工具：Git、Visual Studio、GitHub Copilot、Markdown/HackMD、Mac 裝機 | 50 |
 | [ai/](<ai/README.md>) | AI 工具：Claude Code、Graphify、.NET AI Agent 與 MCP | 3 |
 | [management/](<management/README.md>) | 專案與流程管理：Redmine、MES 導入、SSDLC、外包規範、SOP/BPMN、系統評估 | 53 |
-| [面試/](<面試/README.md>) | 面試準備：履歷、問題集、自我介紹 | 10 |
+| [面試/](https://github.com/KerryHuang/Book/blob/main/面試/README.md) | 面試準備：履歷、問題集、自我介紹 | 10 |
 
 ## 各領域內容
 
@@ -59,21 +59,22 @@
   - [軟體專案任務挑戰賽/](<management/軟體專案任務挑戰賽>)：真人與 AI 從需求到交付協作體驗（11 篇）
   - [SSDLC](<management/SSDLC.md>)
   - [軟體外包規範](<management/軟體外包規範.md>)
-- **[面試/](<面試/README.md>)** 面試準備：履歷、問題集、自我介紹
-  - [CV_黃子豪](<面試/CV_黃子豪.md>)
-  - [CV_黃子豪_2024](<面試/CV_黃子豪_2024.md>)
-  - [HR_問題集](<面試/HR_問題集.md>)
-  - [NET 工程師 面試問題集](<面試/NET 工程師 面試問題集.md>)
-  - [申請信_金陵女中_資訊科技代理教師](<面試/申請信_金陵女中_資訊科技代理教師.md>)
-  - [自我介紹_3分鐘](<面試/自我介紹_3分鐘.md>)
-  - [自我介紹_高中資訊教師](<面試/自我介紹_高中資訊教師.md>)
-  - [資深工程師_問題集](<面試/資深工程師_問題集.md>)
-  - [資深開發人員與技術主管](<面試/資深開發人員與技術主管.md>)
-  - [題目](<面試/題目.md>)
+- **[面試/](https://github.com/KerryHuang/Book/blob/main/面試/README.md)** 面試準備：履歷、問題集、自我介紹
+  - [CV_黃子豪](https://github.com/KerryHuang/Book/blob/main/面試/CV_黃子豪.md)
+  - [CV_黃子豪_2024](https://github.com/KerryHuang/Book/blob/main/面試/CV_黃子豪_2024.md)
+  - [HR_問題集](https://github.com/KerryHuang/Book/blob/main/面試/HR_問題集.md)
+  - [NET 工程師 面試問題集](https://github.com/KerryHuang/Book/blob/main/面試/NET%20工程師%20面試問題集.md)
+  - [申請信_金陵女中_資訊科技代理教師](https://github.com/KerryHuang/Book/blob/main/面試/申請信_金陵女中_資訊科技代理教師.md)
+  - [自我介紹_3分鐘](https://github.com/KerryHuang/Book/blob/main/面試/自我介紹_3分鐘.md)
+  - [自我介紹_高中資訊教師](https://github.com/KerryHuang/Book/blob/main/面試/自我介紹_高中資訊教師.md)
+  - [資深工程師_問題集](https://github.com/KerryHuang/Book/blob/main/面試/資深工程師_問題集.md)
+  - [資深開發人員與技術主管](https://github.com/KerryHuang/Book/blob/main/面試/資深開發人員與技術主管.md)
+  - [題目](https://github.com/KerryHuang/Book/blob/main/面試/題目.md)
 
 ## 慣例
 
 - **原創與轉貼**：每篇文章檔頭有 front matter，`kind: original` 為自己撰寫，`kind: reprint` 為他人文章存檔，`source` 與 `author` 記錄出處。目錄清單中標「轉貼」者連結指向原文。
 - **圖片**：放在文章所在目錄的 `images/`，以相對路徑引用。影片（mp4）走 Git LFS。
 - **新增文章**：放進對應領域目錄、加上 front matter，然後執行 `python scripts/gen-readme.py` 重新產生所有 README。
+- **文件網站**：push 到 main 後由 GitHub Actions 以 MkDocs Material 建置並發布到 https://kerryhuang.github.io/Book/ 。本機預覽：建虛擬環境後 `pip install -r requirements.txt`，再執行 `bash scripts/build-site.sh serve`。
 - **來源標記的限制**：轉貼文章的出處以檔內證據判定，少數只標到網域或 `kind: unknown`，歡迎修正。

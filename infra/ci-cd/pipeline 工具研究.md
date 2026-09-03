@@ -19,12 +19,12 @@ kind: original
 
 #### 安裝流程
 
-總覽: [SonarQube跟Azure DevOps整合](%22https:/docs.sonarqube.org/9.6/devops-platform-integration/azure-devops-integration/#analyzing-projects-with-azure-pipelines%22)
+總覽: [SonarQube跟Azure DevOps整合](https://docs.sonarqube.org/9.6/devops-platform-integration/azure-devops-integration/#analyzing-projects-with-azure-pipelines)
 
-1. 自建SonarQube Server [各種安裝方式指示](%22https:/docs.sonarqube.org/9.8/setup-and-upgrade/install-the-server/#installing-sonarqube-from-the-docker-image%22)
-   1.  [下載](%22https:/www.sonarsource.com/products/sonarqube/downloads/%22/)
+1. 自建SonarQube Server [各種安裝方式指示](https://docs.sonarqube.org/9.8/setup-and-upgrade/install-the-server/#installing-sonarqube-from-the-docker-image)
+   1.  [下載](https://www.sonarsource.com/products/sonarqube/downloads/)
 
-       * 如果用docker建環境的話，因為SonarQube有使用到ElasticSearch，要先將資源設定成符合ElasticSearch啟用的最低需求 [參考](%22https:/www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#\_windows\_with\_docker\_desktop\_wsl\_2\_backend%22)
+       * 如果用docker建環境的話，因為SonarQube有使用到ElasticSearch，要先將資源設定成符合ElasticSearch啟用的最低需求 [參考](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#\_windows\_with\_docker\_desktop\_wsl\_2\_backend)
 
        ```powershell
        wsl -d docker-desktop
@@ -43,7 +43,7 @@ kind: original
      * Token Name，之後Service Connection要用
      * Type: Global/Project Analysis Token
 5. 建立 http://localhost:9000 的外網連結
-6. 安裝Azure DevOps套件 [SonarQube](%22https:/marketplace.visualstudio.com/items)
+6. 安裝Azure DevOps套件 [SonarQube](https://marketplace.visualstudio.com/items)
 7. 在Azure DevOps建立Service Connection
    * Project -> Project Setting -> Service connections 選擇SonarQube
      * Server Url = http://localhost:9000 的外網連結

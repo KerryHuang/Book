@@ -410,7 +410,7 @@ docker-compose up -d redis
 - [Redis Stack 官方文件](https://redis.io/docs/stack/)
 - [Redis 指令參考](https://redis.io/commands/)
 - [StackExchange.Redis 文件](https://stackexchange.github.io/StackExchange.Redis/)
-- [專案基礎設施配置](./Infra.md)
+- 專案基礎設施配置（Infra.md）
 
 ## 版本資訊
 
@@ -421,5 +421,5 @@ docker-compose up -d redis
 ---
 
 **注意事項**：
-- 本文件適用於本地開發環境，生產環境部署請參考 [Infra.md](./Infra.md) 和 [DOCKER.md](./DOCKER.md)
+- 本文件適用於本地開發環境，生產環境部署請參考 Infra.md 和 DOCKER.md
 - Redis 配置可能因專案版本更新而變動，請以最新的 `appsettings.json` 為準

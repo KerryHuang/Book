@@ -56,6 +56,6 @@
   - [使用HackMD建立書本目錄](<markdown/使用HackMD建立書本目錄.md>)
   - [使用HackMD建立簡報](<markdown/使用HackMD建立簡報.md>)
 - **visual-studio/**
-  - [.NET CLI 指令碼介紹](<visual-studio/.NET CLI 指令碼介紹.md>)
+  - [NET CLI 指令碼介紹](<visual-studio/NET CLI 指令碼介紹.md>)
   - [VisualStudio Git](<visual-studio/VisualStudio Git.md>) — [轉貼：sdwh.dev](https://sdwh.dev/posts/2020/06/VisualStudio-Git/)
   - [使用 Visual Studio 2022 可透過 .editorconfig 鎖定文字檔案的儲存編碼格式](<visual-studio/使用 Visual Studio 2022 可透過 .editorconfig 鎖定文字檔案的儲存編碼格式.md>) — [轉貼：黃保翕(Will 保哥)](https://blog.miniasp.com/post/2024/06/07/Visual-Studio-2022-EditorConfig-UTF-8)

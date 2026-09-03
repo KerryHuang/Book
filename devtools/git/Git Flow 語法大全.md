@@ -6,7 +6,7 @@ kind: original
 
 Git Flow 是 Git 的一種分支管理策略，它透過 `git-flow` 命令來簡化 **開發 (Feature)**、**發佈 (Release)**、**熱修復 (Hotfix)** 等流程。
 
-![gitflow_semantic](Images\gitflow_semantic.png)
+![gitflow_semantic](images/gitflow_semantic.png)
 
 ------
 
