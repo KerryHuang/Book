@@ -22,7 +22,7 @@ kind: original
    - 啟動 Data Migration Assistant 應用程式。
 2. **建立新專案**：
    - 點擊 **+ New** 建立新專案。
-   - 選擇 **Project type** 為 **Assessment**（評估），並填寫項目名稱。
+   - 選擇 **Project type** 為 **Assessment**（評估），並填寫專案名稱。
    - **選擇目標伺服器類型**為 **Azure SQL Database**，然後按 **Create**。
 3. **選擇評估的範圍**：
    - 在 `Options` 中選擇 **Database compatibility issues** 和 **Feature parity**。
@@ -35,7 +35,7 @@ kind: original
 
 1. **建立遷移專案**：
    - 返回主畫面，選擇 **+ New** 建立新專案。
-   - **選擇專案類型**為 **Migration**（遷移），然後設定項目名稱。
+   - **選擇專案類型**為 **Migration**（遷移），然後設定專案名稱。
    - **目標伺服器類型**選擇 **Azure SQL Database**，然後點擊 **Create**。
 2. **設定遷移範圍**：
    - 在 `Select Source` 中，選擇本地的 SQL Server，輸入伺服器名稱和驗證方式，並選擇要遷移的資料庫。

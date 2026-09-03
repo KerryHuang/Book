@@ -4,9 +4,9 @@ kind: original
 
 # CORS
 
-在 .NET 8 中，CORS 配置變得更加簡潔，可以直接在 `AddCors` 方法中定義 CORS 策略，而不需要像以前一樣通過委派進行配置。以下是將您的 CORS 設定改為 .NET 8 風格的寫法。
+在 .NET 8 中，CORS 設定變得更加簡潔，可以直接在 `AddCors` 方法中定義 CORS 策略，而不需要像以前一樣通過委派進行設定。以下是將您的 CORS 設定改為 .NET 8 風格的寫法。
 
-### 更新後的 CORS 配置
+### 更新後的 CORS 設定
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -39,7 +39,7 @@ app.Run();
 
 ### 說明
 
-- **`AddCors` 配置**：CORS 策略現在可以直接在 `AddPolicy` 中定義，這樣配置更清晰，並符合 .NET 8 的簡潔風格。
+- **`AddCors` 設定**：CORS 策略現在可以直接在 `AddPolicy` 中定義，這樣設定更清晰，並符合 .NET 8 的簡潔風格。
 - **`UseCors` 中指定策略**：使用 `app.UseCors("Dev")` 來啟用指定的策略，這樣可確保每個請求都應用該 CORS 設定。
 
-此配置方式在 .NET 8 中更加直觀，並且保持原本的彈性，可以更簡潔地設置多個來源及允許的方法和標頭等規則。
+此設定方式在 .NET 8 中更加直觀，並且保持原本的彈性，可以更簡潔地設定多個來源及允許的方法和標頭等規則。

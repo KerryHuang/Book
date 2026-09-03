@@ -1,135 +1,111 @@
 ---
 kind: reprint
-source: site:blog.hungwin.com.tw
-author: hungwin
+source: https://blog.hungwin.com.tw/aspnet-mvc-anno-backstage-query/
+author: 理財工程師 Mars
 ---
 
-}o`@إ\ObxsW@ơAMbexܸơAiγ̷s\AоǱN|ЧApإ߫xi@ɭAæbexܸơC
+# [ASP.NET Core MVC][Vue3][Dapper] 前後台網站公告範例 - 後台查詢頁面及分頁教學 #CH1
 
-оǽdҷ|إ ASP.NET Core MVC sMסAsW@ӫxi޲zAzLdܸƮwiơC
+網站開發常見的一種功能是在後台新增維護資料，然後在前台顯示資料，類似網站公告或最新消息功能，此次教學將會教你如何建立後台公告維護界面，並在前台顯示資料。
 
-dߥƧe{O²檺ʧ@Aӧڷ|[Wd߬۹Oʧ@Aڷ|ܽd@ӧڱ`ΪkUѦҡC
+此教學範例會建立 ASP.NET Core MVC 新專案，新增一個後台公告管理頁面，透過查詢顯示資料庫內的公告資料。
 
-dҨϥ ASP.NET Core MVC O .NET6Aeݨϥ Vue3 ج[AݸƮwϥ SQL Server 2019Aϥ Dapper MsuA好dҥiHUC
+查詢全部資料呈現是簡單的動作，而我會加上分頁查詢相對是較複雜的動作，我會示範一個我常用的分頁方法給各位參考。
 
-##### ؿ
-[1 إ߱M](#step1)  
-[2 ]pd߭](#step2)  
-[3 Ʈwyk](#step3)  
-[4 Mװ¦]w](#step4)  
-&emsp;&emsp;[4.1 [J Vue3 M](#step5)  
-&emsp;&emsp;[4.2 [J jQuery BlockUI Plugin M](#step6)  
-&emsp;&emsp;[4.3  Json ^ǹw]pg]w](#step7)  
-[5 dߤi](#step8)  
-&emsp;&emsp;[5.1 View [ Vue3 yk](#step9)  
-&emsp;&emsp;[5.2 Controller yk](#step10)  
-&emsp;&emsp;[5.3 Ū appsettings.json](#step11)  
-&emsp;&emsp;[5.4 w Dapper](#step12)  
-&emsp;&emsp;[5.5 إ ViewModel](#step13)  
-[6 W[dߥ\](#step14)  
-&emsp;&emsp;[6.1 sW VuePagination.js ](#step15)  
-&emsp;&emsp;[6.2 ޥ VuePagination.js ](#step16)  
-&emsp;&emsp;[6.3 U VuePagination.js ](#step17)  
-&emsp;&emsp;[6.4 ϥΤ](#step18)  
-&emsp;&emsp;[6.5 View dߥ\վ](#step19)  
-&emsp;&emsp;[6.6 grid W[ݩ](#step20)  
-&emsp;&emsp;[6.7 Controller dߥ\վ](#step21)  
-&emsp;&emsp;[6.8 ViewModel վ](#step22)  
-&emsp;&emsp;[6.9 dҤU](#step23)  
+此範例使用 ASP.NET Core MVC 版本是 .NET6，前端使用 Vue3 框架，後端資料庫使用 SQL Server 2019，使用 Dapper 套件連線，文末有範例可以下載。
 
-## إ߱M
 
-} Visual Studio 2022Aإ߷sM׬uASP.NET Core Web ε{ (Model-View-Controller)vC
+## 建立專案
 
-![img1](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-1.png)
+開啟 Visual Studio 2022，建立新專案為「ASP.NET Core Web 應用程式 (Model-View-Controller)」。
 
-JMצW١B|C
+[![ASP.NET Core Web 應用程式 (Model-View-Controller)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-1.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-1.png)
 
-![img2](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-2.png)
+輸入專案名稱、路徑。
 
-[cܡu.NET 6.0vAUuإߡvN|إߦMסC
+[![輸入專案名稱、路徑](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-2.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-2.png)
 
-![img3](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-3.png)
+架構選擇「.NET 6.0」版本，按下「建立」就會建立此專案。
 
-## ]pd߭
+[![架構選擇「.NET 6.0」版本，按下「建立」就會建立此專案](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-3.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-3.png)
 
-o̧ڭ̷sW@ Controller MBzxi@C
-b Controllers ksW@ӡuvC
+## 設計查詢頁面
 
-![img4](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-4.png)
+這裡我們新增一個 Controller 專門處理後台的公告維護。  
+在 Controllers 按右鍵新增一個「控制器」。
 
-ܡuMVC  V ťաv, WuAdmAnnoControllervC
+[![在 Controllers 按右鍵新增一個「控制器」](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-4.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-4.png)
 
-b \Controllers\AdmAnnoController.cs ɮת Index() kusW˵vAiHsW View C
+選擇「MVC 控制器 – 空白」, 取名為「AdmAnnoController」。
 
-![img5](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-5.png)
+在 \Controllers\AdmAnnoController.cs 檔案的 Index() 按右鍵選「新增檢視」，可以新增它的 View 頁面。
 
-ܡuRazor ˵vAWٺw]uIndexvAĿuϥΪtmvAusWvC
+[![新增它的 View 頁面](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-5.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-5.png)
 
-![img5-1](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-5-1.png)
+選擇「Razor 檢視」，名稱維持預設「Index」，勾選「使用版面配置頁」，按「新增」。
 
-e]pڭ̴Nq [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) ƻs@ǾAXdܪdҨ View ̭C
-ڥΨ쪺˦ [Card](https://getbootstrap.com/docs/5.0/components/card/), [Form](https://getbootstrap.com/docs/5.0/forms/overview/), [Table](https://getbootstrap.com/docs/5.0/content/tables/), [Button](https://getbootstrap.com/docs/5.0/components/buttons/)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-5-1.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-5-1.png)
 
-ڳ]pFdߵeAϥΥHUykN \Views\AdmAnno\Index.cshtml 즳ykC
+畫面設計我們就從 [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 複製一些適合查詢顯示的範例到 View 裡面。  
+我用到的樣式有 [Card](https://getbootstrap.com/docs/5.0/components/card/), [Form](https://getbootstrap.com/docs/5.0/forms/overview/), [Table](https://getbootstrap.com/docs/5.0/content/tables/), [Button](https://getbootstrap.com/docs/5.0/components/buttons/)
 
-```XHTML
+我設計了查詢畫面，直接使用以下語法取代 \Views\AdmAnno\Index.cshtml 原有的語法。
+
+```
 <div id="QueryPanel" class="card">
-    <div class="card-header">
-        i@
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-auto">
-                <label for="AnnoSubject" class="col-form-label">iDD</label>
-            </div>
-            <div class="col-auto">
-                <input type="text" id="AnnoSubject" class="form-control">
-            </div>
-            <div class="col-auto">
-                <label for="AnnoStatus" class="col-form-label">iA</label>
-            </div>
-            <div class="col-auto">
-                <select class="form-select" id="AnnoStatus">
-                    <option value="1"></option>
-                    <option value="0"></option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="card-header">
-        <button type="button" class="btn btn-primary">d</button>
-    </div>
-	<div class="card-body">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>i</th>
-					<th>iDD</th>
-					<th>ie</th>
-					<th>iA</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
+<div class="card-header">
+公告維護
+</div>
+<div class="card-body">
+<div class="row">
+<div class="col-auto">
+<label for="AnnoSubject" class="col-form-label">公告主題</label>
+</div>
+<div class="col-auto">
+<input type="text" id="AnnoSubject" class="form-control">
+</div>
+<div class="col-auto">
+<label for="AnnoStatus" class="col-form-label">公告狀態</label>
+</div>
+<div class="col-auto">
+<select class="form-select" id="AnnoStatus">
+<option value="1">顯示</option>
+<option value="0">隱藏</option>
+</select>
+</div>
+</div>
+</div>
+<div class="card-header">
+<button type="button" class="btn btn-primary">查詢</button>
+</div>
+<div class="card-body">
+<table class="table">
+<thead>
+<tr>
+<th>公告日期</th>
+<th>公告主題</th>
+<th>公告內容</th>
+<th>公告狀態</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
 </div>
 ```
 
-NProgram.csɮ׭˼ƲĤG檺`pattern: "{controller=Home}/{action=Index}/{id?}");`אּ`pattern: "{controller=AdmAnno}/{action=Index}/{id?}");`C
+按 F5 執行網頁後就會看到以下的畫面。
 
- F5 N|ݨHUeC
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-6.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-6.png)
 
-![img6](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-6.png)
+做到這裡主要是先設計我們的畫面，接下來就要設計資料庫然後開始寫程式碼了。
 
-o̥DnO]pڭ̪eAUӴNn]pƮwM}lg{XFC
+## 資料庫語法
 
-## Ʈwyk
+我們會使用 SQL Server 來當作資料來源，我已經新增好 “Teach” 的資料庫了，接著以下語法新增公告 Table。
 
-ڭ̷|ϥ SQL Server ӷ@ƨӷAڤwgsWn Teach ƮwFAۥHUyksWi TableC
-
-```Transact-SQL
+```
 CREATE TABLE [dbo].[Announcement] (
 [Pkey] int IDENTITY(1, 1) NOT NULL,
 [AnnoDate] date NOT NULL,
@@ -137,13 +113,13 @@ CREATE TABLE [dbo].[Announcement] (
 [AnnoContent] nvarchar(1000) NOT NULL,
 [AnnoStatus] smallint NOT NULL,
 PRIMARY KEY CLUSTERED ([Pkey] ASC)
- ON [PRIMARY]
+ON [PRIMARY]
 )
 ```
 
-F Table Ao̧ڴNsW 16 ոơA]ڭ̲Ĥ@ӥ\OdߡAFƤ~ݥXGC
+有了 Table 之後，這裡我就直接新增 16 筆測試資料，因為我們第一個功能是查詢，有了資料才能看出結果。
 
-```Transact-SQL
+```
 insert into [dbo].[Announcement]([AnnoDate],[AnnoSubject],[AnnoContent],[AnnoStatus]) values ('2022-02-01 00:00:00',N'Subject1',N'Content1',1)
 insert into [dbo].[Announcement]([AnnoDate],[AnnoSubject],[AnnoContent],[AnnoStatus]) values ('2022-02-02 00:00:00',N'Subject2',N'Content2',1)
 insert into [dbo].[Announcement]([AnnoDate],[AnnoSubject],[AnnoContent],[AnnoStatus]) values ('2022-02-03 00:00:00',N'Subject3',N'Content3',1)
@@ -162,665 +138,651 @@ insert into [dbo].[Announcement]([AnnoDate],[AnnoSubject],[AnnoContent],[AnnoSta
 insert into [dbo].[Announcement]([AnnoDate],[AnnoSubject],[AnnoContent],[AnnoStatus]) values ('2022-02-16 00:00:00',N'Subject16',N'Content16',1)
 ```
 
-## Mװ¦]w
+## 專案基礎設定
 
-o̷|w ASP.NET Core MVC M׼W[@ǰ¦]wAHK}oC
+這裡會先針對 ASP.NET Core MVC 專案增加一些基礎設定，以方便後續開發。
 
-### [J Vue3 M
+### 加入 Vue3 套件
 
-Vue3 Oeݱ쪺ج[OwA} \Views\Shared\_Layout.cshtml ɮסAbU JavaScript ޥμW[ Vue3 OwykAǪnDnb jQuery ~C
+Vue3 是前端控制欄位的框架類別庫，打開 \Views\Shared\\_Layout.cshtml 檔案，在下方 JavaScript 引用增加 Vue3 類別庫語法，順序的要求要放在 jQuery 之後才行。
 
 `<script src="https://unpkg.com/vue@3"></script>`
 
-![img7](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-7.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-7.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-7.png)
 
-b Layout [W Vue3 ޥΫAڭ̴NiHbҦϥ Vue3 ykFAޥλykӷiѦҩxC
+當在 Layout 加上 Vue3 引用後，我們就可以在所有的頁面使用 Vue3 語法了，此引用語法來源可參考[官方文件](https://vuejs.org/guide/quick-start.html#without-build-tools)。
 
-### [J jQuery BlockUI Plugin M
+### 加入 jQuery BlockUI Plugin 套件
 
-[jQuery BlockUI](https://jquery.malsup.com/block/) OeݦVݩIsɡAȮweݵeAHGIDC
-b[J Vue3 M󪺤UA[JޥλykC
+[jQuery BlockUI](https://jquery.malsup.com/block/) 是讓前端向後端呼叫時，暫時鎖定前端畫面，以防止二次點擊等問題。  
+在剛剛加入 Vue3 套件的下方，加入引用語法。
 
 `<script src="https://malsup.github.io/jquery.blockUI.js"></script>`
 
-###  Json ^ǹw]pg]w
+### 停用 Json 回傳預設小寫設定
 
-b .NET Framework ϥ Json ^ǮɡAeݦ쪺 Json jpg]wP ViewModel ۦPAӦb .NET Core ɫhw]}Ypg (mpRW)Ao̧ڳ|վ㦨P ViewModel ۦPC
+在 .NET Framework 使用 Json 回傳時，前端收到的 Json 物件大小寫設定與 ViewModel 相同，而在 .NET Core 時則預設開頭為小寫 (駝峰式命名)，這裡我都會調整成與 ViewModel 相同。
 
-b Program.cs [JHUykG
+在 Program.cs 加入以下語法：
 
-```C#
-//  Json ^ǤjpgP ViewModel ۦP
+```csharp
+// 維持 Json 回傳大小寫與 ViewModel 相同
 builder.Services.AddControllers().AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.PropertyNamingPolicy = null;
-    });
+{
+options.JsonSerializerOptions.PropertyNamingPolicy = null;
+});
 ```
 
-![img7-1](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-7-1.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-7-1.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-7-1.png)
 
-## dߤi
+## 查詢公告
 
-o̷|}lg{XAb]peW 2 ӬdA1 Ӭd߫sAUd߶sAaJd߱AqƮwŪƧe{C
+這裡會開始寫程式碼，在設計畫面上有 2 個查詢欄位，1 個查詢按鈕，當按下查詢鈕後，帶入查詢條件，從資料庫內讀取資料呈現。
 
-### View [ Vue3 yk
+### View 附加 Vue3 語法
 
-ڭ̦b Index.cshtml ϥ Bootstrap ]pnFeAۭn[W Vue3 d߰ʰ_ӡC
-NHUykл\ \Views\AdmAnno\Index.cshtml ̭C
+剛剛我們在 Index.cshtml 使用 Bootstrap 設計好了畫面，接著要加上 Vue3 讓查詢動起來。  
+將以下的語法全部覆蓋至 \Views\AdmAnno\Index.cshtml 裡面。
 
-```JavaScript
+```javascript
 <div id="app">
-    <div id="QueryPanel" class="card">
-        <div class="card-header">
-            i@
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-auto">
-                    <label for="queryFormAnnoSubject" class="col-form-label">iDD</label>
-                </div>
-                <div class="col-auto">
-                    <input type="text" id="queryFormAnnoSubject" class="form-control" v-model="queryForm.AnnoSubject">
-                </div>
-                <div class="col-auto">
-                    <label for="queryFormAnnoStatus" class="col-form-label">iA</label>
-                </div>
-                <div class="col-auto">
-                    <select class="form-select" id="queryFormAnnoStatus" v-model="queryForm.AnnoStatus">
-                        <option value="1"></option>
-                        <option value="0"></option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="card-header">
-            <button type="button" class="btn btn-primary" v-on:click="Query()">d</button>
-        </div>
-		<div class="card-body">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>i</th>
-						<th>iDD</th>
-						<th>ie</th>
-						<th>iA</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="(item, index) in grid.datas">
-						<td>{{item.AnnoDate}}</td>
-						<td>{{item.AnnoSubject}}</td>
-						<td>{{item.AnnoContent}}</td>
-						<td>{{item.AnnoStatusName}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-    </div>
+<div id="QueryPanel" class="card">
+<div class="card-header">
+公告維護
+</div>
+<div class="card-body">
+<div class="row">
+<div class="col-auto">
+<label for="queryFormAnnoSubject" class="col-form-label">公告主題</label>
+</div>
+<div class="col-auto">
+<input type="text" id="queryFormAnnoSubject" class="form-control" v-model="queryForm.AnnoSubject">
+</div>
+<div class="col-auto">
+<label for="queryFormAnnoStatus" class="col-form-label">公告狀態</label>
+</div>
+<div class="col-auto">
+<select class="form-select" id="queryFormAnnoStatus" v-model="queryForm.AnnoStatus">
+<option value="1">顯示</option>
+<option value="0">隱藏</option>
+</select>
+</div>
+</div>
+</div>
+<div class="card-header">
+<button type="button" class="btn btn-primary" v-on:click="Query()">查詢</button>
+</div>
+<div class="card-body">
+<table class="table">
+<thead>
+<tr>
+<th>公告日期</th>
+<th>公告主題</th>
+<th>公告內容</th>
+<th>公告狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr v-for="(item, index) in grid.datas">
+<td>{{item.AnnoDate}}</td>
+<td>{{item.AnnoSubject}}</td>
+<td>{{item.AnnoContent}}</td>
+<td>{{item.AnnoStatusName}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 @section scripts {
 <script>
-    const app = Vue.createApp({
-    data() {
-        return {
-            queryForm:{
-                AnnoSubject: ''
-                , AnnoStatus: '1'
-            }
-            , grid:{
-                datas:[]
-            }
-        }
-    }
-    , methods: {
-        Query() {
-            var self = this;
- 
-            // զX
-            var postData = {};
-            postData['AnnoSubject'] = self.queryForm.AnnoSubject;
-            postData['AnnoStatus'] = self.queryForm.AnnoStatus;
-			
-            $.blockUI();
-            // ϥ jQuery Ajax ǰeܫ
-            $.ajax({
-                url:'@Url.Content("~/AdmAnno/Query")',
-                method:'POST',
-                dataType:'json',
-                data: { inModel: postData },
-                success: function (datas) {
-					$.unblockUI();
-                    if (datas.ErrMsg) {
-                        alert(datas.ErrMsg);
-                        return;
-                    }
-                    // jwC
-                    self.grid.datas = datas.Grid;
-                },
-                error: function (err) {
-                    $.unblockUI();
-                    alert(err.status + " " + err.statusText + '\n' + err.responseText);
-                }
-            });
- 
-        }
-      }
-    });
-	const vm = app.mount('#app');
+const app = Vue.createApp({
+data() {
+return {
+queryForm:{
+AnnoSubject: ''
+, AnnoStatus: '1'
+}
+, grid:{
+datas:[]
+}
+}
+}
+, methods: {
+Query() {
+var self = this;
+// 組合表單資料
+var postData = {};
+postData['AnnoSubject'] = self.queryForm.AnnoSubject;
+postData['AnnoStatus'] = self.queryForm.AnnoStatus;
+$.blockUI();
+// 使用 jQuery Ajax 傳送至後端
+$.ajax({
+url:'@Url.Content("~/AdmAnno/Query")',
+method:'POST',
+dataType:'json',
+data: { inModel: postData },
+success: function (datas) {
+$.unblockUI();
+if (datas.ErrMsg) {
+alert(datas.ErrMsg);
+return;
+}
+// 綁定列表
+self.grid.datas = datas.Grid;
+},
+error: function (err) {
+$.unblockUI();
+alert(err.status + " " + err.statusText + '\n' + err.responseText);
+}
+});
+}
+}
+});
+const vm = app.mount('#app');
 </script>
 }
 ```
 
-### Controller yk
+### Controller 語法
 
-b View d߫|Is ~/AdmAnno/QueryAb \Controllers\AdmAnnoController.cs [JHU ActionC
+在 View 查詢後會呼叫 ~/AdmAnno/Query，在 \Controllers\AdmAnnoController.cs 加入以下 Action。
 
-```C#
+```csharp
 /// <summary>
-/// dߤi
+/// 查詢公告
 /// </summary>
 /// <param name="inModel"></param>
 /// <returns></returns>
 public IActionResult Query(QueryIn inModel)
 {
-	QueryOut outModel = new QueryOut();
-	outModel.Grid = new List<AnnoModel>();
- 
-	// Ʈwsur
-	string connStr = _configuration.GetConnectionString("SqlServer");
-	using (var cn = new SqlConnection(connStr))
-	{
-		// Dnd SQL
-		string sql = @"SELECT Pkey, CONVERT(varchar(12) , AnnoDate, 111 ) as AnnoDate, AnnoSubject, AnnoContent, AnnoStatus, Case AnnoStatus when '1' then '' when '0' then '' end As AnnoStatusName
-						FROM Announcement 
-						WHERE 1=1 ";
- 
-		if (!string.IsNullOrEmpty(inModel.AnnoSubject))
-		{
-			sql += " AND AnnoSubject LIKE @AnnoSubject ";
-		}
-		if (!string.IsNullOrEmpty(inModel.AnnoStatus))
-		{
-			sql += " AND AnnoStatus = @AnnoStatus ";
-		}
-		sql += " ORDER BY AnnoDate desc, AnnoStatus ";
-		
-		object param = new
-		{
-			AnnoSubject = "%" + inModel.AnnoSubject + "%",
-			AnnoStatus = inModel.AnnoStatus
-		};
-		
-		// ϥ Dapper d
-		var list = cn.Query<AnnoModel>(sql, param);
-		
-		// X
-		foreach (var item in list)
-		{
-			outModel.Grid.Add(item);
-		}
-	}
-	return Json(outModel);
+QueryOut outModel = new QueryOut();
+outModel.Grid = new List<AnnoModel>();
+// 資料庫連線字串
+string connStr = \_configuration.GetConnectionString("SqlServer");
+using (var cn = new SqlConnection(connStr))
+{
+// 主要查詢 SQL
+string sql = @"SELECT Pkey, CONVERT(varchar(12) , AnnoDate, 111 ) as AnnoDate, AnnoSubject, AnnoContent, AnnoStatus, Case AnnoStatus when '1' then '顯示' when '0' then '隱藏' end As AnnoStatusName
+FROM Announcement
+WHERE 1=1 ";
+if (!string.IsNullOrEmpty(inModel.AnnoSubject))
+{
+sql += " AND AnnoSubject LIKE @AnnoSubject ";
+}
+if (!string.IsNullOrEmpty(inModel.AnnoStatus))
+{
+sql += " AND AnnoStatus = @AnnoStatus ";
+}
+sql += " ORDER BY AnnoDate desc, AnnoStatus ";
+object param = new
+{
+AnnoSubject = "%" + inModel.AnnoSubject + "%",
+AnnoStatus = inModel.AnnoStatus
+};
+// 使用 Dapper 查詢
+var list = cn.Query<AnnoModel>(sql, param);
+// 輸出物件
+foreach (var item in list)
+{
+outModel.Grid.Add(item);
+}
+}
+return Json(outModel);
 }
 ```
 
-### Ū appsettings.json
+### 讀取 appsettings.json
 
-ڱNƮwsub appsettings.json ̭A} appsettings.json A[JHUsurC
+我將資料庫連線放在 appsettings.json 裡面，打開 appsettings.json 後，加入以下連線字串。
 
-```Jason
+```
 "ConnectionStrings": {
-	"SqlServer": "Data Source=127.0.0.1;Initial Catalog=Teach;Persist Security Info=false;User ID=test;Password=test;"
+"SqlServer": "Data Source=127.0.0.1;Initial Catalog=Teach;Persist Security Info=false;User ID=test;Password=test;"
 }
 ```
 
-![img8](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-8.png)
+[!["ConnectionStrings": { "SqlServer": "Data Source=127.0.0.1;Initial Catalog=Teach;Persist Security Info=false;User ID=test;Password=test;" }](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-8.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-8.png)
 
-b .NET 6 no appsettings.json ]wӷAnb Controller W[غclŪ ConfigurationC
+在 .NET 6 要取得 appsettings.json 的設定來源，要在 Controller 增加建構子讀取 Configuration。
 
-```C#
-private readonly IConfiguration _configuration;
- 
+```csharp
+private readonly IConfiguration \_configuration;
 public AdmAnnoController(IConfiguration configuration)
 {
-	_configuration = configuration;
+\_configuration = configuration;
 }
 ```
 
-### w Dapper
+### 安裝 Dapper
 
-ڸƮwʪϥηL ORM M DapperAݭnw Dapper ~ϥΡC
-}ҡuM > ޲z NuGet MvC
+我資料庫互動物件使用微型 ORM 套件 [Dapper](https://github.com/DapperLib/Dapper)，需要安裝 Dapper 才能使用。  
+開啟「相依性 > 套件 > 管理 NuGet 套件」。
 
-![img9](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-9.png)
+[![開啟「套件 > 管理 NuGet 套件」](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-9.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-9.png)
 
-jMuDappervAw˦MC
+搜尋「Dapper」，安裝此套件。
 
-![img10](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-10.png)
+[![搜尋「Dapper」，安裝此套件](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-10.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-10.png)
 
-### إ ViewModel
+### 建立 ViewModel
 
-ViewModel OΨөwq Controller P View wqAڭ̭إߤFs ControllerAҥHoӫإߥ ViewModelC
-buModel k > [J > OvC
+ViewModel 是用來定義 Controller 與 View 之間的欄位定義，我們剛剛建立了新 Controller，所以這次來建立它對應的 ViewModel。  
+在「Model 按右鍵 > 加入 > 類別」。
 
-![img11](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-11.png)
+[![在「Model 按右鍵 > 加入 > 類別」](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-11.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-11.png)
 
-MRW AdmAnnoViewModelC
+然後命名為 “AdmAnnoViewModel”。
 
-![img12](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-12.png)
+[![然後命名為 “AdmAnnoViewModel”](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-12.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-12.png)
 
-Mb AdmAnnoViewModel O̭A[Jb Controller Ψ쪺 ViewModelC
+然後在 AdmAnnoViewModel 類別裡面，加入在 Controller 用到的 ViewModel。
 
-```C#
+```csharp
 public class QueryIn
 {
-	public string AnnoSubject { get; set; }
-	public string AnnoStatus { get; set; }
+public string AnnoSubject { get; set; }
+public string AnnoStatus { get; set; }
 }
- 
 public class QueryOut
 {
-	public List<AnnoModel> Grid { get; set; }
+public List<AnnoModel> Grid { get; set; }
 }
- 
 public class AnnoModel
 {
-	public string Pkey { get; set; }
-	public string AnnoDate { get; set; }
-	public string AnnoSubject { get; set; }
-	public string AnnoContent { get; set; }
-	public string AnnoStatus { get; set; }
-	public string AnnoStatusName { get; set; }
+public string Pkey { get; set; }
+public string AnnoDate { get; set; }
+public string AnnoSubject { get; set; }
+public string AnnoContent { get; set; }
+public string AnnoStatus { get; set; }
+public string AnnoStatusName { get; set; }
 }
 ```
 
-![img12-1](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-12-1.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-12-1.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-12-1.png)
 
-o̤Aڭ̴NiH²檺dߥ\FAU F5 AudߡvsANiHܥXƮwƤFC
+完成到這裡之後，我們就可以執行簡單的查詢功能了，按下 F5 後，執行「查詢」鈕，就可以顯示出資料庫內的資料了。
 
-![img13](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-13.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-13.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-13.png)
 
-iOoɭԧڭٯʤ@Ӥ\AUӧڭ̴N~򧹦оǡC
+可是這時候我們還缺一個分頁的功能，接下來我們就繼續完成分頁的教學。
 
-## W[dߥ\
+## 增加分頁查詢功能
 
-W˦ܦhءAӧڴѧڳ̱`Ϊ Vue3 󵹦UѦҡAڭ̫eݬOإߦb Vue3 WAҥHڷ|b Vue3 sW@ӤC
+網路上分頁的樣式很多種，而我提供我最常用的 Vue3 分頁元件給各位參考，我們前端是建立在 Vue3 上面的，所以我會在 Vue3 新增一個分頁的元件。
 
-oqоǷ|@IAڬOvBykоǡApGLkzѪܡAiUݤ@U㪺dҨӤ|e@IC
+這段的教學會比較複雜一點，我是逐步語法教學，如果無法理解的話，可能下載看一下完整的範例來比對會比較容易懂一點。
 
-### sW VuePagination.js 
+### 新增 VuePagination.js 元件
 
-O@Ӧhƭ|Ψ쪺\AĳiHsW@ɮסAN޿gb̭AMb Vue3 NޤJC
+分頁元件是一個多數頁面都會用到的功能，建議可以新增一個檔案，將分頁邏輯寫在裡面，然後在 Vue3 將元件引入。
 
-b /js ؿsW@ɮסAɮשRW VuePagination.jsC
+在 /js 目錄內新增一個檔案，檔案命名為 “VuePagination.js”。
 
-![img14](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-14.png)
+[![在 /js 目錄內新增一個檔案](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-14.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-14.png)
 
-MbVuePagination.js KWHUykC
+然後在VuePagination.js 內貼上以下語法。
 
-```JavaScript
+```javascript
 const VuePagination = {
-    data() {
-        return {
-            PerPage:'C'
-            , PageTiems:''
-            , Page:''
-            , Times:''
-            , Total:'@'
-            , TotalPage:''
-        }
-    }
-    , props: ['pagination']
-    , template: `
-        <div style="text-align:right">
-            <span v-for="pageNo in pagination.pages">
-                <a v-if="pagination.pageNo != pageNo" v-on:click="gotoPage(pageNo)" style="cursor:pointer">
-                    {{ pageNo }}
-                </a>
-                <label v-else>
-                    {{ "[" + pageNo + "]" }}
-                </label>&nbsp;
-            </span>
-            <span class="pager-nav">
-                i{{PerPage}}&nbsp;<input type="text" maxlength="3" style="width:35px;text-align:center;font-size:12px;" name="pageSize" :value="pagination.pageSize" v-on:change="onchange"/>
-                &nbsp;{{PageTiems}}A
-                {{Total}} {{pagination.totalPage}} {{TotalPage}} {{pagination.totalCount}} {{PageTiems}}j
-                <button type="button" class="btn btn-secondary btn-sm pager-btn" style="margin-bottom: 5px;margin-right:5px;" v-on:click="gotoPage()">Q</button>
-            </span>
-        </div>`
-    , methods: {
-        gotoPage(pageNo) {
-            var self = this;
-            console.log(pageNo);
-            // O_ǤJw
-            if (pageNo !== undefined) {
-                if (pageNo === '<') {
-                    self.pagination.pageNo = parseInt(self.pagination.pageNo) - 1;
-                } else if (pageNo === '>') {
-                    self.pagination.pageNo = parseInt(self.pagination.pageNo) + 1;
-                } else if (pageNo === '<<') {
-                    self.pagination.pageNo = (Math.floor((parseInt(self.pagination.pageNo) - 10) / 10) * 10 + 1);
-                } else if (pageNo === '>>') {
-                    self.pagination.pageNo = (Math.floor((parseInt(self.pagination.pageNo) + 10) / 10) * 10 + 1);
-                } else {
-                    self.pagination.pageNo = parseInt(pageNo);
-                }
-            } else {
-                self.pagination.pageNo = 1;
-            }
-            // wƬ0A۰ܧ1
-            if (parseInt(self.pagination.pageNo) === 0 || self.IsNumeric(self.pagination.pageNo) === false) {
-                self.pagination.pageNo = 1;
-            }
-            // wƤj`ơA۰ܧ`
-            self.pagination.pageNo =
-                parseInt(self.pagination.pageNo) > parseInt(self.pagination.totalPage)
-                    ? self.pagination.totalPage : self.pagination.pageNo;
-            // wƬ0A۰ܧ10
-            if (parseInt(self.pagination.pageSize) === 0 || self.IsNumeric(self.pagination.pageSize) === false) {
-                self.pagination.pageSize = 10;
-            }
-            // call on even
-            this.$emit('requery', { pagination: self.pagination });
-        }
-        , onchange(e) {
-            var self = this;
-            var re = /[^0-9]/;
-            if (re.test(e.target.value) === false) {
-                self.pagination[e.target.name] = parseInt(e.target.value);
-            }
-        }
-        , IsNumeric(n) {
-            return (n - 0) === n && n.toString().length > 0;
-        }
-    }
+data() {
+return {
+PerPage:'每頁'
+, PageTiems:'筆'
+, Page:'第'
+, Times:'頁'
+, Total:'共'
+, TotalPage:'頁'
+}
+}
+, props: ['pagination']
+, template: `
+<div style="text-align:right">
+<span v-for="pageNo in pagination.pages">
+<a v-if="pagination.pageNo != pageNo" v-on:click="gotoPage(pageNo)" style="cursor:pointer">
+{{ pageNo }}
+</a>
+<label v-else>
+{{ "[" + pageNo + "]" }}
+</label>&nbsp;
+</span>
+<span class="pager-nav">
+【{{PerPage}}&nbsp;<input type="text" maxlength="3" style="width:35px;text-align:center;font-size:12px;" name="pageSize" :value="pagination.pageSize" v-on:change="onchange"/>
+&nbsp;{{PageTiems}}，
+{{Total}} {{pagination.totalPage}} {{TotalPage}} {{pagination.totalCount}} {{PageTiems}}】
+<button type="button" class="btn btn-secondary btn-sm pager-btn" style="margin-bottom: 5px;margin-right:5px;" v-on:click="gotoPage()">Q</button>
+</span>
+</div>`
+, methods: {
+gotoPage(pageNo) {
+var self = this;
+console.log(pageNo);
+// 是否有傳入指定頁數
+if (pageNo !== undefined) {
+if (pageNo === '<') {
+self.pagination.pageNo = parseInt(self.pagination.pageNo) - 1;
+} else if (pageNo === '>') {
+self.pagination.pageNo = parseInt(self.pagination.pageNo) + 1;
+} else if (pageNo === '<<') {
+self.pagination.pageNo = (Math.floor((parseInt(self.pagination.pageNo) - 10) / 10) \* 10 + 1);
+} else if (pageNo === '>>') {
+self.pagination.pageNo = (Math.floor((parseInt(self.pagination.pageNo) + 10) / 10) \* 10 + 1);
+} else {
+self.pagination.pageNo = parseInt(pageNo);
+}
+} else {
+self.pagination.pageNo = 1;
+}
+// 指定頁數為0，自動變更為1
+if (parseInt(self.pagination.pageNo) === 0 || self.IsNumeric(self.pagination.pageNo) === false) {
+self.pagination.pageNo = 1;
+}
+// 指定頁數大於總頁數，自動變更為總頁數
+self.pagination.pageNo =
+parseInt(self.pagination.pageNo) > parseInt(self.pagination.totalPage)
+? self.pagination.totalPage : self.pagination.pageNo;
+// 指定筆數為0，自動變更為10
+if (parseInt(self.pagination.pageSize) === 0 || self.IsNumeric(self.pagination.pageSize) === false) {
+self.pagination.pageSize = 10;
+}
+// call on even
+this.$emit('requery', { pagination: self.pagination });
+}
+, onchange(e) {
+var self = this;
+var re = /[^0-9]/;
+if (re.test(e.target.value) === false) {
+self.pagination[e.target.name] = parseInt(e.target.value);
+}
+}
+, IsNumeric(n) {
+return (n - 0) === n && n.toString().length > 0;
+}
+}
 };
 ```
 
-### ޥ VuePagination.js 
+### 引用 VuePagination.js 元件
 
-b \Views\Shared\_Layout.cshtml  JavaScript W[ޥ VuePagination.js ɮסC
+在 \Views\Shared\\_Layout.cshtml 的 JavaScript 增加引用 VuePagination.js 檔案。
 
 `<script src="~/js/VuePagination.js"></script>`
 
-![img15](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-15.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-15.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-15.png)
 
-### U VuePagination.js 
+### 註冊 VuePagination.js 元件
 
-Vue3 ݭnUb\Views\AdmAnno\Index.cshtmlɮת Vue.createApp({}); ~A Vue UAW٬ vue-paginationC
-
+Vue3 元件需要註冊在 Vue.createApp({}); 內才行，為 Vue 實體註冊元件，名稱為 “vue-pagination”。  
 `app.component('vue-pagination', VuePagination);`
 
-![img16](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-16.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-16.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-16.png)
 
-### ϥΤ
+### 使用分頁元件
 
-UnANiHbeWmAWC
+註冊好之後，就可以在畫面上分頁的位置，放上它的元件。
 
 `<vue-pagination v-bind:pagination="grid.pagination" v-on:requery="reQuery"></vue-pagination>`
 
-![img20](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-20.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-20.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-20.png)
 
-]|sdߡAҥHo|Isd߭ reQuery() \A歫sdߡC
+因為分頁會重新查詢，所以這元件會呼叫查詢頁的 reQuery() 功能，執行重新查詢。
 
-### View dߥ\վ
+### View 查詢功能調整
 
-ڭ̭wggnF򥻪d Query()Ao̦]\Aվ@UAüW[@ reQuery() ɥiHsIsC
-վ᪺kOG
+我們剛剛已經寫好了基本的查詢 Query()，這裡因為分頁功能再調整一下，並增加一個 reQuery() 讓換頁時可以重新呼叫。  
+調整後的方法是：
 
-```C#
+```csharp
 Query(reQuery) {
-	var self = this;
- 
-	if (reQuery !== 'reQuery') {
-		self.grid.pagination.pageNo = 1;
-	}
- 
-	// զX
-	var postData = {};
-	postData['AnnoSubject'] = self.queryForm.AnnoSubject;
-	postData['AnnoStatus'] = self.queryForm.AnnoStatus;
- 
-	// [
-	postData['pagination'] =  JSON.parse(JSON.stringify(self.grid.pagination));
- 
-	$.blockUI();
-	// ϥ jQuery Ajax ǰeܫ
-	$.ajax({
-		url:'@Url.Content("~/AdmAnno/Query")',
-		method:'POST',
-		dataType:'json',
-		data: { inModel: postData },
-		success: function (datas) {
-			$.unblockUI();
-			if (datas.ErrMsg) {
-				alert(datas.ErrMsg);
-				return;
-			}
-			// jwC
-			self.grid.datas = datas.Grid;
-			self.grid.pagination = datas.pagination;
-		},
-		error: function (err) {
-			$.unblockUI();
-			alert(err.status + " " + err.statusText + '\n' + err.responseText);
-		}
-	});
- 
+var self = this;
+if (reQuery !== 'reQuery') {
+self.grid.pagination.pageNo = 1;
 }
-// 歫d
+// 組合表單資料
+var postData = {};
+postData['AnnoSubject'] = self.queryForm.AnnoSubject;
+postData['AnnoStatus'] = self.queryForm.AnnoStatus;
+// 附加分頁
+postData['pagination'] = JSON.parse(JSON.stringify(self.grid.pagination));
+$.blockUI();
+// 使用 jQuery Ajax 傳送至後端
+$.ajax({
+url:'@Url.Content("~/AdmAnno/Query")',
+method:'POST',
+dataType:'json',
+data: { inModel: postData },
+success: function (datas) {
+$.unblockUI();
+if (datas.ErrMsg) {
+alert(datas.ErrMsg);
+return;
+}
+// 綁定列表
+self.grid.datas = datas.Grid;
+self.grid.pagination = datas.pagination;
+},
+error: function (err) {
+$.unblockUI();
+alert(err.status + " " + err.statusText + '\n' + err.responseText);
+}
+});
+}
+// 執行重查
 , reQuery(emitData) {
-	var self = this;
-	if (emitData !== undefined) {
-		self.grid.pagination = emitData.pagination;
-	}
-	self.Query('reQuery');
+var self = this;
+if (emitData !== undefined) {
+self.grid.pagination = emitData.pagination;
+}
+self.Query('reQuery');
 }
 ```
 
-### grid W[ݩ
+### grid 物件增加分頁屬性
 
-b Vue3 즳ŧi data ݩ grid nW[@ӤݩʡG
+在 Vue3 原有宣告的 data 屬性 grid 要增加一個分頁屬性：
 
-```JavaScript
+```javascript
 , pagination: {
-	pages: [], pageNo: '1', pageSize: '10', totalCount: ''
+pages: [], pageNo: '1', pageSize: '10', totalCount: ''
 }
 ```
 
-![img20-1](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-20-1.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-20-1.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-20-1.png)
 
-### Controller dߥ\վ
+### Controller 查詢功能調整
 
-b Controller 쥻]gnF򥻬dߥ\Ao̦]W[d߫A]nվ@UykAiΥHUykN쥻ykG
+在 Controller 原本也寫好了基本查詢功能，這裡因增加分頁查詢後，也要調整一下語法，可用以下語法直接取代原本的語法：
 
-```C#
+```csharp
 /// <summary>
-/// dߤi
+/// 查詢公告
 /// </summary>
 /// <param name="inModel"></param>
 /// <returns></returns>
 public IActionResult Query(QueryIn inModel)
 {
-	QueryOut outModel = new QueryOut();
-	outModel.Grid = new List<AnnoModel>();
- 
-	// Ʈwsur
-	string connStr = _configuration.GetConnectionString("SqlServer");
-	using (var cn = new SqlConnection(connStr))
-	{
-		// Dnd SQL
-		string sql = @"SELECT Pkey, CONVERT(varchar(12) , AnnoDate, 111 ) as AnnoDate, AnnoSubject, AnnoContent, AnnoStatus, Case AnnoStatus when '1' then '' when '0' then '' end As AnnoStatusName
-						FROM Announcement 
-						WHERE 1=1 ";
- 
-		if (!string.IsNullOrEmpty(inModel.AnnoSubject))
-		{
-			sql += " AND AnnoSubject LIKE @AnnoSubject ";
-		}
-		if (!string.IsNullOrEmpty(inModel.AnnoStatus))
-		{
-			sql += " AND AnnoStatus = @AnnoStatus ";
-		}
-		sql += " ORDER BY AnnoDate desc, AnnoStatus ";
- 
-		object param = new
-		{
-			AnnoSubject = "%" + inModel.AnnoSubject + "%",
-			AnnoStatus = inModel.AnnoStatus
-		};
- 
-		// Bz
-		int totalRowCount = 0;
-		if (inModel.pagination.pageNo > 0)
-		{
-			string orderBy = "";
-			// o`
-			string totalRowSql = sql;
-			if (totalRowSql.ToUpper().IndexOf("ORDER BY") > -1)
-			{
-				orderBy = totalRowSql.Substring(sql.ToUpper().LastIndexOf("ORDER BY"));
-				totalRowSql = totalRowSql.Replace(orderBy, "");
-			}
-			totalRowSql = "SELECT COUNT(*) AS CNT FROM (" + totalRowSql + ") CNT_TABLE";
-			var rowCnt = cn.Query(totalRowSql, param);
-			foreach (var item in rowCnt)
-			{
-				totalRowCount = item.CNT;
-			}
- 
-			// o SQL
-			int startRow = ((inModel.pagination.pageNo - 1) * inModel.pagination.pageSize) + 1;
-			int endRow = (startRow + inModel.pagination.pageSize) - 1;
-			orderBy = sql.Substring(sql.ToString().ToUpper().LastIndexOf("ORDER BY"));
-			sql = sql.Replace(orderBy, "");
-			// h Order by OW
-			orderBy = orderBy.ToUpper().Replace("ORDER BY", "");
-			StringBuilder newOrderBy = new StringBuilder();
-			int index = 0;
-			string[] orderBys = orderBy.Split(',');
-			for (int i = 0; i < orderBys.Length; i++)
-			{
-				if (newOrderBy.Length > 0) { newOrderBy.Append(","); }
-				string ob = orderBys[i];
-				index = ob.IndexOf('.');
-				if (index > -1)
-				{
-					newOrderBy.Append(ob.Substring(index + 1));
-				}
-				else
-				{
-					newOrderBy.Append(ob);
-				}
-			}
-			newOrderBy.Insert(0, "ORDER BY ");
- 
-			sql = string.Concat(
-				new object[] {
-					"SELECT * FROM (SELECT *, ROW_NUMBER() OVER (", newOrderBy.ToString(), ") AS RCOUNT FROM (", sql, ") PAGE_SQL ) PAGE_SQL2 WHERE PAGE_SQL2.RCOUNT BETWEEN "
-					, startRow, " AND ", endRow, " ", newOrderBy.ToString() });
-		}
- 
-		// ϥ Dapper d
-		var list = cn.Query<AnnoModel>(sql, param);
- 
-		// X
-		foreach (var item in list)
-		{
-			outModel.Grid.Add(item);
-		}
- 
-		// p
-		outModel.pagination = this.PreparePage(inModel.pagination, totalRowCount);
-	}
-	return Json(outModel);
+QueryOut outModel = new QueryOut();
+outModel.Grid = new List<AnnoModel>();
+// 資料庫連線字串
+string connStr = \_configuration.GetConnectionString("SqlServer");
+using (var cn = new SqlConnection(connStr))
+{
+// 主要查詢 SQL
+string sql = @"SELECT Pkey, CONVERT(varchar(12) , AnnoDate, 111 ) as AnnoDate, AnnoSubject, AnnoContent, AnnoStatus, Case AnnoStatus when '1' then '顯示' when '0' then '隱藏' end As AnnoStatusName
+FROM Announcement
+WHERE 1=1 ";
+if (!string.IsNullOrEmpty(inModel.AnnoSubject))
+{
+sql += " AND AnnoSubject LIKE @AnnoSubject ";
 }
- 
+if (!string.IsNullOrEmpty(inModel.AnnoStatus))
+{
+sql += " AND AnnoStatus = @AnnoStatus ";
+}
+sql += " ORDER BY AnnoDate desc, AnnoStatus ";
+object param = new
+{
+AnnoSubject = "%" + inModel.AnnoSubject + "%",
+AnnoStatus = inModel.AnnoStatus
+};
+// 分頁處理
+int totalRowCount = 0;
+if (inModel.pagination.pageNo > 0)
+{
+string orderBy = "";
+// 取得總筆數
+string totalRowSql = sql;
+if (totalRowSql.ToUpper().IndexOf("ORDER BY") > -1)
+{
+orderBy = totalRowSql.Substring(sql.ToUpper().LastIndexOf("ORDER BY"));
+totalRowSql = totalRowSql.Replace(orderBy, "");
+}
+totalRowSql = "SELECT COUNT(\*) AS CNT FROM (" + totalRowSql + ") CNT\_TABLE";
+var rowCnt = cn.Query(totalRowSql, param);
+foreach (var item in rowCnt)
+{
+totalRowCount = item.CNT;
+}
+// 取得分頁 SQL
+int startRow = ((inModel.pagination.pageNo - 1) \* inModel.pagination.pageSize) + 1;
+int endRow = (startRow + inModel.pagination.pageSize) - 1;
+orderBy = sql.Substring(sql.ToString().ToUpper().LastIndexOf("ORDER BY"));
+sql = sql.Replace(orderBy, "");
+// 去除 Order by 別名
+orderBy = orderBy.ToUpper().Replace("ORDER BY", "");
+StringBuilder newOrderBy = new StringBuilder();
+int index = 0;
+string[] orderBys = orderBy.Split(',');
+for (int i = 0; i < orderBys.Length; i++)
+{
+if (newOrderBy.Length > 0) { newOrderBy.Append(","); }
+string ob = orderBys[i];
+index = ob.IndexOf('.');
+if (index > -1)
+{
+newOrderBy.Append(ob.Substring(index + 1));
+}
+else
+{
+newOrderBy.Append(ob);
+}
+}
+newOrderBy.Insert(0, "ORDER BY ");
+sql = string.Concat(
+new object[] {
+"SELECT \* FROM (SELECT \*, ROW\_NUMBER() OVER (", newOrderBy.ToString(), ") AS RCOUNT FROM (", sql, ") PAGE\_SQL ) PAGE\_SQL2 WHERE PAGE\_SQL2.RCOUNT BETWEEN "
+, startRow, " AND ", endRow, " ", newOrderBy.ToString() });
+}
+// 使用 Dapper 查詢
+var list = cn.Query<AnnoModel>(sql, param);
+// 輸出物件
+foreach (var item in list)
+{
+outModel.Grid.Add(item);
+}
+// 計算分頁
+outModel.pagination = this.PreparePage(inModel.pagination, totalRowCount);
+}
+return Json(outModel);
+}
 /// <summary>
-/// p
+/// 計算分頁
 /// </summary>
 /// <param name="model"></param>
 /// <param name="TotalRowCount"></param>
 /// <returns></returns>
 public PaginationModel PreparePage(PaginationModel model, int TotalRowCount)
 {
-	List<string> pages = new List<string>();
-	int pageStart = ((model.pageNo - 1) / 10) * 10;
-	model.totalCount = TotalRowCount;
-	model.totalPage =
-			Convert.ToInt16(Math.Ceiling(
-			 double.Parse(model.totalCount.ToString()) / double.Parse(model.pageSize.ToString())
-			));
- 
-	if (model.pageNo > 10)
-		pages.Add("<<");
-	if (model.pageNo > 1)
-		pages.Add("<");
-	for (int i = 1; i <= 10; ++i)
-	{
-		if (pageStart + i > model.totalPage)
-			break;
-		pages.Add((pageStart + i).ToString());
-	}
-	if (model.pageNo < model.totalPage)
-		pages.Add(">");
-	if ((pageStart + 10) < model.totalPage)
-		pages.Add(">>");
-	model.pages = pages;
-	return model;
+List<string> pages = new List<string>();
+int pageStart = ((model.pageNo - 1) / 10) \* 10;
+model.totalCount = TotalRowCount;
+model.totalPage =
+Convert.ToInt16(Math.Ceiling(
+double.Parse(model.totalCount.ToString()) / double.Parse(model.pageSize.ToString())
+));
+if (model.pageNo > 10)
+pages.Add("<<");
+if (model.pageNo > 1)
+pages.Add("<");
+for (int i = 1; i <= 10; ++i)
+{
+if (pageStart + i > model.totalPage)
+break;
+pages.Add((pageStart + i).ToString());
+}
+if (model.pageNo < model.totalPage)
+pages.Add(">");
+if ((pageStart + 10) < model.totalPage)
+pages.Add(">>");
+model.pages = pages;
+return model;
 }
 ```
 
-b SQL Server AڬOק SQL ykAd`ơAAd߻ݭndơACɡA|spAud߻ݭnƽdC
+在 SQL Server 的分頁，我是直接修改 SQL 語法，先查詢總筆數，再查詢需要的範圍資料，當每次換頁時，都會重新計算，只查詢需要的資料範圍。
 
-### ViewModel վ
+### ViewModel 調整
 
-ViewModel NOW[Ao̧ڴNKWykAiHNe ModelC
+ViewModel 的部份就是增加分頁的物件，這裡我就全部貼上語法，可以直接取代之前的 Model。
 
-```C#
+```csharp
 public class QueryIn
 {
-	public string AnnoSubject { get; set; }
-	public string AnnoStatus { get; set; }
- 
-	public PaginationModel pagination { get; set; }
+public string AnnoSubject { get; set; }
+public string AnnoStatus { get; set; }
+public PaginationModel pagination { get; set; }
 }
- 
 public class QueryOut
 {
-	public List<AnnoModel> Grid { get; set; }
-	public PaginationModel pagination { get; set; }
+public List<AnnoModel> Grid { get; set; }
+public PaginationModel pagination { get; set; }
 }
- 
 public class AnnoModel
 {
-	public string Pkey { get; set; }
-	public string AnnoDate { get; set; }
-	public string AnnoSubject { get; set; }
-	public string AnnoContent { get; set; }
-	public string AnnoStatus { get; set; }
-	public string AnnoStatusName { get; set; }
+public string Pkey { get; set; }
+public string AnnoDate { get; set; }
+public string AnnoSubject { get; set; }
+public string AnnoContent { get; set; }
+public string AnnoStatus { get; set; }
+public string AnnoStatusName { get; set; }
 }
- 
 /// <summary>
-//  Model
+// 分頁 Model
 /// </summary>
 public class PaginationModel
 {
-	public List<string> pages { get; set; }
-	public int pageNo { get; set; }
-	public int pageSize { get; set; }
-	public int totalPage { get; set; }
-	public int totalCount { get; set; }
+public List<string> pages { get; set; }
+public int pageNo { get; set; }
+public int pageSize { get; set; }
+public int totalPage { get; set; }
+public int totalCount { get; set; }
 }
 ```
 
-o̫ANiHդ\FA F5 MסAd߸ƫN|ܤGC
+當完成這裡後，就可以測試分頁的功能了，按 F5 執行專案，查詢資料後就會顯示分頁的結果。
 
-![img17](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-17.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-17.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-17.png)
 
- 2 C
+切換第 2 頁。
 
-![img18](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-18.png)
+[![](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-18.png)](https://blog.hungwin.com.tw/wp-content/uploads/2022/02/aspnet-mvc-anno-backstage-query-18.png)
 
-oOګܱ`ΪeݤAɵAC
+這是我很常用的前端分頁元件，分享給你。
+
+### 範例下載
+
+[連結 GitHub 下載範例](https://github.com/eermagic/aspnet-mvc-anno-backstage)
+
+#### 下一篇教學文章
+
+- [[ASP.NET Core MVC + Vue3 + Dapper] 前後台網站公告範例 – 後台編輯頁面教學 #CH2 (附範例)](https://blog.hungwin.com.tw/aspnet-mvc-anno-backstage-modify/)
+
+#### 推薦課程
+
+- [Bootstrap 5 網頁切版整合術](https://tinyurl.com/y548slp3)
+- [Vue 3 實戰影音課程](https://tinyurl.com/y5vvxdpl)
+
+#### 相關學習文章
+
+- [[ASP.NET MVC] 前台會員註冊範例教學 #CH1 (附範例)](https://blog.hungwin.com.tw/aspnet-mvc-member-register/)
+

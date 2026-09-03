@@ -19,7 +19,7 @@ Qdrant 是一款開源的向量資料庫，支援高維向量的儲存、查詢�
 
 ### 2. 下載 Qdrant 映像檔
 
-Qdrant 官方提供 Docker 映像，可以直接從 Docker Hub 取得。
+Qdrant 官方提供 Docker 映像檔，可以直接從 Docker Hub 取得。
 
 ```bash
 docker pull qdrant/qdrant

@@ -8,7 +8,7 @@ kind: original
 
 ## 1. 使用 `xp_cmdshell`
 
-`xp_cmdshell` 是 SQL Server 的一個擴充儲存過程，可以讓你執行作業系統命令（如 `dir`）。預設是關閉的，需要先啟用。
+`xp_cmdshell` 是 SQL Server 的一個擴充預存程序，可以讓你執行作業系統指令（如 `dir`）。預設是關閉的，需要先啟用。
 
 ### 啟用 `xp_cmdshell`：
 

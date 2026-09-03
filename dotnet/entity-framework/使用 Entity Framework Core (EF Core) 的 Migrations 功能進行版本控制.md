@@ -29,7 +29,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 
 使用 EF Core 的反向工程功能（`Scaffold-DbContext`）來生成基於現有資料庫的實體模型和 `DbContext` 類。
 
-執行以下命令：
+執行以下指令：
 
 ```bash
 dotnet ef dbcontext scaffold "Server=localhost;Database=YourDatabase;User Id=sa;Password=YourPassword;" Microsoft.EntityFrameworkCore.SqlServer -o Models
@@ -51,13 +51,13 @@ dotnet ef dbcontext scaffold "Server=localhost;Database=YourDatabase;User Id=sa;
 
 要讓 EF Core 知道你的現有資料庫結構是 Migrations 的初始狀態，執行以下操作：
 
-1. **新增初始 Migration** 在專案中執行以下命令：
+1. **新增初始 Migration** 在專案中執行以下指令：
 
    ```bash
    dotnet ef migrations add InitialCreate
    ```
 
-2. **移除 `Up()` 和 `Down()` 中的程式碼** 打開剛生成的 `InitialCreate` Migration 檔案，移除 `Up()` 和 `Down()` 方法中的內容，避免重新創建已存在的資料庫結構。
+2. **移除 `Up()` 和 `Down()` 中的程式碼** 打開剛生成的 `InitialCreate` Migration 檔案，移除 `Up()` 和 `Down()` 方法中的內容，避免重新建立已存在的資料庫結構。
 
    範例：
 
@@ -73,7 +73,7 @@ dotnet ef dbcontext scaffold "Server=localhost;Database=YourDatabase;User Id=sa;
    }
    ```
 
-3. **更新資料庫版本記錄** 執行以下命令將這個空的 Migration 應用到資料庫，EF Core 將記錄這個版本：
+3. **更新資料庫版本記錄** 執行以下指令將這個空的 Migration 應用到資料庫，EF Core 將記錄這個版本：
 
    ```bash
    dotnet ef database update
@@ -107,7 +107,7 @@ dotnet ef dbcontext scaffold "Server=localhost;Database=YourDatabase;User Id=sa;
    dotnet ef migrations add AddPhoneNumberToCompany
    ```
    
-   生成 Migrations 執行以下命令，生成資料庫結構變更的 SQL 腳本(選擇)
+   生成 Migrations 執行以下指令，生成資料庫結構變更的 SQL 指令碼(選擇)
    
    ```bash
    dotnet ef migrations script -o Migrations.sql

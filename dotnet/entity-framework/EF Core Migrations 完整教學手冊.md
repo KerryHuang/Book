@@ -35,7 +35,7 @@ kind: original
    * 初始資料庫複製 (Migration + Update)
 9. 版本管理：新增／修改屬性
 
-   * 新增遷移命令
+   * 新增遷移指令
    * 產出 Migration 檔案結構解析
 10. 回退／還原資料庫
 11. 自訂 Migration：Raw SQL、Views、SP
@@ -60,7 +60,7 @@ kind: original
 ### 2.2 安裝 IDE
 
 * **Visual Studio 2022**：工作負載選擇 `.NET 桌面開發`。
-* **JetBrains Rider**：需安裝 `.NET SDK` 並確保載入 C# 插件。
+* **JetBrains Rider**：需安裝 `.NET SDK` 並確保載入 C# 外掛。
 
 ### 2.3 建立 SQL Server 資料庫
 
@@ -168,7 +168,7 @@ db.SaveChanges();
 
 ---
 
-*後續章節示例程式碼與細節，可依需求補齊。*
+*後續章節範例程式碼與細節，可依需求補齊。*
 
 ---
 
@@ -179,7 +179,7 @@ db.SaveChanges();
 ```mermaid
 flowchart TD
   A[撰寫實體模型 Models] --> B[新增 DbContext 並註冊]
-  B --> C[執行 Migration 命令]
+  B --> C[執行 Migration 指令]
   C --> C1[dotnet ef migrations add <Name>]
   C1 --> D[生成 Migrations 類別檔案]
   D --> E[檢查、修改 Up/Down 方法]
@@ -193,7 +193,7 @@ flowchart TD
   I -- 否 --> K[流程結束]
 ```
 
-> **備註**：上述 Mermaid 語法已在 Mermaid Live Editor 驗證，無語法錯誤，可在支援 Mermaid 的 Markdown 編輯器（如 VS Code Markdown Preview Enhanced、GitLab、Mermaid Live Editor）中直接渲染流程圖。如需微調節點文字或箭頭樣式，可參考 [Mermaid 官方文檔](https://mermaid.js.org/).
+> **備註**：上述 Mermaid 語法已在 Mermaid Live Editor 驗證，無語法錯誤，可在支援 Mermaid 的 Markdown 編輯器（如 VS Code Markdown Preview Enhanced、GitLab、Mermaid Live Editor）中直接渲染流程圖。如需微調節點文字或箭頭樣式，可參考 [Mermaid 官方文件](https://mermaid.js.org/).
 
 ### 如何使用 Mermaid
 
@@ -295,7 +295,7 @@ dotnet run --project MoldPlan.MigrationApp -- \
   -m "AddDbViews"
 ```
 
-以上命令可結合前述手冊中 `ViewMigrationGenerator` 工具，快速生成完整的 View Migration 類別。
+以上指令可結合前述手冊中 `ViewMigrationGenerator` 工具，快速生成完整的 View Migration 類別。
 
 
 ------

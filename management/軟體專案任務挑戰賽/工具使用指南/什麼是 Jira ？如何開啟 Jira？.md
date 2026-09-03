@@ -24,7 +24,7 @@ kind: original
 
  
 
-關於創建 Jira ticket 和 Confluence，你是自由的。
+關於建立 Jira ticket 和 Confluence，你是自由的。
 
 不用怕會影響別人的工作
 

@@ -14,14 +14,14 @@ VtigerCRM 是一套開源(Open Source)的客戶關係管理系統，涵蓋銷售
 
 | 項目 | 選擇 | 原因 |
 |------|------|------|
-| Vtiger 版本 | **7.x（映像實際為 7.2.0）** | 官方最新開源 8.2.0 **沒有可用的繁體中文語言包**；成熟的社群繁中包只支援 7.x。要繁中介面就用 7.x。 |
-| 映像來源 | `javanile/vtiger:7.2.0` | 社群維護、可自動匯入資料庫、`admin/admin` 自動建立。 |
-| 資料庫 | 獨立 `mysql:5.7` 容器 | 7.x 全包式映像已不可靠，改用 app + DB 兩容器較穩。 |
+| Vtiger 版本 | **7.x（映像檔實際為 7.2.0）** | 官方最新開源 8.2.0 **沒有可用的繁體中文語言包**；成熟的社群繁中包只支援 7.x。要繁中介面就用 7.x。 |
+| 映像檔來源 | `javanile/vtiger:7.2.0` | 社群維護、可自動匯入資料庫、`admin/admin` 自動建立。 |
+| 資料庫 | 獨立 `mysql:5.7` 容器 | 7.x 全包式映像檔已不可靠，改用 app + DB 兩容器較穩。 |
 | 繁中語言包 | GitHub `fanyuan0912/vtiger_zh_tw_Lang` | vtiger 7.x 專用，`prefix=zh_tw`、標籤「臺灣繁體」。 |
 
 兩個必知重點（後面有對應步驟）：
 
-1. **重啟會卡在 loading**：javanile 映像的啟動腳本在「資料庫已匯入」時會鬼打牆（無限等待空資料庫），導致 `restart` 後卡住。本章提供啟動腳本補丁解決。
+1. **重啟會卡在 loading**：javanile 映像檔的啟動指令碼在「資料庫已匯入」時會鬼打牆（無限等待空資料庫），導致 `restart` 後卡住。本章提供啟動指令碼補丁解決。
 2. **改了語言卻沒生效**：vtiger 會把使用者資料**快取**在 `user_privileges/user_privileges_<id>.php`，只改資料庫沒用，**必須一併改快取**。
 
 ---
@@ -77,7 +77,7 @@ services:
 docker compose up -d
 ```
 
-第一次會拉映像並**自動匯入資料庫**，約需 1～2 分鐘。可觀察進度：
+第一次會拉映像檔並**自動匯入資料庫**，約需 1～2 分鐘。可觀察進度：
 
 ```powershell
 docker logs -f vtiger
@@ -211,7 +211,7 @@ docker exec -i vtiger-mysql mysql -uroot -psecret vtiger -e "UPDATE vtiger_users
 # (2) 改使用者快取檔（最關鍵，沒這步介面不會變中文）
 docker exec vtiger sed -i "s/'language'=>'en_us'/'language'=>'zh_tw'/" /var/www/html/user_privileges/user_privileges_1.php
 
-# (3) 清模板快取
+# (3) 清範本快取
 docker exec vtiger sh -c "rm -rf /var/www/html/cache/templates_c/* 2>/dev/null; echo cleared"
 ```
 
@@ -265,7 +265,7 @@ docker compose down      # ⚠ 整個刪除：資料與繁中設定全清空；�
 
 | 症狀 | 原因 | 解法 |
 |------|------|------|
-| 重啟後一直停在 loading 畫面 | 啟動腳本在 DB 已匯入時無限等待空資料庫 | 套用第五節補丁；或 `docker compose down` 後重新 `up` |
+| 重啟後一直停在 loading 畫面 | 啟動指令碼在 DB 已匯入時無限等待空資料庫 | 套用第五節補丁；或 `docker compose down` 後重新 `up` |
 | 改了語言但介面還是英文 | `user_privileges/user_privileges_<id>.php` 快取未更新 | 執行 6-4 的步驟 (2) 改快取檔 |
 | 改 `config.inc.php` 沒生效 | PHP opcache 快取了舊設定 | `docker compose restart vtiger` |
 | 登入頁(Username/Password/Sign in)仍是英文 | 登入前的頁面走自己的語言選單 | 屬正常；**登入後**的 app 才是繁中 |
@@ -274,9 +274,9 @@ docker compose down      # ⚠ 整個刪除：資料與繁中設定全清空；�
 
 ---
 
-## 附錄：重啟安全補丁腳本 `vtiger-foreground.sh`
+## 附錄：重啟安全補丁指令碼 `vtiger-foreground.sh`
 
-> 這是 javanile 原始啟動腳本，僅把「匯入資料庫」那段改為**冪等**（DB 已有資料表就跳過匯入）。請以 **LF 換行、UTF-8** 儲存（套用步驟會自動清 CRLF）。
+> 這是 javanile 原始啟動指令碼，僅把「匯入資料庫」那段改為**冪等**（DB 已有資料表就跳過匯入）。請以 **LF 換行、UTF-8** 儲存（套用步驟會自動清 CRLF）。
 
 ```bash
 #!/bin/bash
@@ -351,7 +351,7 @@ apache2-foreground
 
 ## 參考連結
 
-- 映像：<https://hub.docker.com/r/javanile/vtiger>
+- 映像檔：<https://hub.docker.com/r/javanile/vtiger>
 - 繁中語言包：<https://github.com/fanyuan0912/vtiger_zh_tw_Lang>
 - 官方網站：<https://www.vtiger.com>
 - 官方社群：<https://community.vtiger.com/help/>

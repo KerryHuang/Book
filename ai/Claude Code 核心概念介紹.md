@@ -6,7 +6,7 @@ kind: original
 
 ## 一、子代理 (Agents)
 
-放在 `.claude/agents/{name}.md`，是在**獨立上下文**中運行的專業 AI 助手。
+放在 `.claude/agents/{name}.md`，是在**獨立上下文**中執行的專業 AI 助手。
 
 | 特性       | 說明                             |
 | ---------- | -------------------------------- |
@@ -21,17 +21,17 @@ kind: original
 
 ------
 
-## 二、技能/斜線命令 (Skills/Commands)
+## 二、技能/斜線指令 (Skills/Commands)
 
-放在 `.claude/skills/{name}/SKILL.md`，是**可重用的工作流程模板**，透過 `/skill-name` 呼叫。
+放在 `.claude/skills/{name}/SKILL.md`，是**可重用的工作流程範本**，透過 `/skill-name` 呼叫。
 
 | 特性     | 說明                                                         |
 | -------- | ------------------------------------------------------------ |
 | 手動呼叫 | `/deploy production`、`/commit`                              |
 | 自動呼叫 | Claude 根據 description 判斷（除非 `disable-model-invocation: true`） |
 | 引數支援 | `$ARGUMENTS` 替換使用者傳入的參數                            |
-| 動態內容 | `` !`command` `` 語法執行命令並注入結果                          |
-| 隔離執行 | `context: fork` 在子代理中運行                               |
+| 動態內容 | `` !`command` `` 語法執行指令並注入結果                          |
+| 隔離執行 | `context: fork` 在子代理中執行                               |
 
 **Frontmatter 重要欄位**：`name`、`description`、`user-invocable`、`disable-model-invocation`、`allowed-tools`、`argument-hint`
 
@@ -74,7 +74,7 @@ Layer 4: Agents          — 專業化委託，隔離上下文執行
 | ------------------------ | ----------------- |
 | 全專案強制規範           | CLAUDE.md `<law>` |
 | 特定檔案類型約定         | Rule（加 paths）  |
-| 可重用工作流程/模板      | Skill             |
+| 可重用工作流程/範本      | Skill             |
 | 需要隔離上下文的專業任務 | Agent             |
 
-本專案已有完整配置：14 個 skills、6 個 agents、12 個 rules，覆蓋從需求撰寫到部署提交的完整開發流程。
+本專案已有完整設定：14 個 skills、6 個 agents、12 個 rules，覆蓋從需求撰寫到部署提交的完整開發流程。

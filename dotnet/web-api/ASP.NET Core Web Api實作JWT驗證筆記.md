@@ -49,7 +49,7 @@ dotnet new gitignore
 dotnet new webapi -n Lab_JWT
 ```
 
-> `-n` 為設置專案名稱
+> `-n` 為設定專案名稱
 
 透過下方指令將專案加入至方案內
 
@@ -57,7 +57,7 @@ dotnet new webapi -n Lab_JWT
 dotnet sln add .\Lab_JWT\Lab_JWT.csproj
 ```
 
-設置信任`ASP.NET Core HTTPS` 開發憑證
+設定信任`ASP.NET Core HTTPS` 開發憑證
 
 ```
 dotnet dev-certs https --trust
@@ -91,16 +91,16 @@ dotnet add package NLog --version 4.7.10
 dotnet add package NLog.Web.AspNetCore --version 4.12.0
 ```
 
-## 配置NLog
+## 設定NLog
 
-關於配置可以參考**Getting started with `ASP.NET Core 5`**
+關於設定可以參考**Getting started with `ASP.NET Core 5`**
 https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-5
 
-在配置之前要先完成安裝必要的Nuget套件，在上方步驟有安裝指令。
+在設定之前要先完成安裝必要的Nuget套件，在上方步驟有安裝指令。
 
-在專案目錄內建立一個`nlog.config`檔案，並在方案檔加入必要設置，請透過`Visual Studio Code`進行操作。
+在專案目錄內建立一個`nlog.config`檔案，並在方案檔加入必要設定，請透過`Visual Studio Code`進行操作。
 
-開啟`Lab_JWT.csproj`在裡面加入下方配置
+開啟`Lab_JWT.csproj`在裡面加入下方設定
 
 ```
 <ItemGroup>    
@@ -112,7 +112,7 @@ https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-5
 ```
 
 > 這裡用意是在**建置**/**發佈**階段時，指定將`nlog.config`複製一份到`bin/`底下對應的各階段目錄內去。
-> 如果沒設置的話在執行的時候NLog不會正常運作起來。
+> 如果沒設定的話在執行的時候NLog不會正常運作起來。
 > 複製條件為`Always`代表無論有沒有更動內容都複製更新。
 
 將以下內容複製到`nlog.config`
@@ -159,7 +159,7 @@ https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-5
 
 > 在專案啟動時會在專案目錄下自動建置`Log/`，裡面會放置NLog產生的紀錄檔案
 > 通常會看的是在`coreown/`與`web/`底下的紀錄檔
-> 關於配置內容設定可以參考
+> 關於設定內容設定可以參考
 > https://github.com/NLog/NLog/wiki/Configuration-file
 
 ### 註冊NLog為Log提供者
@@ -197,8 +197,8 @@ public static void Main(string[] args)
 }
 ```
 
-> 在第一行為最重要，他會載入`nlog.config`依據裡面的內容進行配置NLog。
-> 可以看到原始只有一行`CreateHostBuilder(args).Build().Run();`，經過配置NLog變成包覆在`try-catch-finally`裡面結構。
+> 在第一行為最重要，他會載入`nlog.config`依據裡面的內容進行設定NLog。
+> 可以看到原始只有一行`CreateHostBuilder(args).Build().Run();`，經過設定NLog變成包覆在`try-catch-finally`裡面結構。
 > 確保app啟動過程中如果發生意外而導致啟動失敗，可以啟動失敗錯誤紀錄，前提是NLog有先被正常載入。
 > 在`finally`區塊內`NLog.LogManager.Shutdown();`是為了當app被關掉後，讓NLog程序正常關閉。
 
@@ -211,7 +211,7 @@ public static void Main(string[] args)
                 {
                     webBuilder.UseStartup<Startup>();
                 })
-                // 重新設置app Log配置
+                // 重新設置app Log設定
                 .ConfigureLogging(logging =>
                 {
                     // 清除app預設Log Provider
@@ -318,7 +318,7 @@ namespace Lab_JWT.Models
 ```
 
 > 放置有關Token相關設定項目內容Data Model。
-> 這裡設定項目跟Token本身有關，會跟`appsettings.json`內`JWTConfig`配置相對應
+> 這裡設定項目跟Token本身有關，會跟`appsettings.json`內`JWTConfig`設定相對應
 > 在api接收到請求後，內部處理會先封裝Token本身設定內容，再呼叫JWT處理服務內功能時會帶此Data Model。
 
 建立`JWTServices.cs`，並放置在專案`Services/`
@@ -403,7 +403,7 @@ namespace Lab_JWT.Services
                 SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Issuer = issuer, // 設置發行者資訊
-                    Audience = issuer, // 設置驗證發行者對象，如果需要驗證Token發行者，需要設定此項目
+                    Audience = issuer, // 設置驗證發行者物件，如果需要驗證Token發行者，需要設定此項目
                     NotBefore = DateTime.Now, // 設置可用時間， 預設值就是 DateTime.Now
                     IssuedAt = DateTime.Now, // 設置發行時間，預設值就是 DateTime.Now
                     Subject = userClaimsIdentity, // Token 針對User資訊內容物件
@@ -526,11 +526,11 @@ namespace Lab_JWT.Services
 > 透過介面(JWTBase)去定義有什麼功能和需要帶什麼參數，作為一個Service Base。
 > 介面功能定義好後，將此Service Base去實作出來，完成介面定義功能內處理邏輯。
 
-## 註冊服務與設置驗證方法
+## 註冊服務與設定驗證方法
 
 ### 註冊服務
 
-在`Startup.cs`內`ConfigureServices`進行配置
+在`Startup.cs`內`ConfigureServices`進行設定
 
 ```
 services.AddSingleton<JWTBase, JWTServices>();
@@ -543,9 +543,9 @@ services.AddSingleton<JWTBase, JWTServices>();
 > 關於注入的服務留存期可參考，在這是使用`單一`
 > https://docs.microsoft.com/zh-tw/dotnet/core/extensions/dependency-injection#service-lifetimes
 
-### 設置驗證
+### 設定驗證
 
-在`Startup.cs`內進行配置，在以下兩個區塊進行
+在`Startup.cs`內進行設定，在以下兩個區塊進行
 
 #### ConfigureServices
 
@@ -557,7 +557,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 在這裡驗證邏輯流程如下
 
-- 設置驗證方式
+- 設定驗證方式
 
 ```
 services.AddAuthentication(
@@ -569,7 +569,7 @@ services.AddAuthentication(
 > 有關驗證可以參考
 > https://docs.microsoft.com/zh-tw/aspnet/core/security/authentication/?view=aspnetcore-5.0
 
-- 驗證項目設置
+- 驗證項目設定
 
 ```
 AddJwtBearer(options =>
@@ -578,35 +578,35 @@ AddJwtBearer(options =>
         // using Microsoft.IdentityModel.Tokens;
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            #region  配置驗證發行者
+            #region  設定驗證發行者
 
             ValidateIssuer = true, // 是否要啟用驗證發行者
             ValidIssuer = Configuration.GetSection("JWTConfig").GetValue<string>("Issuer"),
 
             #endregion
 
-            #region 配置驗證接收方
+            #region 設定驗證接收方
 
             ValidateAudience = false, // 是否要啟用驗證接收者
             // ValidAudience = "" // 如果不需要驗證接收者可以註解
 
             #endregion
 
-            #region 配置驗證Token有效期間
+            #region 設定驗證Token有效期間
 
             ValidateLifetime = true, // 是否要啟用驗證有效時間
 
             #endregion
 
-            #region 配置驗證金鑰
+            #region 設定驗證金鑰
 
             ValidateIssuerSigningKey = false, // 是否要啟用驗證金鑰，一般不需要去驗證，因為通常Token內只會有簽章
 
             #endregion
 
-            #region 配置簽章驗證用金鑰
+            #region 設定簽章驗證用金鑰
 
-            // 這裡配置是用來解Http Request內Token加密
+            // 這裡設定是用來解Http Request內Token加密
             // 如果Secret Key跟當初建立Token所使用的Secret Key不一樣的話會導致驗證失敗
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(
@@ -620,7 +620,7 @@ AddJwtBearer(options =>
 ```
 
 > 接續在`services.AddAuthentication()`後面，透過`.`來進行串接。
-> 這裡主要用來設置Token驗證的項目設定。
+> 這裡主要用來設定Token驗證的項目設定。
 
 #### Configure
 
@@ -649,7 +649,7 @@ app.UseAuthorization();
 功能所需要的參數
 
 - `secretKey`、`issuer`、`expireMinutes`
-  都會跟`appsettings.json`內`JWTConfig`配置相對應。
+  都會跟`appsettings.json`內`JWTConfig`設定相對應。
 - `jWTCliam`
   在呼叫此功能上一端會將聲明資訊內容透過`JWTCliam`Data Model封裝，並帶入給此功能參數。
 
@@ -693,7 +693,7 @@ Authorization: Bearer + Token
 
 > `Bearer`跟Token之間記得要加上一個空白符號隔開
 
-這支Api只是單純模擬需要帶有Token驗證Http請求，根據在`Startup.cs`內設置的驗證配置來進行，最後會簡單的分析讀取Token發行者(Issuer)資訊。
+這支Api只是單純模擬需要帶有Token驗證Http請求，根據在`Startup.cs`內設定的驗證設定來進行，最後會簡單的分析讀取Token發行者(Issuer)資訊。
 
 最後會回傳一組JSON
 

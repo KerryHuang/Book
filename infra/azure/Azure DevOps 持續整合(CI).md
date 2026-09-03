@@ -108,7 +108,7 @@ trigger:
 - master  # 定義觸發建置的分支
 
 pool:
-  vmImage: 'windows-latest'  # 選擇建置代理機器的映像
+  vmImage: 'windows-latest'  # 選擇建置代理機器的映像檔
 
 variables:
   solution: 'Presco.Utility'  # 解決方案名稱
@@ -130,7 +130,7 @@ steps:
     ArtifactName: 'artifacts'
     publishLocation: 'Container'
 
-- task: NuGetCommand@2  # 使用NuGet命令推送NuGet套件到Azure DevOps Artifacts
+- task: NuGetCommand@2  # 使用NuGet指令推送NuGet套件到Azure DevOps Artifacts
   displayName: 'nuget push'
   inputs:
     command: 'push'
@@ -147,7 +147,7 @@ trigger:
 - master  # 定義觸發建置的分支
 
 pool:
-  vmImage: 'windows-latest'  # 選擇建置代理機器的映像
+  vmImage: 'windows-latest'  # 選擇建置代理機器的映像檔
 
 variables:
   solution: '**/*.sln'  # 解決方案名稱
@@ -163,7 +163,7 @@ steps:
     projects: '$(solution)'
     arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
 
-- task: NuGetCommand@2  # 使用NuGet命令推送NuGet套件到Azure DevOps Artifacts
+- task: NuGetCommand@2  # 使用NuGet指令推送NuGet套件到Azure DevOps Artifacts
   displayName: 'nuget push'
   inputs:
     command: 'push'

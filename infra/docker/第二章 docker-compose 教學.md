@@ -52,13 +52,13 @@ kind: original
 
 1. **`docker-compose up`**
 
-   - 啟動並運行服務（根據 `docker-compose.yml` 文件）。
+   - 啟動並執行服務（根據 `docker-compose.yml` 檔案）。
 
    - 常用參數：
 
-     - `-d`：在後台運行容器。
-     - `--build`：在啟動服務之前重新構建映像。
-     - `--force-recreate`：即使配置沒有更改，也強制重新創建容器。
+     - `-d`：在背景執行容器。
+     - `--build`：在啟動服務之前重新建置映像檔。
+     - `--force-recreate`：即使設定沒有更改，也強制重新建立容器。
 
    - 範例：
 
@@ -67,7 +67,7 @@ kind: original
      docker-compose up -d --build
      ```
      
-     然後運行時指定 `.env` 文件：
+     然後執行時指定 `.env` 檔案：
      
      ```bash
      docker-compose --env-file .env up -d --build
@@ -79,8 +79,8 @@ kind: original
 
    - 常用參數：
 
-     - `--volumes`：同時移除數據卷。
-     - `--rmi all`：移除與服務相關的所有映像。
+     - `--volumes`：同時移除資料卷。
+     - `--rmi all`：移除與服務相關的所有映像檔。
 
    - 範例：
 
@@ -90,12 +90,12 @@ kind: original
 
 3. **`docker-compose build`**
 
-   - 構建服務定義的映像。
+   - 建置服務定義的映像檔。
 
    - 常用參數：
 
-     - `--no-cache`：忽略緩存，重新構建映像。
-     - `--pull`：始終拉取最新的基礎映像。
+     - `--no-cache`：忽略快取，重新建置映像檔。
+     - `--pull`：始終拉取最新的基礎映像檔。
 
    - 範例：
 
@@ -115,7 +115,7 @@ kind: original
 
 5. **`docker-compose stop`**
 
-   - 停止運行中的容器。
+   - 停止執行中的容器。
 
    - 範例：
 
@@ -157,7 +157,7 @@ kind: original
 
    - 常用參數：
 
-     - `-f`：實時查看日誌。
+     - `-f`：即時查看日誌。
      - `--tail=N`：顯示最近 N 行日誌。
 
    - 範例：
@@ -168,7 +168,7 @@ kind: original
 
 3. **`docker-compose exec`**
 
-   - 在運行中的容器內執行指令。
+   - 在執行中的容器內執行指令。
 
    - 範例：
 
@@ -192,7 +192,7 @@ kind: original
 
 1. **`docker-compose config`**
 
-   - 驗證並檢查 `docker-compose.yml` 文件的配置。
+   - 驗證並檢查 `docker-compose.yml` 檔案的設定。
 
    - 常用參數：
 
@@ -207,7 +207,7 @@ kind: original
 
 2. **`docker-compose images`**
 
-   - 列出服務使用的映像。
+   - 列出服務使用的映像檔。
 
    - 範例：
 
@@ -217,7 +217,7 @@ kind: original
 
 3. **`docker-compose top`**
 
-   - 顯示容器中的運行進程。
+   - 顯示容器中的執行處理程序。
 
    - 範例：
 

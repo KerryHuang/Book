@@ -9,7 +9,7 @@ kind: original
 #### 版本比較
 
 * SonarCloud只針對開發人員報告，跟sonarqube Community一樣(企業版有更多分析的報表)
-* SonarCloud跟雲端集成，不需要管理版本，SonarQube需要自己管理版本
+* SonarCloud跟雲端整合，不需要管理版本，SonarQube需要自己管理版本
 * SonarCloud要收費，SonarQube Community免費
 * SonarQube Community : Azure pipelines will work on master branch only
 * SonarQube Developer : Azure pipelines will work on master branches, other branches and for PR decoration

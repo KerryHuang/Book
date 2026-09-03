@@ -95,7 +95,7 @@ dotnet dev-certs https -ep aspnetapp.pfx -p YourPfxPassword
 
 在專案目錄內建立 **`docker-compose.yml`** 檔案。
 
-### **🔹 適用於標準 80/443 端口**
+### **🔹 適用於標準 80/443 連接埠**
 
 ```yaml
 version: "3.8"
@@ -117,7 +117,7 @@ services:
       - "./aspnetapp.pfx:/https/aspnetapp.pfx"
 ```
 
-### **🔹 若要使用 `8080/8081` 端口**
+### **🔹 若要使用 `8080/8081` 連接埠**
 
 ```yaml
 version: "3.8"
@@ -151,7 +151,7 @@ services:
 docker-compose up --build -d
 ```
 
-### **🔹 檢查運行狀態**
+### **🔹 檢查執行狀態**
 
 ```sh
 docker-compose ps
@@ -232,6 +232,6 @@ docker run -d -p 5000:80 -p 5001:443 \
 - 建立 `aspnetapp.pfx` 來啟用 HTTPS。
 - 使用 `docker-compose.yml` 進行管理。
 - 使用 `docker-compose up --build -d` 啟動應用程式。
-- 修正常見錯誤，確保應用程式順利運行。
+- 修正常見錯誤，確保應用程式順利執行。
 
-這樣，你的 `.NET 8 Web App` 就可以 **成功運行於 Docker 並支援 HTTPS！**
+這樣，你的 `.NET 8 Web App` 就可以 **成功執行於 Docker 並支援 HTTPS！**

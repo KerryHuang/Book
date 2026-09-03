@@ -10,7 +10,7 @@ kind: original
 
 # Order - 取得訂單內容
 
-利用提供的 訂單號碼 :order 取得訂單資訊，包含開立時的商品資料與折讓紀錄，此功能有訪問頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
+利用提供的 訂單號碼 :order 取得訂單資訊，包含開立時的商品資料與折讓紀錄，此功能有存取頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
 
 ### GET
 ```html
@@ -20,8 +20,8 @@ https://{company}.ecfit.cc/api/order/:order
 ## Header
 | Field                 | Type    | Description                |
 | :-------------------- | :------ | :------------------------- |
-| X-RateLimit-Limit     | Integer | 指定時間內最大允許訪問次數 |
-| X-RateLimit-Remaining | Integer | 指定時間內剩餘訪問次數     |
+| X-RateLimit-Limit     | Integer | 指定時間內最大允許存取次數 |
+| X-RateLimit-Remaining | Integer | 指定時間內剩餘存取次數     |
 | Retry-After           | Integer | 距離下次重新請求的等待時間 |
 
 ## Parameter
@@ -215,7 +215,7 @@ HTTP/1.1 200 OK
 
 # Order - 取得訂單內容(post方法)
 
-利用提供的 訂單號碼 取得訂單資訊，包含開立時的商品資料與折讓紀錄，此功能有訪問頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
+利用提供的 訂單號碼 取得訂單資訊，包含開立時的商品資料與折讓紀錄，此功能有存取頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
 
 ### POST
 ```html
@@ -225,8 +225,8 @@ https://{company}.ecfit.cc/api/orderContent
 ## Header
 | Field                 | Type    | Description                |
 | :-------------------- | :------ | :------------------------- |
-| X-RateLimit-Limit     | Integer | 指定時間內最大允許訪問次數 |
-| X-RateLimit-Remaining | Integer | 指定時間內剩餘訪問次數     |
+| X-RateLimit-Limit     | Integer | 指定時間內最大允許存取次數 |
+| X-RateLimit-Remaining | Integer | 指定時間內剩餘存取次數     |
 | Retry-After           | Integer | 距離下次重新請求的等待時間 |
 
 ## Parameter
@@ -1468,7 +1468,7 @@ HTTP/1.1 200 OK
 
 # Stock - 庫存查詢
 
-此功能有訪問頻率限制 ( 每分鐘 5 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
+此功能有存取頻率限制 ( 每分鐘 5 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
 
 ### GET
 ```html
@@ -1478,8 +1478,8 @@ https://{company}.ecfit.cc/api/stock/:barcode
 ## Header
 | Field                 | Type    | Description                |
 | :-------------------- | :------ | :------------------------- |
-| X-RateLimit-Limit     | Integer | 指定時間內最大允許訪問次數 |
-| X-RateLimit-Remaining | Integer | 指定時間內剩餘訪問次數     |
+| X-RateLimit-Limit     | Integer | 指定時間內最大允許存取次數 |
+| X-RateLimit-Remaining | Integer | 指定時間內剩餘存取次數     |
 | Retry-After           | Integer | 距離下次重新請求的等待時間 |
 
 ## Parameter
@@ -1528,7 +1528,7 @@ HTTP/1.1 200 OK
 
 # Stock - 庫存查詢 (多筆)
 
-此功能有訪問頻率限制 ( 每分鐘 5 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
+此功能有存取頻率限制 ( 每分鐘 5 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
 
 ### POST
 ```html
@@ -1538,8 +1538,8 @@ https://{company}.ecfit.cc/api/stock
 ## Header
 | Field                 | Type    | Description                |
 | :-------------------- | :------ | :------------------------- |
-| X-RateLimit-Limit     | Integer | 指定時間內最大允許訪問次數 |
-| X-RateLimit-Remaining | Integer | 指定時間內剩餘訪問次數     |
+| X-RateLimit-Limit     | Integer | 指定時間內最大允許存取次數 |
+| X-RateLimit-Remaining | Integer | 指定時間內剩餘存取次數     |
 | Retry-After           | Integer | 距離下次重新請求的等待時間 |
 
 ## Parameter

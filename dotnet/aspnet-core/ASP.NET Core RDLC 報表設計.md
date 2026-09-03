@@ -6,7 +6,7 @@ kind: original
 
 ### 1. 建立專案
 
-首先，創建一個新的 .NET 8 Web 應用程式專案：
+首先，建立一個新的 .NET 8 Web 應用程式專案：
 
 ```
 dotnet new mvc -n RdlcReportApp
@@ -25,7 +25,7 @@ cd RdlcReportApp
 
 ### 4. 安裝必要的 NuGet 套件
 
-安裝以下 NuGet 套件以支持 RDLC 報表：
+安裝以下 NuGet 套件以支援 RDLC 報表：
 
 使用`ReportViewerCore.NETCore`
 ```
@@ -38,20 +38,20 @@ dotnet add package System.Drawing.Common
 dotnet add package System.Security.Permissions
 ```
 
-### 5. 添加 RDLC 報表
+### 5. 新增 RDLC 報表
 
-在 Visual Studio 中，添加一個新的 RDLC 報表文件：
+在 Visual Studio 中，新增一個新的 RDLC 報表檔案：
 
-1. 右鍵點擊專案，在“添加”選項中選擇“新項目”。
+1. 右鍵點擊專案，在“新增”選項中選擇“新項目”。
 2. 搜索“報表”，選擇“報表”（RDLC），並命名為 `Report1.rdlc`。
-3. 打開 `Report1.rdlc` 文件，設計您的報表。
+3. 打開 `Report1.rdlc` 檔案，設計您的報表。
 
-### 6. 設置資料源
+### 6. 設定資料源
 
-設置資料源來填充報表中的資料：
+設定資料源來填充報表中的資料：
 
 1. 在報表設計器中，右鍵點擊“資料集”並選擇“加入資料集”。
-2. 選擇“資料集”，然後配置您的資料源（例如，來自資料庫的資料）。
+2. 選擇“資料集”，然後設定您的資料源（例如，來自資料庫的資料）。
 
 ### 7. 在控制器中生成報表
 
@@ -59,7 +59,7 @@ dotnet add package System.Security.Permissions
 
 #### 加入一個控制器
 
-創建一個新的控制器 `ReportsController.cs`：
+建立一個新的控制器 `ReportsController.cs`：
 
 使用`ReportViewerCore.NETCore`
 
@@ -169,7 +169,7 @@ namespace RdlcReportApp.Controllers
 }
 ```
 
-### 8. 設置檢視頁
+### 8. 設定檢視頁
 
 建立報表下載連結(PDF 與 Excel)：
 
@@ -185,9 +185,9 @@ namespace RdlcReportApp.Controllers
 </div>
 ```
 
-### 9. 配置服務
+### 9. 設定服務
 
-在 `Program.cs` 中，配置服務以支持 RDLC 報表：
+在 `Program.cs` 中，設定服務以支援 RDLC 報表：
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -197,7 +197,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// 配置中間件
+// 設定中間件
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -216,13 +216,13 @@ app.MapControllerRoute(
 app.Run();
 ```
 
-### 10. 運行應用程式
+### 10. 執行應用程式
 
-運行應用程式並訪問 `/reports` 路徑，應該能夠生成並顯示 RDLC 報表。
+執行應用程式並存取 `/reports` 路徑，應該能夠生成並顯示 RDLC 報表。
 
 ### 總結
 
-這個教學展示了如何在 .NET 8 中設置和使用 RDLC 報表，包括創建專案、設置資料源、生成報表和配置路由。根據您的需求，您可以進一步自訂報表內容和資料源。
+這個教學展示了如何在 .NET 8 中設定和使用 RDLC 報表，包括建立專案、設定資料源、生成報表和設定路由。根據您的需求，您可以進一步自訂報表內容和資料源。
 
 ### ★擴充教學
 

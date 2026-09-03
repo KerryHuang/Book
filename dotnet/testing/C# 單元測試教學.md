@@ -36,7 +36,7 @@ kind: original
 
 **端對端測試 (End-to-end testing) (E2E testing)**
 
-使用者（一端）對真實系統（另一端）進行測試。從用戶的角度、環境出發，實際操作系統服務，看結果是否符合預期，這部份就屬於人工測試的範圍。
+使用者（一端）對真實系統（另一端）進行測試。從使用者的角度、環境出發，實際操作系統服務，看結果是否符合預期，這部份就屬於人工測試的範圍。
 
 更詳細的介紹請看 [一次搞懂單元測試、整合測試、端對端測試之間的差異](https://blog.miniasp.com/post/2019/02/18/Unit-testing-Integration-testing-e2e-testing)
 
@@ -302,9 +302,9 @@ xUnit 在每個測試中分別使用新的 Instance，強迫每個測試都獨�
 
 ![img](https://miro.medium.com/v2/resize:fit:920/1*hudZ_uDVkhdQYiUQgKb-NQ.png)
 
-**擴展性**
+**擴充性**
 
-xUnit 可自定義 Attributes ，這是其他測試框架都沒有的功能。
+xUnit 可自訂 Attributes ，這是其他測試框架都沒有的功能。
 
 可參考 [Creating a custom xUnit theory test DataAttribute to load data from JSON files](https://andrewlock.net/creating-a-custom-xunit-theory-test-dataattribute-to-load-data-from-json-files/)
 
@@ -342,7 +342,7 @@ NUnit 較齊全，xUnit 連 Attributes 的說明文件都沒有。
 
 **判斷物件是否相等**
 
-自定義物件是 Reference type，要比對裡面的值是否一樣需要自訂比較方法或是 Override Equal 方法，但 Fluent Assertions 只要一個方法即可搞定。
+自訂物件是 Reference type，要比對裡面的值是否一樣需要自訂比較方法或是 Override Equal 方法，但 Fluent Assertions 只要一個方法即可搞定。
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/1*2tTM8tRyBqbaKRsM2FXyPA.png)
 
@@ -541,7 +541,7 @@ using (IWebDriver driver = new ChromeDriver(chromeOptions))
 
 **Selenium IDE**
 
-Selenium IDE 可以直接錄製你對網頁的操作、甚至轉成程式碼，在不懂程式的情況下仍可完成人工測試腳本。
+Selenium IDE 可以直接錄製你對網頁的操作、甚至轉成程式碼，在不懂程式的情況下仍可完成人工測試指令碼。
 
 以 Chrome 為例：
 
@@ -555,11 +555,11 @@ Selenium IDE 可以直接錄製你對網頁的操作、甚至轉成程式碼，�
 
 點選 Record a new test in a new project
 
-輸入測試專案名稱，這可以協助你分類測試腳本
+輸入測試專案名稱，這可以協助你分類測試指令碼
 
 ![img](https://miro.medium.com/v2/resize:fit:1300/1*lpsoJEVmvph_3BFWwCPPHA.png)
 
-輸入想要錄製腳本的網址，按下 START RECORDING
+輸入想要錄製指令碼的網址，按下 START RECORDING
 
 ![img](https://miro.medium.com/v2/resize:fit:1300/1*DtO3goNtlzeqWR3u_JDcGA.png)
 
@@ -589,7 +589,7 @@ Selenium IDE 會打開你輸入的網址，打開後就已經在錄製了，可�
 
 ![img](https://miro.medium.com/v2/resize:fit:360/1*igdn4ilAZmQR_jOFAXx41w.png)
 
-就可以將剛剛錄製的腳本轉成程式碼
+就可以將剛剛錄製的指令碼轉成程式碼
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/1*e0r77JAYnnvTI_Iq_tPBDw.png)
 

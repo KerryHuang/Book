@@ -4,7 +4,7 @@ kind: original
 
 # .NET CLI 指令碼介紹
 
-`.NET CLI` 是一組用於開發、構建、運行、發布 .NET 應用程序的命令行工具。以下是完整的介紹，包括常用命令及其使用方式。
+`.NET CLI` 是一組用於開發、建置、執行、發布 .NET 應用程式的命令列工具。以下是完整的介紹，包括常用指令及其使用方式。
 
 ------
 
@@ -31,65 +31,65 @@ dotnet --list-runtimes
 
 ------
 
-## **2. 項目相關命令**
+## **2. 專案相關指令**
 
-### **2.1 創建項目**
+### **2.1 建立專案**
 
-使用 `dotnet new` 命令創建新項目。
+使用 `dotnet new` 指令建立新專案。
 
-#### **範例：創建不同類型的項目**
+#### **範例：建立不同類型的專案**
 
 ```bash
-# 創建控制台應用程序
+# 建立控制台應用程式
 dotnet new console -o MyConsoleApp
 
-# 創建 ASP.NET Core Web 應用程序
+# 建立 ASP.NET Core Web 應用程式
 dotnet new webapp -o MyWebApp
 
-# 創建 ASP.NET Core Web API
+# 建立 ASP.NET Core Web API
 dotnet new webapi -o MyWebAPI
 
-# 創建類庫
+# 建立類別庫
 dotnet new classlib -o MyLibrary
 
-# 創建單元測試項目
+# 建立單元測試專案
 dotnet new xunit -o MyTests
 
-# 查看所有模板
+# 查看所有範本
 dotnet new --list
 ```
 
 ### **2.2 還原依賴項**
 
-從 `csproj` 或 `sln` 文件中下載和安裝依賴項：
+從 `csproj` 或 `sln` 檔案中下載和安裝依賴項：
 
 ```bash
 dotnet restore
 ```
 
-### **2.3 編譯項目**
+### **2.3 編譯專案**
 
-構建項目並生成輸出：
+建置專案並生成輸出：
 
 ```bash
 dotnet build
 ```
 
-- 添加 
+- 新增 
 
   ```
   --configuration
   ```
 
-  （或 `-c`）指定構建配置：
+  （或 `-c`）指定建置設定：
 
   ```bash
   dotnet build -c Release
   ```
 
-### **2.4 運行項目**
+### **2.4 執行專案**
 
-運行項目中的主程序（`Program.cs`）：
+執行專案中的主程式（`Program.cs`）：
 
 ```bash
 dotnet run
@@ -99,9 +99,9 @@ dotnet run
 
 ## **3. 包管理**
 
-### **3.1 添加 NuGet 包**
+### **3.1 新增 NuGet 套件**
 
-向項目中添加 NuGet 包：
+向專案中新增 NuGet 套件：
 
 ```bash
 dotnet add package <PackageName> --version <Version>
@@ -119,7 +119,7 @@ dotnet add package Newtonsoft.Json --version 13.0.1
 dotnet list package
 ```
 
-### **3.3 升級 NuGet 包**
+### **3.3 升級 NuGet 套件**
 
 ```bash
 dotnet add package <PackageName> --version <NewVersion>
@@ -127,11 +127,11 @@ dotnet add package <PackageName> --version <NewVersion>
 
 ------
 
-## **4. 測試與調試**
+## **4. 測試與偵錯**
 
-### **4.1 運行測試**
+### **4.1 執行測試**
 
-運行單元測試項目：
+執行單元測試專案：
 
 ```bash
 dotnet test
@@ -149,15 +149,15 @@ dotnet test --logger "trx;LogFileName=TestResults.trx"
 
 ## **5. 發布與部署**
 
-### **5.1 發布項目**
+### **5.1 發布專案**
 
-生成可發布的文件：
+生成可發布的檔案：
 
 ```bash
 dotnet publish -c Release -o ./publish
 ```
 
-- 發布自包含應用程序（不依賴 .NET Runtime）：
+- 發布自包含應用程式（不依賴 .NET Runtime）：
 
   ```bash
   dotnet publish -r <RID> --self-contained true
@@ -171,21 +171,21 @@ dotnet publish -c Release -o ./publish
 
 ------
 
-## **6. 解決方案與多項目管理**
+## **6. 解決方案與多專案管理**
 
-### **6.1 創建解決方案**
+### **6.1 建立解決方案**
 
 ```bash
 dotnet new sln -n MySolution
 ```
 
-### **6.2 添加項目到解決方案**
+### **6.2 新增專案到解決方案**
 
 ```bash
 dotnet sln add <ProjectPath>
 ```
 
-### **6.3 刪除項目**
+### **6.3 刪除專案**
 
 ```bash
 dotnet sln remove <ProjectPath>
@@ -195,19 +195,19 @@ dotnet sln remove <ProjectPath>
 
 ## **7. 查看與診斷**
 
-### **7.1 查看已安裝模板**
+### **7.1 查看已安裝範本**
 
 ```bash
 dotnet new --list
 ```
 
-### **7.2 查看項目依賴項樹**
+### **7.2 查看專案依賴項樹**
 
 ```bash
 dotnet list package --include-transitive
 ```
 
-### **7.3 查看可用命令**
+### **7.3 查看可用指令**
 
 ```bash
 dotnet --help
@@ -217,7 +217,7 @@ dotnet --help
 
 ## **8. 版本管理**
 
-### **8.1 全局工具安裝**
+### **8.1 全域工具安裝**
 
 安裝 .NET CLI 工具：
 
@@ -237,7 +237,7 @@ dotnet tool install -g dotnet-ef
 dotnet tool update -g <ToolName>
 ```
 
-### **8.3 卸載工具**
+### **8.3 解除安裝工具**
 
 ```bash
 dotnet tool uninstall -g <ToolName>
@@ -247,17 +247,17 @@ dotnet tool uninstall -g <ToolName>
 
 ## **9. 常見的進階操作**
 
-### **9.1 執行腳本或 DLL**
+### **9.1 執行指令碼或 DLL**
 
-直接運行已編譯的 DLL 文件：
+直接執行已編譯的 DLL 檔案：
 
 ```bash
 dotnet <PathToDll>
 ```
 
-### **9.2 本地生成 Docker 映像**
+### **9.2 本地生成 Docker 映像檔**
 
-如果項目包含 Docker 支持，可以使用：
+如果專案包含 Docker 支援，可以使用：
 
 ```bash
 dotnet publish -c Release -o out
@@ -268,5 +268,5 @@ docker build -t myapp:latest .
 
 ### **參考資源**
 
-- 官方文檔：[.NET CLI Documentation](https://learn.microsoft.com/en-us/dotnet/core/tools/)
-- 提示：在每個命令後添加 `--help` 可以查看該命令的所有可用參數。
+- 官方文件：[.NET CLI Documentation](https://learn.microsoft.com/en-us/dotnet/core/tools/)
+- 提示：在每個指令後新增 `--help` 可以查看該指令的所有可用參數。

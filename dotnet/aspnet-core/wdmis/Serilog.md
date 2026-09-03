@@ -58,7 +58,7 @@ class Program
 
 #### 2. 使用結構化日誌
 
-Serilog 支援在日誌中插入結構化資料，便於日後分析。例如，可以傳入具名參數來添加資料。
+Serilog 支援在日誌中插入結構化資料，便於日後分析。例如，可以傳入具名參數來新增資料。
 
 ```csharp
 Log.Information("使用者 {User} 在 {Time} 登入系統", "Alice", DateTime.Now);
@@ -138,9 +138,9 @@ public class Program
 }
 ```
 
-#### 2. 在 `appsettings.json` 中配置 Serilog
+#### 2. 在 `appsettings.json` 中設定 Serilog
 
-可以在 `appsettings.json` 中設置日誌紀錄的細節，例如輸出到控制台和檔案：
+可以在 `appsettings.json` 中設定日誌紀錄的細節，例如輸出到控制台和檔案：
 
 ```json
 {

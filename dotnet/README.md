@@ -27,7 +27,7 @@
   - [ASP.NET Core 呼叫 API 發生 CORS 錯誤](<aspnet-core/ASP.NET Core 呼叫 API 發生 CORS 錯誤.md>) — 轉貼：John Wu
   - [ASP.NET Core 如何套網頁設計樣版](<aspnet-core/ASP.NET Core 如何套網頁設計樣版.md>) — 轉貼：hungwin
   - [ASP.NET Core 客製化Model Validation 預設錯誤訊息](<aspnet-core/ASP.NET Core 客製化Model Validation 預設錯誤訊息.md>)
-  - [ASP.NET Core 後台查詢頁面教學](<aspnet-core/ASP.NET Core 後台查詢頁面教學.md>) — 轉貼：hungwin
+  - [ASP.NET Core 後台查詢頁面教學](<aspnet-core/ASP.NET Core 後台查詢頁面教學.md>) — [轉貼：理財工程師 Mars](https://blog.hungwin.com.tw/aspnet-mvc-anno-backstage-query/)
   - [ASP.NET Core 網站生命週期](<aspnet-core/ASP.NET Core 網站生命週期.md>) — 轉貼：hungwin
   - [ASP.NET Feature Management 使用說明與教學](<aspnet-core/ASP.NET Feature Management 使用說明與教學.md>)
   - [ASP.NET MVC 5 前台會員修改個人資料](<aspnet-core/ASP.NET MVC 5 前台會員修改個人資料.md>) — 轉貼：hungwin
