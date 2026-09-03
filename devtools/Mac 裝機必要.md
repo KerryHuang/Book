@@ -171,7 +171,7 @@ kind: original
     - **Code Cleanup On Save：儲存時，自動整理程式碼。**
     - File Icons：美化 Solution Explorer 裡的檔案圖示。
     - Bundler & Minifier：將 CSS、JavaScript 或 HTML 打包(Bundle)和最小化(Minify)。
-    - SVG Viewer：增加 SVG 的預覽，及優化編輯器的相關功能。
+    - SVG Viewer：增加 SVG 的預覽，及最佳化編輯器的相關功能。
     - Editor Enhancements：強化編輯器功能，如程式碼排序、文字編碼等。
     - Dummy Text Generator：在建立畫面 Sample 時，快速產出一些無意義的文字。
     - Markdown Editor v2：在編輯器增加 Markdown 相關功能。

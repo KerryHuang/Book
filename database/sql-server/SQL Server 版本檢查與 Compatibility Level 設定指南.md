@@ -208,7 +208,7 @@ kind: original
 
   # 6.6 建議升級策略
 
-  - 若應用程式很舊 → 升級後建議先使用 **Compatibility Level 110 (SQL 2012)** 運行一段時間
+  - 若應用程式很舊 → 升級後建議先使用 **Compatibility Level 110 (SQL 2012)** 執行一段時間
   - 完整測試後再升至 **150 (SQL 2019)** 或 **160 (SQL 2022)**
   - 若是使用 EF Core → 建議至少 130（SQL 2016）
 

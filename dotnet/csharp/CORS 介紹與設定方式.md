@@ -6,7 +6,7 @@ kind: original
 
 ### 什麼是 CORS？
 
-**CORS（Cross-Origin Resource Sharing，跨來源資源共享）** 是一種瀏覽器的安全機制，用於控制網頁如何從不同的域名請求資源。當網頁發送 AJAX 請求（例如使用 `fetch()` 或 `XMLHttpRequest`）到與原始網頁不同的域（domain）、協議（protocol）或連接埠（port）時，會發生所謂的「跨來源請求」。CORS 機制允許伺服器明確聲明哪些域名可以存取它的資源，以及允許哪些 HTTP 方法和標頭。
+**CORS（Cross-Origin Resource Sharing，跨來源資源共享）** 是一種瀏覽器的安全機制，用於控制網頁如何從不同的域名請求資源。當網頁發送 AJAX 請求（例如使用 `fetch()` 或 `XMLHttpRequest`）到與原始網頁不同的域（domain）、協定（protocol）或連接埠（port）時，會發生所謂的「跨來源請求」。CORS 機制允許伺服器明確聲明哪些域名可以存取它的資源，以及允許哪些 HTTP 方法和標頭。
 
 預設情況下，瀏覽器會阻止這些跨來源請求，因為它們可能引起安全問題。為了解決這個問題，CORS 為合法的跨域請求提供了途徑。
 
@@ -20,16 +20,16 @@ kind: original
 
 #### 步驟 1：安裝 CORS 支援
 
-在 .NET 6 或 .NET 8 中，CORS 已經內建，不需要額外安裝套件。您只需要在 `Program.cs` 或 `Startup.cs` 中進行配置即可。
+在 .NET 6 或 .NET 8 中，CORS 已經內建，不需要額外安裝套件。您只需要在 `Program.cs` 或 `Startup.cs` 中進行設定即可。
 
-#### 步驟 2：啟用和配置 CORS
+#### 步驟 2：啟用和設定 CORS
 
-在 `.NET 8` 中，您可以通過 `services.AddCors()` 來啟用 CORS，並使用 `UseCors` 來配置允許的來源、方法和標頭。
+在 `.NET 8` 中，您可以通過 `services.AddCors()` 來啟用 CORS，並使用 `UseCors` 來設定允許的來源、方法和標頭。
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-// 配置 CORS
+// 設定 CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
@@ -123,9 +123,9 @@ public class SampleController : ControllerBase
 }
 ```
 
-#### 步驟 7：禁用 CORS（可選）
+#### 步驟 7：停用 CORS（可選）
 
-如果某些路由不需要跨域支援，可以用 `[DisableCors]` 禁用 CORS。
+如果某些路由不需要跨域支援，可以用 `[DisableCors]` 停用 CORS。
 
 ```csharp
 [DisableCors]
@@ -138,4 +138,4 @@ public IActionResult NoCorsEndpoint()
 
 ### 總結
 
-CORS 是一種安全機制，能有效防止瀏覽器發起不受控制的跨域請求。在 .NET 中，可以通過 `AddCors()` 和 `UseCors()` 配置並啟用 CORS，並根據需要設定允許的來源、方法、標頭等。配置正確的 CORS 能保護應用程式的安全，同時允許合法的跨域存取。
+CORS 是一種安全機制，能有效防止瀏覽器發起不受控制的跨域請求。在 .NET 中，可以通過 `AddCors()` 和 `UseCors()` 設定並啟用 CORS，並根據需要設定允許的來源、方法、標頭等。設定正確的 CORS 能保護應用程式的安全，同時允許合法的跨域存取。

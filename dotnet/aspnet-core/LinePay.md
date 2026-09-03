@@ -8,11 +8,11 @@ kind: original
 
 ### 1. 使用內嵌結帳模式
 
-在 .NET 中使用 LINE Pay API 時，可以通過設置 API 請求的參數來控制支付流程。內嵌結帳模式允許用戶在 LINE 應用內完成支付，而無需跳出到外部瀏覽器。
+在 .NET 中使用 LINE Pay API 時，可以通過設定 API 請求的參數來控制支付流程。內嵌結帳模式允許使用者在 LINE 應用內完成支付，而無需跳出到外部瀏覽器。
 
 #### 1.1 設定支付請求中的 `capture` 參數
 
-在呼叫 LINE Pay API 的 `.NET` 程式碼中，設置 `capture` 或 `confirm` 為 `false`，然後進行後續支付流程控制。這樣可以啟用「內嵌結帳」模式：
+在呼叫 LINE Pay API 的 `.NET` 程式碼中，設定 `capture` 或 `confirm` 為 `false`，然後進行後續支付流程控制。這樣可以啟用「內嵌結帳」模式：
 
 ```csharp
 var requestBody = new
@@ -49,13 +49,13 @@ var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encodi
 var response = await httpClient.PostAsync("https://api-pay.line.me/v3/payments/request", content);
 ```
 
-### 2. 設置回調 URL 回到 LIFF 應用
+### 2. 設定回呼 URL 回到 LIFF 應用
 
-支付完成後，可以使用 LIFF 協議 `liff://app/{LIFF_ID}` 作為 `confirmUrl`，這樣用戶在支付完成後會返回到 LIFF 頁面而不是啟動外部瀏覽器。
+支付完成後，可以使用 LIFF 協定 `liff://app/{LIFF_ID}` 作為 `confirmUrl`，這樣使用者在支付完成後會返回到 LIFF 頁面而不是啟動外部瀏覽器。
 
-#### 2.1 設置 `confirmUrl` 參數
+#### 2.1 設定 `confirmUrl` 參數
 
-當建立支付請求時，將 `redirectUrls.confirmUrl` 設置為 LIFF 應用的 URL：
+當建立支付請求時，將 `redirectUrls.confirmUrl` 設定為 LIFF 應用的 URL：
 
 ```csharp
 var requestBody = new
@@ -84,11 +84,11 @@ var requestBody = new
 };
 ```
 
-這樣，當用戶完成支付後會直接返回到 LIFF 頁面而不會啟動外部瀏覽器。
+這樣，當使用者完成支付後會直接返回到 LIFF 頁面而不會啟動外部瀏覽器。
 
 ### 3. 使用 .NET API 來確認支付
 
-支付完成後，可以在您的 .NET 應用中確認支付結果並返回支付狀態給 LIFF 應用。可以設置一個 API 端點來接收支付狀態，並在 LIFF 中用 JavaScript 呼叫此端點檢查支付狀態。
+支付完成後，可以在您的 .NET 應用中確認支付結果並回傳支付狀態給 LIFF 應用。可以設定一個 API 端點來接收支付狀態，並在 LIFF 中用 JavaScript 呼叫此端點檢查支付狀態。
 
 ```csharp
 [ApiController]
@@ -148,4 +148,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-這樣可以在支付完成後，讓用戶自動回到 LINE 應用中的 LIFF 畫面並檢查支付結果。
+這樣可以在支付完成後，讓使用者自動回到 LINE 應用中的 LIFF 畫面並檢查支付結果。

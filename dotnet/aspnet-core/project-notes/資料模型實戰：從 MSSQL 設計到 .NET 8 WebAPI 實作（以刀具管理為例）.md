@@ -56,7 +56,7 @@ kind: original
 
 - **正規化（Normalization）**：消除資料冗餘，確保一致性（如第三正規化）
 - **關聯一致性（Referential Integrity）**：透過外鍵約束維持資料關聯的正確性
-- **可擴展性（Scalability）**：模型設計應容許未來擴充欄位或新關聯
+- **可擴充性（Scalability）**：模型設計應容許未來擴充欄位或新關聯
 - **命名一致性（Naming Consistency）**：欄位名稱具描述性，資料型別合理
 
 ### 1.4 資料模型設計流程（步驟）
@@ -179,7 +179,7 @@ CREATE TABLE ToolMaintenance (
 
 #### 🔍 範例命名
 
-| 業務對象 | 表名建議          |
+| 業務物件 | 表名建議          |
 | -------- | ----------------- |
 | 刀具主檔 | `Tool`            |
 | 使用紀錄 | `ToolUsage`       |

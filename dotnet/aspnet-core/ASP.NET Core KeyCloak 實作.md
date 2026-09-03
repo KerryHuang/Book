@@ -4,16 +4,16 @@ kind: original
 
 # ASP.NET Core KeyCloak 實作
 
-以下是整合 .NET 8 WebAPI 專案中 Keycloak 的用戶 CRUD 和重置密碼功能的完整範例。這個範例涵蓋了以下部分：
+以下是整合 .NET 8 WebAPI 專案中 Keycloak 的使用者 CRUD 和重置密碼功能的完整範例。這個範例涵蓋了以下部分：
 
-1. 設置 Keycloak 配置。
-2. 使用 `HttpClient` 認證並調用 Keycloak API。
-3. Keycloak 用戶的 CRUD 操作。
-4. 用戶重置密碼操作。
+1. 設定 Keycloak 設定。
+2. 使用 `HttpClient` 認證並呼叫 Keycloak API。
+3. Keycloak 使用者的 CRUD 操作。
+4. 使用者重置密碼操作。
 
-### 設置項目
+### 設定專案
 
-首先，在終端中創建新的 .NET 8 WebAPI 專案：
+首先，在終端中建立新的 .NET 8 WebAPI 專案：
 
 ```bash
 dotnet new webapi -n KeycloakUserAPI
@@ -21,9 +21,9 @@ cd KeycloakUserAPI
 dotnet add package Microsoft.Extensions.Configuration
 ```
 
-### 設置 `appsettings.json`
+### 設定 `appsettings.json`
 
-在 `appsettings.json` 中添加 Keycloak 的配置：
+在 `appsettings.json` 中新增 Keycloak 的設定：
 
 ```json
 {
@@ -38,9 +38,9 @@ dotnet add package Microsoft.Extensions.Configuration
 }
 ```
 
-### 創建 KeycloakService
+### 建立 KeycloakService
 
-在 `Services` 資料夾中創建 `KeycloakService.cs`，該服務將處理 Keycloak 的用戶 CRUD 和重置密碼操作。
+在 `Services` 資料夾中建立 `KeycloakService.cs`，該服務將處理 Keycloak 的使用者 CRUD 和重置密碼操作。
 
 ```csharp
 using System.Net.Http;
@@ -160,9 +160,9 @@ public class KeycloakService
 }
 ```
 
-### 創建 User 模型
+### 建立 User 模型
 
-在 `Models` 資料夾中創建 `User.cs` 模型：
+在 `Models` 資料夾中建立 `User.cs` 模型：
 
 ```csharp
 public class User
@@ -177,9 +177,9 @@ public class User
 }
 ```
 
-### 創建 UsersController
+### 建立 UsersController
 
-在 `Controllers` 資料夾中創建 `UsersController.cs`，處理 Keycloak 使用者的 CRUD 和密碼重置功能。
+在 `Controllers` 資料夾中建立 `UsersController.cs`，處理 Keycloak 使用者的 CRUD 和密碼重置功能。
 
 ```csharp
 using Microsoft.AspNetCore.Mvc;
@@ -246,7 +246,7 @@ public class ResetPasswordRequest
 }
 ```
 
-### 設置 DI 和啟動專案
+### 設定 DI 和啟動專案
 
 在 `Program.cs` 中註冊 `KeycloakService` 和 `HttpClient`：
 

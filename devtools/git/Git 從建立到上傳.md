@@ -6,17 +6,17 @@ kind: original
 
 將現有的 .NET 專案上傳到 GitLab 的步驟如下：
 
-1. **創建 GitLab 專案：**
+1. **建立 GitLab 專案：**
 
    - 登入 GitLab，點擊「New Project」按鈕，選擇「Create blank project」。
-   - 設定專案名稱、訪問權限等，並完成專案創建。
+   - 設定專案名稱、存取權限等，並完成專案建立。
    - 建立後會看到一個「HTTPS」或「SSH」的 URL，稍後會用到。
 
 2. **初始化本地 Git 儲存庫：**
 
    - 開啟命令提示字元或終端機，導航至專案的根目錄。
 
-   - 如果還沒有初始化 Git 儲存庫，請執行以下命令：
+   - 如果還沒有初始化 Git 儲存庫，請執行以下指令：
 
      ```bash
      git init
@@ -38,7 +38,7 @@ kind: original
 
 4. **連結遠端儲存庫 (GitLab)：**
 
-   - 使用專案創建時的 URL（HTTPS 或 SSH）將本地儲存庫連結到 GitLab 遠端儲存庫。
+   - 使用專案建立時的 URL（HTTPS 或 SSH）將本地儲存庫連結到 GitLab 遠端儲存庫。
 
      ```bash
      git remote add origin <your-gitlab-repo-url>
@@ -53,9 +53,9 @@ kind: original
    git branch
    ```
 
-   如果目前的分支是 `master` 而不是 `main`，則需要創建並切換到 `main` 分支。
+   如果目前的分支是 `master` 而不是 `main`，則需要建立並切換到 `main` 分支。
 
-   **創建並切換到 `main` 分支**
+   **建立並切換到 `main` 分支**
    執行以下指令以將當前分支改名為 `main` 並推送到遠端：
 
    ```bash

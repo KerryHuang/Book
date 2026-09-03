@@ -41,7 +41,7 @@ namespace SshDotNet
         /// 建構子
         /// </summary>
         /// <param name="ip">IP</param>
-        /// <param name="port">端口</param>
+        /// <param name="port">連接埠</param>
         /// <param name="user">id</param>
         /// <param name="pwd">passwd</param>
         public SshSftp(string ip, string port, string user, string pwd)

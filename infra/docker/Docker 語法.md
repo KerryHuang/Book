@@ -100,7 +100,7 @@ $ docker save -o imgFlask tiangolo/nginx_flask
 $ docker load -i imgFlask
 ```
 
-映像檔上傳至倉庫
+映像檔上傳至儲存庫
 
 ```
 $ docker push cutejaneii/docker.uwsgi-nginx-flask-emperor

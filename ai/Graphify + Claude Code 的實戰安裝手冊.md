@@ -350,7 +350,7 @@ graphify query "auth flow"
 
 ------
 
-# 七、效能與品質優化
+# 七、效能與品質最佳化
 
 ## 1. 使用 `.graphifyignore`
 
@@ -472,4 +472,4 @@ Graphify + Claude Code 的最佳實務是：
 
 - 團隊導入 SOP（多人協作）
 - Cursor / Copilot / Codex 整合版本
-- Graphify prompt 模板（提高 Claude 表現）
+- Graphify prompt 範本（提高 Claude 表現）
