@@ -1,7 +1,7 @@
 """產生根目錄 README.md 與各分類目錄 README.md。
 
 用法：python scripts/gen-readme.py
-文章標題取檔名（front matter 有 title 則優先）；front matter 的 source/author 會標在標題後。
+文章標題取檔名（front matter 有 title 則優先）；front matter 的 kind/source/author 會標在標題後。
 """
 import os
 import re
@@ -137,24 +137,66 @@ def count_md(abs_dir):
     return n
 
 
+def sub_outline(abs_top, top):
+    """頂層目錄底下第一層子目錄與散檔的一覽（名稱、說明、篇數）。"""
+    lines = []
+    entries = sorted(os.listdir(abs_top), key=natural_key)
+    for d in entries:
+        ad = os.path.join(abs_top, d)
+        if not os.path.isdir(ad) or d in SKIP_DIRS or d.startswith("."):
+            continue
+        desc = SUB.get(f"{top}/{d}", "")
+        lines.append(f"  - [{d}/]({link(f'{top}/{d}')}){'：' + desc if desc else ''}（{count_md(ad)} 篇）")
+    for f in entries:
+        if f.endswith(".md") and f != "README.md":
+            lines.append(f"  - [{os.path.splitext(f)[0]}]({link(f'{top}/{f}')})")
+    return lines
+
+
+def write(path, lines):
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write("\n".join(lines) + "\n")
+
+
 def main():
-    root_out = ["# Kerry Huang 的開發筆記", "",
-                "技術文件庫，依知識領域分八個目錄。標「轉貼」者為他人文章的存檔，連結指向原文；未標者為自己撰寫。", "",
-                "| 目錄 | 內容 | 篇數 |", "|---|---|---:|"]
+    table = ["| 目錄 | 內容 | 篇數 |", "|---|---|---:|"]
+    outline = []
     for top, desc in TOP.items():
         abs_top = os.path.join(ROOT, top)
         if not os.path.isdir(abs_top):
             continue
         n = count_md(abs_top)
-        root_out.append(f"| [{top}/](<{top}/README.md>) | {desc} | {n} |")
+        table.append(f"| [{top}/](<{top}/README.md>) | {desc} | {n} |")
+        outline.append(f"- **[{top}/](<{top}/README.md>)** {desc}")
+        outline += sub_outline(abs_top, top)
         body = [f"# {top}", "", desc, "", "[← 回總目錄](../README.md)", ""]
         render_dir(abs_top, "", 0, body)
-        with open(os.path.join(abs_top, "README.md"), "w", encoding="utf-8", newline="\n") as fh:
-            fh.write("\n".join(body) + "\n")
+        write(os.path.join(abs_top, "README.md"), body)
         print(f"{top}: {n} 篇")
-    root_out += ["", "索引由 `scripts/gen-readme.py` 產生，新增文章後重跑即可。", ""]
-    with open(os.path.join(ROOT, "README.md"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write("\n".join(root_out))
+
+    root = [
+        "# Kerry Huang 的開發筆記",
+        "",
+        "個人技術文件庫，收錄自己撰寫的教學、安裝手冊與專案筆記，以及值得反覆查閱的他人文章存檔。",
+        "依知識領域分八個目錄，每個目錄的 README 是該領域的完整文章清單。",
+        "",
+        "## 目錄",
+        "",
+        *table,
+        "",
+        "## 各領域內容",
+        "",
+        *outline,
+        "",
+        "## 慣例",
+        "",
+        "- **原創與轉貼**：每篇文章檔頭有 front matter，`kind: original` 為自己撰寫，`kind: reprint` 為他人文章存檔，"
+        "`source` 與 `author` 記錄出處。目錄清單中標「轉貼」者連結指向原文。",
+        "- **圖片**：放在文章所在目錄的 `images/`，以相對路徑引用。影片（mp4）走 Git LFS。",
+        "- **新增文章**：放進對應領域目錄、加上 front matter，然後執行 `python scripts/gen-readme.py` 重新產生所有 README。",
+        "- **來源標記的限制**：轉貼文章的出處以檔內證據判定，少數只標到網域或 `kind: unknown`，歡迎修正。",
+    ]
+    write(os.path.join(ROOT, "README.md"), root)
 
 
 if __name__ == "__main__":
