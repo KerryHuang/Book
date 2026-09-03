@@ -11,7 +11,7 @@ PS: 以上是在 Windows 10 下操作進行，如果不同作業系統，有可�
 假設想要刪除登入的帳號「IRSAuth」
 
 
-按下 Win+R 輸入「appdata\Roaming\Microsoft\SQL Server Management Studio\18.0」,再按下 Enter，就會進到 C:\Users[使用者名稱]\AppData\Roaming\Microsoft\SQL Server Management Studio\18.0 的目錄下
+按下 Win+R 輸入「appdata\Roaming\Microsoft\SQL Server Management Studio\18.0」,再按下 Enter，就會進到 C:\Users\[使用者名稱]\AppData\Roaming\Microsoft\SQL Server Management Studio\18.0 的目錄下
 
 編輯 UserSettings.xml 檔，搜尋IRSAuth，找到其所在區段，將<Element>與</Element>之間的內容刪除(含<Element>本身也要刪掉喔!)
 

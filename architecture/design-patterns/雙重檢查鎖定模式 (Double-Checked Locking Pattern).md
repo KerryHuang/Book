@@ -50,7 +50,7 @@ public class Startup
 }
 ```
 
-再來 Contorller 以下設定
+再來 Controller 以下設定
 
 ```c#
 using System;
@@ -70,6 +70,10 @@ namespace DoubleCheckedLocking.WebApplication.Controllers
             this._cache = memoryCache;
         }
 
+        // GET api/values
+        [HttpGet]
+        public ActionResult<string> Get()
+        {
             // 取得快取值
             var cacheEntry = this._cache.Get<DateTime>("key");
 

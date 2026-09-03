@@ -2,7 +2,7 @@
 kind: original
 ---
 
-# ASP.NET Core SFTP (使用第三方套建 [SSH.Net](http://ssh.net/)) - 類別庫為案例
+# ASP.NET Core SFTP (使用第三方套件 [SSH.Net](http://ssh.net/)) - 類別庫為案例
 
 ## 在 Visual Studio 安裝 [SSH.Net](http://ssh.net/)
 
@@ -15,7 +15,7 @@ kind: original
 搜尋「SSH」> 點 [SSH.NET](http://ssh.net/) > 安裝
 ![img](https://i.imgur.com/ACuWr0k.png)
 
-把 `class1` 刪除；
+把 `Class1` 刪除；
 新增一個 class 名為 SshSftp，實作 SFTP 功能：
 
 ```c#
@@ -90,7 +90,7 @@ namespace SshDotNet
         /// <summary>
         /// SFTP 上傳檔案
         /// </summary>
-        /// <param name="localPath">本機檔案 (要上傳的檔案)</param>
+        /// <param name="localFile">本機檔案 (要上傳的檔案)</param>
         /// <param name="uploadPath">要上傳到 FTP 的路徑</param>
         /// <param name="uploadFileName">指定新檔名 (若無，預設為原本的檔名)</param>
         public void Upload(string localFile, string uploadPath, string uploadFileName = "")
@@ -175,7 +175,7 @@ namespace SshDotNet
         }
 
         /// <summary>
-        /// 取得 SFTP 路徑上的檔案與文件夾
+        /// 取得 SFTP 路徑上的檔案與資料夾
         /// </summary>
         /// <param name="sftpPath">遠端路徑</param>
         /// <param name="filenameExtension">附檔名</param>
@@ -268,19 +268,19 @@ namespace SshDotNet
 
 ## 使用 SFTP
 
-把 SshSftp 資料夾 複製到 要使用的專案裡
+把 SshDotNet 資料夾 複製到 要使用的專案裡
 ![img](https://i.imgur.com/wujwRA7.png)
 
 在專案點右鍵 > 加入 > 現有專案
 ![img](https://i.imgur.com/BjOt6zx.png)
 
-將剛剛製過來的 SshDotNet 資料夾裡的 SshDotNet.csproj 開啟
+將剛剛複製過來的 SshDotNet 資料夾裡的 SshDotNet.csproj 開啟
 ![img](https://i.imgur.com/2zjYA4q.png)
 
 在你要使用的專案加入參考
 ![img](https://i.imgur.com/G4YAMY3.png)
 
-專案 > 方案 > 將 SshSftp 勾起來 > 確定
+專案 > 方案 > 將 SshDotNet 勾起來 > 確定
 ![img](https://i.imgur.com/fLZZZkj.png)
 
 就可以使用 SFTP 了
@@ -300,7 +300,7 @@ namespace ConsoleSshSftp
         static void Main(string[] args)
         {
             string sftpIp = "127.0.0.1";
-            string sftpProt = "21";
+            string sftpPort = "22";
             string sftpAccount = "account";
             string sftpPassword = "password";
 
@@ -314,13 +314,13 @@ namespace ConsoleSshSftp
 
             string localPath = @"D:\";
             string sftpDownloadFile = "/SFTP/Folder/New Folder/move.txt";
-            string sftpDownloadNewFileNme = "download.txt";
+            string sftpDownloadNewFileName = "download.txt";
 
             string deleteFile = "/SFTP/Folder/New Folder/move.txt";
 
             try
             {
-                SshSftp sftp = new SshSftp(sftpIp, sftpProt, sftpAccount, sftpPassword);
+                SshSftp sftp = new SshSftp(sftpIp, sftpPort, sftpAccount, sftpPassword);
 
                 sftp.Upload(localFile, uploadSftpPath, uploadSftpNewName);
                 var fileList = sftp.GetFileList(uploadSftpPath, "*a.*f*d.cs*");
@@ -329,7 +329,7 @@ namespace ConsoleSshSftp
                 fileList = sftp.GetFileList(sftpMoveNewPath);
                 fileList = sftp.GetFileList(uploadSftpPath);
 
-                sftp.Download(localPath, sftpDownloadFile, sftpDownloadNewFileNme);
+                sftp.Download(localPath, sftpDownloadFile, sftpDownloadNewFileName);
 
                 sftp.Delete(deleteFile);
                 fileList = sftp.GetFileList(sftpMoveNewPath);

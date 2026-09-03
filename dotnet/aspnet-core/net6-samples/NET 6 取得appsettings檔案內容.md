@@ -8,7 +8,7 @@ author: CI-YU
 
 ### 目的
 
-透過強行別的模式使用appsetting設定檔資料
+透過強型別的模式使用appsetting設定檔資料
 
 ### 建立新專案
 

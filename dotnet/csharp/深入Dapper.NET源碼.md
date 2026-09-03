@@ -62,7 +62,7 @@ author: 暐翰 (ITWeiHan)
 
 #### 個人環境 
 - 數據庫 : MSSQLLocalDB
-- Visaul Studio版本 : 2019
+- Visual Studio版本 : 2019
 - LINQ Pad 5 版本
 - Dapper版本 : V2.0.30
 - 反編譯 : ILSpy
@@ -2250,7 +2250,7 @@ var result = cn.Query(@"select * from sys.objects where type_desc In @type_descs
 該方法裡面包含的主要邏輯:
 1. 判斷集合參數的類型是哪一種 (假如是字串預設使用4000大小)
 2. 正則判斷SQL參數以流水號參數字串取代
-3. DbCommand的Paramter的創建
+3. DbCommand的Parameter的創建
 
 ![https://ithelp.ithome.com.tw/upload/images/20190925/20105988KgYZmlciZJ.png](https://ithelp.ithome.com.tw/upload/images/20190925/20105988KgYZmlciZJ.png)
 SQL參數字串的取代邏輯也寫在這邊,如圖片
@@ -2279,7 +2279,7 @@ exec sp_executesql N'select @Name Name,@Age Age',N'@Name nvarchar(4000),@Age int
 
 這是一個方便快速開發的貼心設計,但假如遇到欄位是`varchar`型態的情況,有可能會因為隱性轉型導致`索引失效`,導致查詢效率變低。
 
-這時解決方式可以使用Dapper DynamicParamter指定數據庫型態跟大小,達到優化效能目的
+這時解決方式可以使用Dapper DynamicParameter指定數據庫型態跟大小,達到優化效能目的
 ```C#
 using (var cn = Connection)
 {
@@ -2487,7 +2487,7 @@ using (var cn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Integrate
 
 ExecuteScalar因為其`只能讀取第一組結果、第一筆列、第一筆資料`特性,是一個常被遺忘的功能,但它在特定需求下還是能派上用場,底下用「查詢資料是否存在」例子來做說明。
 
-### 首先,Entity Framwork如何高效率判斷資料是否存在?
+### 首先,Entity Framework如何高效率判斷資料是否存在?
 
 假如有EF經驗的讀者會答使用`Any`而不是`Count() > 1`。
 

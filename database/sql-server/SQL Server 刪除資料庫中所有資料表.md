@@ -4,6 +4,8 @@ kind: original
 
 # SQL Server 刪除資料庫中所有資料表
 
+> ⚠️ 這段語法會刪掉整個資料庫的資料表且無法復原，請務必先確認已切換到正確的資料庫，並在有可還原備份的前提下執行。
+
 ## 作法
 
 ```
@@ -20,7 +22,8 @@ DECLARE @table_schema varchar(100)
 DECLARE table_cursor CURSOR FOR
   select TABLE_SCHEMA, TABLE_NAME
     from INFORMATION_SCHEMA.TABLES
-   where TABLE_NAME != 'sysdiagrams'
+   where TABLE_TYPE = 'BASE TABLE'
+     and TABLE_NAME != 'sysdiagrams'
   
 OPEN table_cursor
 FETCH NEXT FROM table_cursor INTO @table_schema, @table_name

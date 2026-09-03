@@ -280,9 +280,11 @@ python -m graphify.serve graphify-out/graph.json
 
 ```
 {
-  "graphify": {
-    "command": "/home/your-user/.venv/bin/python",
-    "args": ["-m", "graphify.serve", "graphify-out/graph.json"]
+  "mcpServers": {
+    "graphify": {
+      "command": "/home/your-user/.venv/bin/python",
+      "args": ["-m", "graphify.serve", "graphify-out/graph.json"]
+    }
   }
 }
 ```

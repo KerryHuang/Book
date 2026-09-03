@@ -30,14 +30,15 @@ touch dbeaver-en
 ```
 
 ```
-#!/usr/bin/env bash"$(dirname "$0")/dbeaver" -nl en
+#!/usr/bin/env bash
+"$(dirname "$0")/dbeaver" -nl en
 ```
 
 然後執行 `chmod +x DBeaver.app/Contents/MacOS/dbeaver-en`。
 
 再來，修改 `DBeaver.app/Contents/Info.plist`，把 `<key>CFBundleExecutable</key>` 底下的 `<string>dbeaver</string>` 改成 `<string>dbeaver-en</string>`。
 
-最後，為了清掉系統對 `Info.plist` 的 cache，必須用 Finder 把 `DBeaver.app`從 `/Application` 搬到其他地方，再搬回來。
+最後，為了清掉系統對 `Info.plist` 的 cache，必須用 Finder 把 `DBeaver.app`從 `/Applications` 搬到其他地方，再搬回來。
 
 完成之後，從 Launcher 或其他地方打開 `DBeaver.app`，介面就會是英文的了。
 

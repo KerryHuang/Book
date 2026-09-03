@@ -65,7 +65,7 @@ source: site:ithelp.ithome.com.tw
 
 - 在建立新專案中，若只是分類使用，可以考慮將所有模組都選擇不勾選。(圖01)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950d880PSH7hD.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950d880PSH7hD.png)
-- 建立第2層，直接選上層方類的[父專案]即可。(圖02)
+- 建立第2層，直接選上層分類的[父專案]即可。(圖02)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950osfG6Xhvms.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950osfG6Xhvms.png)
 - 建立完之後[專案清單]就會依照類別分類及排序。也可以建立第三層的子專案(圖03)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950lSdwThTt9d.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950lSdwThTt9d.png)
@@ -86,7 +86,7 @@ source: site:ithelp.ithome.com.tw
 本文因為重點在用父專案的方法來建立平台版面的分類，所以建議把所有模組都取消，所以若點選分類的父專案呈現頁面資訊很乾淨，預設只有[活動]會呈現紀錄資訊。(圖5)
 ![https://ithelp.ithome.com.tw/upload/images/20220915/20151950LmN9fDzVCl.png](https://ithelp.ithome.com.tw/upload/images/20220915/20151950LmN9fDzVCl.png)
 
-不過這邊讓大家知道一下，若父專案的模組有打勾，無論是父專案(分類用專案)本身否有建立Issue資料，除了可以檢視到該專案的資訊外，統計上會包含子專案的相關資訊。包含議題的統計、耗用工時的統計、以及甘特圖等資訊，如以下幾張圖的範例。
+不過這邊讓大家知道一下，若父專案的模組有打勾，無論是父專案(分類用專案)本身是否有建立Issue資料，除了可以檢視到該專案的資訊外，統計上會包含子專案的相關資訊。包含議題的統計、耗用工時的統計、以及甘特圖等資訊，如以下幾張圖的範例。
 需不需要就看管理者依本身的管理需求去決定。 (圖06、07、08)
 ![https://ithelp.ithome.com.tw/upload/images/20220915/20151950fBooOXcyX6.png](https://ithelp.ithome.com.tw/upload/images/20220915/20151950fBooOXcyX6.png)
 

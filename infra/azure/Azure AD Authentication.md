@@ -56,7 +56,7 @@ source: https://www.faciletechnolab.com/blog/2021/4/13/how-to-implement-azure-ad
 
 ![img](https://www.faciletechnolab.com/Areas/Blog/blogcontent/blogimages/cb8794e7-d40f-4a2e-a8b7-a0023bdb2748.png)
 
-接下來，單擊 API 權限。單擊工具欄中的添加權限，然後單擊 Microsoft graph，然後單擊委派權限。這將顯示您選擇的權限列表。`profile`從列表中選擇和添加`opendid`權限。
+接下來，單擊 API 權限。單擊工具欄中的添加權限，然後單擊 Microsoft graph，然後單擊委派權限。這將顯示您選擇的權限列表。`profile`從列表中選擇和添加`openid`權限。
 
 接下來，單擊左側導航中的身份驗證，並在平台部分中，添加 Web（如果不存在）。在網頁部分，轉到重定向 URL，然後單擊底部的添加 URI。輸入`{your-app-url}/signin-oidc`。例如，輸入`https://localhost:44332/signin-oidc`您的本地項目是否在端口 44332 上運行。
 

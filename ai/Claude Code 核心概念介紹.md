@@ -6,7 +6,7 @@ kind: original
 
 ## 一、子代理 (Agents)
 
-放在 `.claude/agents/{name}/AGENT.md`，是在**獨立上下文**中運行的專業 AI 助手。
+放在 `.claude/agents/{name}.md`，是在**獨立上下文**中運行的專業 AI 助手。
 
 | 特性       | 說明                             |
 | ---------- | -------------------------------- |

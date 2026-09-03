@@ -6,9 +6,9 @@ author: nethawk
 
 # Asp.Net Core 分散式Session – 使用 Redis
 
-Session 是Web開發中可能會碰到的東西﹐雖然使用Session對於應用系統來說壞處多於益處﹐但有時在某些場景下或許有不得不用的情形﹐先不談其它的﹐Session就像是個全域性變數﹐隨時都可宣告﹐隨地都可修改內容﹐又任何時候都可信手拈來的使用﹐非常方便﹐可是就因為太方便了﹐若沒有好好的控管﹐很容易讓系統在出了問題時很難追查原因。在我曾接手過的案子就常見這種讓人恨的牙癢癢的系統。雖然要避免濫用Session﹐但還是不得不要了解Session的使用﹐由其是在分散式環境下要如何解決Session共用的問題。
+Session 是Web開發中可能會碰到的東西﹐雖然使用Session對於應用系統來說壞處多於益處﹐但有時在某些場景下或許有不得不用的情形﹐先不談其它的﹐Session就像是個全域性變數﹐隨時都可宣告﹐隨地都可修改內容﹐又任何時候都可信手拈來的使用﹐非常方便﹐可是就因為太方便了﹐若沒有好好的控管﹐很容易讓系統在出了問題時很難追查原因。在我曾接手過的案子就常見這種讓人恨的牙癢癢的系統。雖然要避免濫用Session﹐但還是不得不要了解Session的使用﹐尤其是在分散式環境下要如何解決Session共用的問題。
 
-分散式環境多台應用程式主機﹐如何解決Session的方式有很多種﹐例如server之間session同步﹑使用者端儲存﹑使用資料庫儲存…﹐各種方式都已經行之有年﹐各有好壞﹐不是什麼絕對的方式﹐主要還是要取決系統的用途﹑架構﹑用戶流量﹑預算…各種原因來決定那一種方式是比較洽當的。這裏要討論的是在 .Net Core 及容器化之下透過 Redis 來達成 Session 共用的方式。
+分散式環境多台應用程式主機﹐如何解決Session的方式有很多種﹐例如server之間session同步﹑使用者端儲存﹑使用資料庫儲存…﹐各種方式都已經行之有年﹐各有好壞﹐不是什麼絕對的方式﹐主要還是要取決系統的用途﹑架構﹑用戶流量﹑預算…各種原因來決定那一種方式是比較恰當的。這裏要討論的是在 .Net Core 及容器化之下透過 Redis 來達成 Session 共用的方式。
 
 在開始之前﹐先看一下預期要做的目標
 
@@ -19,11 +19,11 @@ Session 是Web開發中可能會碰到的東西﹐雖然使用Session對於應�
 
 [![img](https://dotblogsfile.blob.core.windows.net/user/nethawk/8d594461-d2f9-40ab-894e-8e721ea7375d/1678522969.png.png)](https://dotblogsfile.blob.core.windows.net/user/nethawk/8d594461-d2f9-40ab-894e-8e721ea7375d/1678522969.png.png)
 
-這裏為了儘量和實際上線後的環境相同﹐建立兩個虛擬主機 A 和 B﹐並且都安裝了Docker以容器化來執行﹐主機 A 中安裝了Nginx container 做為 loadbalancer﹐另外將應.Net Core 應用程式建立 Image 後產生三個不同port的container 來模擬不同的AP Server﹐主機 B 則安裝了Redis container供主機A中的應用程式共享Session﹐Redis for Docker 如何安裝參考 Redis Server Install.docx文件中的描述。(做完後我才想起來﹐我用 docker 幹嘛這麼搞剛的多弄了一台虛擬主機呢…=__=!)
+這裏為了儘量和實際上線後的環境相同﹐建立兩個虛擬主機 A 和 B﹐並且都安裝了Docker以容器化來執行﹐主機 A 中安裝了Nginx container 做為 loadbalancer﹐另外將 .Net Core 應用程式建立 Image 後產生三個不同port的container 來模擬不同的AP Server﹐主機 B 則安裝了Redis container供主機A中的應用程式共享Session﹐Redis for Docker 如何安裝參考 Redis Server Install.docx文件中的描述。(做完後我才想起來﹐我用 docker 幹嘛這麼搞剛的多弄了一台虛擬主機呢…=__=!)
 
 **應用程式準備**
 
-在環境建置前﹐先準備應用程式﹐這是個簡單的MVC程式﹐有兩個頁面﹐內容相同﹐都是要顯示session的內容並顯示Server Host Name﹐這是為了要證明在第一個頁面送出Reauest切換到第二個頁面是不是同一個Server Response資料﹐而Session 的內容是否仍然還在。
+在環境建置前﹐先準備應用程式﹐這是個簡單的MVC程式﹐有兩個頁面﹐內容相同﹐都是要顯示session的內容並顯示Server Host Name﹐這是為了要證明在第一個頁面送出Request切換到第二個頁面是不是同一個Server Response資料﹐而Session 的內容是否仍然還在。
 
 這兩個頁面都有設置了[Authorize]﹐所以一開始未登入會被導到Login頁面。
 
@@ -47,7 +47,7 @@ app.UseSession();
 ……
 ```
 
-新增 LoninController﹐在LoginController登入時將資料寫入 Session 後導至 HomeController的 Index 
+新增 LoginController﹐在LoginController登入時將資料寫入 Session 後導至 HomeController的 Index 
 
 ```cs
 LoginController.cs
@@ -170,7 +170,7 @@ $docker pull nginx
 
 測試 nginx
 
-$docker run –name nginx-test -d -p 8880:80 nginx:latest
+$docker run --name nginx-test -d -p 8880:80 nginx:latest
 
 剛安裝好的nginx ﹐啟動應該不會有什麼問題﹐所以應該可以開啟Browser進行測試nginx是否真的啟動成功
 
@@ -190,14 +190,14 @@ scp -r *本機資料夾* *帳號@目的主機IP:目標路徑*
 
 -r 表示包含資料夾下的子資料夾
 
-3. 編寫 Dockfile 檔案
+3. 編寫 Dockerfile 檔案
 
 ```plaintext
 FROM mcr.microsoft.com/dotnet/aspnet:6.0    # 使用 .Net 6 Runtime 的 image
 RUN mkdir c:\app                            # 在容器中的 c 根下建立一個名稱為 app 的資料夾
 COPY publish/ /app                          # 將地端 publish 資料夾下的東西 copy 到容器中的 app 之下
 WORKDIR /app                                # 將容器中的工作目錄設為 app
-ENTRYPOINT ["dotnet","DistSession.dll"]     # 以 dotnet 執行 DistSession.dll (以Ketral執行)
+ENTRYPOINT ["dotnet","DistSession.dll"]     # 以 dotnet 執行 DistSession.dll (以Kestrel執行)
 ```
 
 4. 建立Image
@@ -218,7 +218,7 @@ $ docker run -it -d -p 80:80 --name=dist dist:1.0
 
 6. 執行程式
 
-打開瀏灠器輸入網址 [http://10.0.100.61](http://10.0.100.61/)
+打開瀏覽器輸入網址 [http://10.0.100.61](http://10.0.100.61/)
 
 [![img](https://dotblogsfile.blob.core.windows.net/user/nethawk/8d594461-d2f9-40ab-894e-8e721ea7375d/1678462890.png.png)](https://dotblogsfile.blob.core.windows.net/user/nethawk/8d594461-d2f9-40ab-894e-8e721ea7375d/1678462890.png.png)
 
@@ -353,7 +353,7 @@ warn: Microsoft.AspNetCore.Session.SessionMiddleware[7]
   },
 ```
 
-3. Programs.cs 加入Redis
+3. Program.cs 加入Redis
 
 ```cs
 #region 加入 redis 作分散式
@@ -407,7 +407,7 @@ builder.Services.AddSession(options => {
 
 關於.Net Data Protection可參考微軟 [ASP.NET Core資料保護概觀 | Microsoft Learn](https://learn.microsoft.com/zh-tw/aspnet/core/security/data-protection/introduction?view=aspnetcore-7.0) 文章﹐而這裏主要是在共享session時必須要有一致的Key來做加解密﹐當我們寫到Redis 的Session資料是被加密過的﹐如果沒有一致的私鑰那麼是無法正確的讀取共享的session。
 
-開啟專案﹐再由Nuget找到Microsoft.AspNetCore.DataProtection.StackExchangeRedis 這個套件加入﹐這裏配合前面Microsoft.Extensions.Caching.StackExchangeRedis套件一樣案裝6.0.14版﹐接著開啟 Program.cs 加入DataProtection 相關的片斷程式
+開啟專案﹐再由Nuget找到Microsoft.AspNetCore.DataProtection.StackExchangeRedis 這個套件加入﹐這裏配合前面Microsoft.Extensions.Caching.StackExchangeRedis套件一樣安裝6.0.14版﹐接著開啟 Program.cs 加入DataProtection 相關的片斷程式
 
 ```cs
 #region 將數據保護的秘鑰存儲為分布式

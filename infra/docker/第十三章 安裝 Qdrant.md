@@ -49,7 +49,7 @@ docker run -d \
 docker run -d -p 6333:6333 -v E:/docker/qdrant_data:/qdrant/storage --name qdrant qdrant/qdrant
 ```
 
-- `C:/qdrant_data` 請自行建立對應資料夾，或改成你想存放的資料路徑。
+- `E:/docker/qdrant_data` 請自行建立對應資料夾，或改成你想存放的資料路徑。
 - 若使用 PowerShell，可用 `${PWD}` 取得目前目錄：
 
 ```bash

@@ -26,7 +26,7 @@ CREATE TABLE [dbo].[test_1](
 
 建好表好在源數據表中可以隨便加幾條記錄，目標資料庫暫時留空。
 
-現在我們打開VS，創建一個Intergration Services Project。（註意：如果SQL Server 裝的是Express版的話是沒有這個項目工程模板的）
+現在我們打開VS，創建一個Integration Services Project。（註意：如果SQL Server 裝的是Express版的話是沒有這個項目工程模板的）
 
 ![img](http://www.zendei.com/js/img.php?url=http://images.cnblogs.com/cnblogs_com/heqichang/256112/o_20120919_1.png)
 
@@ -66,7 +66,7 @@ CREATE TABLE [dbo].[test_1](
 
 這裡打鉤的是這個流程之後輸出的數據，Join Type需要選擇為Left outer join，因為左邊是我們的原始數據表，右邊是我們備份的表，右表可以看成是一個左表的一個子集，如果左表有的數據，右表沒有的，那些就是需要新插入備份資料庫的數據。
 
-現在我們需要一個分支，即新的數據需要插入備份資料庫中，而已有的數據需要更新為新的值。我們從工具欄中拖入一個Conditional Split來進行這樣的分支處理。我們將Merge Sort中的輸出指向Conditional Split，然後雙擊Conditional Split，如下圖所示設置（註意條件一個是ISNULL，一個是非ISNULL）。
+現在我們需要一個分支，即新的數據需要插入備份資料庫中，而已有的數據需要更新為新的值。我們從工具欄中拖入一個Conditional Split來進行這樣的分支處理。我們將Merge Join中的輸出指向Conditional Split，然後雙擊Conditional Split，如下圖所示設置（註意條件一個是ISNULL，一個是非ISNULL）。
 
 ![img](http://www.zendei.com/js/img.php?url=http://images.cnblogs.com/cnblogs_com/heqichang/256112/o_20120919_6.png)
 
@@ -80,7 +80,7 @@ CREATE TABLE [dbo].[test_1](
 
  
 
-雙擊設置OLE DB Destionation，選擇好數據導入的目標資料庫中的表，這裡需要註意的就是要鉤選Keep identity這個選項，因為我創建表的時候對ID欄位使用了自增屬性。
+雙擊設置OLE DB Destination，選擇好數據導入的目標資料庫中的表，這裡需要註意的就是要鉤選Keep identity這個選項，因為我創建表的時候對ID欄位使用了自增屬性。
 
 雙擊設置OLE DB Command，首先在Connection Managers這個Tab中選擇好鏈接對象，然後在Component Properties這個選項卡中，設置你的SqlCommand屬性。如下圖：
 
@@ -88,7 +88,7 @@ CREATE TABLE [dbo].[test_1](
 
  
 
-這裡的參數值都是用？號來代替，之後在Column Mappings這個Tab中設置代替值實際代替的列，如下圖：
+這裡的參數值都是用?號來代替，之後在Column Mappings這個Tab中設置代替值實際代替的列，如下圖：
 
 ![img](http://www.zendei.com/js/img.php?url=http://images.cnblogs.com/cnblogs_com/heqichang/256112/o_20120919_9.png)
 

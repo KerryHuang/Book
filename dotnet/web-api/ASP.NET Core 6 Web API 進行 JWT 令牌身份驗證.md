@@ -55,6 +55,7 @@ namespace KH.Lab.WebAPIJWT.Models
         public int ProductCost { get; set; }
         public int ProductStock { get; set; }
     }
+}
 
 ```
 

@@ -375,7 +375,7 @@ db.users.find().sort({ age: -1 }).limit(2)
 
 ```javascript
 db.users.aggregate([
-  { $group: { _id: \"$group\", count: { $sum: 1 } } }
+  { $group: { _id: "$group", count: { $sum: 1 } } }
 ])
 ```
 

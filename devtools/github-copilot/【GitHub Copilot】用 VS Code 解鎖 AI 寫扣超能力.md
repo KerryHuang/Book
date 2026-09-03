@@ -97,7 +97,7 @@ author: Estella (estellacoding)
 
 ![5.ctrl-alt-i-chat-view-suggest-code](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F5.ctrl-alt-i-chat-view-suggest-code.jpg?alt=media&token=df1fd3b3-a9a0-4571-83a5-2bcc51ae6f97)
 
-(資料來源: [AI Data Science Team)](https://github.com/business-science/ai-data-science-team)
+(資料來源: [AI Data Science Team](https://github.com/business-science/ai-data-science-team))
 
 可將 GitHub Copilot Chat 的回應語言設定為繁體中文:
 `github.copilot.chat.localeOverride`: `zh-TW`。
@@ -321,7 +321,7 @@ author: Estella (estellacoding)
 | `#`                              | 在Chat中輸入`#`，可選擇變數，如`#codebase`，將相關的工作區程式碼作為提示的上下文。 |
 | Ctrl+Alt+V Cmd+Opt+V             | 開始語音辨識，啟動後會在游標所在位置顯示一個小麥克風圖示，並保持啟用狀態，等待語音輸入。`Esc`則可停止語音辨識。 |
 
-在 GitHut Copilot 圖示的下拉式選單中也有提示鍵盤快捷鍵。
+在 GitHub Copilot 圖示的下拉式選單中也有提示鍵盤快捷鍵。
 ![13.github-copilot-function-keyboard-shortcut](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F13.github-copilot-function-keyboard-shortcut.jpg?alt=media&token=732d7b0c-0adf-4429-bd08-8f9da816e731)
 
 ![13.github-copilot-function-keyboard-shortcut-mac](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F13.github-copilot-function-keyboard-shortcut-mac.jpg?alt=media&token=50bf3c9d-668c-4d8e-926f-413c8954bf11)
@@ -351,7 +351,7 @@ author: Estella (estellacoding)
 
 ![15.generate-commit-message-with-copilot-1](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F15.generate-commit-message-with-copilot-1.jpg?alt=media&token=74d56e86-a828-4b17-bbfe-eda8b240fc2d)
 
-(資料來源: [AI Agents for Beginners)](https://github.com/microsoft/ai-agents-for-beginners)
+(資料來源: [AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners))
 
 ![15.generate-commit-message-with-copilot-2](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F15.generate-commit-message-with-copilot-2.jpg?alt=media&token=c132098c-08e3-492c-b839-8a0c8617a2b5)
 
@@ -366,7 +366,7 @@ GitHub Copilot Chat 還有提供網頁版。
 
 ![16.gitHub-copilot-chat-web-1](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F16.gitHub-copilot-chat-web-1.jpg?alt=media&token=3670a825-1efe-4928-878c-02b478ff301d)
 
-(資料來源: [Microsoft Visual Studio Code)](https://github.com/microsoft/vscode)
+(資料來源: [Microsoft Visual Studio Code](https://github.com/microsoft/vscode))
 
 ![16.gitHub-copilot-chat-web-icon](https://firebasestorage.googleapis.com/v0/b/stellacoding1111.appspot.com/o/article%2Fgithub-copilot-vscode-ai-coding%2F16.gitHub-copilot-chat-web-icon.jpg?alt=media&token=c9f1e986-c26b-4fea-ac09-101fab010ac4)
 
@@ -378,7 +378,7 @@ GitHub Copilot Chat 還有提供網頁版。
 
 ![github-copilot-microsoft-mermaid-example](https://raw.githubusercontent.com/microsoft/vscode-mermAId/refs/heads/main/assets/gifs/01.gif)
 
-(資料來源: [Microsoft vscode-mermAId)](https://github.com/microsoft/vscode-mermAId)
+(資料來源: [Microsoft vscode-mermAId](https://github.com/microsoft/vscode-mermAId))
 
 ### Mermaid
 
@@ -386,7 +386,7 @@ GitHub Copilot Chat 還有提供網頁版。
 
 ![github-copilot-mermaid-chart-example](https://marketplace-screenshots.githubusercontent.com/19169/cd324751-f43d-4bf1-8f64-78b0bc9c6978)
 
-(資料來源: [Github Marketplace Copilot Extensions - Mermaid Chart)](https://github.com/marketplace/mermaid-chart)
+(資料來源: [Github Marketplace Copilot Extensions - Mermaid Chart](https://github.com/marketplace/mermaid-chart))
 
 ## Commander
 

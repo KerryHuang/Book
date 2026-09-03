@@ -4,7 +4,7 @@ source: https://columns.chicken-house.net/2016/12/01/microservice7-apitoken/
 author: Andrew Wu
 ---
 
-# API & SDK Design# 5 如何強化微服務的安全性? API Token / JWT 的應用
+# API & SDK Design #5 如何強化微服務的安全性? API Token / JWT 的應用
 
 # API Token 原理說明
 
@@ -236,7 +236,7 @@ public static T TryDecodeToken<T>(string keyName, string tokenText, out bool isS
 /// <summary>
 /// 已經註冊過的開發者，可以憑 APIKEY，向 AUTH 認證服務
 /// 建立 SESSION。SESSION 建立成功後會取得 SESSION TOKEN，
-/// 可以憑 TOKEN 道別的服務去呼叫 API。
+/// 可以憑 TOKEN 到別的服務去呼叫 API。
 /// 
 /// SESSION TOKEN 有效期限為 60 分鐘
 /// </summary>
@@ -282,7 +282,7 @@ public IEnumerable<int> Get(int count)
 
 API 專案則代表遊樂場，他會依據你的 SESSION TOKEN，確認無誤且沒有過期的話，就提供遊樂設施給你使用。隨著 Tags 註記的不同，你能夠享用的設施層級也不同。被標記為 VIP 則可無限次使用 (骰骰子可骰無限次)。若被標記為 奧客 (BAD) 則只能骰五次。沒有特別標記就是一般會員，最多可以骰 10 次。
 
-各位可以自己試看看，你也許可以還原 SESSION 的內容，但是除非你有拿到 A 的 private key, 否則你再怎麼樣 也無法產生你想要的 SESSION TOKEN 內容。就算只是想從已產生的 SESSION TOKEN 去把 BAD 改為 VIP 也沒辦法。 因為你改不動簽章的部分。一但你改了原始資訊，簽章還原的 Hash 還是修改前的 Hash, 而 B 重新計算的 Hash #2 則是修改後的 Hash, 演算法告訴我們這樣的情況下 Hash 會不同，造假的 SESSION TOKEN 就被揪出來了。
+各位可以自己試看看，你也許可以還原 SESSION 的內容，但是除非你有拿到 A 的 private key, 否則你再怎麼樣 也無法產生你想要的 SESSION TOKEN 內容。就算只是想從已產生的 SESSION TOKEN 去把 BAD 改為 VIP 也沒辦法。 因為你改不動簽章的部分。一旦你改了原始資訊，簽章還原的 Hash 還是修改前的 Hash, 而 B 重新計算的 Hash #2 則是修改後的 Hash, 演算法告訴我們這樣的情況下 Hash 會不同，造假的 SESSION TOKEN 就被揪出來了。
 
 整個 Demo 的過程很多細節，文章不大容易表達，有興趣的可以直接看影片的 Demo, 那邊解說得比較詳細。同時還有 示範如何用 Swagger 測試 API 的方式。正好 DEMO 的東西也都放在 Azure 上面，用的跟[上一篇文章](https://columns.chicken-house.net/2016/11/27/microservice6/) 講的是同一個服務: Azure API Apps。 有興趣的朋友可以參考這段 [影片](https://www.facebook.com/andrew.blog.0928/videos/345280552513896/): 11:50 ~ 43:00
 
@@ -323,11 +323,11 @@ public class SessionToken : TokenData
 
 除了 `TokenData` 就內含 ExpireDate 來紀載這個 Token 的有效期限之外，SessionToken 也額外附加 了 UserHostAddress, 用來紀載授權的 Client 的 IP Address. 因為 Session 是控制很短的一段時間內 的授權，通常是幾分鐘，到幾個小時不等，我先假設這段期間內使用者的 IP 不會變化。
 
-加了這個欄位能幹嘛? 這欄位在 client 跟 A (AUTH) 取得授權，產生 SessionToken 時就決定好了，A 偵測到 使用者 IP 就把他寫進 Token, 簽章之後整筆 Token 到了 B (API)，驗證玩 Token 後接著驗證使用者 IP 是否 符合，通過再提供服務。
+加了這個欄位能幹嘛? 這欄位在 client 跟 A (AUTH) 取得授權，產生 SessionToken 時就決定好了，A 偵測到 使用者 IP 就把他寫進 Token, 簽章之後整筆 Token 到了 B (API)，驗證完 Token 後接著驗證使用者 IP 是否 符合，通過再提供服務。
 
 這裡使用 IP 也是類似的意思。當然 IP 不是 100% 適合的資訊，這只是當作範例。如果你的 client 是手機的 APP，行動網路 IP 一直在變化，這時你若能取得 device unique ID, 或是電話號碼等等，都是個值得考慮的作法。
 
-除非 hacker 偷倒 token, 還能偽造你的 IP, 或是 device unique ID 等等，否則你這作法相對的就更安全 了，不用花太多額外成本，就能阻擋掉大部分的惡意攻擊對象。
+除非 hacker 偷到 token, 還能偽造你的 IP, 或是 device unique ID 等等，否則你這作法相對的就更安全 了，不用花太多額外成本，就能阻擋掉大部分的惡意攻擊對象。
 
 # JWT (Json Web Token)
 
@@ -361,7 +361,7 @@ public class SessionToken : TokenData
 
 ![示意圖](https://columns.chicken-house.net/wp-content/uploads/2016/12/apitoken-slides23.png)
 
-做法很簡單，你把授權的資訊當作 `TokenData`, 最後加上簽章，整串就是啟動序號了。軟體啟動時只要驗證過無誤 再按照 `TokenData` 上的描述，啟用對應的功能跟期限就可以了。Public Key 怎麼拿? 既然都是 publc key, 那就 直接放到 code 裡面就可以了。
+做法很簡單，你把授權的資訊當作 `TokenData`, 最後加上簽章，整串就是啟動序號了。軟體啟動時只要驗證過無誤 再按照 `TokenData` 上的描述，啟用對應的功能跟期限就可以了。Public Key 怎麼拿? 既然都是 public key, 那就 直接放到 code 裡面就可以了。
 
 不過這樣不代表萬無一失喔，這只代表序號本身是夠安全的…，如果我直接反組譯，跳過檢查的 code 還是沒輒。 更 X 的是我另外產生一組 public / private key, 換掉 code 裡面的 public key, 之後我就可以拿造假的 private key 產生新的授權…
 

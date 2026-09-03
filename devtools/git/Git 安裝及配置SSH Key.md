@@ -6,7 +6,7 @@ kind: original
 
 # 檢查SSH keys
 
-到使用者資料夾`C:\Users\<user>\`中看是是否有`.ssh`資料夾（`<user>`為你的Windows用戶名稱，本範例為`john`），如果有的話點進去看是否有下表中任一SSH keys檔案。下表的第一欄為加密方式，第二欄為公鑰檔名，第三欄為私鑰檔名。若SSH keys已存則跳過「產生SSH keys」的步驟。
+到使用者資料夾`C:\Users\<user>\`中看是否有`.ssh`資料夾（`<user>`為你的Windows用戶名稱，本範例為`john`），如果有的話點進去看是否有下表中任一SSH keys檔案。下表的第一欄為加密方式，第二欄為公鑰檔名，第三欄為私鑰檔名。若SSH keys已存在則跳過「產生SSH keys」的步驟。
 
 | 加密算法                         | Public key       | Private key  |
 | :------------------------------- | :--------------- | :----------- |
@@ -19,20 +19,20 @@ kind: original
 
 在Windows 10可使用[Git Bash](https://gitforwindows.org/)命令列產生SSH keys，預設會把產生的SSH keys存在`C:\Users\<user>\.ssh`目錄。下面示範產生RSA 2048位元的SSH keys的方式。
 
-開啟Git Bash，輸入`ssh-keygen - t rsa -b 2048 -C <email>`，`<email>`輸入你的信箱。
+開啟Git Bash，輸入`ssh-keygen -t rsa -b 2048 -C <email>`，`<email>`輸入你的信箱。
 
 ```
-$ ssh-keygen - t- rsa - b 2048 -C john@abc.com
+$ ssh-keygen -t rsa -b 2048 -C john@abc.com
 Generating public/private rsa key pair.
 ```
 
-然後出現要把產生的SSH keys黨要存在哪裡的提問，直接按Enter鍵使用預設位置`/c/Users/<user>/.ssh/id_rsa`。
+然後出現要把產生的SSH keys檔要存在哪裡的提問，直接按Enter鍵使用預設位置`/c/Users/<user>/.ssh/id_rsa`。
 
 ```
 Enter file in which to save the key (/c/Users/john/.ssh/id_rsa):
 ```
 
-然後會出現提示要輸入passpharse的訊息按Enter鍵跳過。
+然後會出現提示要輸入passphrase的訊息按Enter鍵跳過。
 
 ```
 Enter passphrase (empty for no passphrase):
@@ -42,7 +42,7 @@ Enter same passphrase again:
 最後會提示把產生的SSH keys放到指定的位置。
 
 ```
-Your identification has been saved in /c/Users/john/.ssh/id_dsa.
+Your identification has been saved in /c/Users/john/.ssh/id_rsa.
 Your public key has been saved in /c/Users/john/.ssh/id_rsa.pub.
 The key fingerprint is:
 SHA256:7jyDUHfNi/kNFLRXutR/.... john@abc.com
@@ -60,7 +60,7 @@ The key's randomart image is:
 +----[SHA256]----+
 ```
 
-在C:\Users\用戶名\.ssh\文件夾中新建一個名稱為config的文件, 記事本打開
+在C:\Users\用戶名\.ssh\資料夾中新建一個名稱為config的檔案，用記事本開啟
 將下面內容複製貼上並保存, 最後一行記得換成你的id_rsa路徑
 
 ```
@@ -72,7 +72,7 @@ AddKeysToAgent yes
 IdentityFile C:\Users\用戶名\.ssh\id_rsa
 
 # 設定檔參數
-# Host : Host可以看作是一個你要識別的模式，對識別的模式，進行配置對應的的主機名稱和ssh文件
+# Host : Host可以看作是一個你要識別的模式，對識別的模式，進行配置對應的主機名稱和ssh文件
 # HostName : 要登入主機的主機名
 # User : 登入名
 # IdentityFile : 指明上面User對應的identityFile路徑
@@ -96,16 +96,16 @@ ssh-keygen -t rsa -C 'yourEmail@xx.com' -f ~/.ssh/github-rsa
 Host gitlab.com
 HostName gitlab.com
 PreferredAuthentications publickey
-IdentityFile ~/.ssh/gitlab_id-rsa
+IdentityFile ~/.ssh/gitlab-rsa
 
 # Github
 Host github.com
 HostName github.com
 PreferredAuthentications publickey
-IdentityFile ~/.ssh/github_id-rsa
+IdentityFile ~/.ssh/github-rsa
 
 # 設定檔參數
-# Host : Host可以看作是一個你要識別的模式，對識別的模式，進行配置對應的的主機名稱和ssh文件
+# Host : Host可以看作是一個你要識別的模式，對識別的模式，進行配置對應的主機名稱和ssh文件
 # HostName : 要登入主機的主機名
 # User : 登入名
 # IdentityFile : 指明上面User對應的identityFile路徑
@@ -175,4 +175,4 @@ Resolving deltas: 100% (...), done.
      ls ~/.ssh
      ```
 
-     確認是否有`id_rsa`和`id_rsa.pub'這兩個檔案。
+     確認是否有`id_rsa`和`id_rsa.pub`這兩個檔案。

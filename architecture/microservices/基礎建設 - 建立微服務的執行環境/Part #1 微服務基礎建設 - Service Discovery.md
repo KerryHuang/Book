@@ -66,7 +66,7 @@ Service discovery 之所以重要，是因為它解決了 microservices 最關�
 
 ![img](https://columns.chicken-house.net/wp-content/uploads/2017/12/Richardson-microservices-part4-2_client-side-pattern.png)
 
-這種模式 (Client-Side Discovery Pattern) 的作法，主要是 client side 使用能跟 service registry 搭配運作的 http client (就是圖中的 Registry-aware HTTP Client) ，在呼叫前先查詢好相關資訊，之後就可用來呼叫該服務的 REST API。Registry 會回報可用的服務 end ponts 清單資訊，由 http client 自己決定要選擇哪一個 end point.
+這種模式 (Client-Side Discovery Pattern) 的作法，主要是 client side 使用能跟 service registry 搭配運作的 http client (就是圖中的 Registry-aware HTTP Client) ，在呼叫前先查詢好相關資訊，之後就可用來呼叫該服務的 REST API。Registry 會回報可用的服務 end points 清單資訊，由 http client 自己決定要選擇哪一個 end point.
 
 ## 優點:
 
@@ -74,7 +74,7 @@ Service discovery 之所以重要，是因為它解決了 microservices 最關�
 
 透過這種做法，才有機會實作點對點的網狀通訊 (例如 service mesh 那樣的機制)。去中心化的通訊，可以避開單點 (API Gateway or Load Balancer) 造成的效能瓶頸，或是單點失敗造成可靠度下降等等的問題。
 
-容易自訂化是這個方式的優點，另外 http client 通常也會做成 library 或是 SDK 的型態，直接引用到你的開發專案內，實際執行時這部分是 in-process 的方式進行，語言間的整合程度最佳，執行效能也最佳，開發集除錯也容易，初期導入 service discovery 的團隊可以認真考慮這種模式。有很多輕量化的 service discovery 也都採用這種模式。
+容易自訂化是這個方式的優點，另外 http client 通常也會做成 library 或是 SDK 的型態，直接引用到你的開發專案內，實際執行時這部分是 in-process 的方式進行，語言間的整合程度最佳，執行效能也最佳，開發及除錯也容易，初期導入 service discovery 的團隊可以認真考慮這種模式。有很多輕量化的 service discovery 也都採用這種模式。
 
 ## 缺點:
 
@@ -169,7 +169,7 @@ Consul 架構上允許跨資料中心運作，不過我還沒玩這麼大… 這
 
 ## 案例: Azure Load Balancer / AWS Elastic Load Balancer
 
-Nginx 原文提到的案例是 [AWS Elastic Load Balancer](https://docs.microsoft.com/zh-tw/azure/load-balancer/load-balancer-overview), 不過我比較熟 Azure 啊，所以我就拿 [Azure Load Balancer](https://aws.amazon.com/tw/elasticloadbalancing/) 來當例子了。兩者都是 cloud service 業者提供的 Load Balancer 服務，用來將來自 internet 的 request, 平均的分散在內部的 service 身上用的服務。
+Nginx 原文提到的案例是 [AWS Elastic Load Balancer](https://aws.amazon.com/tw/elasticloadbalancing/), 不過我比較熟 Azure 啊，所以我就拿 [Azure Load Balancer](https://docs.microsoft.com/zh-tw/azure/load-balancer/load-balancer-overview) 來當例子了。兩者都是 cloud service 業者提供的 Load Balancer 服務，用來將來自 internet 的 request, 平均的分散在內部的 service 身上用的服務。
 
 其實這類機制，雲端廠商早就都已經準備好了。當你啟動一台 VM 或是其它具備 end points 的服務時，早就在內部的 registry (或是對應角色的服務) 裡有記載了。只是你啟動的對象，是廠商準備好的 VM，因此 registry 紀載與偵測的對象也是這個 VM 為主。當你啟用 load balancer 服務後，他判定的來源就是內部的 registry 啊，接到來自 internet 的 request, 自然的就按照 registry 的內容來 forward request.
 

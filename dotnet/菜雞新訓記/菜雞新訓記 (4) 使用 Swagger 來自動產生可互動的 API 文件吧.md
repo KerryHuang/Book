@@ -20,7 +20,7 @@ author: igouist
 
 回到我們的 API 服務開發來說，就是你除了把服務生出來了，可以跑了以外，還有一個重要的點是：必須讓所有的使用者（包含幾個月後的你自己）知道怎麼使用這組 API 服務。
 
-也就來說，就是要寫 API 規格文件 啦！
+也就是說，就是要寫 API 規格文件 啦！
 
 為了能讓服務對接順利，以及省下大部份口沫橫飛解釋的時間，甚至是讓自己和使用者好幾個月之後能夠順利回想起來，我們在開發 API 的時候一定會列出 API 接口的規格和用法。
 
@@ -389,7 +389,7 @@ public Card Get([FromRoute] int id)
 
 － 關於 Swashbuckle －
 
-- 在 NuGet 安裝 `Swashbuckle.Core`
+- 在 NuGet 安裝 `Swashbuckle.AspNetCore`
 
 - 在 `Startup.cs` 的 `ConfigureServices` 加上 `services.AddSwaggerGen();` 註冊服務
 

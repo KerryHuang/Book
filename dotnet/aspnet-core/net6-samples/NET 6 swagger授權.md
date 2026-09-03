@@ -87,7 +87,7 @@ jwt範例使用保哥範例來做修改，目的只是為了取得jwt token
       var issuer = _settings.Issuer;
       //加密的key，拿來比對jwt-token沒有
       var signKey = _settings.SignKey;
-      建立JWT-Token
+      //建立JWT-Token
       var token = JwtBuilder.Create()
                       //所採用的雜湊演算法
                       .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
@@ -114,7 +114,7 @@ jwt範例使用保哥範例來做修改，目的只是為了取得jwt token
       return token;
     }
   }
-  //將appsetting轉為強行別所使用
+  //將appsetting轉為強型別所使用
   public class JwtSettingsOptions {
     public string Issuer { get; set; } = "";
     public string SignKey { get; set; } = "";
@@ -150,7 +150,7 @@ using System.Security.Claims;
       _endpointDataSource = endpointDataSource;
     }
     public void Apply(OpenApiOperation operation, OperationFilterContext context) {
-      取得所有controller內的action
+      //取得所有controller內的action
       var Descriptor = _endpointDataSource.Endpoints.FirstOrDefault(x =>
           x.Metadata.GetMetadata<ControllerActionDescriptor>() == context.ApiDescription.ActionDescriptor);
       //取得包含Authorize的Attribute
@@ -276,8 +276,8 @@ builder.Services
 
 ![範例11-4](https://user-images.githubusercontent.com/19286751/190922687-fda2c7b2-18d1-400f-80d1-96458517c519.png)
 
-使用有鎖頭的AP
-I![範例11-5](https://user-images.githubusercontent.com/19286751/190922772-ac0d9e89-2ae3-47a2-b10e-cda412aa77dc.png)
+使用有鎖頭的API
+![範例11-5](https://user-images.githubusercontent.com/19286751/190922772-ac0d9e89-2ae3-47a2-b10e-cda412aa77dc.png)
 
 最後可以正確取得回傳值就是成功了
 ![範例11-6](https://user-images.githubusercontent.com/19286751/190922793-20fa6719-8d24-4b22-80f2-6e2adb16d83c.png)

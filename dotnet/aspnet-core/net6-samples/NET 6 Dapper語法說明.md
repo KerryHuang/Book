@@ -159,7 +159,7 @@ author: CI-YU
     [HttpGet("TransactionsAsync")]
     public async Task<IActionResult> TransactionsAsync() {
       using var conn = new SqliteConnection("Data Source=Student.sqlite");
-      //開啟連線，前面沒有這行是因為在在執行語法時(Execute、Query)會自動檢查是否連接資料庫
+      //開啟連線，前面沒有這行是因為在執行語法時(Execute、Query)會自動檢查是否連接資料庫
       conn.Open();
       //開始資料庫交易
       var trans = conn.BeginTransaction();

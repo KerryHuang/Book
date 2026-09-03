@@ -10,9 +10,9 @@ kind: original
 2. [環境與套件清單](#環境與套件清單)
 3. [設定 API 版本管理](#設定-api-版本管理)
 4. [產生多版本 OpenAPI 文件](#產生-多版本-openapi-文件)
-5. [整合 Swagger UI](#整合-swaggerui)
+5. [整合 Swagger UI](#整合-swagger-ui)
 6. [整合 ReDoc](#整合-redoc)
-7. [整合 Scalar UI](#整合-scalarui)
+7. [整合 Scalar UI](#整合-scalar-ui)
 8. [自訂與進階功能](#自訂與進階功能)
 9. [測試與驗證](#測試與驗證)
 10. [結語](#結語)
@@ -100,7 +100,7 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions             = true;  // 回應 header 中顯示 supported versions
 })
 // 3. 版本化 Explorer，供後續產生多份 OpenAPI 文件
-.AddVersionedApiExplorer(options =>
+.AddApiExplorer(options =>
 {
     options.GroupNameFormat       = "'v'VVV";    // 版本群組格式，例如 v1、v2.1
     options.SubstituteApiVersionInUrl = true;     // 將版本字串注入路由
@@ -187,7 +187,7 @@ if (app.Environment.IsDevelopment())
     {
         foreach (var desc in provider.ApiVersionDescriptions)
         {
-            options.SpecUrl($"/openapi/{desc.GroupName}.json");
+            options.SpecUrl = $"/openapi/{desc.GroupName}.json";
         }
         options.RoutePrefix = "redoc";     // UI 路徑 /redoc
         options.DocumentTitle = "ReDoc API Docs";

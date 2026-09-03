@@ -66,7 +66,7 @@ dotnet dev-certs https --trust
 > 可以參考
 > https://docs.microsoft.com/zh-tw/aspnet/core/security/enforcing-ssl?view=aspnetcore-5.0&tabs=visual-studio#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos
 
-建立好了之後，請在終端機透過`cd`指令進入專案目錄內，下方步驟需要再專案目錄內進行。
+建立好了之後，請在終端機透過`cd`指令進入專案目錄內，下方步驟需要在專案目錄內進行。
 
 ## 安裝Nuget套件
 
@@ -342,7 +342,7 @@ namespace Lab_JWT.Services
         /// </summary>
         /// <param name="jWTCliam">Token 資訊聲明內容物件</param>
         /// <param name="secretKey">加密金鑰，用來做加密簽章用</param>
-        /// <param name="issur">Token 發行者資訊</param>
+        /// <param name="issuer">Token 發行者資訊</param>
         /// <param name="expireMinutes">Token 有效期限(分鐘)</param>
         /// <returns>回應內容物件，內容屬性jwt放置Token字串</returns>
         RunStatus GetJWT(
@@ -475,7 +475,7 @@ namespace Lab_JWT.Services
             }
 
             // (JWT ID)
-            // Token ID，避免Token重複在被套用
+            // Token ID，避免Token重複被套用
             if (jWTCliam.jti != null && jWTCliam.jti != string.Empty)
             {
                 claims.Add(new Claim(JwtRegisteredClaimNames.Jti, jWTCliam.jti));
@@ -637,7 +637,7 @@ app.UseAuthorization();
 ```
 
 > 需要注意的是，這個要包在`app.UseRouting()`跟`app.UseEndpoints`中間
-> 否則會再請求進來時，發生錯誤產生。
+> 否則會在請求進來時，發生錯誤產生。
 > 這個會跟Action上方Tag`[Authorize]`與`[AllowAnonymous]`有關
 
 ## 服務功能
@@ -693,7 +693,7 @@ Authorization: Bearer + Token
 
 > `Bearer`跟Token之間記得要加上一個空白符號隔開
 
-這支Api只是單純模擬需要帶有Token驗證Htpp請求，根據在`Starup.cs`內設置的驗證配置來進行，最後會簡單的分析讀取Token發行者(Issuer)資訊。
+這支Api只是單純模擬需要帶有Token驗證Http請求，根據在`Startup.cs`內設置的驗證配置來進行，最後會簡單的分析讀取Token發行者(Issuer)資訊。
 
 最後會回傳一組JSON
 

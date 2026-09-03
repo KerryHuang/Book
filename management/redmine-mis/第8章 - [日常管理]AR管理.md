@@ -27,13 +27,13 @@ source: site:ithelp.ithome.com.tw
 
 如果老闆有一天跟MIS說，AR別再用Excel mail來mail去，把AR上系統管理吧?
 
-你說：那還不簡單，用Share point吧?! 市面上有些EIP Potral的套裝產品就有了啊?!
+你說：那還不簡單，用Share point吧?! 市面上有些EIP Portal的套裝產品就有了啊?!
 
 孩子，醒醒吧，你是中小企業的MIS，錢要花在刀口上，老闆只說別用Excel了，可沒答應給你花大錢。要用商業軟體先把O.S.、DB及AP等連線人數授權費用估算一下給老闆看他點頭了再說。
 
 如果如你預期這筆費用不屬於刀口，那就另外想其他方案囉! 老闆請你是來解決問題，不是來說問題，只會搖頭老闆就會把你當問題來處理。
 
-不過你也別自怨自哀，這個問題也不大，能解決此問題的免費工具其實並不少。不過既然我們選擇Redmine當作MIS的管理平台，我們就用Redmine快速解決老闆交付的這個任務。
+不過你也別自怨自艾，這個問題也不大，能解決此問題的免費工具其實並不少。不過既然我們選擇Redmine當作MIS的管理平台，我們就用Redmine快速解決老闆交付的這個任務。
 
 ------
 
@@ -51,7 +51,7 @@ source: site:ithelp.ithome.com.tw
 ### 管理資訊需求：
 
 - 【議題名稱】：AR 管理 (Action Required)
-- 【權限需求】：未登入者可瀏覽，由執行長秘書建立AR相關資訊，被指派的AR負責必須登入維護AR的狀態。
+- 【權限需求】：未登入者可瀏覽，由執行長秘書建立AR相關資訊，被指派的AR負責人必須登入維護AR的狀態。
 - 【適用場合】：主管會議、各專案會議、老闆口頭交辦
 - 【追蹤標籤】：研發、生產、廠務、品保、資訊、人事、行政
 - 【模組需求】：(O)開啟使用-設定勾選；(X)不使用-設定不勾選
@@ -120,7 +120,7 @@ source: site:ithelp.ithome.com.tw
 ### 進度維護
 
 - 專案成員只要登入該筆議題資料，按[編輯]，即可更新議題進度資訊。
-- 另外也可以使用[筆記]，最為這個AR的相關處理回應及記錄 (圖05、06、07)
+- 另外也可以使用[筆記]，作為這個AR的相關處理回應及記錄 (圖05、06、07)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950JPgJs2KsgJ.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950JPgJs2KsgJ.png)
 
 ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950n14zCR9Hxx.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950n14zCR9Hxx.png)
@@ -129,15 +129,15 @@ source: site:ithelp.ithome.com.tw
 
 ### 被指派者的資訊
 
-在[帳戶首頁]，可以看到自己配指派的工作及議題清單 (圖08)
+在[帳戶首頁]，可以看到自己被指派的工作及議題清單 (圖08)
 
 ![https://ithelp.ithome.com.tw/upload/images/20220913/20151950mcR6V1fQFt.png](https://ithelp.ithome.com.tw/upload/images/20220913/20151950mcR6V1fQFt.png)
 
 ------
 
-### 「被分配者」與「AR提出人」
+### 「被分派者」與「AR提出人」
 
-- 請注意.. 「被分配者」..
+- 請注意.. 「被分派者」..
   - 就是，就是這張AR的苦主..
   - 就是，傳說中被押AR的負責人
 - 請再注意.. 「AR提出人」..

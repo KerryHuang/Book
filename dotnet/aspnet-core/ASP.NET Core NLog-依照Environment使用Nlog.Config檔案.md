@@ -159,5 +159,5 @@ Production環境
 落落等寫了這麼多，基本上就是只有兩步驟
 
 製作不同環境使用的NLog.Config檔案
-宣告NLogBuilder.ConfigureLog的方式不同環境下套用不同的NLog.Config檔案
+宣告NLogBuilder.ConfigureNLog的方式不同環境下套用不同的NLog.Config檔案
 以上解決方案，確實解決筆者困擾的問題，這篇就到這邊了，下篇見。

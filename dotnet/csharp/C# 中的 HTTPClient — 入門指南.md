@@ -118,7 +118,7 @@ using (HttpClient client = new())
     };
 
     StringContent body = new(JsonConvert.SerializeObject(newJoke));
-    body.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+    body.Headers.ContentType = new MediaTypeHeaderValue("aapplication/json");
 
     HttpResponseMessage response = await client.PostAsync("https://official-joke-api.appspot.com/random_ten", body);
     if (!response.IsSuccessStatusCode)
@@ -135,7 +135,7 @@ public class Joke
 }
 ```
 
-我再次初始化 HTTPClient。然後我創造了一個新的笑話，這裡沒什麼特別的。_但隨後我創建了一個StringContent_類型的新變量，並使用要轉換為 JSON 字符串的_newJoke_對其進行初始化。因為我使用 JSON 作為請求的正文，所以我需要將正文的_ContentType設置為\*\*pplication/json_。
+我再次初始化 HTTPClient。然後我創造了一個新的笑話，這裡沒什麼特別的。_但隨後我創建了一個StringContent_類型的新變量，並使用要轉換為 JSON 字符串的_newJoke_對其進行初始化。因為我使用 JSON 作為請求的正文，所以我需要將正文的_ContentType設置為\*\*application/json_。
 
 我需要設置 ContentType 的原因是讓目標知道我將向其發送哪種數據。它也可能是 XML，如果我發送 JSON，目標將無法接收 XML。
 
@@ -199,7 +199,7 @@ using (HttpClient client = new())
 }
 ```
 
-雖然看起來很簡單，但請記住，您需要在發送請求之前設置 DefaultRequestHeaders。將所有內容髮送到目標後，設置默認請求標頭是沒有意義的。
+雖然看起來很簡單，但請記住，您需要在發送請求之前設置 DefaultRequestHeaders。將所有內容發送到目標後，設置默認請求標頭是沒有意義的。
 
 ### Using A Timeout 使用超時
 

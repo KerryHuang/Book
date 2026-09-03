@@ -60,7 +60,7 @@ public class Program
 首先我們先看一下 targets (目標) 設定：
 **xsi:type**: 寫入log 格式，File 表示將log 寫入檔案
 **fileName**: 為寫入檔案的位置， ${basedir} 為專案資料夾
-layout: 為寫出的格式，這邊格視為時間、大寫 Log level與 log 內容 (meassage)
+layout: 為寫出的格式，這邊格式為時間、大寫 Log level與 log 內容 (message)
 接下來我們看一下 rules (規則)設定
 **logger name**: 可以設定寫出那些 logger，* 表示全部都寫
 **minlevel**: 表示寫出log的層級
@@ -96,4 +96,4 @@ layout: 為寫出的格式，這邊格視為時間、大寫 Log level與 log 內
 
 ### 參考資料
 1. [Nlog詳解](https://www.cnblogs.com/1175429393wljblog/p/16576726.html)
-1. [C#：NLog接入配置與簡單使用]([https://zhuanlan.zhihu.com/p/610461723)
+1. [C#：NLog接入配置與簡單使用](https://zhuanlan.zhihu.com/p/610461723)

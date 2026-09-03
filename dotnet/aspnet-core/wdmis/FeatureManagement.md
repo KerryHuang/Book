@@ -11,7 +11,7 @@ kind: original
 可以通過 NuGet 安裝 `Microsoft.FeatureManagement.AspNetCore`：
 
 ```shell
-dotnet add package Microsoft.FeatureManagement
+dotnet add package Microsoft.FeatureManagement.AspNetCore
 ```
 
 ### 使用範例

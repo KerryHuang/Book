@@ -6,7 +6,7 @@ author: 余小章
 
 # ASP.NET 使用 MassTransit 與 RabbitMQ，實現事件發佈、訂閱
 
-MassTransit 的架構是一個基於事件驅動和 Message 傳遞的分佈式系統架構，主要是要解偶服務之間的通訊。它使用 Message Broker（如 RabbitMQ、ActiveMQ、Kafaka、Azure Service Bus、Amazon SQS 等）來傳遞不同服務之間的訊息，它大大的簡化事件驅動的開發門檻
+MassTransit 的架構是一個基於事件驅動和 Message 傳遞的分佈式系統架構，主要是要解耦服務之間的通訊。它使用 Message Broker（如 RabbitMQ、ActiveMQ、Kafka、Azure Service Bus、Amazon SQS 等）來傳遞不同服務之間的訊息，它大大的簡化事件驅動的開發門檻
 
 ![img](https://dotblogsfile.blob.core.windows.net/user/%E4%BD%99%E5%B0%8F%E7%AB%A0/62d0d5d0-d5fb-4798-9707-d06ff60e336a/1728792113.png.png)
 
@@ -30,8 +30,8 @@ Producer，發布消息：
 Message Broker (RabbitMQ)：
 
 - 消息到達 RabbitMQ 的 Exchange，Exchange 根據配置的路由規則將消息轉發到一個或多個 Queue。這些規則可以根據消息類型、路由鍵等來進行配置。
-- Transport：跟 Message Boker 通訊的角色，負責發送和接收消息。
-- 支多個 Message Boker 例如：RabbitMQ、Azure Service Bus 或 Kafka。
+- Transport：跟 Message Broker 通訊的角色，負責發送和接收消息。
+- 支援多個 Message Broker 例如：RabbitMQ、Azure Service Bus 或 Kafka。
 
 Consumer，處理消息：
 
@@ -39,7 +39,7 @@ Consumer，處理消息：
   - IConsumer<T>：處理從 Queue 接收到的事件或命令的消費者。
   - IReceiveEndpoint：接收端點，從 Transport 接收訊息反序列化後傳給消費者。
 
-Message：消息合约，定義消息生產者和消息消費者之間的內容規範。
+Message：消息合約，定義消息生產者和消息消費者之間的內容規範。
 
 ###  
 
@@ -164,7 +164,7 @@ public class OrderCreatedConsumer : IConsumer<OrderCreated>
 
  
 
-在 DI Container 配置 MassTransit⁠⁠ 的 Message Boker
+在 DI Container 配置 MassTransit⁠⁠ 的 Message Broker
 
 ```cs
 builder.Services.AddMassTransit(x =>
@@ -402,7 +402,7 @@ public class OrderSubmittedConsumer : IConsumer<OrderSubmitted>
 
 ### 消費者(Consumer)
 
-Consumer，消費者用來消化消息，消費者可以訂閱某一個生產者的命令 quere，也可以訂閱生產者的廣播訊息，在  Hosting 配置好接收路徑，以及收到訊息要做甚麼事，基本上就設定好了。
+Consumer，消費者用來消化消息，消費者可以訂閱某一個生產者的命令 queue，也可以訂閱生產者的廣播訊息，在  Hosting 配置好接收路徑，以及收到訊息要做甚麼事，基本上就設定好了。
 
 ```cs
 public static async Task Main(string[] args)
@@ -462,7 +462,7 @@ public class OrderSubmittedConsumer : IConsumer<OrderSubmitted>
 
 ## 案例位置
 
-[sample.dotblog/Event Bus/MassTransit/Lab.MassTransit at 4549713ed44b723b6d68111a947b0a83d4bae9e0 · yaochangyu/sample.dotblog](https://github.com/yaochangyu/sample.dotblog/tree/4549713ed44b723b6d68111a947b0a83d4bae9e0/Event Bus/MassTransit/Lab.MassTransit)
+[sample.dotblog/Event Bus/MassTransit/Lab.MassTransit at 4549713ed44b723b6d68111a947b0a83d4bae9e0 · yaochangyu/sample.dotblog](https://github.com/yaochangyu/sample.dotblog/tree/4549713ed44b723b6d68111a947b0a83d4bae9e0/Event%20Bus/MassTransit/Lab.MassTransit)
 
 ---
 

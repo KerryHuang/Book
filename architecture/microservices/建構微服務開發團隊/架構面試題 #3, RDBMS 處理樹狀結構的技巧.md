@@ -320,7 +320,7 @@ where F.EXT = '.ini'
 
 MSSQL 小記:
 
-> CTE 從 MS-SQL 2005 開始支援，而到了 MS-SQL 2008 則更進一步支援了 hierarchyid 這種欄位的型別，直接支援了樹狀結構的操作，處理這類結構的效能也比 CTE 來的好。不過我這篇不打算額外介紹這機制了，我的目的是讓 developer 多思考這類問題的解決方式，而非介紹 SQL SERVER 的特異功能。會介紹 CTE 已經是我的極限了，至少他只是在查詢語法上的支援，在不同的 DBMS 大都有類似對應的語法。我期望 developer 看完我這篇，會思考如何有效的靈活應用，不論是在 MS-SQL, Oracle, 或是 MySQL / Postgras …
+> CTE 從 MS-SQL 2005 開始支援，而到了 MS-SQL 2008 則更進一步支援了 hierarchyid 這種欄位的型別，直接支援了樹狀結構的操作，處理這類結構的效能也比 CTE 來的好。不過我這篇不打算額外介紹這機制了，我的目的是讓 developer 多思考這類問題的解決方式，而非介紹 SQL SERVER 的特異功能。會介紹 CTE 已經是我的極限了，至少他只是在查詢語法上的支援，在不同的 DBMS 大都有類似對應的語法。我期望 developer 看完我這篇，會思考如何有效的靈活應用，不論是在 MS-SQL, Oracle, 或是 MySQL / Postgres …
 
 參考資料:
 
@@ -529,7 +529,7 @@ select * from DIR_CTE
 
 寫到這邊，開始有 fu 了嗎? SQL 這種很關聯式的資料庫，要處理 tree 這種東西，先天就是不大自然。你會發現很多語法其實都有點彆扭，寫起來就沒有那種一路到底的順暢感，尤其處理到不固定階層的地方腦袋都要轉好幾個彎，同時效能也不盡理想。CTE 只是解決遞迴的 query 不好寫的問題而已，他並沒有解決多層 self-join 帶來的效能影響。可以從前面的查詢計畫看到 cost, 搜尋的效能不算理想，若 CTE 還要再 join 其他 table, 甚至再進行 update / delete 的操作，效能問題就更明顯了。
 
-因為這個方案，就是直接把寫 code 用的指標結構，原封不動的搬到 SQL schema 內來，因此原本用 programming language 的 recursive 處理方式，若 RDBMS 自身沒有支援 (例如查詢 ID 時, 幾層目錄你就要自己 self-join 幾次的作法)，你就會發現很多 SQL 語法會囉嗦到你都看不下去。雖然 Oracle (CONNECT TO) / MS-SQL (CTE) 都有階層的查詢語法支援, 但是這些終究不是標準 SQL 語法，換句話說你使用 Entity Framework 這類 ORM, 或是你的 RDBMS 需要遷移到不同的系統時 (如 MS-SQL 換到 MySQL)，這些 SQL query 就通通得重來…
+因為這個方案，就是直接把寫 code 用的指標結構，原封不動的搬到 SQL schema 內來，因此原本用 programming language 的 recursive 處理方式，若 RDBMS 自身沒有支援 (例如查詢 ID 時, 幾層目錄你就要自己 self-join 幾次的作法)，你就會發現很多 SQL 語法會囉嗦到你都看不下去。雖然 Oracle (CONNECT BY) / MS-SQL (CTE) 都有階層的查詢語法支援, 但是這些終究不是標準 SQL 語法，換句話說你使用 Entity Framework 這類 ORM, 或是你的 RDBMS 需要遷移到不同的系統時 (如 MS-SQL 換到 MySQL)，這些 SQL query 就通通得重來…
 
 因此，接下來的兩個解決方案，我就會開始拋開特定 DBMS 的語法支援，回歸到最單純原生的 RDBMS 操作技巧，開發者應該善用你的基礎知識，思考該如何透過 RDBMS 擅長的表格資料處理方式，來面對你的 Tree 結構。
 
@@ -814,7 +814,7 @@ delete demo2.DIRINFO where ID03 = 218818
 
 ![img](https://columns.chicken-house.net/wp-content/images/2019-06-01-nested-query/2019-06-02-23-16-33.png)
 
-這 left / right index 怎麼標出來的? 看看圖上標示的黃色箭頭… 基本上就是按照 depth first traversal 的方式走完每個節點。每個節點第一次被走到的時候就按順序標上 left，繞了一圈回到這個節點後再標上 right.. 這時 left / right 就代表這個結點在座標軸上涵蓋的範圍了。因為 depth first traversal 的規則，每個 node 底下的 nodes 都走完後一定會回來這個 node, 因此按照順序標上流水號，就成為這個結果了。這個 left / right index 可以同時代表多個意義，除了 “包含” 的關係之外，每個 node 一定都會佔掉兩個空間，因此只要 index 有維護好，都是連續整數的話，left / right 的數值差異就可以代表子節點的個數，你想計算子節點的各數時連查都不用查，直接 (right - left - 1) / 2 就可以得到答案了。
+這 left / right index 怎麼標出來的? 看看圖上標示的黃色箭頭… 基本上就是按照 depth first traversal 的方式走完每個節點。每個節點第一次被走到的時候就按順序標上 left，繞了一圈回到這個節點後再標上 right.. 這時 left / right 就代表這個結點在座標軸上涵蓋的範圍了。因為 depth first traversal 的規則，每個 node 底下的 nodes 都走完後一定會回來這個 node, 因此按照順序標上流水號，就成為這個結果了。這個 left / right index 可以同時代表多個意義，除了 “包含” 的關係之外，每個 node 一定都會佔掉兩個空間，因此只要 index 有維護好，都是連續整數的話，left / right 的數值差異就可以代表子節點的個數，你想計算子節點的個數時連查都不用查，直接 (right - left - 1) / 2 就可以得到答案了。
 
 沒仔細想的話，光是看到這堆數字大概丈二金剛摸不著頭腦吧! 這是為 tree struct 精心設計的 index, wiki 上用了另一種視角來看這個結構。看一下 wiki 上的另一個例子:
 
@@ -1118,7 +1118,7 @@ Step 2: 刪除目錄部分 執行時間: 00:00:00.887 (sec) 執行計畫 (Estima
 
 Step 3: 回收索引空間 執行時間: 00:00:02.515 (sec) 執行計畫 (Estimated Subtree Cost): 0.0432873, 12.0335, 11.8227
 
-刪除之後，我們在來查詢 `c:\windows\backup` 目錄下有多少子目錄掛著:
+刪除之後，我們再來查詢 `c:\windows\backup` 目錄下有多少子目錄掛著:
 
 ```
 declare @root int = 218825; -- c:\windows\backup 270029 ~ 303070
@@ -1201,7 +1201,7 @@ and not exists
 
 ![img](https://columns.chicken-house.net/wp-content/images/2019-06-01-nested-query/2019-06-02-03-59-24.png)
 
-這需求其實就是搜尋 + 刪除的綜合體了。大量刪除的 I/O 時間，沖淡了搜尋速度巨大的差異。三種方式的差異都還在同一個數量及，可以看到 [方案三](https://columns.chicken-house.net/2019/06/01/nested-query/#sol3) 整體表現最好。其實這個範圍內的差異，我不會太斤斤計較。因為，一來數據本身會有誤差，二來我並沒有很細緻的去調整 INDEX，我相信這個範圍內的差異，很有可能會因為某些環節效能調教而被扭轉的。
+這需求其實就是搜尋 + 刪除的綜合體了。大量刪除的 I/O 時間，沖淡了搜尋速度巨大的差異。三種方式的差異都還在同一個數量級，可以看到 [方案三](https://columns.chicken-house.net/2019/06/01/nested-query/#sol3) 整體表現最好。其實這個範圍內的差異，我不會太斤斤計較。因為，一來數據本身會有誤差，二來我並沒有很細緻的去調整 INDEX，我相信這個範圍內的差異，很有可能會因為某些環節效能調教而被扭轉的。
 
 不過，即使如此，我仍然會推薦 [方案三](https://columns.chicken-house.net/2019/06/01/nested-query/#sol3)。因為在前面的搜尋測試，已經剔除 [方案一](https://columns.chicken-house.net/2019/06/01/nested-query/#sol1) 了，[方案二](https://columns.chicken-house.net/2019/06/01/nested-query/#sol2) 又有難以維護的缺點，既然這個需求的評比項目 [方案三](https://columns.chicken-house.net/2019/06/01/nested-query/#sol3) 的效能也勝出，沒有理由不選他。
 
@@ -1213,7 +1213,7 @@ and not exists
 
 這種例子很多，這次的案例就都是在建立資料時，預先埋好能解決樹狀資料查詢罩門的額外索引。當然索引是需要額外維護的，你只是把代價從搜尋時期往前挪到更新階段而已。Developer 的任務就是盡量降低缺點，放大優點而已。
 
-其實這三種方案，我是為了讓各位清楚知道區別，才個別使用的；實際上這三種方式是可以混合使用的，只是你開越多種索引，你要維護的工程就越大而以。過去我使用這些技巧時，我甚至做的更徹底，直接把維護索引這些任務，從單純的 SQL script, 往前搬到 application 層次來處理了。前面提到，我過去需要處理大量的 XML data, 因此我寫了一套 XML -> SQL 的轉換引擎。資料異動時，在非表格式的儲存區內 (file, or ntext 欄位) 先異動 XML, 然後再把 XML 拆解成 tree structure 更新到對應的 table… 這時轉換的程序會一併把這些方案必要的 index 也一起計算好，直接寫入 database.
+其實這三種方案，我是為了讓各位清楚知道區別，才個別使用的；實際上這三種方式是可以混合使用的，只是你開越多種索引，你要維護的工程就越大而已。過去我使用這些技巧時，我甚至做的更徹底，直接把維護索引這些任務，從單純的 SQL script, 往前搬到 application 層次來處理了。前面提到，我過去需要處理大量的 XML data, 因此我寫了一套 XML -> SQL 的轉換引擎。資料異動時，在非表格式的儲存區內 (file, or ntext 欄位) 先異動 XML, 然後再把 XML 拆解成 tree structure 更新到對應的 table… 這時轉換的程序會一併把這些方案必要的 index 也一起計算好，直接寫入 database.
 
 意思是我不需要花太多心思用 SQL 來寫上面搬移 tree 這些指令了。這些操作明顯的用程式語言會來的容易一些。這篇文章其實都沒貼到 C# 的 code, 我就最後來貼一小段吧! 大家知道我這次測試資料怎麼來的嗎? 其實我是寫了一個 .NET 小工具，掃描我的 c:\ 爬了資料出來，逐一寫到 database. 寫的過程中，我一口氣把三種方案需要的索引一次都算出來了，寫到 dbo.DIRINFO, 事後要開始測試時，我才根據 demo1 ~ demo3 的需求，各自把必要的欄位搬出來到各自的 table schema 內驗證。
 
@@ -1374,20 +1374,19 @@ select @@identity;",
 
 走這行的人都知道，東西是學不完的。語言、框架、服務越來越多，你光是通通都要聽過就很困難了，何況還要都 “精通” ? 這根本是不可能的，即使是我也辦不到。因此能在這個行業生存下來的關鍵能力，只有一個: 基礎知識。
 
-我常常都把你能否確實掌握某個技能的能力，分成兩個面相來看，一個是觀念，一個是操作。觀念很難速成的，從不會到會，很多時候要看有沒有好老師或是環境，或是你自己有沒有天分來決定的。但是操作就不是了，操作需要時間去練習與熟悉的，上手的速度通常是線性的，相對較好預估。
+我常常都把你能否確實掌握某個技能的能力，分成兩個面向來看，一個是觀念，一個是操作。觀念很難速成的，從不會到會，很多時候要看有沒有好老師或是環境，或是你自己有沒有天分來決定的。但是操作就不是了，操作需要時間去練習與熟悉的，上手的速度通常是線性的，相對較好預估。
 
 觀念就像基礎知識，這個行業的基礎知識其實沒那麼多樣，也相對的長壽。我 20 年前掌握的基礎知識其實到現在都還很好用。操作就不一樣了，隨著工具的汰換，你操作技能大概就沒用了 (例如: 你當年會設定 MS-DOS 的 config.sys, 這技能現在還派的上用場嗎?)。因此我的策略都是盡可能累積基礎知識，而操作技能則是有需要再去學。
 
 自從擔任了架構師的職務之後，更有這種體認了。沒有正確的基礎知識，你的決定可能就會拖垮整個團隊。你永遠需要看清你要解決的問題是什麼，然後根據你的知識來挑選合適的系統與工具，用正確的方式來整合它們，才會發揮最大的效益。這篇文章只是我當年的例子，如果我只是個技術控，我應該會選擇當年相當先進的 Native XML Database 全面導入，最後會搞出一個沒人敢維運的系統 (金融業真的很抗拒這種前衛的方案啊)。有了足夠的基礎知識，我就能清楚如何讓 RDBMS 也能做到一樣的需求。團隊會有更多的精神把需求做好，也有更充裕的空間作好長期轉移到對的系統 (如 NOSQL) 的規劃與準備。
 
-最後，我整理一下這篇題到的幾個參考資料，跟我的範例程式。需要的朋友請自行取用:
+最後，我整理一下這篇提到的幾個參考資料，跟我的範例程式。需要的朋友請自行取用:
 
 - 範例程式: [Andrew.NestedQueryDemo](https://github.com/andrew0928/Andrew.NestedQueryDemo)
   包含把目錄結構匯入 SQLDB 的 .NET Console App, 以及對應的 SQLDB Database Project
-  with-common-table-expression-transact-sql?view=sql-server-2017)
 - 黑暗執行緒: [SQL 2005 T-SQL Enhancement: Common Table Expression](https://blog.darkthread.net/blog/sql-2005-t-sql-enhancement-common-table-expression)
 - 黑暗執行緒: [ORACLE筆記-使用 CONNECT BY 呈現階層化資料](https://blog.darkthread.net/blog/oracle-connect-by/)
 - Rico技術農場: [SQL SERVER hirearchy method](https://dotblogs.com.tw/ricochen/2018/06/02/145338)
 - Wiki: [Nested Set Model](https://en.wikipedia.org/wiki/Nested_set_model#Example)
-- SQL Server Common Table Expression: [CTE](https://docs.microsoft.com/zh-tw/sql/t-sql/queries/)
+- SQL Server Common Table Expression: [CTE](https://docs.microsoft.com/zh-tw/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-2017)
 - 網友提供: [Modified Preorder Tree Traversal](https://gist.github.com/tmilos/f2f999b5839e2d42d751) (這篇講方案三講得更清楚)

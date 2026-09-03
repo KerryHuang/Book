@@ -55,8 +55,8 @@ docker run -e "ACCEPT_EULA=Y"
 
 * -e ACCEPT_EULA=Y : 設定環境中授權條款同意書 ( Y )
 * -e "MSSQL_SA_PASSWORD：需要輸入一個超級困難的密碼" : 請輸入一個Really Strong PWD
-* -p 1433:1433 ：設定連線阜號，那為什麼有兩個呢？因為第一個是你本機的另外一個是Container的
-* --name：輸入你的containder名稱啦！！！
+* -p 1433:1433 ：設定連線埠號，那為什麼有兩個呢？因為第一個是你本機的另外一個是Container的
+* --name：輸入你的container名稱啦！！！
 * -d microsoft/mssql-server-linux (Linux)：-d 是run container background 好了之後show container ID給我就好的意思 後面的就是IMAGE名稱啦
 * -d mcr.microsoft.com/mssql/server:2022-latest (Windows)
 
@@ -149,7 +149,7 @@ docker stop [Container ID]
 刪除Container
 
 ```
-docer rm [Container ID]
+docker rm [Container ID]
 ```
 
 重新查詢一次Container，目前已經沒有了

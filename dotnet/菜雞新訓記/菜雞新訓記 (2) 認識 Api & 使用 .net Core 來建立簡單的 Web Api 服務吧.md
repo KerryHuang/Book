@@ -141,13 +141,7 @@ Restful 想做的也是同一件事：只要大家都有一個制定路由的共
 
   - 我一直 `POST` ，就會一直長出新資料（！注意，不是 idempotent ！）
 
-  - ```
-    PATCH
-    ```
-
-     
-
-    的部份比較特殊一點：
+  - `PATCH` 的部份比較特殊一點：
 
     - 因為我們要求更新這個資源的某一些部份的時候，並不能確定其他地方會不會變動
     - 例如說，我們更新了 產品描述 這個欄位，結果其實還有一個欄位是 版本號，然後服務偵測到每次更新都會自動增加。
@@ -282,7 +276,7 @@ Body 又叫做回應主體，是非必須、選填的，通常我們會用來存
 
 以寄信來舉例的話，Header 就像是外面的 寄信人、收件人等資訊，而 Body 則是裡面的信件內文。但要注意，一個訊息並不一定要有 Body，就像我們也可以只寄送明信片一樣。很常聽到的一個比喻就是：GET 就像明信片、POST 就像是包裹，中間就是需不需要附加 Body 的差別。
 
-當 GET 的時候，我們通常並不會用到 Body，如果有需要附上參數的話，GET 我們會放到 QueryString（就是接續在往指後面，常常見到的 ?a=1&b=2 那串）。
+當 GET 的時候，我們通常並不會用到 Body，如果有需要附上參數的話，GET 我們會放到 QueryString（就是接續在網址後面，常常見到的 ?a=1&b=2 那串）。
 
 例如說取得產品列表，我們需要向 `/product` 發出 `GET` 請求，同時我們又只想要類別是鞋子、關鍵字為 Nike 的產品，那我們組出來的整個 URL 和 QueryString 可能就是這樣的：
 
@@ -817,7 +811,7 @@ public IActionResult Update(
 }
 ```
 
-這邊的 `[HttpPost]`、`[HttpPut]` 以及 `[FromRpute]`、`[FromBody]` 我們在前面都已經掌握了。但在這裡我們還是可以看到 `return Ok()` 和 `return NotFound()` 這兩個新朋友。
+這邊的 `[HttpPost]`、`[HttpPut]` 以及 `[FromRoute]`、`[FromBody]` 我們在前面都已經掌握了。但在這裡我們還是可以看到 `return Ok()` 和 `return NotFound()` 這兩個新朋友。
 
 聰明的朋友看 return 的方法名稱應該已經猜到了，這就是我們前面提過的 [HTTP Status](https://igouist.github.io/post/2021/05/newbie-2-webapi/#關於-http-status-code)。當然前面查詢成功的時候和這邊的 `Ok()` 一樣是 `200` 的狀態，此外還有代表 `400` 的 `BadRequest()`、代表 `404` 的 `NotFound()` 等等。
 

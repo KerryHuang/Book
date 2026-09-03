@@ -29,7 +29,7 @@ Blob 檔案架構要使用 Azure Blob Storage 來儲存檔案，我們需要先�
 
 !\[]\(/Users/kerry/Library/CloudStorage/OneDrive-個人/公司/Soetek/My Briefcase/My Books/Markdown Cheatsheet 中文版/Azure Blob Storage/5.png)
 
-當有檔案上傳上來的時候，我們就利用剛剛複製的連線字串建立 Blob 服務的客戶端，進行檔案的儲存，程式碼如下，說明寫在註解中，為了方便，請容許我將 CURD 寫在同一個 Action 裡面。
+當有檔案上傳上來的時候，我們就利用剛剛複製的連線字串建立 Blob 服務的客戶端，進行檔案的儲存，程式碼如下，說明寫在註解中，為了方便，請容許我將 CRUD 寫在同一個 Action 裡面。
 
 ```c#
 [HttpPost]

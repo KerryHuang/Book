@@ -101,7 +101,7 @@ dotnet new --install isRock.Template.LineWebHook
 PS D:\linetest> dotnet new linewebhook  
 The template "isRock.Template.LineWebHook" was created successfully.
 ```
-完成後，在 VS Code的專案清單的Controller資料夾中(除了原本的WeatherForecastController.cs是系統內建的之外)，還會多出只少五支 *.cs 程式碼：
+完成後，在 VS Code的專案清單的Controller資料夾中(除了原本的WeatherForecastController.cs是系統內建的之外)，還會多出至少五支 *.cs 程式碼：
 
 ![enter image description here](https://i.imgur.com/laQr1wt.png)
 
@@ -134,7 +134,7 @@ dotnet run
 雖然看到上面的畫面，但結果是對的。
 ```
 上述畫面是因為我們試圖用 http get方式去access只支援http post方法的endpoint。
-(因為line bot要求採用 http post作為WebHook。你也可以使用postman以http post方式呼叫該endppint，應當會收到 http response 200的正常結果)
+(因為line bot要求採用 http post作為WebHook。你也可以使用postman以http post方式呼叫該endpoint，應當會收到 http response 200的正常結果)
 ```
 
 ### 使用ngrok讓LINE Bot可以運行

@@ -92,7 +92,7 @@ Invalid action. Use C for Create, D for Delete, or M for Migrate.
 
 # IDesignTimeDbContextFactory 介紹
 
-`IDesignTimeDbContextFactory` 是 Entity Framework Core 提供的一個接口，用於在設計階段生成 `DbContext` 實例，主要被 `dotnet ef` 工具使用。例如，當你執行 `dotnet ef migrations` 或 `dotnet ef database update` 等命令時，EF Core 工具需要一個 `DbContext` 的實例來執行這些操作。
+`IDesignTimeDbContextFactory` 是 Entity Framework Core 提供的一個介面，用於在設計階段生成 `DbContext` 實例，主要被 `dotnet ef` 工具使用。例如，當你執行 `dotnet ef migrations` 或 `dotnet ef database update` 等命令時，EF Core 工具需要一個 `DbContext` 的實例來執行這些操作。
 
 ------
 
@@ -108,7 +108,7 @@ Invalid action. Use C for Create, D for Delete, or M for Migrate.
 
 ### **1. 創建一個 `DbContext` 的工廠類**
 
-實現 `IDesignTimeDbContextFactory<T>` 接口，並返回 `DbContext` 的實例。
+實現 `IDesignTimeDbContextFactory<T>` 介面，並返回 `DbContext` 的實例。
 
 #### **範例**
 

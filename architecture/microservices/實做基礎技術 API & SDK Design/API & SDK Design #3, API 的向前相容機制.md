@@ -22,7 +22,7 @@ author: Andrew Wu
 
 這邊我就不比較了，我採取的是 (3) 的策略，如這張圖所示，SERVER 隨著時間推進，不斷衍生新版本出來，每次都只保留新版本，同時要保證能 跟舊版本的 Client 相容，這麼一來大家都用同一個版本就能相安無事: ![Compatible Versioning](https://columns.chicken-house.net/wp-content/uploads/2016/10/apisdk-03-compatible-versioning.png)
 
-看起來不難嘛，只要相容就好了。說的簡單，實做起來挑戰可不小。想像一下你一旦宣告了一個 class, 你寫過的 method 以後遠永不能 把它拿掉，也不能修改 signature, 那是很折磨人的一件事。有時一時手癢，想說先改一下測試看看，結果就這麼忘掉就 commit 跟 push 出去…
+看起來不難嘛，只要相容就好了。說的簡單，實做起來挑戰可不小。想像一下你一旦宣告了一個 class, 你寫過的 method 以後永遠不能 把它拿掉，也不能修改 signature, 那是很折磨人的一件事。有時一時手癢，想說先改一下測試看看，結果就這麼忘掉就 commit 跟 push 出去…
 
 為了確保這種悲劇不會發生，我把這件事拆成三個 check point，來確保這種問題不會發生 (我假設 client 都透過 SDK 呼叫 API， 因此以下 client 我都用 SDK 替代):
 
@@ -157,11 +157,11 @@ public class BirdsController : ApiController, IBirdsApiContract
 
 這時，如果你把所有需要被呼叫的 API 都寫了對應的 unit test, 那麼 test suite 也可被當成 “contract” 的一種。不過這要追蹤的干擾就比較多。 每當 unit test 修正時 (可能是 test code 寫錯) 版本異動紀錄不一定每一筆都是反映到 API 的規格異動紀錄。 因此在控制 API 是否有未授權的異動這件事，效果就差很多了。
 
-前面我就說過，我試過不下十種方式了 XD，不過都沒有我覺得較完美的做法，我甚至連 build 後的 check tools 都寫過了 XDDD。這些方法 再聊下去也沒甚麼意義，因此這段就先到此為止。各位可已挑選合適的做法，或是回到傳統的做法，靠文件及 code review 來要求這件事。
+前面我就說過，我試過不下十種方式了 XD，不過都沒有我覺得較完美的做法，我甚至連 build 後的 check tools 都寫過了 XDDD。這些方法 再聊下去也沒甚麼意義，因此這段就先到此為止。各位可以挑選合適的做法，或是回到傳統的做法，靠文件及 code review 來要求這件事。
 
 至於為何我要花那麼大的功夫去控制 API contract ? 因為接下來的要求 “向前相容” 的原則很簡單，就是你的 API 定義的介面只能多不能少。 你透過 HTTP 傳遞的參數也是只能多不能少。原本就有的東西你通通都不能改，不能拿掉也不能改變定義。唯有這樣才能確保舊的 SDK 都能 有正確規格的 API 可以呼叫，不會出現不相容的問題 (這邊只討論 API 的 “interface”，若新版的 API 行為不符，或是執行有 bug 則不在這邊 的討論範圍)。
 
-這些限制如果放大到整套系統，那一定會有人疏忽掉，加上沒有式當的 review 機制或是檢查工具，靠人腦來做一定會出問題。因此我前面才會花那麼 大的功夫先把 contract 這件事情做好。當這些問題簡化成一個 interface, 那後面就很簡單了。你只要把握一個原則，改變這個 interface，method 跟 arguments 就是只增不減。
+這些限制如果放大到整套系統，那一定會有人疏忽掉，加上沒有適當的 review 機制或是檢查工具，靠人腦來做一定會出問題。因此我前面才會花那麼 大的功夫先把 contract 這件事情做好。當這些問題簡化成一個 interface, 那後面就很簡單了。你只要把握一個原則，改變這個 interface，method 跟 arguments 就是只增不減。
 
 # API / SDK Versioning
 
@@ -344,9 +344,8 @@ public class Client : ISDKClient
         // 以下略過
 ```
 
-這麼一來，所有 SDK 對 server 送出的 HTTP request 就都會附上版本要求的資訊了。API server side 自然也要對應的檢查。 檢查如果要每個 method 都寫一段 check code 那未免也太 low 了，這邊我再度搬出 `ActionFilter` 出來用… (其實你願意的話， 把他合併到前面的 `ContractCheckActionFilter` 也可以) 所有的 request 對應到的 action 執行之前，都會經過這個 filter 的處理。若在這裡檢查版本就已經不符合的話，會直接丟出
+這麼一來，所有 SDK 對 server 送出的 HTTP request 就都會附上版本要求的資訊了。API server side 自然也要對應的檢查。 檢查如果要每個 method 都寫一段 check code 那未免也太 low 了，這邊我再度搬出 `ActionFilter` 出來用… (其實你願意的話， 把他合併到前面的 `ContractCheckActionFilter` 也可以) 所有的 request 對應到的 action 執行之前，都會經過這個 filter 的處理。若在這裡檢查版本就已經不符合的話，會直接丟出 `InvalidOperationException`:
 
-~~~InvalidOperationException```:
 ```csharp
 public class SDKVersionCheckActionFilterAttribute : ActionFilterAttribute
 {
@@ -372,7 +371,7 @@ public class SDKVersionCheckActionFilterAttribute : ActionFilterAttribute
         if (current_version.Minor < required_version.Minor) throw new InvalidOperationException();
     }
 }
-~~~
+```
 
 我埋了點 code, 會在 visual studio 的 output window 留下訊息，等等可以來看看結果。剩下的動作很簡單，就把這個 `ActionFilter`, 直接標記在 `BirdsController` 上面就可以啟用了。這邊補充一下，前面的例子版本號碼還是寫死在 code 上面，這邊我改掉了，直接讀取 這個 Assembly 的版本號碼。要設定版號的話，可以改這檔案 (`~/Properties/AssemblyInfo.cs`) 的內容:
 

@@ -148,7 +148,7 @@ public class NewFeatureController : Controller
 
 ```csharp
 builder.Services.AddFeatureManagement()
-    .AddFeatureFilter<PercentageFilter>();
+    .AddFeatureFilter<Microsoft.FeatureManagement.FeatureFilters.PercentageFilter>();
 ```
 
 ### 步驟 6：自定義 Feature Filter
@@ -168,7 +168,7 @@ public class RoleFeatureFilter : IFeatureFilter
     public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context)
     {
         // 自定義邏輯判斷，這裡可以基於角色或其他條件
-        bool isAdmin = // 自定義判斷邏輯...
+        bool isAdmin = false; // 自定義判斷邏輯...
         return Task.FromResult(isAdmin);
     }
 }
@@ -370,7 +370,7 @@ public class RoleFeatureFilter : IFeatureFilter
     public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context)
     {
         // 自定義邏輯判斷，例如根據角色控制啟用
-        bool isAdmin = /* 自定義邏輯 */;
+        bool isAdmin = false; // 自定義邏輯
         return Task.FromResult(isAdmin);
     }
 }
@@ -564,7 +564,7 @@ builder.Services.AddFeatureManagement()
 
 ## 自定義回傳的錯誤格式與訊息
 
-`FeatureNotEnabledHandler` 用於自定義當功能標誌 (Feature Flag) 被禁用時的錯誤響應格式。在 ASP.NET Core Web API 中，您可以通過實現 `IMvcFeatureNotEnabledHandler` 接口來定義自定義的錯誤處理邏輯。這樣，當使用 `FeatureGate` 屬性控制的功能標誌被禁用時，就可以返回自定義的錯誤訊息和狀態碼。
+`FeatureNotEnabledHandler` 用於自定義當功能標誌 (Feature Flag) 被禁用時的錯誤響應格式。在 ASP.NET Core Web API 中，您可以通過實現 `IDisabledFeaturesHandler` 接口來定義自定義的錯誤處理邏輯。這樣，當使用 `FeatureGate` 屬性控制的功能標誌被禁用時，就可以返回自定義的錯誤訊息和狀態碼。
 
 以下是如何使用 `FeatureNotEnabledHandler` 自定義錯誤響應的完整教程。
 
@@ -603,7 +603,7 @@ public class FeatureNotEnabledHandler : IDisabledFeaturesHandler
 }
 ```
 
-在此代碼中，我們自定義了 `HandleFeatureNotEnabledAsync` 方法，以返回 `403 Forbidden` 狀態碼和自定義 JSON 格式的錯誤訊息。您可以根據需求調整狀態碼和錯誤內容。
+在此代碼中，我們自定義了 `HandleDisabledFeatures` 方法，以返回 `403 Forbidden` 狀態碼和自定義 JSON 格式的錯誤訊息。您可以根據需求調整狀態碼和錯誤內容。
 
 ### 步驟 2：註冊自定義的 `FeatureNotEnabledHandler`
 
@@ -632,7 +632,7 @@ app.MapControllers();
 app.Run();
 ```
 
-在上面的代碼中，`AddSingleton<IMvcFeatureNotEnabledHandler, CustomFeatureNotEnabledHandler>()` 註冊了自定義的 `FeatureNotEnabledHandler`，這樣當使用 `FeatureGate` 檢查到功能標誌被禁用時，就會調用自定義的錯誤處理邏輯。
+在上面的代碼中，`AddSingleton<IDisabledFeaturesHandler, FeatureNotEnabledHandler>()` 註冊了自定義的 `FeatureNotEnabledHandler`，這樣當使用 `FeatureGate` 檢查到功能標誌被禁用時，就會調用自定義的錯誤處理邏輯。
 
 ### 步驟 3：在控制器中使用 `FeatureGate` 屬性
 
@@ -673,6 +673,6 @@ public class FeatureController : ControllerBase
 
 ### 調整錯誤響應內容
 
-您可以根據需要在 `CustomFeatureNotEnabledHandler` 中自定義錯誤訊息的格式和內容，例如添加更多的上下文信息（如用戶身份、請求 ID 等），或更改狀態碼。
+您可以根據需要在 `FeatureNotEnabledHandler` 中自定義錯誤訊息的格式和內容，例如添加更多的上下文信息（如用戶身份、請求 ID 等），或更改狀態碼。
 
 這樣，您就能使用 `FeatureNotEnabledHandler` 自定義 `FeatureGate` 屬性控制的功能標誌被禁用時的錯誤響應格式，從而提升用戶體驗並便於進行錯誤排查。

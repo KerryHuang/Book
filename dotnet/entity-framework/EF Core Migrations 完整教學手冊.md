@@ -110,6 +110,8 @@ using EfMigrationsDemo.Models;
 
 public class AppDbContext : DbContext
 {
+    public AppDbContext() { }
+
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
@@ -207,6 +209,7 @@ Mermaid 語法可直接內嵌在 Markdown 文件中，並透過支援 Mermaid �
 ````markdown
 ```mermaid
 ...流程圖內容...
+```
 ````
 
 即可在支援渲染的環境中顯示圖形。

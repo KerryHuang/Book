@@ -121,7 +121,7 @@ Assert 語法就是寫單元測試中的關鍵了，用以判斷實際得到的�
 
 測試方法名稱_測試案例_預期行為
 
-將 MyTest 更名為 Add_InputTwoInreger_ReturnSum
+將 MyTest 更名為 Add_InputTwoInteger_ReturnSum
 
 **以 3A 原則改善程式碼**
 
@@ -207,7 +207,7 @@ TestData 內提供 2 種給予測資的方式 AddData 與 AddData2
 
 **Fact 與 Theory**
 
-為什麼 xUnit 不使用像是 [Test] 這樣的標記？以下節錄至 [官方說明](https://xunit.net/docs/getting-started/netfx/visual-studio#write-first-theory)：
+為什麼 xUnit 不使用像是 [Test] 這樣的標記？以下節錄自 [官方說明](https://xunit.net/docs/getting-started/netfx/visual-studio#write-first-theory)：
 
 > ***Facts\*** *are tests which are always true. They test invariant conditions.*
 >
@@ -235,7 +235,7 @@ xUnit 有 Analyzers 套件，可以自動分析測試程式碼的好壞。
 
 **範例 1**
 
-用 Assert.True 與 string.StartWith 判斷某 string 開頭是否為 “AB”，但 xUnit 有可讀性更佳的 Assert.StartWith
+用 Assert.True 與 string.StartsWith 判斷某 string 開頭是否為 “AB”，但 xUnit 有可讀性更佳的 Assert.StartsWith
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/1*ka4V2-U894t0U7uFTiRcNQ.png)
 
@@ -282,9 +282,9 @@ xUnit 認為 SetUp 與 TearDown 是不好的方法。雖然 SetUp 與 TearDown �
 
 與其這樣寫，不如在每個測試都 new 出一個物件、賦予這個情境下的數值。雖然多了些重複的 code，但至少確保每個測試都是獨立且封閉的。
 
-而 xUnit 則使用建構、解構的方式實作該功能，不會每個測試都重一次初始化、清除狀態。
+而 xUnit 則使用建構、解構的方式實作該功能，每個測試都會建立新的 Instance。
 
-而是 初始化 -> 跑完所有測試 -> 清除狀態
+也就是 建構式 (初始化) -> 跑該筆測試 -> Dispose (清除狀態)
 
 不過 NUnit 也沒有強制要寫 SetUp 與 TearDown。使用 NUnit 可以考慮避開 SetUp 與 TearDown
 
@@ -384,13 +384,13 @@ JetBrains 出品的工具，也是有 UI 的。但是是付費工具，有 30 �
 
 打開 CMD 視窗 > cd 到 dotCover 的目錄 > 輸入以下指令 （MSTest、NUnit、xUnit 都是同一個指令）
 
-> *dotCover.exe dotnet — output=AppCoverageReport.html — reportType=HTML — test “C:\MyProject\MainTests.csproj”*
+> *dotCover.exe dotnet --output=AppCoverageReport.html --reportType=HTML --test "C:\MyProject\MainTests.csproj"*
 
 **參數說明**
 
 output: 輸出覆蓋率報告的位置、名字。若不指定輸出路徑，則輸出在 dotCover 目錄底下
 
-> *output=C:\Users\Hao\Report\AppCoverageReport.html 指定路徑*
+> *--output=C:\Users\Hao\Report\AppCoverageReport.html 指定路徑*
 
 reportType: 輸出覆蓋率報告的類型，這邊用 HTML
 
@@ -408,7 +408,7 @@ test: 要分析覆蓋率的測試專案，需指到 csproj 檔
 
 打開 CMD 視窗 -> cd 到 dotCover 的目錄 -> 輸入以下指令 （根據不同測試框架，參數值會不同）
 
-> *dotcover cover /TargetExecutable=”TestRunner\TestRunner.exe” /TargetArguments=”C:\MyProject\bin\Debug\MyTest.dll” /Output=”AppCoverageReport.html” /ReportType=”HTML”*
+> *dotcover cover /TargetExecutable="TestRunner\TestRunner.exe" /TargetArguments="C:\MyProject\bin\Debug\MyTest.dll" /Output="AppCoverageReport.html" /ReportType="HTML"*
 
 **參數說明**
 
@@ -424,7 +424,7 @@ ReportType: 輸出覆蓋率報告的類型，這邊用 HTML
 
 若顯示錯誤訊息，請嘗試使用「以系統管理員身分執行」來執行 CMD
 
-> *dotcover cover /TargetExecutable=”C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe” /TargetArguments=”C:\MyProject\bin\Debug\MyTest.dll” /Output=”AppCoverageReport.html” /ReportType=”HTML”*
+> *dotcover cover /TargetExecutable="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" /TargetArguments="C:\MyProject\bin\Debug\MyTest.dll" /Output="AppCoverageReport.html" /ReportType="HTML"*
 
 如果要用 vstest.console 去執行測試，指令如下
 
@@ -436,7 +436,7 @@ ReportType: 輸出覆蓋率報告的類型，這邊用 HTML
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/1*B3K1CY58HtdcXReG_OWH-w.png)
 
-> dotcover cover /TargetExecutable=”~\nunit.consolerunner\3.11.1\tools\nunit3-console.exe” /TargetArguments=”C:\MyProject\bin\Debug\MyTest.dll” /Output=”AppCoverageReport.html” /ReportType=”HTML”
+> dotcover cover /TargetExecutable="~\nunit.consolerunner\3.11.1\tools\nunit3-console.exe" /TargetArguments="C:\MyProject\bin\Debug\MyTest.dll" /Output="AppCoverageReport.html" /ReportType="HTML"
 
 **xUnit**
 
@@ -446,7 +446,7 @@ ReportType: 輸出覆蓋率報告的類型，這邊用 HTML
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/1*jnpSUaXdRvJvUd4I0frGLQ.png)
 
-> dotcover cover /TargetExecutable=”~\xunit.runner.console\2.4.1\tools\net472\xunit.console.exe” /TargetArguments=”C:\MyProject\bin\Debug\MyTest.dll” /Output=”AppCoverageReport.html” /ReportType=”HTML”
+> dotcover cover /TargetExecutable="~\xunit.runner.console\2.4.1\tools\net472\xunit.console.exe" /TargetArguments="C:\MyProject\bin\Debug\MyTest.dll" /Output="AppCoverageReport.html" /ReportType="HTML"
 
 **其他**
 
@@ -565,7 +565,7 @@ Selenium IDE 可以直接錄製你對網頁的操作、甚至轉成程式碼，�
 
 Selenium IDE 會打開你輸入的網址，打開後就已經在錄製了，可以執行自己想測試的操作。
 
-搜尋完畢後，我選擇依照網頁的標題來是否搜尋成功，在頁面 右鍵 > Selenium IDE > Assert > Title
+搜尋完畢後，我選擇依照網頁的標題來判斷是否搜尋成功，在頁面 右鍵 > Selenium IDE > Assert > Title
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/1*3-vhHa02iCa0pB0ZFYj5_w.png)
 

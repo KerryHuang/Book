@@ -6,10 +6,10 @@ kind: original
 
 ### 1. 建立專案
 
-首先，創建一個新的 .NET 8 Web 應用程序專案：
+首先，創建一個新的 .NET 8 Web 應用程式專案：
 
 ```
-dotnet new web -n RdlcReportApp
+dotnet new mvc -n RdlcReportApp
 cd RdlcReportApp
 ```
 
@@ -143,7 +143,7 @@ namespace RdlcReportApp.Controllers
             // 取得報表資料
             var items = _northwindcontext.Employees.ToList().ToDataTable();
             // 設定報表資料來源
-            report.AddDataSource(nameof(Employees), items);
+            report.AddDataSource("Employees", items);
             // 生成報表
             var result = report.Execute(RenderType.Excel);
             // 回傳檔案
@@ -159,7 +159,7 @@ namespace RdlcReportApp.Controllers
             // 取得報表資料
             var items = _northwindcontext.Employees.ToList().ToDataTable();
             // 設定報表資料來源
-            report.AddDataSource(nameof(Employees), items);
+            report.AddDataSource("Employees", items);
             // 生成報表
             var result = report.Execute(RenderType.Pdf);
             // 回傳檔案
@@ -180,8 +180,8 @@ namespace RdlcReportApp.Controllers
 
 <div class="text-center">
     <h1 class="display-4">Report</h1>
-    <a asp-action="Print" asp-controller="Home">Export PDF</a>
-    <a asp-action="Export" asp-controller="Home">Export Excel</a>
+    <a asp-action="Print" asp-controller="Reports">Export PDF</a>
+    <a asp-action="Export" asp-controller="Reports">Export Excel</a>
 </div>
 ```
 
@@ -431,7 +431,7 @@ public static class BarcodeHelper
         using (var stream = new MemoryStream())
         {
             bmp.Save(stream, ImageFormat.Jpeg);
-            byteArray = stream.GetBuffer();
+            byteArray = stream.ToArray();
         }
         return byteArray;
     }

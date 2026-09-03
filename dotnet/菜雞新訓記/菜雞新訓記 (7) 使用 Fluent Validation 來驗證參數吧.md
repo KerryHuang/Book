@@ -42,7 +42,7 @@ FluentValidation 可以幫我們將 Api 傳入的參數的檢查用更口語、�
 
 ## 專案現況
 
-大臣提到的 [FluentValidation](https://fluentvalidation.net/) 是一套能幫我們把傳入參數的分離出去、用更口語化的方式去撰寫的工具。
+大臣提到的 [FluentValidation](https://fluentvalidation.net/) 是一套能幫我們把傳入參數分離出去、用更口語化的方式去撰寫的工具。
 
 ……如果當時他們有使用 Fluent Validation 來把驗證的邏輯和規則跟原本很亂的 Controller 切分的話，說不定就能及時發現問題吧，大概。
 
@@ -178,7 +178,7 @@ public CardParameterValidator()
 
 大部份的狀況下，使用內建的驗證語法就很夠用了。可以參照官方文檔的 [Built-in Validators](https://docs.fluentvalidation.net/en/latest/built-in-validators.html#built-in-validators)，裡面每一項都有範例和參數說明。
 
-平常比較會遇到的就是 `NotNull`、`NotEmpty` 和字串長度檢查或是數值大小的。如果是ㄧ些表單需要驗證的話，就還會用到 `EmailAddress` 等等。
+平常比較會遇到的就是 `NotNull`、`NotEmpty` 和字串長度檢查或是數值大小的。如果是一些表單需要驗證的話，就還會用到 `EmailAddress` 等等。
 
 那俺身為一個 ~~懶惰~~ 節能減碳工程師，當然有在 Linqpad 中準備一份範例 ~~才能隨時抄嘛~~，這邊也會附在文末的[附錄](https://igouist.github.io/post/2022/03/newbie-7-fluent-validation/#附錄fluentValidation-內建驗證方法-小抄)。
 
@@ -333,7 +333,7 @@ public class Card
 }
 
 public class Equipment { }
-public class EquipmentValidator : AbstractValidator<Card> { }
+public class EquipmentValidator : AbstractValidator<Equipment> { }
 ```
 
 這時候我們在寫規則的時候就可以：

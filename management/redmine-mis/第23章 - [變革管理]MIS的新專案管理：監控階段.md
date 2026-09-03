@@ -40,8 +40,8 @@ source: site:ithelp.ithome.com.tw
 - (2)監看者(watcher)
   這個欄位有人把主管設定為主管，有人設定為協辦。反正除了[被分配者]外，新增新議題單時，需要收到mail通知的都可列為監看者。(圖02)
   ![https://ithelp.ithome.com.tw/upload/images/20220924/20151950VWoWkcr4te.png](https://ithelp.ithome.com.tw/upload/images/20220924/20151950VWoWkcr4te.png)
-- (3)提及(memtion)：
-  在撰寫議題概述的時候常常會提到其他同事(ex:這項決議是哪位長官決定、這塊功能會由誰負責…)，可以用 @ 來操作設定，系統也會發送Mail通知給Memtion。如下圖 (圖03)
+- (3)提及(mention)：
+  在撰寫議題概述的時候常常會提到其他同事(ex:這項決議是哪位長官決定、這塊功能會由誰負責…)，可以用 @ 來操作設定，系統也會發送Mail通知給Mention。如下圖 (圖03)
   ![https://ithelp.ithome.com.tw/upload/images/20220924/20151950GUiyJEYvKg.png](https://ithelp.ithome.com.tw/upload/images/20220924/20151950GUiyJEYvKg.png)
 
 ------

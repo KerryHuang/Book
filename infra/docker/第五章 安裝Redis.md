@@ -27,7 +27,7 @@ docker pull redis
 ```
 ![https://ithelp.ithome.com.tw/upload/images/20211004/20140827UmFWtfRg8g.png](https://ithelp.ithome.com.tw/upload/images/20211004/20140827UmFWtfRg8g.png)
 下載完成後，開啟Docker Desktop，在Image中就可以看到redis。接著按右邊的「run」啟動redis
-另一個方法：啓動redis鏡像 無配置文件啓動
+另一個方法：啟動redis鏡像 無配置文件啟動
 ```
 docker run -p 6379:6379 -d redis:latest redis-server
 ```

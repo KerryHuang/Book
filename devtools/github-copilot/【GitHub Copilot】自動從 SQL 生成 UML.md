@@ -49,7 +49,7 @@ JOIN WIP_TRANSACTION_ACCOUNTS wta ON we.WIP_ENTITY_ID = wta.WIP_ENTITY_ID
 JOIN WIP_OPERATION_RESOURCES wor ON we.WIP_ENTITY_ID = wor.WIP_ENTITY_ID
 ```
 
-(資料來源: [Shop Floor Management ER Diagram)](https://www.triniti.com/shop-floor-management-er-diagram)
+(資料來源: [Shop Floor Management ER Diagram](https://www.triniti.com/shop-floor-management-er-diagram))
 
 # Copilot Edits
 

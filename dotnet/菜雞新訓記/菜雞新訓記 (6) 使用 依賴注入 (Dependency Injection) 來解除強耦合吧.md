@@ -45,7 +45,7 @@ author: igouist
 
 ### 為什麼需要依賴注入
 
-各位好，我們前面引用了民明書坊的《朕的郡縣制哪有這麼耦合》，相信各位對依賴注入應該已經有初步的了解了。說到依賴注入的觀念，就得先從 SOILD 中的依賴反轉原則開始談。
+各位好，我們前面引用了民明書坊的《朕的郡縣制哪有這麼耦合》，相信各位對依賴注入應該已經有初步的了解了。說到依賴注入的觀念，就得先從 SOLID 中的依賴反轉原則開始談。
 
 這部份我們之前在[依賴反轉原則篇](https://igouist.github.io/post/2020/12/oo-14-dependency-inversion-principle)已經有詳細的說明，基於江湖道義，接下來就引用該篇的例子來快速帶過一下。
 
@@ -417,7 +417,7 @@ services.AddScoped<ITestService>(sp =>
 - Scoped：同一次 API 呼叫裡的每一層物件都是用同一個 `ILogger`，等到下一次呼叫才建立新的 `ILogger`
 - Singleton：不論哪次呼叫、不論哪一層注入，所有人都共用同一個 `ILogger`
 
-一般來說最常用的會是 Scoped，例如功能服務或登入者資訊，在同一次呼叫中保持同一個即可。但面對 HttpCilent 這類能共用同個實例節省資源的，我們就可以考慮使用 Singleton。這邊就再請各位按照使用場景來決定該用哪種生命週期。
+一般來說最常用的會是 Scoped，例如功能服務或登入者資訊，在同一次呼叫中保持同一個即可。但面對 HttpClient 這類能共用同個實例節省資源的，我們就可以考慮使用 Singleton。這邊就再請各位按照使用場景來決定該用哪種生命週期。
 
 另外，注入時請注意生命週期的範圍。例如註冊為 Singleton 的類別不能依賴註冊為 Scoped 的類別，因為如果大家一起用的 Singleton 程式跑到一半，綁在 Request 的 Scoped 依賴對象先消失了，問題可就大了，不可不慎。
 
@@ -436,7 +436,7 @@ services.AddScoped<ITestService>(sp =>
 - [ASP.NET Core 2 系列 - 依賴注入 (Dependency Injection) | John Wu’s Blog](https://blog.johnwu.cc/article/ironman-day04-asp-net-core-dependency-injection.html)
 - [不可不知的 ASP.NET Core 依賴注入 - 黑暗執行緒](https://blog.darkthread.net/blog/aspnet-core-di-notes/)
 - [.Net Core 服務存留期 (Service Lifetime)：叡揚部落格](https://www.gss.com.tw/blog/net-core-service-lifetime)
-- [ASP.Net Core DI 容器中 Service 生命週期 | Ray’s Notes](https://raychiutw.github.io/2019/ASP-Net-Core-DI-容器中-Service-生命週期/)>)
+- [ASP.Net Core DI 容器中 Service 生命週期 | Ray’s Notes](https://raychiutw.github.io/2019/ASP-Net-Core-DI-容器中-Service-生命週期/)
 
 ### 補充：.net Core 使用 BuildServiceProvider 會建立多個實體
 
@@ -446,7 +446,7 @@ services.AddScoped<ITestService>(sp =>
 
 所以 Google 了一下怎麼弄出個 ServiceProvider，就用了 `BuildServiceProvider` 來建立一個 ServiceProvider，但這實際上是相當危險的。
 
-因為 `BuildServiceProvider` 建立的是一個全新的 ServiceProvider，並非注入時 DI 容易幫我們建來使用的那一個 ServiceProvider，這樣就會造成有兩個 ServiceProvider 在場的狀況。
+因為 `BuildServiceProvider` 建立的是一個全新的 ServiceProvider，並非注入時 DI 容器幫我們建來使用的那一個 ServiceProvider，這樣就會造成有兩個 ServiceProvider 在場的狀況。
 
 如此一來如果使用一些 Singleton 的服務，可能就會產生預期外的結果。因此建議還是乖乖在 `AddScoped` 之類的方法內使用委派的 ServiceProvider 比較好。
 
@@ -682,7 +682,7 @@ public void ConfigureServices(IServiceCollection services)
     // Service
 	services.AddScoped<ICardService, CardService>();
 	
-    // Repsitory
+    // Repository
 	services.AddScoped<ICardRepository, CardRepository>();
 	
     // Others
@@ -700,7 +700,7 @@ public void ConfigureServices(IServiceCollection services)
 	
 	#region -- Repository --
 	
-    // Repsitory
+    // Repository
 	services.AddScoped<ICardRepository, CardRepository>();
 	
 	#endregion
@@ -788,7 +788,7 @@ public void ConfigureServices(IServiceCollection services)
 
 又或是像過度注入：當我們用建構式注入的時候，有時候會發現其中幾個類別的建構式會變得超級肥，可能光是傳入參數就多達二三十個等等。
 
-這時候其實就是一種警示：這個類別為什麼會依賴這個多個對象？是不是這個類別負責的[職責](https://igouist.github.io/post/2020/10/oo-10-single-responsibility-principle)太多了？
+這時候其實就是一種警示：這個類別為什麼會依賴這麼多個對象？是不是這個類別負責的[職責](https://igouist.github.io/post/2020/10/oo-10-single-responsibility-principle)太多了？
 
 諸如此類，依賴注入其實可以幫助我們重新梳理我們類別的邊界和耦合關係，讓我們注意到一些需要重構的徵象。這也是最近跟著同事重構的心得哪。
 

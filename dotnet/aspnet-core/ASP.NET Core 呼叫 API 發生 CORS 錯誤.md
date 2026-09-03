@@ -52,7 +52,7 @@ CORS 是一個 Web 標準，用來限制瀏覽器從不同來源請求資源，�
 - **AllowAnyMethod**
   允許任何的 HTTP Method。若要限制 Method，可以改用 `WithMethods`，有多個的話可以用 `,` 隔開。
 - **AllowCredentials**
-  預設瀏覽器不會發送 CORS 的憑證(如：Cookies)，如果 JavaScript 使用 `withCredentials = true` 把 CORS 的憑證帶入，ASP.NET Core 這邊也要允取，才可以正常使用。
+  預設瀏覽器不會發送 CORS 的憑證(如：Cookies)，如果 JavaScript 使用 `withCredentials = true` 把 CORS 的憑證帶入，ASP.NET Core 這邊也要允許，才可以正常使用。
 
 在 var app = builder.Build(); 前加入下面的程式碼:
 
@@ -142,7 +142,7 @@ public class HomeController : Controller
 }
 ```
 
-在 ASP.NET Core 允取 CROS 後，完整的情境如下：
+在 ASP.NET Core 允許 CORS 後，完整的情境如下：
 
 ![[鐵人賽 Day26] ASP.NET Core 2 系列 - 跨域請求 (Cross-Origin Requests) - 情境 2](https://blog.johnwu.cc/images/i26-2.png)
 

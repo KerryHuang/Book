@@ -41,7 +41,7 @@ kind: original
    - 在 `Select Source` 中，選擇本地的 SQL Server，輸入伺服器名稱和驗證方式，並選擇要遷移的資料庫。
    - 在 `Select Target` 中，輸入 Azure SQL Database 的伺服器名稱和驗證方式，並選擇目標資料庫。
 3. **選擇遷移的資料類型**：
-   - 在 `Migration Scope` 中，選擇 **Schema only**、**Data only** 或 **Schema and Data**（通常選擇 `Schema and Data` 以完整遷移結構與數據）。
+   - 在 `Migration Scope` 中，選擇 **Schema only**、**Data only** 或 **Schema and Data**（通常選擇 `Schema and Data` 以完整遷移結構與資料）。
    - 按 **Next** 開始設定。
 4. **選擇資料庫結構與帳戶**：
    - 在 `Select schema objects` 中，選擇要遷移的資料庫結構和帳戶。
@@ -58,7 +58,7 @@ kind: original
 
 2. **檢查資料一致性**：
 
-   - 使用查詢工具（如 SQL Server Management Studio 或 Azure Data Studio），在源資料庫和 Azure SQL Database 進行數據比對，確認資料一致性。
+   - 使用查詢工具（如 SQL Server Management Studio 或 Azure Data Studio），在源資料庫和 Azure SQL Database 進行資料比對，確認資料一致性。
 
 3. **建立新帳戶**
 

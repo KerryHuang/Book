@@ -73,7 +73,7 @@
     - [資料模型實戰：從 MSSQL 設計到 .NET 8 WebAPI 實作（以刀具管理為例）](<aspnet-core/wdmis/資料模型實戰：從 MSSQL 設計到 .NET 8 WebAPI 實作（以刀具管理為例）.md>)
 - **csharp/**
   - [ASP.NET await 與 wait 的差異](<csharp/ASP.NET await 與 wait 的差異.md>)
-  - [AutoMapper —— 類別轉換超省力](<csharp/AutoMapper —— 類別轉換超省力.md>)
+  - [AutoMapper —— 類別轉換超省力](<csharp/AutoMapper —— 類別轉換超省力.md>) — 轉貼：igouist
   - [C# 中的 HTTPClient — 入門指南](<csharp/C%23 中的 HTTPClient — 入門指南.md>) — 轉貼
   - [C# 正則表達式：從零到英雄指南](<csharp/C%23 正則表達式：從零到英雄指南.md>) — 轉貼
   - [C# 集合, List 取交集、差集、聯集的方法](<csharp/C%23 集合, List 取交集、差集、聯集的方法.md>)

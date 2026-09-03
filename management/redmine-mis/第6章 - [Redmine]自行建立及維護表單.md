@@ -63,7 +63,7 @@ source: site:ithelp.ithome.com.tw
 
 - 在[專案清單 ]/[建立新專案]
 
-【步驟二】：建立專案資本資料
+【步驟二】：建立專案基本資料
 
 - 填寫專案基本資料，代碼必填(預設會產生)，公開打勾，按[建立] (圖01)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/201519500TZlnGBHwU.png](https://ithelp.ithome.com.tw/upload/images/20220913/201519500TZlnGBHwU.png)
@@ -142,7 +142,7 @@ source: site:ithelp.ithome.com.tw
 ![https://ithelp.ithome.com.tw/upload/images/20220913/201519506OW9vWxNhw.png](https://ithelp.ithome.com.tw/upload/images/20220913/201519506OW9vWxNhw.png)
 
 - 點[議題清單]/[自訂欄位清單]/[網站管理]/[建立新自訂欄位]
-- 請記得右邊的[追蹤邊謙清單]及[專案清單]也要勾選對應
+- 請記得右邊的[追蹤標籤清單]及[專案清單]也要勾選對應
 - 此處以格式為[值/清單]為例，建立完後按[儲存]
   (圖19)
   ![https://ithelp.ithome.com.tw/upload/images/20220913/201519503WF5EGHFBJ.png](https://ithelp.ithome.com.tw/upload/images/20220913/201519503WF5EGHFBJ.png)

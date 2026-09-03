@@ -39,7 +39,7 @@ source: site:ithelp.ithome.com.tw
 
 ### 專案經理工作任務
 
-此階段由專案經理指派工作給負責人員(被分配者)，並由人員隨時更新專案進度，專案經理在透過系統呈現的紀錄進行專案監督、檢討及修正。 (圖2)
+此階段由專案經理指派工作給負責人員(被分配者)，並由人員隨時更新專案進度，專案經理再透過系統呈現的紀錄進行專案監督、檢討及修正。 (圖2)
 
 ![https://ithelp.ithome.com.tw/upload/images/20220924/20151950FPcU0OakPq.png](https://ithelp.ithome.com.tw/upload/images/20220924/20151950FPcU0OakPq.png)
 

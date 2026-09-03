@@ -237,7 +237,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebApplication.Models;
 namespace WebApplication.Extensions {
     public static class AddJWTTokenServicesExtensions {
-        public static void AddJWTTokenServices(IServiceCollection Services, IConfiguration Configuration) {
+        public static void AddJWTTokenServices(this IServiceCollection Services, IConfiguration Configuration) {
             // Add Jwt Setings
             var bindJwtSettings = new JwtSettings();
             Configuration.Bind("JsonWebTokenKeys", bindJwtSettings);
@@ -400,7 +400,7 @@ namespace WebApplication.Controllers {
                             Id = user.Id,
                     }, jwtSettings);
                 } else {
-                    return BadRequest($ "wrong password");
+                    return BadRequest($"wrong password");
                 }
                 return Ok(Token);
             } catch (Exception ex) {
@@ -421,7 +421,7 @@ namespace WebApplication.Controllers {
 ```
 
 
-In the above Account, the controller created a List of Login Details that are valid users. You can use database records to validate user logins. Next, we created a method to validate login credentials and generate tokens with the help of JWT Hepler. 
+In the above Account, the controller created a List of Login Details that are valid users. You can use database records to validate user logins. Next, we created a method to validate login credentials and generate tokens with the help of JWT Helper. 
 
 And to check authorization from swagger replace open program.cs
 
@@ -455,7 +455,7 @@ builder.Services.AddSwaggerGen(options => {
 });
 ```
 
-To check web api with swagger we need to add authorization security options in swagger, so used AddSecurityDefination() and AddSecurityRequirement() function to add Security options.
+To check web api with swagger we need to add authorization security options in swagger, so used AddSecurityDefinition() and AddSecurityRequirement() function to add Security options.
 
 After running the application you will get the result of the swagger just shown below:
 

@@ -6,7 +6,7 @@ kind: original
 
 ## 前言
 
-[ASP.NET](http://asp.net/) Core 的 Model Validation 目前只提供英文訊息，所以像 RequiredAttribute 在後端所提供的錯誤訊息為 「The {Column Name} field is required.」，如果每個 「Required」 都要自己設定訊息其實有點麻煩，這部份這幾年也一直有人像 微軟 開發團隊 反映是否能提供多國語言包，但對方始終認為非必要功能，不過這部分 微軟 本身有提供客製化方法，詳細作法可以參閱此篇[文章](https://learn.microsoft.com/zh-tw/archive/blogs/mvpawardprogram/aspnetcore-mvc-error-message)。
+[ASP.NET](http://asp.net/) Core 的 Model Validation 目前只提供英文訊息，所以像 RequiredAttribute 在後端所提供的錯誤訊息為 「The {Column Name} field is required.」，如果每個 「Required」 都要自己設定訊息其實有點麻煩，這部份這幾年也一直有人向 微軟 開發團隊 反映是否能提供多國語言包，但對方始終認為非必要功能，不過這部分 微軟 本身有提供客製化方法，詳細作法可以參閱此篇[文章](https://learn.microsoft.com/zh-tw/archive/blogs/mvpawardprogram/aspnetcore-mvc-error-message)。
 
 ## 實作
 
@@ -29,15 +29,15 @@ ModelBindingMessage 內容如下：
 | :--------------------------------- | :----------------------- |
 | AttemptedValueIsInvalid            | 值 {0} 對 {1} 無效。     |
 | MissingBindRequiredValue           | 未提供 {0} 屬性的值。    |
-| MissingKeyOrValue                  | 值 {0} 對 {1} 無效。     |
-| MissingRequestBodyRequiredValue    | 需要一個值。             |
-| NonPropertyAttemptedValueIsInvalid | 需要一個非空的請求正文。 |
+| MissingKeyOrValue                  | 需要一個值。             |
+| MissingRequestBodyRequiredValue    | 需要一個非空的請求正文。 |
+| NonPropertyAttemptedValueIsInvalid | 值 {0} 無效。            |
 | NonPropertyUnknownValueIsInvalid   | 提供的值無效。           |
-| AttemptedValueIsInvalid            | 值 {0} 對 {1} 無效。     |
+| ValueMustBeANumber                 | {0} 欄位必須為數字。     |
 | NonPropertyValueMustBeANumber      | 該字串必須為數字。       |
 | UnknownValueIsInvalid              | 提供的值對於 {0} 無效。  |
 | ValueIsInvalid                     | 值 {0} 無效。            |
-| ValueMustNotBeNull                 | 值 {0} 必需不為空值。    |
+| ValueMustNotBeNull                 | 值 {0} 必須不為空值。    |
 
 ValidationMetadataMessage 內容如下：
 
@@ -51,8 +51,8 @@ ValidationMetadataMessage 內容如下：
 | MaxLengthAttribute_ValidationError                    | {0} 欄位 字元長度最多為 {1} 個。               |
 | MinLengthAttribute_ValidationError                    | {0} 欄位 字元長度最少為 {1} 個。               |
 | PhoneAttribute_Invalid                                | {0} 欄位 不是正確的電話號碼格式。              |
-| RangeAttribute_ValidationError                        | {0} 欄位 必須介在 {1} 跟 {2} 之間。            |
-| RegularExpressionAttribute_ValidationError            | {0} 欄位 不符合正規表式 ‘{1}’。                |
+| RangeAttribute_ValidationError                        | {0} 欄位 必須介於 {1} 跟 {2} 之間。            |
+| RegularExpressionAttribute_ValidationError            | {0} 欄位 不符合正規表示式 ‘{1}’。                |
 | RequiredAttribute_ValidationError                     | {0} 欄位為必填。                               |
 | StringLengthAttribute_ValidationError                 | {0} 欄位 字元長度最多為 {1} 個。               |
 | StringLengthAttribute_ValidationErrorIncludingMinimum | {0} 欄位 字元長度必須在 {2} 跟 {1} 之間。      |
@@ -148,7 +148,7 @@ builder.Services.AddRazorPages()
         provider.SetNonPropertyValueMustBeANumberAccessor(() => ModelBindingMessage.NonPropertyValueMustBeANumber);
         provider.SetUnknownValueIsInvalidAccessor(x => string.Format(ModelBindingMessage.UnknownValueIsInvalid, x));
         provider.SetValueIsInvalidAccessor(x => string.Format(ModelBindingMessage.ValueIsInvalid, x));
-        provider.SetValueMustBeANumberAccessor(x => string.Format(ModelBindingMessage.NonPropertyValueMustBeANumber, x));
+        provider.SetValueMustBeANumberAccessor(x => string.Format(ModelBindingMessage.ValueMustBeANumber, x));
         provider.SetValueMustNotBeNullAccessor(x => string.Format(ModelBindingMessage.ValueMustNotBeNull, x));
 
         // 從資源檔設定 ValidationMetadata 的錯誤訊息
@@ -181,7 +181,7 @@ Program.cs
 WebApplication app = builder.Build();
 
 // 列出你有設定語系檔的語系
-string[] supportedCultures = new string[] { "zh-TW", "en-US" }
+string[] supportedCultures = new string[] { "zh-TW", "en-US" };
 RequestLocalizationOptions localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -208,5 +208,3 @@ Culture 常見誤解：
    2. UICulture：用來決定載入何種語系的資源檔。
 
    有部分人在使用時，往往沒注意到兩者區別，但大部分抄網路範例使用時，都會兩者一起設定，或是API 本身就設計當使用只有一個參數的 API 時，會同時設定兩者，e.g. `SetDefaultCulture()` 要輸入兩個參數才會分別設定，所以也不太會出錯。 但 QueryStringRequestCultureProvider 這邊，網路上有些介紹提到 Url 參數是用「culture={語系}」，但正確應該是「ui-culture={語系}」才對。
-
-###### 

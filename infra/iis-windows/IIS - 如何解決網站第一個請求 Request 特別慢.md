@@ -18,7 +18,7 @@ IIS 8.0 開始提供 **網站預先啟動功能 (Preload)**，主要是透過 Ap
 如果要啟用的話需要先檢查是否有安裝 Application Initialization feature，檢查方式如下 
 
 1. 開啟控制台 > 程式集 > 開啟或關閉 Windows 功能 
-2. Internal Information Service > WWW 服務 > 應用程式開發功能 
+2. Internet Information Services > WWW 服務 > 應用程式開發功能 
 3. 應用程式初始化選項打勾
 
 
@@ -34,7 +34,7 @@ IIS 8.0 開始提供 **網站預先啟動功能 (Preload)**，主要是透過 Ap
 
 2. 可以看到 **預先載入已啟用** 功能 設定為 True 
 
-Note : 下方說明可以看到，preloadEnable 為 True 時，就會啟用應用程式的預先載入功能
+Note : 下方說明可以看到，preloadEnabled 為 True 時，就會啟用應用程式的預先載入功能
 
 [![img](https://2.bp.blogspot.com/-8-e-qFSTGRk/XBj6OqRwqII/AAAAAAAAFYQ/K6m1F1CFKegqdSK5qif5SE3hjDdyWgw9ACLcBGAs/s400/IIS2.png)](https://2.bp.blogspot.com/-8-e-qFSTGRk/XBj6OqRwqII/AAAAAAAAFYQ/K6m1F1CFKegqdSK5qif5SE3hjDdyWgw9ACLcBGAs/s1600/IIS2.png)
 

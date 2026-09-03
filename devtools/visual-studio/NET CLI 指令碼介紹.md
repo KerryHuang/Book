@@ -204,7 +204,7 @@ dotnet new --list
 ### **7.2 查看項目依賴項樹**
 
 ```bash
-dotnet list package --vulnerable
+dotnet list package --include-transitive
 ```
 
 ### **7.3 查看可用命令**

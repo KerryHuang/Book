@@ -3,7 +3,7 @@ kind: reprint
 source: https://hackmd.io/@Not/LogParserStudio_with_IISLog
 ---
 
-# Log Paser Studio 分析 IIS W3C Log
+# Log Parser Studio 分析 IIS W3C Log
 
 在工作上剛好遇到要查詢IIS Log 的情況
 

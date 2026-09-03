@@ -58,7 +58,7 @@ Name：自行定義
 點選 Azure DevOps 左方主選單的 Artifacts -> 鋸齒圖案 (Feed Settings)
 ```text
 Feed Settings
-點選第二個頁籤(Premissions) -> Add users/groups
+點選第二個頁籤(Permissions) -> Add users/groups
 
 User/Group* : [Project name] Build Service 或 Pipeline User name
 Role : Contributor
@@ -94,7 +94,7 @@ Display name* : dotnet push (會自動預設 Command 類型)
 Command* : 點選「nuget push」
 Path to NuGet package(s) to publish* : 選擇 build 完後路徑下的 nupkg 檔案
 	例如：(_Presco.PAYUNi/artifacts/Presco.PAYUNI.SDK.1.0.1.nupkg)
-	在將xxxxxxx.nupkg 改為 *.nupkg
+	再將 xxxxxxx.nupkg 改為 *.nupkg
 	例如：(_Presco.PAYUNi/artifacts/*.nupkg)
 Target feed* : 選擇在 Artifacts 建的 Feed
 ```

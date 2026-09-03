@@ -10,23 +10,23 @@ author: Andrew Wu
 
 
 
-進入應用之前，要先對一些基礎的隔離方式做些了解，就先來牛刀小試一下好了。有點手感 & 先了解每種技術的表現在哪個數量級，你才會知道後面要如何取捨以及設計。我有跨平台的需求 (需要跨越 windows / linux 這些作業系統, 同時開發技術也需要跨越 .net frameowkr / .net core / node js), 而且主力是 C#, 因此我還是以目前最大宗的 C# / .net framework 為起點好了，後面的選擇也至少要能兼顧這需求為前提。
+進入應用之前，要先對一些基礎的隔離方式做些了解，就先來牛刀小試一下好了。有點手感 & 先了解每種技術的表現在哪個數量級，你才會知道後面要如何取捨以及設計。我有跨平台的需求 (需要跨越 windows / linux 這些作業系統, 同時開發技術也需要跨越 .net framework / .net core / node js), 而且主力是 C#, 因此我還是以目前最大宗的 C# / .net framework 為起點好了，後面的選擇也至少要能兼顧這需求為前提。
 
 根據隔離的層級不同，我大概區分這幾種可行的做法:
 
 1. **In-Process** (Direct Call):
    完全正常的呼叫方式，就只有語言層級的隔離機制而已 (例如: public / private, local variable … etc) 不多做說明。
 2. **Thread**:
-   執行緒之間除了執行的順序各自獨立之外, 幾乎沒有任何隔離的措施了。從系統的角度來說，多個執行緒之間只有 call stack 是閣獨立的, 意思是只有 [PC](https://zh.wikipedia.org/wiki/程式計數器) (program counter, 組語裡面指向目前執行位置的指標)、local variable 這類資料是被隔離的；但是除了平行處理之外，這個可當作完全沒有隔離機制的對照組。
+   執行緒之間除了執行的順序各自獨立之外, 幾乎沒有任何隔離的措施了。從系統的角度來說，多個執行緒之間只有 call stack 是各自獨立的, 意思是只有 [PC](https://zh.wikipedia.org/wiki/程式計數器) (program counter, 組語裡面指向目前執行位置的指標)、local variable 這類資料是被隔離的；但是除了平行處理之外，這個可當作完全沒有隔離機制的對照組。
 3. **[GenericHost](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.1)**:
    從 .net core 2.0 開始被引入的機制。每個 Host 控制背後的 BackgroundService 的生命週期, 每個 Host 也擁有自己獨立的 [IoC](https://zh.wikipedia.org/wiki/控制反转) container (Inversion of Control, 控制反轉)。在 .net core 的世界, Microsoft 大量運用 [DI](https://docs.microsoft.com/en-us/archive/msdn-magazine/2016/june/essential-net-dependency-injection-with-net-core) (Dependency Injection) 的技術, 因此 Host 你可以把他想像成有完全獨立的 DI 機制。不同 Host 之間注入的 Singleton 物件是彼此獨立的。
    嚴格的來說這不算強制的隔離機制，但是在 DI 的技術越用越廣泛的今日, 這是個有潛力的技術。不過沒有透過 DI 處理的部分，隔離層級就跟 InProcess / Thread 沒兩樣了。不過現階段這技術還沒辦法解決我的需求 T_T, 因此僅止於介紹, 這次不參與評估。
 4. **[AppDomain](https://docs.microsoft.com/en-us/dotnet/api/system.appdomain?view=netframework-4.8)**:
    從 .NET Framework 時代就開始支援的技術，直接由 .NET CLR (Common Language Runtime) 提供，相較於 process 來說更為輕量化的隔離技術。AppDomain 提供了互相獨立不被干擾的 space, 透過 .NET API 的保證, .NET 的物件是無法跨越 AppDomain 的邊界的。只要是 “managed” 的部分都在管控的範圍內。除非你用了 unsafe 或是 unmanaged code, 否則所有你用 C# 寫的 code 都可以被 AppDomain 所保護。不過這些優點是有代價的，只支援 .NET CLR, 只有 .NET Framework 的程式才被支援，這項技術在 .NET core 的時代也正式被廢掉了。官方的替代技術嘛… 很抱歉沒有了, 官方文件直接說明未來用 Process 跟 Container (這邊指的是 Docker 這種容器化技術, 不是前面提到的 IoC container) 取代，可以做到同樣的需求。因此這篇主要就是要看看 Process 的能耐…。
 5. **[Process](https://en.wikipedia.org/wiki/Process_(computing))**:
-   直接由作業系統 (OS: operation system) 提供的機制。OS 在載入任何程式支前, 都會先在 OS 內建立一個新的處理程序 (process), 有獨立的啟動點，也有完全隔離的 memory space, 隨後才在這個 process 內載入及執行你指定的程式 (executable)。由於這是由 OS 提供的機制，因此只要被該 OS 支援的程式都可以支援，不限定開發技術或是開發語言。雖然使用的方式有點不同，但是基本上 container 也是屬於這個層級。不過這次探討的主要是以開發為主，我就不特別再介紹 container 的做法了。實作上有需要的朋友，你可以把 Docker Container 擺在這層級來考量即可。
+   直接由作業系統 (OS: operation system) 提供的機制。OS 在載入任何程式之前, 都會先在 OS 內建立一個新的處理程序 (process), 有獨立的啟動點，也有完全隔離的 memory space, 隨後才在這個 process 內載入及執行你指定的程式 (executable)。由於這是由 OS 提供的機制，因此只要被該 OS 支援的程式都可以支援，不限定開發技術或是開發語言。雖然使用的方式有點不同，但是基本上 container 也是屬於這個層級。不過這次探討的主要是以開發為主，我就不特別再介紹 container 的做法了。實作上有需要的朋友，你可以把 Docker Container 擺在這層級來考量即可。
 6. **[Hypervisor](https://en.wikipedia.org/wiki/Hypervisor)**:
-   由硬體虛擬化提供的機制。一套支援虛擬化的硬體設備，搭配 hypervisor 的抽象層，可以在這基礎之上模擬成獨立的多個硬體設備，分別在這上面載入 OS ，進一步執行程式。這比起 Process 來說有更安全的隔離層級。不過通常再開發的階段，我都把 Hypervisor 隔離的環境直接當作 VM (virtual machine) 看待了。對於大部分的開發者來說，實體機器跟虛擬機器在開發上沒有太多的不同，這技術一樣我也不特別討論了，我直接歸類在分散式的環境下討論。真的有需要這技術的朋友門，把你的 application 包裝成 container, 在 infrastructure 的選擇下，已經有特定平台，可以替你為每個 container 準備專屬的 hypervisor 虛擬化的環境了。Windows container 內建 Hypervisor Container (只要加上 –isolation hyperv 參數)，Linux 也有對應的 (抱歉我記不得名字了) 可以使用。
+   由硬體虛擬化提供的機制。一套支援虛擬化的硬體設備，搭配 hypervisor 的抽象層，可以在這基礎之上模擬成獨立的多個硬體設備，分別在這上面載入 OS ，進一步執行程式。這比起 Process 來說有更安全的隔離層級。不過通常在開發的階段，我都把 Hypervisor 隔離的環境直接當作 VM (virtual machine) 看待了。對於大部分的開發者來說，實體機器跟虛擬機器在開發上沒有太多的不同，這技術一樣我也不特別討論了，我直接歸類在分散式的環境下討論。真的有需要這技術的朋友們，把你的 application 包裝成 container, 在 infrastructure 的選擇下，已經有特定平台，可以替你為每個 container 準備專屬的 hypervisor 虛擬化的環境了。Windows container 內建 Hypervisor Container (只要加上 –isolation hyperv 參數)，Linux 也有對應的 (抱歉我記不得名字了) 可以使用。
 
 基本觀念介紹完一輪後，後面的 POC 我就只針對 inprocess / threads , application domain, process 三者來比較就好了，可以透過 infrastructure 解決的架構我暫時略過，因為面對的對象是 developer, 不是 SRE, 因此我專注在 coding 上需要了解對應做法的技術為主。我會特別評比 coding 的做法與限制，測試則是物理效能的 benchmark 為主；請繼續看下去…
 
@@ -128,7 +128,7 @@ Benchmark (AppDomain Mode):           333.333333333333 run / sec
 
 ### Process
 
-這個版本，我直接把 `Main()` 編譯成獨立的 .exe (Console App), 然後透過 Process 物件來啟動獨立的程序，測試執行 .exe 的速度。這邊的結果頗令我意外，因為我用模一樣的 code, 甚至用一樣的 .NET Standard 編譯出來的 binary code 來寫關鍵部分, 只是最後用兩個不同的專案來編譯而已。結果編譯成 .NET Framework 跟 .NET Core 跑出來的結果有很大的落差。多跑幾次或是重新開機都會有些變化，受環境影響的因素不少。我跑了好幾次挑有代表性的貼結果就好。先來看 code (都一樣的 code, 只有執行檔的路徑不一樣):
+這個版本，我直接把 `Main()` 編譯成獨立的 .exe (Console App), 然後透過 Process 物件來啟動獨立的程序，測試執行 .exe 的速度。這邊的結果頗令我意外，因為我用一模一樣的 code, 甚至用一樣的 .NET Standard 編譯出來的 binary code 來寫關鍵部分, 只是最後用兩個不同的專案來編譯而已。結果編譯成 .NET Framework 跟 .NET Core 跑出來的結果有很大的落差。多跑幾次或是重新開機都會有些變化，受環境影響的因素不少。我跑了好幾次挑有代表性的貼結果就好。先來看 code (都一樣的 code, 只有執行檔的路徑不一樣):
 
 ```
 for (int i = 0; i < total_domain_cycle_count; i++)
@@ -215,9 +215,9 @@ public class HelloTask : MarshalByRefObject
 }
 ```
 
-這段 code 唯一的目的，就是造成一些合理的負載而以，我挑了會占用 RAM 跟 CPU 的案例: 計算 SHA512 hash 來當作案例。用法很簡單，就是呼叫 `DoTask()`, 然後把 buffer 傳進去，計算完 hash 後用 base64 字串傳回來。我設計了兩套參數，一個是只傳 `int bufferSize`, 另一個是由 host 端直接準備好記憶體區塊內容，用 `byte[] buffer` 傳遞過來。兩者之間主要差異在傳遞參數的大小 ( 4 bytes vs 1M bytes )。因為，在跨越隔離環境下要呼叫另一端的 code, 通常參數的傳遞都是要花力氣處理的。
+這段 code 唯一的目的，就是造成一些合理的負載而已，我挑了會占用 RAM 跟 CPU 的案例: 計算 SHA512 hash 來當作案例。用法很簡單，就是呼叫 `DoTask()`, 然後把 buffer 傳進去，計算完 hash 後用 base64 字串傳回來。我設計了兩套參數，一個是只傳 `int bufferSize`, 另一個是由 host 端直接準備好記憶體區塊內容，用 `byte[] buffer` 傳遞過來。兩者之間主要差異在傳遞參數的大小 ( 4 bytes vs 1M bytes )。因為，在跨越隔離環境下要呼叫另一端的 code, 通常參數的傳遞都是要花力氣處理的。
 
-同樣的，為了觀察傳遞參數的影響，我用了條件式編譯，來切換空轉的版本。如果 compiler 定義了 `#define NULL_LOAD` 的話，就會啟動空轉的版本，所有 `DoTask()` 呼叫都是立刻 return, 可以觀察這些機制的效能天花板。這段 code 我直接用 .NET standard 2.0 的規範開發與編譯, 其他專案不論是 .NET framework 或是 .NET code, 都會共用同一個 binary code 來執行。接著，我也把`Main()` 的部分做了點調整。原本是立馬 return 的 code, 改成呼叫 100 次 `HelloTask`:
+同樣的，為了觀察傳遞參數的影響，我用了條件式編譯，來切換空轉的版本。如果 compiler 定義了 `#define NULL_LOAD` 的話，就會啟動空轉的版本，所有 `DoTask()` 呼叫都是立刻 return, 可以觀察這些機制的效能天花板。這段 code 我直接用 .NET standard 2.0 的規範開發與編譯, 其他專案不論是 .NET framework 或是 .NET core, 都會共用同一個 binary code 來執行。接著，我也把`Main()` 的部分做了點調整。原本是立馬 return 的 code, 改成呼叫 100 次 `HelloTask`:
 
 ```
 public static int Main(string[] args)
@@ -262,7 +262,7 @@ public static void WorkerMain(string mode, HelloWorkerBase[] workers)
 
 我需要有個隔離環境，來讓 `HelloTask` 安心的被執行，而主控端能夠適當的分配任務 (data) 給隔離環境下的 `HelloTask` 執行，並且傳回結果。
 
-每種不同的隔離環境，都會有各自的 Worker 來實作。我定義了抽象類別來規範這個 Worker 的實作方式來方便測試。 `HelloWorkerBase` 以及每種隔離環境的實作方式，我在下個 Part 再各自說明。接下來開始的 code 就要認真面對了，我要開始模擬真正的執行狀況，我希望 Task 能夠如同本地端的 lib 一樣容易的呼叫，需要傳遞參數過去，也需要傳遞結果回來。我期望主控端建立好環境後，可以傳遞 task 需要的參數過去，然後等待執行結果回來。除了參數根結果的傳遞之外，我需要 task 所有執行過程都被限制在安全的隔離環境內。
+每種不同的隔離環境，都會有各自的 Worker 來實作。我定義了抽象類別來規範這個 Worker 的實作方式來方便測試。 `HelloWorkerBase` 以及每種隔離環境的實作方式，我在下個 Part 再各自說明。接下來開始的 code 就要認真面對了，我要開始模擬真正的執行狀況，我希望 Task 能夠如同本地端的 lib 一樣容易的呼叫，需要傳遞參數過去，也需要傳遞結果回來。我期望主控端建立好環境後，可以傳遞 task 需要的參數過去，然後等待執行結果回來。除了參數跟結果的傳遞之外，我需要 task 所有執行過程都被限制在安全的隔離環境內。
 
 不同的隔離方式，有不同的通訊技巧。我這邊把通訊的需求簡化成傳遞呼叫參數，跟傳回執行結果就好。基本上 InProcess / Thread 都在同一個 memory space 下，直接傳遞物件的 reference 就夠了。AppDomain 嚴格的說也是在同個 memory space (相同 process 的多個 AppDomain, 是共用 managed heap 的), 只是 heap 內的物件存取會被 AppDomain 管控。跨越 AppDomain 存取物件，必須透過 Marshal 的機制處理。至於 memory space 完全獨立的 process, 只能透過 OS 層級的機制了, 例如 pipe, network, share file / memory map file 等等都是可行的做法, 後面的 code 我就直接拿 standard I/O + pipe 來示範..
 
@@ -312,7 +312,7 @@ worker.Stop();
 
 先從單純一點的測試開始吧。我先不去處理平行執行的部分，參數也先以最單純的 value 為主就好。我來測試看看，不重覆建立隔離環境的前提下，加上傳遞參數的效能測試。我啟用 `NULL_LOAD` 定義，把 `HelloTask.DoTask()` 的內容清空，我想先測試一下空轉時這個機制的效能極限:
 
-不論你用哪一種 Worker 的實作來執行 `HelloTask`, 我都用前面提到改寫後的 `WorkerMan()` 來測試效能。我會測試四種組合，一個維度是空轉 / 實際負載，另一個維度是基本參數傳遞 (int) 及大型資料傳遞 (byte[]: ~ 1MB)。切換測試方式會有微小的 code 調整，這些我也略過, 我只說明一次主程式結構就好，其他直接看測試數據。接下來就逐一來看各種隔離層級的程式碼，以及測試結果:
+不論你用哪一種 Worker 的實作來執行 `HelloTask`, 我都用前面提到改寫後的 `WorkerMain()` 來測試效能。我會測試四種組合，一個維度是空轉 / 實際負載，另一個維度是基本參數傳遞 (int) 及大型資料傳遞 (byte[]: ~ 1MB)。切換測試方式會有微小的 code 調整，這些我也略過, 我只說明一次主程式結構就好，其他直接看測試數據。接下來就逐一來看各種隔離層級的程式碼，以及測試結果:
 
 ### InProcessWorker
 
@@ -380,7 +380,7 @@ public class SingleAppDomainWorker : HelloWorkerBase
 }
 ```
 
-關鍵在於這段: `CreateInstanceAndUnwrap(...)`, 透過 AppDomain 的這個方法，你要求指定的 AppDomain 替你建立物件，然後 Unwrap (背後需要經過 `ObjectHandle` 處理), 經過一連串的步驟把遠在另一個 AppDomain 的物件穿越回你現在的 AppDomain… 拿到 Unwrap 後的物件你就能直接呼叫他了，其他背後的細節，.NET 會通通替你處理掉…，除此之外，這段 code 其時跟 `InProcessWorker` 沒有什麼不同。有時這麼方便背後的代價是很可怕的啊，短短一行 code 背後包含這麼多系統面的知識, 搞不清楚狀況的工程師可能誤用了多年都還不知道自己錯過了什麼…
+關鍵在於這段: `CreateInstanceAndUnwrap(...)`, 透過 AppDomain 的這個方法，你要求指定的 AppDomain 替你建立物件，然後 Unwrap (背後需要經過 `ObjectHandle` 處理), 經過一連串的步驟把遠在另一個 AppDomain 的物件穿越回你現在的 AppDomain… 拿到 Unwrap 後的物件你就能直接呼叫他了，其他背後的細節，.NET 會通通替你處理掉…，除此之外，這段 code 其實跟 `InProcessWorker` 沒有什麼不同。有時這麼方便背後的代價是很可怕的啊，短短一行 code 背後包含這麼多系統面的知識, 搞不清楚狀況的工程師可能誤用了多年都還不知道自己錯過了什麼…
 
 來看看執行結果: `SingleAppDomainWorker: 26666.6666666667 tasks/sec` 數字已經不如 InProcess 那樣破表的表現了…
 
@@ -449,7 +449,7 @@ class Program
 }
 ```
 
-基本上就是把上面對於 STDIO 的傳輸定義，反過來寫而已。這邊就是讀取一行 STDIN 當作參數來呼叫 `HelloTask`, 然後把執行結果寫到 STDOUT 就結束了。不斷循環，直到 STDIN 被關閉為止。不過這是基本參數傳遞的版本，另外大量參數傳遞的版本大同小異，只是多用了序列化 / 轉換成 Base64 的方式處理參數傳遞而以，完整的版本:
+基本上就是把上面對於 STDIO 的傳輸定義，反過來寫而已。這邊就是讀取一行 STDIN 當作參數來呼叫 `HelloTask`, 然後把執行結果寫到 STDOUT 就結束了。不斷循環，直到 STDIN 被關閉為止。不過這是基本參數傳遞的版本，另外大量參數傳遞的版本大同小異，只是多用了序列化 / 轉換成 Base64 的方式處理參數傳遞而已，完整的版本:
 
 ```
 public static void ProcessMain(string[] args)
@@ -489,7 +489,7 @@ public static void ProcessMain(string[] args)
 
 ## Isolation 測試結果總評
 
-接下來就是有點煩人的綜合測式了。程式碼跟做法前面都交代過，我就直接看結果。我測試了兩個維度，各兩種做法的組合。測試結果如下:
+接下來就是有點煩人的綜合測試了。程式碼跟做法前面都交代過，我就直接看結果。我測試了兩個維度，各兩種做法的組合。測試結果如下:
 
 執行平台: .NET Framework 參數模式: VALUE (基本數值) 執行內容: 正常負載
 
@@ -571,7 +571,7 @@ SingleProcessWorker           : 37037.03703703704 tasks/sec
 
 無負載:
 
-| 主程式 + 參數模式 \ 隔離方式 | InProcess | AppDomain  | Process (.NET Fx) | Process .NET Core) |
+| 主程式 + 參數模式 \ 隔離方式 | InProcess | AppDomain  | Process (.NET Fx) | Process (.NET Core) |
 | ---------------------------- | --------- | ---------- | ----------------- | ------------------ |
 | .NET Fx + VALUE              | ∞         | 26881.7204 | 51546.3918        | 57471.2644         |
 | .NET Core + VALUE            | 10000000  | 無法測試   | 43668.1223        | 52631.5789         |
@@ -587,9 +587,9 @@ SingleProcessWorker           : 37037.03703703704 tasks/sec
 | .NET Fx + BLOB               | 19120.4589 | 10822.5108 | 9285.0511         | 21321.9616          |
 | .NET Core + BLOB             | 85470.0855 | 無法測試   | 9861.9329         | 25575.4476          |
 
-這表格應該要這麼解讀，基本上無負載的部分，InProcess 的數據可以直接忽略了，你只要知道他很快就夠了。因為測式的精確度不夠高，測式的數量也不高 (太高我的電腦要跑完所有測式要等很久啊)。這是拿來當對照組的，我實際上不可能去用他，讓大家大約知道數量級上的差距即可。
+這表格應該要這麼解讀，基本上無負載的部分，InProcess 的數據可以直接忽略了，你只要知道他很快就夠了。因為測試的精確度不夠高，測試的數量也不高 (太高我的電腦要跑完所有測試要等很久啊)。這是拿來當對照組的，我實際上不可能去用他，讓大家大約知道數量級上的差距即可。
 
-這些測式有點難歸納結論啊，要考慮的變因 (維度) 太多，我試著從我想知道的幾個結論回頭說明我觀察的測試結果:
+這些測試有點難歸納結論啊，要考慮的變因 (維度) 太多，我試著從我想知道的幾個結論回頭說明我觀察的測試結果:
 
 ### 主程式 (管控端) 開發平台的選擇: 推薦 .NET Core
 
@@ -643,7 +643,7 @@ SingleProcessWorker           : 37037.03703703704 tasks/sec
 
 ## 下一步: Process Pool
 
-這邊我就先把這一段 Isolation 的研究告一段落。看了這麼多種組合 (.NET Fx / Core)，傳遞參數的策略 (Value / BLOB), 隔離技術的選擇 (AppDomain / Process) 都做了一番測是，大體上都搞清楚每種組合的特性了。看起來最適合的隔離機制是 Process, 而主控端與工作端按照需求，盡可能的挑選效能最好的 .NET Core。中間跨越 Process 的通訊可以採用常見的 I/O (例如 STDIO, pipe 等)。
+這邊我就先把這一段 Isolation 的研究告一段落。看了這麼多種組合 (.NET Fx / Core)，傳遞參數的策略 (Value / BLOB), 隔離技術的選擇 (AppDomain / Process) 都做了一番測試，大體上都搞清楚每種組合的特性了。看起來最適合的隔離機制是 Process, 而主控端與工作端按照需求，盡可能的挑選效能最好的 .NET Core。中間跨越 Process 的通訊可以採用常見的 I/O (例如 STDIO, pipe 等)。
 
 Process 跟 Thread 一樣，建立都是有很高昂的成本的，維護一個 Process 要比維護一個 Thread 代價還要更高，要花費更多的記憶體，啟動也需要花費更多時間。因此，下一步是我打算用 Process 來隔離主控端跟工作端，同時打造一個像 Thread Pool 這樣的機制，拿來管理跨越 Process 邊界執行 Task 用的 Process Pool。
 
@@ -717,7 +717,7 @@ Press any key to continue . . .
 
 這不就是我需要的處理機制嗎? 只不過 thread pool 的 “thread”, 我必須按照我需要, 替換成前面一直討論的 “隔離環境” 而已，不論是 AppDomain Pool, 或是 Process Pool 都一樣。我可以用同樣的機制，盡我最大可能的削弱啟動慢的缺點；最大化批次執行的效率；同時還能保有良好的隔離性，別讓寫的不好的 code 影響到其他任務的進行。
 
-看完這一大串說明，各為還記得前面做的各種評估跟效能測是嗎? 我把結果再貼一次，看看綜合比較 (我只取無負載，傳輸 BLOB 的部分):
+看完這一大串說明，各位還記得前面做的各種評估跟效能測試嗎? 我把結果再貼一次，看看綜合比較 (我只取無負載，傳輸 BLOB 的部分):
 
 **各種隔離環境的啟動速度**:
 
@@ -728,7 +728,7 @@ Press any key to continue . . .
 
 **各種隔離環境的任務執行速度 (無負載)**:
 
-| 主程式 + 參數模式 \ 隔離方式 | InProcess | AppDomain  | Process (.NET Fx) | Process .NET Core) |
+| 主程式 + 參數模式 \ 隔離方式 | InProcess | AppDomain  | Process (.NET Fx) | Process (.NET Core) |
 | ---------------------------- | --------- | ---------- | ----------------- | ------------------ |
 | .NET Fx + BLOB               | 5000000   | 23419.2037 | 19193.8580        | 32051.2821         |
 | .NET Core + BLOB             | 2500000   | 無法測試   | 21739.1304        | 37037.0370         |
@@ -888,7 +888,7 @@ public class ProcessPoolWorker : HelloWorkerBase
 2. `int _min_pool_size`:
    代表 process pool 必須維持的 process 最低數量。低於這數量, 即使 idle timeout 時間到了，也不會終止這個 process ..
 3. `int _max_pool_size`:
-   代表 process pool 必須維持的 process 最大數量。高於這數量, 即使還有 task 未處理完, 也不會在增加新的 process ..
+   代表 process pool 必須維持的 process 最大數量。高於這數量, 即使還有 task 未處理完, 也不會再增加新的 process ..
 4. `TimeSpan _process_idle_timeout`:
    代表 process 等待 task 的最大時間。等待超過這時間還沒有 task 可以處理時，process 會自行終止。
 
@@ -902,7 +902,7 @@ public class ProcessPoolWorker : HelloWorkerBase
 
 接下來，看看 task 被加進去 worker 的部分 `QueueTask(byte[] buffer)`，我放棄另一個傳遞 value 的實作，只做 BLOB 這份。準備好 `buffer` 跟 `result`, 就用 `Tuple` 打包丟到 `_queue` 裡面了。加入時順便做 `TryIncreaseProcess()` 的判斷，然後就把 result 傳回去。這 result 就是前面介紹過的 `HelloTaskResult`, 裡面包含 `WaitHandle` 的設計，等背景任務完成後, 可以透過 `WaitHandle` 通知能夠讀取 `ResultValue` 的內容了。這算是個陽春的 Async Task 做法，實際開發時，你可以考慮把它改成 .NET 的 Task, 就能更充分的應用 async / await 機制了。
 
-這三個流程的關鍵點，是我控制 Process Pool 數量的時間點。透過這三個控制點，我就能精準的調節 process 的數量, 用最洽當的 pool size 來處理負載。
+這三個流程的關鍵點，是我控制 Process Pool 數量的時間點。透過這三個控制點，我就能精準的調節 process 的數量, 用最恰當的 pool size 來處理負載。
 
 最後是 Worker 的 `Stop()` 程序，當你通知 Worker 該結束時，第一件事是通知 `_queue` 不會再有 task 被加進去了，呼叫 `BlockingCollection.CompleteAdding()` 可以完成這個動作。
 
@@ -914,7 +914,7 @@ public class ProcessPoolWorker : HelloWorkerBase
 
 寫到這邊，剛剛好 100 行 XDD (我真的很計較行數)。你也許會懷疑只有 100 行真的能做完整個類似 kubernetes 對於 pod 進行的 orchestration 機制嗎? 別懷疑，來試看看就知道。接下來，我們寫一段 code 來測試看看 `ProcessPoolWorker` 的表現是不是如我們預期…
 
-我把前面的 benchmark 重新拿出來用吧! 我只測式 有負載, BASE64 模式的那組, 版面關係我就跳過 .NET Fx 的測試了，加上 `ProcessPoolWorker` 一起測試:
+我把前面的 benchmark 重新拿出來用吧! 我只測試 有負載, BASE64 模式的那組, 版面關係我就跳過 .NET Fx 的測試了，加上 `ProcessPoolWorker` 一起測試:
 
 有負載 (buffer: 1KB):
 
@@ -990,7 +990,7 @@ _process.ProcessorAffinity = new IntPtr(14);    // 0000 0000 0000 1110
 
 ## Auto Scaling 測試
 
-進行到此，其實還有一些測試被我省略掉了，但是我在正式的專案是有進行的，就是當大量 process 同時運行時，記憶體使用量反而是個瓶頸了，這時 process pool 能夠適時的自動回收閒置的 process 發揮了很大的作用。過去沒有啟用回收機制時，我們配置 VM 時都卡在 RAM 不足，但是啟用適當的回收機制後，記憶體不再是瓶頸了，我們能夠開啟更多 “真正” 有在做事的 process, CPU 的使用率提高了。換來的好處是我們需要的 VM 更少了，這些效能調較優化的效益，直接反映在雲端的運算費用上。
+進行到此，其實還有一些測試被我省略掉了，但是我在正式的專案是有進行的，就是當大量 process 同時運行時，記憶體使用量反而是個瓶頸了，這時 process pool 能夠適時的自動回收閒置的 process 發揮了很大的作用。過去沒有啟用回收機制時，我們配置 VM 時都卡在 RAM 不足，但是啟用適當的回收機制後，記憶體不再是瓶頸了，我們能夠開啟更多 “真正” 有在做事的 process, CPU 的使用率提高了。換來的好處是我們需要的 VM 更少了，這些效能調校優化的效益，直接反映在雲端的運算費用上。
 
 本來想要模擬一下 allocate 大量記憶體的，不過我試了一下，我有 64GB RAM, 要塞滿到觀察的出來很花時間啊… Orz, 我換個方式表達好了。我就不直接觀察記憶體使用量，我直接觀察 process 的生命週期是否如我預期好了。原本上面的測試，只是很無腦的把 10000 個 task 交給 Worker 處理，這次我動點手腳:
 

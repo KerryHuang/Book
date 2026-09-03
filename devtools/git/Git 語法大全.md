@@ -12,7 +12,7 @@ kind: original
 - `git rm <file>`：從工作目錄和索引中移除檔案。
 - `git commit -m "message"`：將暫存區的更改提交到儲存庫，並附上提交訊息。
 - `git log`：顯示提交歷史紀錄。
-- `git config`：git 配置。vcr24f2ercjxiocqivwoekk3yvelmrtdt7yynl2wr7t7ns3ilwoq
+- `git config`：git 配置。
 
 ### 2. 檢視和比較
 

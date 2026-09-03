@@ -120,7 +120,7 @@ F5執行後，依照下列步驟操作，並確認結果
 
 ### 後記
 
-任務排程的套件還有另外兩個[Coravel](https://docs.coravel.net/)與[Quart.Net](https://www.quartz-scheduler.net/)都可以參考看看
+任務排程的套件還有另外兩個[Coravel](https://docs.coravel.net/)與[Quartz.NET](https://www.quartz-scheduler.net/)都可以參考看看
 
 ### 參考
 

@@ -85,13 +85,13 @@ kind: original
 
    - 將本地專案推送到 GitLab，並設定`origin`
 
-     作為默認的上傳位置：
+     作為預設的上傳位置：
 
      ```bash
      git push -u origin master
      ```
      
-   - 如果 GitLab 的默認分支是`main`
+   - 如果 GitLab 的預設分支是`main`
 
      ，可改成以下指令：
 

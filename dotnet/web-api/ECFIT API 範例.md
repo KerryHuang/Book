@@ -10,7 +10,7 @@ kind: original
 
 # Order - 取得訂單內容
 
-利用提供的 訂單號碼 :order 取得訂單資訊，包含開立時的商品資料與折讓紀錄)，此功能有訪問頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
+利用提供的 訂單號碼 :order 取得訂單資訊，包含開立時的商品資料與折讓紀錄，此功能有訪問頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
 
 ### GET
 ```html
@@ -215,7 +215,7 @@ HTTP/1.1 200 OK
 
 # Order - 取得訂單內容(post方法)
 
-利用提供的 訂單號碼 取得訂單資訊，包含開立時的商品資料與折讓紀錄)，此功能有訪問頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
+利用提供的 訂單號碼 取得訂單資訊，包含開立時的商品資料與折讓紀錄，此功能有訪問頻率限制 ( 每分鐘 30 次 )，若超過將會回傳 429: Too Many Attempts.，除 Response 外，API 在標頭也會回傳 X-RateLimit-Limit、X-RateLimit-Remaining、Retry-After ( 如果到達限制次數就只能得到 Retry-After )
 
 ### POST
 ```html

@@ -12,7 +12,7 @@ Seq 是一款使用現代化技術構建的結構化日誌存儲，查詢，分�
     * 在未啟用授權的狀況下，session數量不影響，但不能安裝app
 
 2. 環境 docker
-    * 啟動container，使用volumn mount實體路徑: 
+    * 啟動container，使用volume mount實體路徑: 
 
     ```
     docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -v D:\docker\seqdata:/data -p 5341:80 datalust/seq:latest
@@ -164,12 +164,12 @@ Seq 是一款使用現代化技術構建的結構化日誌存儲，查詢，分�
     3. 從Settings->Retention設定清空events排程
     4. 可以設定占用記憶體跟硬碟最小剩餘空間多少後不再寫入
 
-7. [部署總覽]("https://docs.datalust.co/docs/production-deployment")
+7. [部署總覽](https://docs.datalust.co/docs/production-deployment)
 
 8. 參考資料
 
     1. [.Net Core with 微服務 - Seq 日誌聚合](https://kknews.cc/zh-tw/code/3ykpaoo.html)
-    2. [C#：NLog接入配置與簡單使用]([https://zhuanlan.zhihu.com/p/610461723)
+    2. [C#：NLog接入配置與簡單使用](https://zhuanlan.zhihu.com/p/610461723)
     3. [Microsoft.Extensions.Logging](https://docs.datalust.co/docs/microsoft-extensions-logging)
     4. [NLog](https://docs.datalust.co/docs/using-nlog)
     5. [如何在現有 ASP.NET Core 專案加入 Seq 記錄提供者](https://blog.miniasp.com/post/2023/05/13/Add-Seq-Log-Provider-in-ASPNET-Core)

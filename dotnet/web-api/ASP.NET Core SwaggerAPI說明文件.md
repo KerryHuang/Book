@@ -50,14 +50,15 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
+    }
 
     /// 使用 Swagger 產生json端點文件
-    app.UseSwagger()
+    app.UseSwagger();
     /// 啟用SwaggerUI 並根據Swagger.json產生畫面
-    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); })
-    app.UseHttpsRedirection()
-    app.UseRouting()
-    app.UseAuthorization()
+    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+    app.UseHttpsRedirection();
+    app.UseRouting();
+    app.UseAuthorization();
     app.UseEndpoints(endpoints =>
     {
         endpoints.MapControllers();
