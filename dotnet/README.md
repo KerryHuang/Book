@@ -1,0 +1,142 @@
+# dotnet
+
+.NET 開發：C#、ASP.NET Core、Web API、EF Core、測試、LINE Bot
+
+[← 回總目錄](../README.md)
+
+- **aspnet-core/**
+  - [ASP.NET 9 OpenAPI 介紹與教學](<aspnet-core/ASP.NET 9 OpenAPI 介紹與教學.md>)
+  - [ASP.NET Core 6 目錄](<aspnet-core/ASP.NET Core 6 目錄.md>)
+  - [ASP.NET Core Authentication系列（一）理解Claim, ClaimsIdentity, ClaimsPrincipal](<aspnet-core/ASP.NET Core Authentication系列（一）理解Claim, ClaimsIdentity, ClaimsPrincipal.md>) — [轉貼：liang24 (91suke)](https://www.cnblogs.com/liang24/p/13910368.html)
+  - [ASP.NET Core Authentication系列（三）Cookie選項](<aspnet-core/ASP.NET Core Authentication系列（三）Cookie選項.md>) — [轉貼：liang24 (91suke)](https://www.cnblogs.com/liang24/p/13919397.html)
+  - [ASP.NET Core Authentication系列（二）實現認證、登錄和註銷](<aspnet-core/ASP.NET Core Authentication系列（二）實現認證、登錄和註銷.md>) — [轉貼：liang24 (91suke)](https://www.cnblogs.com/liang24/p/13912695.html)
+  - [ASP.NET Core Authentication系列（四）基於Cookie實現多應用間單點登錄（SSO）](<aspnet-core/ASP.NET Core Authentication系列（四）基於Cookie實現多應用間單點登錄（SSO）.md>) — 轉貼：liang24 (91suke)
+  - [ASP.NET Core Consul 教學](<aspnet-core/ASP.NET Core Consul 教學.md>) — 轉貼：godleon
+  - [ASP.NET Core Hangfire 排程管理](<aspnet-core/ASP.NET Core Hangfire 排程管理.md>) — 轉貼：余小章 (yc421206)
+  - [ASP.NET Core KeyCloak 實作](<aspnet-core/ASP.NET Core KeyCloak 實作.md>)
+  - [ASP.NET Core NLog-依照Environment使用Nlog.Config檔案](<aspnet-core/ASP.NET Core NLog-依照Environment使用Nlog.Config檔案.md>)
+  - [ASP.NET Core NLog-如何使用 NLog 將 log 寫到檔案](<aspnet-core/ASP.NET Core NLog-如何使用 NLog 將 log 寫到檔案.md>) — 轉貼
+  - [ASP.NET Core Nlog-發送訊息到ElasticSearch](<aspnet-core/ASP.NET Core Nlog-發送訊息到ElasticSearch.md>) — [轉貼：Null](https://www.dotblogs.com.tw/Null/2020/08/10/112748)
+  - [ASP.NET Core Quartz 介紹](<aspnet-core/ASP.NET Core Quartz 介紹.md>) — 轉貼
+  - [ASP.NET Core Quartz.NET 管理介面](<aspnet-core/ASP.NET Core Quartz.NET 管理介面.md>) — 轉貼：chris
+  - [ASP.NET Core RDLC 報表設計](<aspnet-core/ASP.NET Core RDLC 報表設計.md>)
+  - [ASP.NET Core SFTP 使用第三方套件 SSH.Net](<aspnet-core/ASP.NET Core SFTP 使用第三方套件 SSH.Net.md>)
+  - [ASP.NET Core 中使用 HttpReports 進行接口統計，分析, 可視化， 監控，追踪等](<aspnet-core/ASP.NET Core 中使用 HttpReports 進行接口統計，分析, 可視化， 監控，追踪等.md>)
+  - [ASP.NET Core 使用 MassTransit 與 RabbitMQ，實現事件發佈、訂閱](<aspnet-core/ASP.NET Core 使用 MassTransit 與 RabbitMQ，實現事件發佈、訂閱.md>) — 轉貼：余小章
+  - [ASP.NET Core 分散式Session – 使用 Redis](<aspnet-core/ASP.NET Core 分散式Session – 使用 Redis.md>) — 轉貼：nethawk
+  - [ASP.NET Core 前台會員修改個人資料](<aspnet-core/ASP.NET Core 前台會員修改個人資料.md>) — 轉貼：hungwin
+  - [ASP.NET Core 前台會員忘記密碼與重設密碼](<aspnet-core/ASP.NET Core 前台會員忘記密碼與重設密碼.md>) — 轉貼：hungwin
+  - [ASP.NET Core 前台會員登入](<aspnet-core/ASP.NET Core 前台會員登入.md>) — 轉貼：hungwin
+  - [ASP.NET Core 前台會員註冊](<aspnet-core/ASP.NET Core 前台會員註冊.md>) — 轉貼：hungwin
+  - [ASP.NET Core 呼叫 API 發生 CORS 錯誤](<aspnet-core/ASP.NET Core 呼叫 API 發生 CORS 錯誤.md>) — 轉貼：John Wu
+  - [ASP.NET Core 如何套網頁設計樣版](<aspnet-core/ASP.NET Core 如何套網頁設計樣版.md>) — 轉貼：hungwin
+  - [ASP.NET Core 客製化Model Validation 預設錯誤訊息](<aspnet-core/ASP.NET Core 客製化Model Validation 預設錯誤訊息.md>)
+  - [ASP.NET Core 後台查詢頁面教學](<aspnet-core/ASP.NET Core 後台查詢頁面教學.md>) — 轉貼：hungwin
+  - [ASP.NET Core 網站生命週期](<aspnet-core/ASP.NET Core 網站生命週期.md>) — 轉貼：hungwin
+  - [ASP.NET Feature Management 使用說明與教學](<aspnet-core/ASP.NET Feature Management 使用說明與教學.md>)
+  - [ASP.NET RulesEngine 介紹](<aspnet-core/ASP.NET RulesEngine 介紹.md>)
+  - [LinePay](<aspnet-core/LinePay.md>)
+  - **net6-samples/**
+    - [NET 6 Autofac範例](<aspnet-core/net6-samples/NET 6 Autofac範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/AutoFacExample)
+    - [NET 6 Automapper範例](<aspnet-core/net6-samples/NET 6 Automapper範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/AutoMapperExample)
+    - [NET 6 BenchmarkDotNet範例](<aspnet-core/net6-samples/NET 6 BenchmarkDotNet範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/BenchmarkDotNetExample)
+    - [NET 6 Bogus範例](<aspnet-core/net6-samples/NET 6 Bogus範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/BogusExample)
+    - [NET 6 Dapper範例](<aspnet-core/net6-samples/NET 6 Dapper範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/DapperExample)
+    - [NET 6 Dapper語法說明](<aspnet-core/net6-samples/NET 6 Dapper語法說明.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/DapperExample_Advanced)
+    - [NET 6 EFCore範例](<aspnet-core/net6-samples/NET 6 EFCore範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/EFCoreExample)
+    - [NET 6 EFCore語法說明](<aspnet-core/net6-samples/NET 6 EFCore語法說明.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/EFCoreExample_Advanced)
+    - [NET 6 EPPlus圖表範例](<aspnet-core/net6-samples/NET 6 EPPlus圖表範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/EPPlusExample_Advanced)
+    - [NET 6 EPPlus範例](<aspnet-core/net6-samples/NET 6 EPPlus範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/EPPlusExample)
+    - [NET 6 Hangfire範例](<aspnet-core/net6-samples/NET 6 Hangfire範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/HangfireExample)
+    - [NET 6 HttpClient單元測試範例](<aspnet-core/net6-samples/NET 6 HttpClient單元測試範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/HttpclientExample)
+    - [NET 6 MailKit前置作業](<aspnet-core/net6-samples/NET 6 MailKit前置作業.md>) — 轉貼：CI-YU
+    - [NET 6 MailKit範例](<aspnet-core/net6-samples/NET 6 MailKit範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/MailKitExample)
+    - [NET 6 Moq範例](<aspnet-core/net6-samples/NET 6 Moq範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/MoqExample)
+    - [NET 6 NLog範例](<aspnet-core/net6-samples/NET 6 NLog範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/NLogExample)
+    - [NET 6 NLog進階範例](<aspnet-core/net6-samples/NET 6 NLog進階範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/NLogExample_Advanced)
+    - [NET 6 Serilog範例](<aspnet-core/net6-samples/NET 6 Serilog範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/SerilogExample)
+    - [NET 6 Serilog進階範例](<aspnet-core/net6-samples/NET 6 Serilog進階範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/SerilogExample_Advanced)
+    - [NET 6 swagger授權](<aspnet-core/net6-samples/NET 6 swagger授權.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/SwaggerExample_Advanced_Authorization)
+    - [NET 6 swagger範例](<aspnet-core/net6-samples/NET 6 swagger範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/SwaggerExample)
+    - [NET 6 Telegram.Bot前置作業](<aspnet-core/net6-samples/NET 6 Telegram.Bot前置作業.md>) — 轉貼：CI-YU
+    - [NET 6 Telegram.Bot範例](<aspnet-core/net6-samples/NET 6 Telegram.Bot範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/TelegramBotExample)
+    - [NET 6 Text.Json範例](<aspnet-core/net6-samples/NET 6 Text.Json範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/JsonExample)
+    - [NET 6 xUnit範例](<aspnet-core/net6-samples/NET 6 xUnit範例.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/xUnitExample)
+    - [NET 6 取得appsettings檔案內容](<aspnet-core/net6-samples/NET 6 取得appsettings檔案內容.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/ConfigurationExample)
+    - [NET 6 更改回傳Json時為大駝峰命名](<aspnet-core/net6-samples/NET 6 更改回傳Json時為大駝峰命名.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/JsonExample_Advanced_Deserialize)
+    - [NET 6 解決System.Text.Json序列化後會將所有非ASCII轉為Unicode](<aspnet-core/net6-samples/NET 6 解決System.Text.Json序列化後會將所有非ASCII轉為Unicode.md>) — [轉貼：CI-YU](https://github.com/CI-YU/2022-ITHelp/tree/main/JsonExample_Advanced)
+  - **wdmis/**
+    - [CORS](<aspnet-core/wdmis/CORS.md>)
+    - [FeatureManagement](<aspnet-core/wdmis/FeatureManagement.md>)
+    - [Serilog](<aspnet-core/wdmis/Serilog.md>)
+    - [Spectre.Console](<aspnet-core/wdmis/Spectre.Console.md>)
+    - [資料模型實戰：從 MSSQL 設計到 .NET 8 WebAPI 實作（以刀具管理為例）](<aspnet-core/wdmis/資料模型實戰：從 MSSQL 設計到 .NET 8 WebAPI 實作（以刀具管理為例）.md>)
+- **csharp/**
+  - [ASP.NET await 與 wait 的差異](<csharp/ASP.NET await 與 wait 的差異.md>)
+  - [AutoMapper —— 類別轉換超省力](<csharp/AutoMapper —— 類別轉換超省力.md>)
+  - [C# 中的 HTTPClient — 入門指南](<csharp/C%23 中的 HTTPClient — 入門指南.md>) — 轉貼
+  - [C# 正則表達式：從零到英雄指南](<csharp/C%23 正則表達式：從零到英雄指南.md>) — 轉貼
+  - [C# 集合, List 取交集、差集、聯集的方法](<csharp/C%23 集合, List 取交集、差集、聯集的方法.md>)
+  - [CORS 介紹與設定方式](<csharp/CORS 介紹與設定方式.md>)
+  - [CSharp Coding Conventions](<csharp/CSharp Coding Conventions.md>) — 轉貼
+  - [Using jQuery Unobtrusive AJAX in ASP.NET Core Razor Pages](<csharp/Using jQuery Unobtrusive AJAX in ASP.NET Core Razor Pages.md>) — 轉貼：Mike Brind
+  - [WinForms APP 程式安裝檔](<csharp/WinForms APP 程式安裝檔.md>) — 轉貼：hungwin
+  - [多奇數位 C# 程式碼撰寫規範 (C# Coding Guideline)](<csharp/多奇數位 C%23 程式碼撰寫規範 (C%23 Coding Guideline).md>)
+  - [深入Dapper.NET源碼](<csharp/深入Dapper.NET源碼.md>) — [轉貼：暐翰 (ITWeiHan)](https://www.cnblogs.com/ITWeiHan/p/11614704.html)
+  - **菜雞與物件導向/**
+    - [菜雞與物件導向 (0) 前言](<csharp/菜雞與物件導向/菜雞與物件導向 (0) 前言.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-0-object-oriented)
+    - [菜雞與物件導向 (1) 類別、物件](<csharp/菜雞與物件導向/菜雞與物件導向 (1) 類別、物件.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-1-class-object)
+    - [菜雞與物件導向 (2) 建構式、多載](<csharp/菜雞與物件導向/菜雞與物件導向 (2) 建構式、多載.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-2-constructor-overload)
+    - [菜雞與物件導向 (3) 封裝](<csharp/菜雞與物件導向/菜雞與物件導向 (3) 封裝.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-3-encapsulation)
+    - [菜雞與物件導向 (4) 繼承](<csharp/菜雞與物件導向/菜雞與物件導向 (4) 繼承.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-4-inheritance)
+    - [菜雞與物件導向 (5) 多型](<csharp/菜雞與物件導向/菜雞與物件導向 (5) 多型.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-5-polymorphism)
+    - [菜雞與物件導向 (6) 抽象、覆寫](<csharp/菜雞與物件導向/菜雞與物件導向 (6) 抽象、覆寫.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-6-abstract-override)
+    - [菜雞與物件導向 (7) 介面](<csharp/菜雞與物件導向/菜雞與物件導向 (7) 介面.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/07/oo-7-interface)
+    - [菜雞與物件導向 (8) 內聚、耦合](<csharp/菜雞與物件導向/菜雞與物件導向 (8) 內聚、耦合.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/09/oo-8-cohesion-and-coupling)
+    - [菜雞與物件導向 (9) SOLID](<csharp/菜雞與物件導向/菜雞與物件導向 (9) SOLID.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/09/oo-9-solid)
+    - [菜雞與物件導向 (10) 單一職責原則](<csharp/菜雞與物件導向/菜雞與物件導向 (10) 單一職責原則.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/10/oo-10-single-responsibility-principle)
+    - [菜雞與物件導向 (11) 開放封閉原則](<csharp/菜雞與物件導向/菜雞與物件導向 (11) 開放封閉原則.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/10/oo-11-open-closed-principle)
+    - [菜雞與物件導向 (12) 里氏替換原則](<csharp/菜雞與物件導向/菜雞與物件導向 (12) 里氏替換原則.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/11/oo-12-liskov-substitution-principle)
+    - [菜雞與物件導向 (13) 介面隔離原則](<csharp/菜雞與物件導向/菜雞與物件導向 (13) 介面隔離原則.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/11/oo-13-interface-segregation-principle)
+    - [菜雞與物件導向 (14) 依賴反轉原則](<csharp/菜雞與物件導向/菜雞與物件導向 (14) 依賴反轉原則.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/12/oo-14-dependency-inversion-principle)
+    - [菜雞與物件導向 (15) 最少知識原則](<csharp/菜雞與物件導向/菜雞與物件導向 (15) 最少知識原則.md>) — [轉貼：igouist](https://igouist.github.io/post/2020/12/oo-15-least-knowledge-principle)
+    - [菜雞與物件導向 (Ex1) 小結](<csharp/菜雞與物件導向/菜雞與物件導向 (Ex1) 小結.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/01/oo-ex1-end2020)
+- **entity-framework/**
+  - [EF Core Migrations 完整教學手冊](<entity-framework/EF Core Migrations 完整教學手冊.md>)
+  - [EntityFramework Core DB Migrations](<entity-framework/EntityFramework Core DB Migrations.md>)
+  - [使用 Entity Framework Core (EF Core) 的 Migrations 功能進行版本控制](<entity-framework/使用 Entity Framework Core (EF Core) 的 Migrations 功能進行版本控制.md>)
+- **line-bot/**
+  - [00. 如何申請LINE Bot](<line-bot/00. 如何申請LINE Bot.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK/blob/master/00.%20%E5%A6%82%E4%BD%95%E7%94%B3%E8%AB%8BLINE%20Bot.md)
+  - **basic/**
+    - [Lab 01 _ 基本訊息推送](<line-bot/basic/Lab 01 _ 基本訊息推送.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+    - [Lab 02 _ 推送LINE Template Messages](<line-bot/basic/Lab 02 _ 推送LINE Template Messages.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+    - [Lab 03_如何發送ImageMap訊息](<line-bot/basic/Lab 03_如何發送ImageMap訊息.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+    - [Lab 04_ 如何發送Flex Message](<line-bot/basic/Lab 04_ 如何發送Flex Message.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+    - [Lab 05 _ 如何在訊息後面加上QuickReply快捷選項](<line-bot/basic/Lab 05 _ 如何在訊息後面加上QuickReply快捷選項.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+  - **CLI/**
+    - [Lab 31_使用CLI來發送新的Channel Access Token(LINE Bot)](<line-bot/CLI/Lab 31_使用CLI來發送新的Channel Access Token(LINE Bot).md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+    - [Lab 32_ 使用CLI免費發送LINE Notify通知](<line-bot/CLI/Lab 32_ 使用CLI免費發送LINE Notify通知.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+  - **liff/**
+    - [Lab 21_ 建立第一個LIFF應用](<line-bot/liff/Lab 21_ 建立第一個LIFF應用.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+  - **webhook/**
+    - [Lab 11 _ 如何建立可Echo的 LINE Bot](<line-bot/webhook/Lab 11 _ 如何建立可Echo的 LINE Bot.md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK/blob/master/webhook/Lab%2011%20:%20%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%8F%AFEcho%E7%9A%84%20LINE%20Bot.md)
+    - [Lab 12 _ 如何在WebHook中取得用戶個人資訊(名稱、頭像、狀態)](<line-bot/webhook/Lab 12 _ 如何在WebHook中取得用戶個人資訊(名稱、頭像、狀態).md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+    - [Lab 13 _ 如何在WebHook中取得用戶上傳的圖片(Bytes)](<line-bot/webhook/Lab 13 _ 如何在WebHook中取得用戶上傳的圖片(Bytes).md>) — [轉貼：isdaviddong (董大偉)](https://github.com/isdaviddong/HOL-LineBotSDK)
+- **testing/**
+  - [C# 單元測試教學](<testing/C%23 單元測試教學.md>)
+  - [單元測試](<testing/單元測試.md>) — 轉貼
+- **web-api/**
+  - [ASP.NET Core 6 Web API 進行 JWT 令牌身份驗證](<web-api/ASP.NET Core 6 Web API 進行 JWT 令牌身份驗證.md>) — 轉貼
+  - [ASP.NET Core SwaggerAPI說明文件](<web-api/ASP.NET Core SwaggerAPI說明文件.md>) — [轉貼：Bryan Yu](https://bryanyu.github.io/2019/12/29/AspNetCoreSwagger/)
+  - [ASP.NET Core Web Api實作JWT驗證筆記](<web-api/ASP.NET Core Web Api實作JWT驗證筆記.md>)
+  - [ECFIT API 範例](<web-api/ECFIT API 範例.md>)
+  - [JWT Token Authentication And Authorizations In .Net Core 6.0 Web API](<web-api/JWT Token Authentication And Authorizations In .Net Core 6.0 Web API.md>) — 轉貼
+- **菜雞新訓記/**
+  - [菜雞新訓記 (0) 前言](<菜雞新訓記/菜雞新訓記 (0) 前言.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/04/newbie-0-menu)
+  - [菜雞新訓記 (1) 使用 Git 來進行版本控制吧](<菜雞新訓記/菜雞新訓記 (1) 使用 Git 來進行版本控制吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/04/newbie-1-hello-git)
+  - [菜雞新訓記 (2) 認識 Api & 使用 .net Core 來建立簡單的 Web Api 服務吧](<菜雞新訓記/菜雞新訓記 (2) 認識 Api & 使用 .net Core 來建立簡單的 Web Api 服務吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/05/newbie-2-webapi)
+  - [菜雞新訓記 (3) 使用 Dapper 來連線到資料庫 CRUD 吧](<菜雞新訓記/菜雞新訓記 (3) 使用 Dapper 來連線到資料庫 CRUD 吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/05/newbie-3-dapper)
+  - [菜雞新訓記 (4) 使用 Swagger 來自動產生可互動的 API 文件吧](<菜雞新訓記/菜雞新訓記 (4) 使用 Swagger 來自動產生可互動的 API 文件吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/05/newbie-4-swagger)
+  - [菜雞新訓記 (5) 使用 三層式架構 來切分服務的關注點和職責吧](<菜雞新訓記/菜雞新訓記 (5) 使用 三層式架構 來切分服務的關注點和職責吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/10/newbie-5-3-layer-architecture)
+  - [菜雞新訓記 (6) 使用 依賴注入 (Dependency Injection) 來解除強耦合吧](<菜雞新訓記/菜雞新訓記 (6) 使用 依賴注入 (Dependency Injection) 來解除強耦合吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2021/11/newbie-6-dependency-injection)
+  - [菜雞新訓記 (7) 使用 Fluent Validation 來驗證參數吧](<菜雞新訓記/菜雞新訓記 (7) 使用 Fluent Validation 來驗證參數吧.md>) — [轉貼：igouist](https://igouist.github.io/post/2022/03/newbie-7-fluent-validation)
