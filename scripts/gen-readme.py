@@ -205,7 +205,8 @@ def main():
         "- **新增文章**：放進對應領域目錄、加上 front matter，然後執行 `python scripts/gen-readme.py` 重新產生所有 README。",
         "- **文件網站**：push 到 main 後由 GitHub Actions 以 MkDocs Material 建置並發布到 https://kerryhuang.github.io/Book/ 。"
         "本機預覽：建虛擬環境後 `pip install -r requirements.txt`，再執行 `bash scripts/build-site.sh serve`。",
-        "- **GitBook**：同一份內容也透過 GitBook Git Sync 發布到 https://kerryhuangs-organization.gitbook.io/kerry-de-bi-ji-ben/ 。",
+        "- **GitBook**：同一份內容也透過 GitBook Git Sync 發布到 https://kerryhuangs-organization.gitbook.io/kerry-de-bi-ji-ben/ 。"
+        "設定與疑難排解見 [GitHub 同步到 GitBook 手冊](<docs/GitHub 同步到 GitBook 手冊.md>)。",
         "- **來源標記的限制**：轉貼文章的出處以檔內證據判定，少數只標到網域或 `kind: unknown`，歡迎修正。",
     ]
     write(os.path.join(ROOT, "README.md"), root)
